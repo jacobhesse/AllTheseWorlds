@@ -1,0 +1,777 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Calculus I Formula Sheet (with brief descriptions)</title>
+  <style>
+    :root{
+      --bg1:#071226;
+      --bg2:#0b1f3d;
+      --card:rgba(255,255,255,.06);
+      --card2:rgba(255,255,255,.08);
+      --text:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.72);
+      --line:rgba(255,255,255,.14);
+      --accent:#53e0c0;
+      --accent2:#76a8ff;
+      --warn:#ffcc66;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--text);
+      background: radial-gradient(1200px 700px at 20% 10%, rgba(83,224,192,.25), transparent 60%),
+                  radial-gradient(1000px 600px at 85% 15%, rgba(118,168,255,.22), transparent 55%),
+                  linear-gradient(135deg, var(--bg1), var(--bg2));
+      min-height:100vh;
+    }
+    header{
+      padding:48px 18px 18px;
+      max-width:1080px;
+      margin:0 auto;
+    }
+    h1{
+      margin:0 0 10px;
+      font-size:clamp(1.6rem, 2.6vw, 2.4rem);
+      letter-spacing:.2px;
+    }
+    .sub{
+      margin:0;
+      color:var(--muted);
+      line-height:1.45;
+      max-width:860px;
+    }
+    .toolbar{
+      margin-top:18px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    .search{
+      flex:1 1 320px;
+      display:flex;
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:10px 12px;
+      backdrop-filter: blur(10px);
+    }
+    .search input{
+      width:100%;
+      border:none;
+      outline:none;
+      background:transparent;
+      color:var(--text);
+      font-size:0.98rem;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:var(--card);
+      color:var(--muted);
+      cursor:pointer;
+      user-select:none;
+      font-size:.92rem;
+      backdrop-filter: blur(10px);
+    }
+    .pill[aria-pressed="true"]{
+      color:var(--text);
+      border-color: rgba(83,224,192,.45);
+      box-shadow: 0 0 0 2px rgba(83,224,192,.10) inset;
+    }
+    main{
+      max-width:1080px;
+      margin:0 auto;
+      padding:10px 18px 60px;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:14px;
+    }
+    @media (min-width: 940px){
+      .grid{ grid-template-columns: 1fr 1fr; }
+    }
+    section.card{
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, var(--card), rgba(255,255,255,.04));
+      border-radius:18px;
+      padding:16px 16px 14px;
+      backdrop-filter: blur(10px);
+    }
+    section.card h2{
+      margin:0 0 8px;
+      font-size:1.1rem;
+      letter-spacing:.2px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .tag{
+      font-size:.78rem;
+      color:rgba(255,255,255,.75);
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:4px 10px;
+      background:rgba(0,0,0,.12);
+      white-space:nowrap;
+    }
+    .item{
+      padding:10px 0;
+      border-top:1px dashed rgba(255,255,255,.14);
+    }
+    .item:first-of-type{ border-top:none; padding-top:6px;}
+    .formula{
+      font-family:var(--mono);
+      font-size:0.98rem;
+      line-height:1.35;
+      color:rgba(255,255,255,.95);
+      display:block;
+      white-space:normal;
+      word-break:break-word;
+    }
+    .desc{
+      margin:6px 0 0;
+      color:var(--muted);
+      line-height:1.45;
+      font-size:0.95rem;
+    }
+    .note{
+      margin-top:10px;
+      font-size:.9rem;
+      color:rgba(255,255,255,.72);
+      border-left:3px solid rgba(255,204,102,.6);
+      padding:8px 10px;
+      background:rgba(0,0,0,.10);
+      border-radius:10px;
+    }
+    footer{
+      max-width:1080px;
+      margin:0 auto;
+      padding:18px 18px 40px;
+      color:rgba(255,255,255,.62);
+      font-size:.9rem;
+      line-height:1.45;
+    }
+    a{color:var(--accent)}
+    .hidden{ display:none !important; }
+  </style>
+<link rel="icon" href="/wp-content/uploads/2025/11/cropped-0_3-25456-no-background.png">
+<script src="/assets/site.js" defer></script>
+</head>
+<body>
+<div class="wp-site-blocks">
+<atw-header></atw-header>
+<header>
+    <h1>Calculus I Formula Sheet — with brief descriptions</h1>
+    <p class="sub">
+      This page is designed as a practical reference: core definitions, limit laws, derivatives, integrals, and the
+      “standard theorems” typically covered in a Calculus I sequence. Use the search box to filter by keywords
+      (e.g., <em>product</em>, <em>u-sub</em>, <em>Taylor</em>, <em>optimization</em>, <em>Rolle</em>, <em>Riemann</em>).
+    </p>
+
+    <div class="toolbar">
+      <div class="search" role="search">
+        <input id="q" type="search" placeholder="Search formulas… (e.g., chain rule, ln, L'Hôpital, FTC)" autocomplete="off" />
+      </div>
+      <button class="pill" id="toggleDesc" type="button" aria-pressed="true" title="Show/Hide descriptions">
+        Descriptions
+      </button>
+      <button class="pill" id="toggleNotes" type="button" aria-pressed="true" title="Show/Hide section notes">
+        Notes
+      </button>
+      <button class="pill" id="clear" type="button" aria-pressed="false" title="Clear search">
+        Clear
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <div class="grid" id="grid">
+
+      <!-- 1) Precalculus / Algebraic identities often used in Calc I -->
+      <section class="card" data-section="algebra trig identities">
+        <h2>
+          Precalculus identities used constantly
+          <span class="tag">algebra / trig</span>
+        </h2>
+
+        <div class="item" data-keywords="difference of squares factoring">
+          <span class="formula">(a &#8211; b)(a + b) = a² &#8211; b²</span>
+          <p class="desc">Difference of squares. Common in limit rationalizations.</p>
+        </div>
+
+        <div class="item" data-keywords="exponent laws">
+          <span class="formula">a^m · a^n = a^(m+n), &nbsp; a^m / a^n = a^(m-n), &nbsp; (a^m)^n = a^(mn)</span>
+          <p class="desc">Exponent rules used to simplify functions and limits.</p>
+        </div>
+
+        <div class="item" data-keywords="logarithm laws ln log change of base">
+          <span class="formula">ln(ab)=ln a + ln b, &nbsp; ln(a/b)=ln a &#8211; ln b, &nbsp; ln(a^r)=r ln a</span>
+          <p class="desc">Log laws. Essential for logarithmic differentiation and integral forms.</p>
+        </div>
+
+        <div class="item" data-keywords="trig pythagorean identities">
+          <span class="formula">sin²x + cos²x = 1, &nbsp; 1 + tan²x = sec²x, &nbsp; 1 + cot²x = csc²x</span>
+          <p class="desc">Pythagorean identities. Appear in trig derivatives/integrals and simplification.</p>
+        </div>
+
+        <div class="item" data-keywords="trig reciprocal quotient identities">
+          <span class="formula">tan x = sin x / cos x, &nbsp; sec x = 1/cos x, &nbsp; csc x = 1/sin x, &nbsp; cot x = cos x / sin x</span>
+          <p class="desc">Reciprocal/quotient identities. Useful for rewriting derivatives and integrals.</p>
+        </div>
+
+        <div class="item" data-keywords="angle addition trig">
+          <span class="formula">sin(a±b)=sin a cos b ± cos a sin b; &nbsp; cos(a±b)=cos a cos b ∓ sin a sin b</span>
+          <p class="desc">Angle-sum/difference identities. Sometimes used for limits or simplification.</p>
+        </div>
+
+        <div class="note" data-note>
+          You won’t usually “learn” these in Calc I, but you use them constantly to make limits and derivatives tractable.
+        </div>
+      </section>
+
+      <!-- 2) Limits and continuity -->
+      <section class="card" data-section="limits continuity">
+        <h2>
+          Limits &amp; continuity
+          <span class="tag">limits</span>
+        </h2>
+
+        <div class="item" data-keywords="limit definition epsilon delta">
+          <span class="formula">lim<sub>x→a</sub> f(x) = L</span>
+          <p class="desc">Meaning: f(x) can be made arbitrarily close to L by taking x sufficiently close to a (not necessarily equal to a).</p>
+        </div>
+
+        <div class="item" data-keywords="limit laws sum difference constant multiple product quotient power">
+          <span class="formula">
+            lim (f ± g)=lim f ± lim g;&nbsp;
+            lim (c f)=c lim f;&nbsp;
+            lim (f g)=(lim f)(lim g);&nbsp;
+            lim (f/g)=(lim f)/(lim g) if lim g ≠ 0;&nbsp;
+            lim (f)^n=(lim f)^n
+          </span>
+          <p class="desc">Limit laws. Reduce complex limits to simpler ones when constituent limits exist.</p>
+        </div>
+
+        <div class="item" data-keywords="one-sided limit">
+          <span class="formula">lim<sub>x→a⁺</sub> f(x), &nbsp; lim<sub>x→a⁻</sub> f(x)</span>
+          <p class="desc">Right-hand and left-hand limits. Two-sided limit exists only if both agree.</p>
+        </div>
+
+        <div class="item" data-keywords="continuity definition">
+          <span class="formula">f is continuous at a iff (1) f(a) defined, (2) lim<sub>x→a</sub> f(x) exists, (3) lim<sub>x→a</sub> f(x)=f(a)</span>
+          <p class="desc">Operational definition of continuity at a point.</p>
+        </div>
+
+        <div class="item" data-keywords="special trig limits">
+          <span class="formula">lim<sub>x→0</sub> (sin x)/x = 1, &nbsp; lim<sub>x→0</sub> (1 &#8211; cos x)/x = 0, &nbsp; lim<sub>x→0</sub> (1 &#8211; cos x)/x² = 1/2</span>
+          <p class="desc">Core trigonometric limits (radians). Foundations for trig derivatives.</p>
+        </div>
+
+        <div class="item" data-keywords="limit definition of e">
+          <span class="formula">e = lim<sub>n→∞</sub> (1 + 1/n)^n &nbsp; and &nbsp; e^x = lim<sub>n→∞</sub> (1 + x/n)^n</span>
+          <p class="desc">Limit definitions tied to exponential growth and the derivative of e^x.</p>
+        </div>
+
+        <div class="item" data-keywords="infinite limits vertical asymptote">
+          <span class="formula">lim<sub>x→a</sub> f(x) = ±∞</span>
+          <p class="desc">Infinite limit: f(x) grows without bound near x=a (often indicates a vertical asymptote).</p>
+        </div>
+
+        <div class="item" data-keywords="limits at infinity horizontal asymptote">
+          <span class="formula">lim<sub>x→∞</sub> f(x) = L, &nbsp; lim<sub>x→-∞</sub> f(x) = L</span>
+          <p class="desc">Limits at infinity. Used for end behavior and horizontal asymptotes.</p>
+        </div>
+
+        <div class="item" data-keywords="squeeze theorem">
+          <span class="formula">If g(x) ≤ f(x) ≤ h(x) and lim g = lim h = L, then lim f = L</span>
+          <p class="desc">Squeeze (Sandwich) Theorem. Classic for trig-based limits.</p>
+        </div>
+
+        <div class="note" data-note>
+          In many Calc I courses, you also see “indeterminate forms” (0/0, ∞/∞, etc.) as a motivation for derivative-based tools.
+        </div>
+      </section>
+
+      <!-- 3) Derivative definition and core rules -->
+      <section class="card" data-section="derivatives rules">
+        <h2>
+          Derivatives: definition &amp; rules
+          <span class="tag">derivatives</span>
+        </h2>
+
+        <div class="item" data-keywords="derivative definition difference quotient">
+          <span class="formula">f′(a) = lim<sub>h→0</sub> (f(a+h) − f(a))/h</span>
+          <p class="desc">Derivative at a point. Slope of tangent line; instantaneous rate of change.</p>
+        </div>
+
+        <div class="item" data-keywords="tangent line equation">
+          <span class="formula">y − f(a) = f′(a)(x − a)</span>
+          <p class="desc">Point-slope form of the tangent line to y=f(x) at x=a.</p>
+        </div>
+
+        <div class="item" data-keywords="linear approximation differential">
+          <span class="formula">L(x) = f(a) + f′(a)(x − a), &nbsp; dy = f′(x) dx</span>
+          <p class="desc">Linearization near x=a; differentials approximate small changes: Δy ≈ dy.</p>
+        </div>
+
+        <div class="item" data-keywords="constant rule">
+          <span class="formula">(c)′ = 0</span>
+          <p class="desc">Derivative of a constant is zero.</p>
+        </div>
+
+        <div class="item" data-keywords="power rule">
+          <span class="formula">(x^n)′ = n x^(n−1)</span>
+          <p class="desc">Power rule (for real n where defined). Workhorse of polynomial derivatives.</p>
+        </div>
+
+        <div class="item" data-keywords="constant multiple rule">
+          <span class="formula">(c f(x))′ = c f′(x)</span>
+          <p class="desc">Pull constants out of derivatives.</p>
+        </div>
+
+        <div class="item" data-keywords="sum rule difference rule">
+          <span class="formula">(f(x) ± g(x))′ = f′(x) ± g′(x)</span>
+          <p class="desc">Differentiate term-by-term for sums/differences.</p>
+        </div>
+
+        <div class="item" data-keywords="product rule">
+          <span class="formula">(f g)′ = f′g + f g′</span>
+          <p class="desc">Derivative of a product. Don’t distribute derivatives incorrectly.</p>
+        </div>
+
+        <div class="item" data-keywords="quotient rule">
+          <span class="formula">(f/g)′ = (f′g − f g′)/g²</span>
+          <p class="desc">Derivative of a quotient (g ≠ 0). Often simplified afterward.</p>
+        </div>
+
+        <div class="item" data-keywords="chain rule composition">
+          <span class="formula">(f∘g)′(x) = f′(g(x)) · g′(x)</span>
+          <p class="desc">Derivative of a composition. Core rule behind most “complex” derivatives.</p>
+        </div>
+
+        <div class="note" data-note>
+          Many Calc I exams test whether you can choose the right rule (especially chain + product/quotient together) and simplify cleanly.
+        </div>
+      </section>
+
+      <!-- 4) Derivatives of elementary functions -->
+      <section class="card" data-section="derivatives elementary trig exponential logarithmic inverse">
+        <h2>
+          Derivatives: common functions
+          <span class="tag">derivative table</span>
+        </h2>
+
+        <div class="item" data-keywords="exponential derivative e^x a^x">
+          <span class="formula">(e^x)′ = e^x, &nbsp; (a^x)′ = a^x ln(a) (a&gt;0, a≠1)</span>
+          <p class="desc">Exponential derivatives. e is special because its derivative equals itself.</p>
+        </div>
+
+        <div class="item" data-keywords="logarithm derivative ln log_a">
+          <span class="formula">(ln x)′ = 1/x (x&gt;0), &nbsp; (log<sub>a</sub> x)′ = 1/(x ln a)</span>
+          <p class="desc">Log derivatives. For ln|x| you can extend to x≠0 (common in practice).</p>
+        </div>
+
+        <div class="item" data-keywords="sine cosine tangent derivatives">
+          <span class="formula">(sin x)′ = cos x, &nbsp; (cos x)′ = −sin x, &nbsp; (tan x)′ = sec²x</span>
+          <p class="desc">Basic trig derivatives (x in radians).</p>
+        </div>
+
+        <div class="item" data-keywords="secant cosecant cotangent derivatives">
+          <span class="formula">(sec x)′ = sec x tan x, &nbsp; (csc x)′ = −csc x cot x, &nbsp; (cot x)′ = −csc²x</span>
+          <p class="desc">Other trig derivatives, frequently needed for chain rule practice.</p>
+        </div>
+
+        <div class="item" data-keywords="inverse trig derivatives arcsin arccos arctan">
+          <span class="formula">
+            (arcsin x)′ = 1/√(1−x²), &nbsp;
+            (arccos x)′ = −1/√(1−x²), &nbsp;
+            (arctan x)′ = 1/(1+x²)
+          </span>
+          <p class="desc">Inverse trig derivatives (principal branches). Domains matter.</p>
+        </div>
+
+        <div class="item" data-keywords="inverse trig derivatives arcsec arccsc arccot">
+          <span class="formula">
+            (arcsec x)′ = 1/(|x|√(x²−1)), &nbsp;
+            (arccsc x)′ = −1/(|x|√(x²−1)), &nbsp;
+            (arccot x)′ = −1/(1+x²)
+          </span>
+          <p class="desc">Often optional depending on syllabus. Absolute value appears in arcsec/arccsc formulas.</p>
+        </div>
+
+        <div class="item" data-keywords="hyperbolic derivatives optional sinh cosh tanh">
+          <span class="formula">(sinh x)′=cosh x, &nbsp; (cosh x)′=sinh x, &nbsp; (tanh x)′=sech²x</span>
+          <p class="desc">Sometimes included late in Calc I or early Calc II; included here for completeness.</p>
+        </div>
+      </section>
+
+      <!-- 5) Implicit differentiation / inverse function theorem -->
+      <section class="card" data-section="implicit differentiation inverse function">
+        <h2>
+          Implicit &amp; related derivatives
+          <span class="tag">implicit</span>
+        </h2>
+
+        <div class="item" data-keywords="implicit differentiation dy dx">
+          <span class="formula">If F(x,y)=0, then d/dx[F(x,y)] = 0 and solve for dy/dx</span>
+          <p class="desc">Differentiate both sides w.r.t. x, treating y as y(x), then isolate dy/dx.</p>
+        </div>
+
+        <div class="item" data-keywords="inverse function derivative">
+          <span class="formula">(f^{-1})′(a) = 1 / f′(f^{-1}(a))</span>
+          <p class="desc">Derivative of an inverse function, assuming f′ ≠ 0 and f is invertible near the point.</p>
+        </div>
+
+        <div class="item" data-keywords="logarithmic differentiation">
+          <span class="formula">If y = f(x) &gt; 0, then ln y = ln f(x) and y′ = y · (d/dx[ln f(x)])</span>
+          <p class="desc">Technique: take logs to simplify products/powers, then differentiate implicitly.</p>
+        </div>
+
+        <div class="item" data-keywords="related rates">
+          <span class="formula">Differentiate an equation relating variables w.r.t. time: d/dt[F(x(t), y(t), …)] = 0</span>
+          <p class="desc">Related rates problems: variables change over time; apply chain rule with t.</p>
+        </div>
+
+        <div class="note" data-note>
+          Implicit differentiation is basically the chain rule under a “solve for dy/dx” workflow.
+        </div>
+      </section>
+
+      <!-- 6) Mean Value Theorem family -->
+      <section class="card" data-section="mvt rolle theorem">
+        <h2>
+          Key theorems about derivatives
+          <span class="tag">theorems</span>
+        </h2>
+
+        <div class="item" data-keywords="extreme value theorem evt">
+          <span class="formula">If f is continuous on [a,b], then f attains an absolute max and min on [a,b]</span>
+          <p class="desc">Existence of global extrema on a closed interval. Used in optimization and analysis.</p>
+        </div>
+
+        <div class="item" data-keywords="rolle's theorem rolle">
+          <span class="formula">If f continuous on [a,b], differentiable on (a,b), and f(a)=f(b), then ∃c∈(a,b): f′(c)=0</span>
+          <p class="desc">Rolle’s Theorem: equal endpoints imply a horizontal tangent somewhere in between.</p>
+        </div>
+
+        <div class="item" data-keywords="mean value theorem mvt">
+          <span class="formula">If f continuous on [a,b] and differentiable on (a,b), then ∃c: f′(c) = (f(b)−f(a))/(b−a)</span>
+          <p class="desc">Mean Value Theorem: some instantaneous slope equals the average slope.</p>
+        </div>
+
+        <div class="item" data-keywords="increasing decreasing first derivative test">
+          <span class="formula">f′(x)&gt;0 ⇒ f increasing; &nbsp; f′(x)&lt;0 ⇒ f decreasing</span>
+          <p class="desc">Monotonicity test. Used in curve sketching and optimization.</p>
+        </div>
+
+        <div class="item" data-keywords="concavity second derivative test">
+          <span class="formula">f″(x)&gt;0 ⇒ concave up; &nbsp; f″(x)&lt;0 ⇒ concave down; &nbsp; inflection where concavity changes</span>
+          <p class="desc">Concavity/inflection analysis via the second derivative.</p>
+        </div>
+
+        <div class="item" data-keywords="second derivative test local max local min">
+          <span class="formula">If f′(c)=0 and f″(c)&gt;0 ⇒ local min; &nbsp; if f″(c)&lt;0 ⇒ local max</span>
+          <p class="desc">Second derivative test at a critical point c. Inconclusive if f″(c)=0.</p>
+        </div>
+
+        <div class="item" data-keywords="newton's method iteration">
+          <span class="formula">x<sub>n+1</sub> = x<sub>n</sub> − f(x<sub>n</sub>)/f′(x<sub>n</sub>)</span>
+          <p class="desc">Newton’s Method for approximating roots. Often included in Calc I applications.</p>
+        </div>
+
+        <div class="note" data-note>
+          Some courses add: “If f′(x)=0 for all x in an interval, then f is constant there” (a corollary of MVT).
+        </div>
+      </section>
+
+      <!-- 7) L'Hôpital's Rule (often late Calc I / early Calc II) -->
+      <section class="card" data-section="lhopital">
+        <h2>
+          Indeterminate forms &amp; L’Hôpital’s Rule
+          <span class="tag">limits</span>
+        </h2>
+
+        <div class="item" data-keywords="indeterminate form 0/0 infinity/infinity">
+          <span class="formula">Indeterminate forms: 0/0, ∞/∞, 0·∞, ∞−∞, 0^0, 1^∞, ∞^0</span>
+          <p class="desc">Forms where naive substitution doesn’t determine the limit. Often require algebra, logs, or L’Hôpital.</p>
+        </div>
+
+        <div class="item" data-keywords="lhopital rule">
+          <span class="formula">
+            If lim f/g gives 0/0 or ∞/∞ and conditions hold, then
+            lim<sub>x→a</sub> f(x)/g(x) = lim<sub>x→a</sub> f′(x)/g′(x) (if the latter exists).
+          </span>
+          <p class="desc">L’Hôpital’s Rule. Requires differentiability near a and g′ not zero near a (standard course conditions).</p>
+        </div>
+
+        <div class="note" data-note>
+          Many Calc I syllabi include L’Hôpital only briefly, or move it to Calc II. It’s included because students often want it on a “Calc I formula sheet.”
+        </div>
+      </section>
+
+      <!-- 8) Antiderivatives and integrals -->
+      <section class="card" data-section="integrals antiderivatives">
+        <h2>
+          Antiderivatives &amp; indefinite integrals
+          <span class="tag">integrals</span>
+        </h2>
+
+        <div class="item" data-keywords="antiderivative definition">
+          <span class="formula">F′(x) = f(x)  &nbsp;⇔&nbsp;  F is an antiderivative of f</span>
+          <p class="desc">Antiderivative reverses differentiation (up to a constant).</p>
+        </div>
+
+        <div class="item" data-keywords="indefinite integral definition">
+          <span class="formula">∫ f(x) dx = F(x) + C  where F′(x)=f(x)</span>
+          <p class="desc">Indefinite integral notation for the family of antiderivatives.</p>
+        </div>
+
+        <div class="item" data-keywords="power rule integrals">
+          <span class="formula">∫ x^n dx = x^(n+1)/(n+1) + C  (n≠−1)</span>
+          <p class="desc">Power rule for integrals. Special case n = −1 leads to ln|x|.</p>
+        </div>
+
+        <div class="item" data-keywords="integral 1/x ln">
+          <span class="formula">∫ (1/x) dx = ln|x| + C</span>
+          <p class="desc">Key special case. Absolute value handles x&lt;0 as well.</p>
+        </div>
+
+        <div class="item" data-keywords="exponential integrals">
+          <span class="formula">∫ e^x dx = e^x + C, &nbsp; ∫ a^x dx = a^x/ln(a) + C</span>
+          <p class="desc">Exponential antiderivatives.</p>
+        </div>
+
+        <div class="item" data-keywords="basic trig integrals">
+          <span class="formula">∫ cos x dx = sin x + C, &nbsp; ∫ sin x dx = −cos x + C</span>
+          <p class="desc">Basic trig antiderivatives.</p>
+        </div>
+
+        <div class="item" data-keywords="sec2 csc2 sec tan csc cot integrals">
+          <span class="formula">
+            ∫ sec²x dx = tan x + C, &nbsp; ∫ csc²x dx = −cot x + C, <br/>
+            ∫ sec x tan x dx = sec x + C, &nbsp; ∫ csc x cot x dx = −csc x + C
+          </span>
+          <p class="desc">Common trig integral patterns.</p>
+        </div>
+
+        <div class="item" data-keywords="u-substitution">
+          <span class="formula">∫ f(g(x)) g′(x) dx = ∫ f(u) du  where u=g(x)</span>
+          <p class="desc">Substitution (reverse chain rule). The fundamental Calc I integration technique.</p>
+        </div>
+
+        <div class="note" data-note>
+          Integration techniques beyond substitution (integration by parts, trig substitution, partial fractions) are usually Calc II, not Calc I.
+        </div>
+      </section>
+
+      <!-- 9) Definite integrals, Riemann sums, FTC -->
+      <section class="card" data-section="definite integrals riemann ftc area">
+        <h2>
+          Definite integrals, Riemann sums &amp; FTC
+          <span class="tag">definite integral</span>
+        </h2>
+
+        <div class="item" data-keywords="riemann sum delta x">
+          <span class="formula">
+            ∫<sub>a</sub><sup>b</sup> f(x) dx = lim<sub>n→∞</sub> Σ f(x<sub>i</sub><sup>*</sup>) Δx, &nbsp;
+            Δx = (b−a)/n
+          </span>
+          <p class="desc">Definite integral as the limit of Riemann sums (area/accumulation).</p>
+        </div>
+
+        <div class="item" data-keywords="definite integral properties linearity additivity">
+          <span class="formula">
+            ∫(f±g)=∫f ± ∫g; &nbsp; ∫ c f = c ∫ f; &nbsp; ∫<sub>a</sub><sup>b</sup> f = −∫<sub>b</sub><sup>a</sup> f; &nbsp;
+            ∫<sub>a</sub><sup>c</sup> f + ∫<sub>c</sub><sup>b</sup> f = ∫<sub>a</sub><sup>b</sup> f
+          </span>
+          <p class="desc">Core definite-integral properties: linearity, reversing bounds, splitting intervals.</p>
+        </div>
+
+        <div class="item" data-keywords="average value of a function">
+          <span class="formula">f<sub>avg</sub> = (1/(b−a)) ∫<sub>a</sub><sup>b</sup> f(x) dx</span>
+          <p class="desc">Average (mean) value of f on [a,b].</p>
+        </div>
+
+        <div class="item" data-keywords="fundamental theorem of calculus part 1 accumulation">
+          <span class="formula">If F(x)=∫<sub>a</sub><sup>x</sup> f(t) dt, then F′(x)=f(x)</span>
+          <p class="desc">FTC Part 1: differentiation cancels integration for continuous f.</p>
+        </div>
+
+        <div class="item" data-keywords="fundamental theorem of calculus part 2 evaluation">
+          <span class="formula">∫<sub>a</sub><sup>b</sup> f(x) dx = F(b) − F(a), where F′=f</span>
+          <p class="desc">FTC Part 2: evaluate definite integrals using an antiderivative.</p>
+        </div>
+
+        <div class="item" data-keywords="net change theorem">
+          <span class="formula">∫<sub>a</sub><sup>b</sup> f′(x) dx = f(b) − f(a)</span>
+          <p class="desc">Net change: accumulation of a rate of change equals total change.</p>
+        </div>
+
+        <div class="item" data-keywords="derivative of integral with variable limits leibniz rule">
+          <span class="formula">
+            d/dx [ ∫<sub>g(x)</sub><sup>h(x)</sup> f(t) dt ] = f(h(x)) h′(x) − f(g(x)) g′(x)
+          </span>
+          <p class="desc">Leibniz rule (often taught as an FTC application). Handles variable bounds.</p>
+        </div>
+
+        <div class="note" data-note>
+          In Calc I, area is usually “signed area” for ∫ f, and “geometric area” is ∫ |f| when requested.
+        </div>
+      </section>
+
+      <!-- 10) Applications (areas, volumes, motion, etc.) -->
+      <section class="card" data-section="applications optimization motion area volume">
+        <h2>
+          Classic Calc I application formulas
+          <span class="tag">applications</span>
+        </h2>
+
+        <div class="item" data-keywords="distance velocity acceleration">
+          <span class="formula">v(t)=s′(t), &nbsp; a(t)=v′(t)=s″(t)</span>
+          <p class="desc">Position–velocity–acceleration relationships in 1D motion.</p>
+        </div>
+
+        <div class="item" data-keywords="displacement distance traveled">
+          <span class="formula">Displacement: ∫<sub>a</sub><sup>b</sup> v(t) dt; &nbsp; Distance traveled: ∫<sub>a</sub><sup>b</sup> |v(t)| dt</span>
+          <p class="desc">Displacement counts direction; total distance uses absolute value.</p>
+        </div>
+
+        <div class="item" data-keywords="work">
+          <span class="formula">Work: W = ∫<sub>a</sub><sup>b</sup> F(x) dx</span>
+          <p class="desc">Work by a variable force along a line (basic model).</p>
+        </div>
+
+        <div class="item" data-keywords="area between curves">
+          <span class="formula">Area = ∫<sub>a</sub><sup>b</sup> (top − bottom) dx</span>
+          <p class="desc">Area between curves using vertical slices (assuming top≥bottom on [a,b]).</p>
+        </div>
+
+        <div class="item" data-keywords="area between curves dy">
+          <span class="formula">Area = ∫<sub>c</sub><sup>d</sup> (right − left) dy</span>
+          <p class="desc">Area between curves using horizontal slices, when that setup is simpler.</p>
+        </div>
+
+        <div class="item" data-keywords="volume disk method washer method">
+          <span class="formula">V = π ∫<sub>a</sub><sup>b</sup> [R(x)]² dx, &nbsp; Washer: V = π ∫<sub>a</sub><sup>b</sup> (R(x)² − r(x)²) dx</span>
+          <p class="desc">Volumes of revolution about an axis (disk/washer methods).</p>
+        </div>
+
+        <div class="item" data-keywords="volume shells method optional">
+          <span class="formula">Shells: V = 2π ∫ (radius)(height) dx or dy</span>
+          <p class="desc">Cylindrical shells method. Sometimes taught in Calc I, sometimes Calc II.</p>
+        </div>
+
+        <div class="item" data-keywords="arc length optional">
+          <span class="formula">Arc length: L = ∫<sub>a</sub><sup>b</sup> √(1 + (f′(x))²) dx</span>
+          <p class="desc">Arc length of y=f(x). Frequently Calc II, but some Calc I syllabi include it.</p>
+        </div>
+
+        <div class="item" data-keywords="surface area of revolution optional">
+          <span class="formula">Surface area: S = 2π ∫<sub>a</sub><sup>b</sup> f(x) √(1 + (f′(x))²) dx</span>
+          <p class="desc">Surface area generated by revolving y=f(x) about the x-axis (common form).</p>
+        </div>
+
+        <div class="note" data-note>
+          Application coverage varies by institution. The items marked “optional” are commonly Calc II topics but appear in some Calc I tracks.
+        </div>
+      </section>
+
+      <!-- 11) Sequences/series + Taylor (often Calc II, but sometimes previewed) -->
+      <section class="card" data-section="taylor polynomial series optional">
+        <h2>
+          Taylor / linear approximations (optional)
+          <span class="tag">approximation</span>
+        </h2>
+
+        <div class="item" data-keywords="linear approximation taylor first order">
+          <span class="formula">f(x) ≈ f(a) + f′(a)(x−a)</span>
+          <p class="desc">First-order Taylor polynomial (same as linearization).</p>
+        </div>
+
+        <div class="item" data-keywords="taylor polynomial second order">
+          <span class="formula">f(x) ≈ f(a) + f′(a)(x−a) + (f″(a)/2)(x−a)²</span>
+          <p class="desc">Second-order Taylor polynomial. Adds curvature via f″(a).</p>
+        </div>
+
+        <div class="item" data-keywords="taylor polynomial general">
+          <span class="formula">P<sub>n</sub>(x) = Σ<sub>k=0</sub><sup>n</sup> f^(k)(a)/k! · (x−a)^k</span>
+          <p class="desc">Nth-degree Taylor polynomial about x=a. Usually Calc II, but sometimes previewed.</p>
+        </div>
+
+        <div class="note" data-note>
+          If your Calc I course doesn’t cover Taylor polynomials, treat this section as a bridge into Calc II.
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+
+
+  <script>
+    (function(){
+      const q = document.getElementById('q');
+      const grid = document.getElementById('grid');
+      const items = Array.from(grid.querySelectorAll('.item'));
+      const sections = Array.from(grid.querySelectorAll('section.card'));
+
+      const toggleDesc = document.getElementById('toggleDesc');
+      const toggleNotes = document.getElementById('toggleNotes');
+      const clearBtn = document.getElementById('clear');
+
+      function normalize(s){ return (s || '').toLowerCase().trim(); }
+
+      function applySearch(){
+        const term = normalize(q.value);
+        const hasTerm = term.length > 0;
+
+        items.forEach(it => {
+          const text = normalize(it.textContent);
+          const kws = normalize(it.getAttribute('data-keywords'));
+          const match = !hasTerm || text.includes(term) || kws.includes(term);
+          it.classList.toggle('hidden', !match);
+        });
+
+        sections.forEach(sec => {
+          const visibleItem = sec.querySelector('.item:not(.hidden)');
+          sec.classList.toggle('hidden', !visibleItem);
+        });
+      }
+
+      q.addEventListener('input', applySearch);
+
+      toggleDesc.addEventListener('click', () => {
+        const pressed = toggleDesc.getAttribute('aria-pressed') === 'true';
+        toggleDesc.setAttribute('aria-pressed', String(!pressed));
+        document.querySelectorAll('.desc').forEach(p => p.classList.toggle('hidden', pressed));
+      });
+
+      toggleNotes.addEventListener('click', () => {
+        const pressed = toggleNotes.getAttribute('aria-pressed') === 'true';
+        toggleNotes.setAttribute('aria-pressed', String(!pressed));
+        document.querySelectorAll('[data-note]').forEach(n => n.classList.toggle('hidden', pressed));
+      });
+
+      clearBtn.addEventListener('click', () => {
+        q.value = '';
+        applySearch();
+        q.focus();
+      });
+    })();
+  </script>
+<atw-footer></atw-footer>
+</div>
+</body>
+</html>

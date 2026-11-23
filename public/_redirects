@@ -1,0 +1,26 @@
+# Old WordPress / broken URLs (Cloudflare Pages & Netlify format)
+/site-map.html /site-map/ 301
+/digital-transformation/index.html /digital-transformation/ 301
+/security/index.html /compliance/ 301
+/security/ /compliance/ 301
+/cybersecurity/ /compliance/ 301
+/project-management/index.html /project-management-3/ 301
+/project-management-2/ /project-management-3/ 301
+/writing/index.html /blog/ 301
+/tools/index.html /site-map/ 301
+/privacy.html /privacy/ 301
+/terms.html /terms/ 301
+/virtual-ciso/resources /project-management-formulas/ 301
+/marketplace/ /846-2/ 301
+/change-readiness/ /digital-transformation/ 301
+/shop/ /hipaa-kit/ 301
+/cart/ /hipaa-kit/ 301
+/checkout/ /hipaa-kit/ 301
+/my-account/ / 301
+/product/* /hipaa-kit/ 301
+/hipaa.html /hippa/ 301
+/iso-27001.html /iso-27001/ 301
+/iso-27001-2022/ /iso-270012022/ 301
+/risk-scorecard.html /compliance/ 301
+/virtual-ciso/ /vciso/ 301
+/favicon.ico /wp-content/uploads/2025/11/cropped-0_3-25456-no-background.png 301

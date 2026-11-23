@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Governance Policy: What Companies Should Include</title>
+  <meta name="description" content="A practical guide to what companies should include in an AI governance policy, including risk management, oversight, security, data governance, vendor controls, and compliance considerations." />
+  <meta name="keywords" content="AI governance policy, artificial intelligence governance, AI risk management, AI compliance, AI security, AI policy, responsible AI, ISO 42001, NIST AI RMF" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://yourdomain.com/compliance/ai-governance-policy/" />
+
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg-soft: #121933;
+      --card: rgba(255,255,255,0.06);
+      --border: rgba(255,255,255,0.12);
+      --text: #eef3ff;
+      --muted: #b9c4e0;
+      --accent: #6cb2ff;
+      --accent-2: #73f0c2;
+      --shadow: 0 12px 30px rgba(0,0,0,0.28);
+      --radius: 18px;
+      --maxw: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 700px at 10% -10%, rgba(58,160,255,.18), transparent 50%),
+        radial-gradient(900px 600px at 110% 0%, rgba(32,210,170,.12), transparent 50%),
+        linear-gradient(180deg, #0f1533, #0b1020 48%, #090d1a 100%);
+      line-height: 1.65;
+    }
+
+    a {
+      color: var(--accent-2);
+      text-decoration: none;
+    }
+
+    a:hover { text-decoration: underline; }
+
+    .container {
+      width: min(94%, var(--maxw));
+      margin: 0 auto;
+    }
+
+    .hero {
+      padding: 72px 0 28px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .hero-card,
+    .panel,
+    .section-card,
+    .resource-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-card {
+      padding: 34px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 14px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(108,178,255,0.12);
+      border: 1px solid rgba(108,178,255,0.22);
+      color: #dbe8ff;
+      font-size: 0.88rem;
+      letter-spacing: 0.03em;
+    }
+
+    h1, h2, h3 {
+      margin-top: 0;
+      line-height: 1.2;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      margin-bottom: 14px;
+    }
+
+    h2 {
+      font-size: clamp(1.5rem, 2vw, 2rem);
+      margin-bottom: 14px;
+    }
+
+    h3 {
+      font-size: 1.12rem;
+      margin-bottom: 10px;
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 780px;
+    }
+
+    .panel {
+      padding: 26px;
+    }
+
+    .panel ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .panel li + li {
+      margin-top: 10px;
+    }
+
+    .quick-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .quick-links a {
+      display: inline-block;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.05);
+      color: var(--text);
+      font-size: 0.95rem;
+    }
+
+    .quick-links a:hover {
+      background: rgba(255,255,255,0.09);
+      text-decoration: none;
+    }
+
+    main {
+      padding: 12px 0 56px;
+    }
+
+    .section {
+      margin-top: 28px;
+    }
+
+    .section-card {
+      padding: 28px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .item {
+      padding: 20px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .item p {
+      margin-bottom: 0;
+      color: var(--muted);
+    }
+
+    .callout {
+      margin-top: 20px;
+      padding: 18px 20px;
+      border-left: 4px solid var(--accent);
+      border-radius: 12px;
+      background: rgba(108,178,255,0.08);
+      color: #dfe9ff;
+    }
+
+    .resources {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .resource-card {
+      padding: 22px;
+    }
+
+    .resource-card p {
+      color: var(--muted);
+      margin-bottom: 0;
+    }
+
+    .policy-outline {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .policy-outline li + li {
+      margin-top: 10px;
+    }
+
+    footer {
+      padding: 24px 0 60px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .grid,
+      .resources {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 42px;
+      }
+
+      .hero-card,
+      .panel,
+      .section-card,
+      .resource-card {
+        padding: 22px;
+      }
+    }
+  </style>
+<link rel="icon" href="/wp-content/uploads/2025/11/cropped-0_3-25456-no-background.png">
+<script src="/assets/site.js" defer></script>
+</head>
+<body>
+<div class="wp-site-blocks">
+<atw-header></atw-header>
+<header class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <section class="hero-card">
+          <span class="eyebrow">Compliance &amp; Information Security</span>
+          <h1>What Should Be Included in an AI Governance Policy?</h1>
+          <p class="lead">
+            An AI governance policy should do more than say the company will use artificial intelligence responsibly.
+            It should define who is accountable, what uses are permitted, how risk is assessed, what controls are required,
+            and how AI systems are monitored over time. In practice, a strong policy connects legal, security, privacy,
+            operational, and ethical requirements into one governance structure.
+          </p>
+
+          <div class="quick-links">
+            <a href="#core-elements">Core Elements</a>
+            <a href="#policy-outline">Policy Outline</a>
+            <a href="#implementation">Implementation Notes</a>
+            <a href="#resources">External Resources</a>
+          </div>
+        </section>
+
+        <aside class="panel">
+          <h2 style="font-size:1.25rem;">Why this matters</h2>
+          <ul>
+            <li>AI can create legal, regulatory, privacy, intellectual property, and cybersecurity exposure.</li>
+            <li>Uncontrolled employee use of generative AI can lead to confidential data leakage and poor decision-making.</li>
+            <li>Vendors may embed AI into software without clear disclosure, testing, or contractual safeguards.</li>
+            <li>Governance helps companies use AI intentionally rather than through scattered, undocumented experimentation.</li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+
+      <section id="core-elements" class="section">
+        <div class="section-card">
+          <h2>Core elements of an AI governance policy</h2>
+          <p class="lead">
+            The policy should define the organization’s position on AI use, assign decision rights, and establish control requirements
+            across the AI lifecycle, from procurement and development through deployment, monitoring, and retirement.
+          </p>
+
+          <div class="grid">
+            <article class="item">
+              <h3>1. Purpose, scope, and definitions</h3>
+              <p>
+                Define what the policy covers, including generative AI tools, embedded AI features in third-party software,
+                internally developed models, machine learning systems, and automated decision support. Include plain-language
+                definitions so business users and technical teams interpret the policy consistently.
+              </p>
+            </article>
+
+            <article class="item">
+              <h3>2. Governance structure and accountability</h3>
+              <p>
+                Identify who approves AI use cases, who performs risk review, who owns ongoing monitoring, and which functions
+                must be involved, such as legal, security, privacy, compliance, HR, procurement, and business leadership.
+                A policy without named accountability is usually only advisory.
+              </p>
+            </article>
+
+            <article class="item">
+              <h3>3. AI inventory and use-case classification</h3>
+              <p>
+                Require a central inventory of AI systems and use cases. Classify them by risk level, business criticality,
+                data sensitivity, external impact, and degree of autonomy. This helps separate low-risk productivity use from
+                high-risk decision support or customer-facing automation.
+              </p>
+            </article>
+
+            <article class="item">
+              <h3>4. Acceptable use and prohibited use</h3>
+              <p>
+                State what employees may do, what requires approval, and what is prohibited. For example, a company may permit
+                low-risk drafting assistance but prohibit entering regulated, privileged, export-controlled, trade secret, or
+                customer confidential data into unapproved public AI tools.
+              </p>
+            </article>
+
+            <article class="item">
+              <h3>5. Risk assessment and approval workflow</h3>
+              <p>
+                Require documented review before deploying or materially changing an AI use case. The review should consider
+                accuracy, security, privacy, bias, explainability, resilience, vendor dependency, legal exposure, and the
+                consequences of incorrect outputs.
+              </p>
+            </article>
+
+            <article class="item">
+              <h3>6. Data governance and privacy controls</h3>
+              <p>
+                Address data minimization, data lineage, retention, consent, lawful basis, cross-border transfer, de-identification,
+                training-data restrictions, prompt handling, and whether user data may be used by a provider to train its models.
+              </p>
+            </article>
+
+            <article class="item">
+              <h3>7. Security requirements</h3>
+              <p>
+                Establish baseline controls such as access management, logging, encryption, secure API usage, model and prompt
+                protection, adversarial testing where appropriate, and review of provider security posture. AI governance should
+                connect directly to the organization’s broader information security program.
+              </p>
+            </article>
+
+            <article class="item">
+              <h3>8. Human oversight and decision authority</h3>
+              <p>
+                Clarify when a human must review outputs before action is taken. This matters most when AI could affect customers,
+                employees, applicants, safety, financial commitments, investigations, or regulated decisions.
+              </p>
+            </article>
+
+            <article class="item">
+              <h3>9. Transparency and disclosure</h3>
+              <p>
+                Define when the company must disclose AI use internally or externally. This may include disclosures to employees,
+                customers, regulators, or counterparties, especially when AI materially contributes to content generation,
+                recommendations, or automated decisions.
+              </p>
+            </article>
+
+            <article class="item">
+              <h3>10. Testing, validation, and performance monitoring</h3>
+              <p>
+                Require testing before launch and periodic reevaluation after deployment. Performance should not be assumed to
+                remain stable. The policy should address quality thresholds, drift, hallucination risk, fallback procedures,
+                and escalation triggers when performance degrades.
+              </p>
+            </article>
+
+            <article class="item">
+              <h3>11. Vendor management and procurement controls</h3>
+              <p>
+                Require due diligence for third-party AI tools and embedded AI features. Contracts should address security,
+                data use, audit rights where feasible, confidentiality, retention, subcontractors, model changes, and incident notification.
+              </p>
+            </article>
+
+            <article class="item">
+              <h3>12. Incident management and issue escalation</h3>
+              <p>
+                Define what qualifies as an AI-related incident, such as harmful output, privacy exposure, unauthorized use,
+                model failure, or significant bias concerns. State who must be notified, how evidence is retained, and when
+                use must be suspended.
+              </p>
+            </article>
+
+            <article class="item">
+              <h3>13. Legal and regulatory alignment</h3>
+              <p>
+                The policy should acknowledge that AI obligations may arise from privacy law, sector rules, employment law,
+                consumer protection, cybersecurity obligations, contractual commitments, and jurisdiction-specific AI regulation.
+              </p>
+            </article>
+
+            <article class="item">
+              <h3>14. Training and user responsibilities</h3>
+              <p>
+                Employees need practical instruction, not abstract principles. The policy should require role-based training,
+                explain approved tools, warn against overreliance on outputs, and make clear that users remain responsible for
+                the decisions they make with AI assistance.
+              </p>
+            </article>
+
+            <article class="item">
+              <h3>15. Documentation, auditability, and records retention</h3>
+              <p>
+                Require records of approvals, risk assessments, testing, incidents, exceptions, and periodic reviews. Mature
+                governance depends on evidence, especially when auditors, customers, regulators, or insurers ask how AI use is controlled.
+              </p>
+            </article>
+
+            <article class="item">
+              <h3>16. Review cadence and continual improvement</h3>
+              <p>
+                AI governance should be reviewed on a defined schedule and after major legal, technical, or operational changes.
+                A static policy will become outdated quickly as tools, regulations, and business uses evolve.
+              </p>
+            </article>
+          </div>
+
+          <div class="callout">
+            A useful way to think about policy design is this: the document should not merely express principles.
+            It should create operational controls, approval gates, and evidence that governance is actually happening.
+          </div>
+        </div>
+      </section>
+
+      <section id="policy-outline" class="section">
+        <div class="section-card">
+          <h2>Suggested policy outline</h2>
+          <ol class="policy-outline">
+            <li>Purpose</li>
+            <li>Scope</li>
+            <li>Definitions</li>
+            <li>Governance roles and responsibilities</li>
+            <li>AI use-case inventory and classification</li>
+            <li>Acceptable and prohibited use</li>
+            <li>Risk assessment and approval requirements</li>
+            <li>Data governance, privacy, and confidentiality</li>
+            <li>Security controls for AI systems and tools</li>
+            <li>Human oversight and review requirements</li>
+            <li>Testing, validation, and change management</li>
+            <li>Transparency and disclosure obligations</li>
+            <li>Third-party and vendor management</li>
+            <li>Monitoring, logging, and performance review</li>
+            <li>Incident response and escalation</li>
+            <li>Training and awareness</li>
+            <li>Exceptions process</li>
+            <li>Recordkeeping and audit support</li>
+            <li>Policy violations and enforcement</li>
+            <li>Review cycle and ownership</li>
+          </ol>
+        </div>
+      </section>
+
+      <section id="implementation" class="section">
+        <div class="section-card">
+          <h2>Implementation notes for companies</h2>
+          <div class="grid">
+            <article class="item">
+              <h3>Start with use cases, not slogans</h3>
+              <p>
+                Many organizations begin with broad statements about “responsible AI,” but governance becomes effective only
+                when tied to actual use cases, data flows, vendors, and decision points.
+              </p>
+            </article>
+
+            <article class="item">
+              <h3>Differentiate low-risk from high-risk AI</h3>
+              <p>
+                Internal drafting assistance and summarization tools do not create the same exposure as AI used in hiring,
+                customer eligibility, fraud analysis, security operations, health-related decisions, or legal workflows.
+              </p>
+            </article>
+
+            <article class="item">
+              <h3>Connect AI governance to existing control frameworks</h3>
+              <p>
+                AI governance should align with privacy, security, vendor risk management, records management, and incident
+                response processes already in place. That reduces duplication and makes the policy easier to operationalize.
+              </p>
+            </article>
+
+            <article class="item">
+              <h3>Review third-party tools carefully</h3>
+              <p>
+                Risk often enters through SaaS platforms that quietly add AI features. Procurement, security, and legal review
+                should address what the feature does, what data it receives, and how outputs can be relied upon.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="resources" class="section">
+        <div class="section-card">
+          <h2>External resources on AI governance</h2>
+          <p class="lead">
+            These sources are useful starting points for building or refining an internal AI governance policy.
+          </p>
+
+          <div class="resources">
+            <article class="resource-card">
+              <h3><a href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener noreferrer">NIST AI Risk Management Framework (AI RMF)</a></h3>
+              <p>
+                A practical U.S.-based framework for identifying and managing AI risk, with strong emphasis on trustworthiness,
+                governance, mapping, measurement, and management.
+              </p>
+            </article>
+
+            <article class="resource-card">
+              <h3><a href="https://airc.nist.gov/airmf-resources/airmf/" target="_blank" rel="noopener noreferrer">NIST AI RMF Resource Center</a></h3>
+              <p>
+                Supporting materials, profiles, and implementation resources that help translate the framework into operating practice.
+              </p>
+            </article>
+
+            <article class="resource-card">
+              <h3><a href="https://www.oecd.org/en/topics/ai-principles.html" target="_blank" rel="noopener noreferrer">OECD AI Principles</a></h3>
+              <p>
+                International principles focused on trustworthy AI, human rights, transparency, accountability, robustness,
+                and policy alignment across jurisdictions.
+              </p>
+            </article>
+
+            <article class="resource-card">
+              <h3><a href="https://legalinstruments.oecd.org/en/instruments/oecd-legal-0449" target="_blank" rel="noopener noreferrer">OECD Recommendation on Artificial Intelligence</a></h3>
+              <p>
+                The formal OECD recommendation underpinning responsible stewardship and governance expectations for AI.
+              </p>
+            </article>
+
+            <article class="resource-card">
+              <h3><a href="https://www.iso.org/standard/42001" target="_blank" rel="noopener noreferrer">ISO/IEC 42001: AI Management Systems</a></h3>
+              <p>
+                The first AI management system standard, useful for organizations that want governance to sit in a structured,
+                auditable management system model.
+              </p>
+            </article>
+
+            <article class="resource-card">
+              <h3><a href="https://www.iso.org/home/insights-news/resources/iso-42001-explained-what-it-is.html" target="_blank" rel="noopener noreferrer">ISO 42001 Explained</a></h3>
+              <p>
+                A more accessible overview of the standard and the governance elements it expects organizations to address.
+              </p>
+            </article>
+
+            <article class="resource-card">
+              <h3><a href="https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai" target="_blank" rel="noopener noreferrer">European Commission: AI Act Overview</a></h3>
+              <p>
+                An official summary of the EU AI Act and its risk-based regulatory model, which is increasingly influential
+                even for companies outside the EU.
+              </p>
+            </article>
+
+            <article class="resource-card">
+              <h3><a href="https://digital-strategy.ec.europa.eu/en/faqs/navigating-ai-act" target="_blank" rel="noopener noreferrer">European Commission: Navigating the AI Act</a></h3>
+              <p>
+                Practical questions and answers on scope, governance, high-risk systems, and general-purpose AI models.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      This page is informational and should not be treated as legal advice. Companies should adapt AI governance requirements
+      to their industry, risk profile, jurisdictions, customer commitments, and existing compliance obligations.
+    </div>
+  </footer>
+<atw-footer></atw-footer>
+</div>
+</body>
+</html>

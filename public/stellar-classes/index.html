@@ -1,0 +1,606 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Stellar Classes (OBAFGKM) and Sub-Stellar Classes (L/T/Y) — Definitions, Temperatures, Examples</title>
+  <meta name="description" content="A practical reference for stellar spectral classes (O, B, A, F, G, K, M) and sub-stellar classes (L, T, Y): what they are, typical temperature ranges, and real-world examples." />
+
+  <!-- Optional: helps Google understand page topic -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Article",
+    "headline":"Stellar Classes (OBAFGKM) and Sub-Stellar Classes (L/T/Y)",
+    "description":"Definitions, temperature ranges, and real examples for stellar and sub-stellar spectral classes.",
+    "about":[
+      {"@type":"Thing","name":"Stellar classification"},
+      {"@type":"Thing","name":"Spectral class"},
+      {"@type":"Thing","name":"Brown dwarf"}
+    ]
+  }
+  </script>
+
+  <style>
+    :root{
+      --bg0:#020617;      /* deep navy */
+      --bg1:#06122a;      /* slightly lighter */
+      --card:rgba(15, 23, 42, .78);
+      --line:rgba(148, 163, 184, .26);
+      --text:#e5f7ff;
+      --muted:#b6d7e6;
+      --accent:#38bdf8;   /* cyan */
+      --accent2:#a78bfa;  /* soft violet */
+      --warn:#fbbf24;     /* amber */
+      --good:#34d399;     /* green */
+      --shadow: 0 16px 40px rgba(0,0,0,.35);
+      --radius: 18px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 20% 10%, rgba(56,189,248,.14), transparent 55%),
+        radial-gradient(900px 500px at 75% 25%, rgba(167,139,250,.14), transparent 55%),
+        radial-gradient(900px 700px at 50% 100%, rgba(52,211,153,.08), transparent 60%),
+        linear-gradient(180deg, var(--bg0), #01040e 65%, #000 100%);
+      line-height:1.55;
+    }
+
+    a{color:inherit}
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding: 28px 18px 64px;
+    }
+
+    header.hero{
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(2,6,23,.72), rgba(15,23,42,.55));
+      border-radius: var(--radius);
+      padding: 26px 22px;
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+
+    header.hero:before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:
+        radial-gradient(600px 240px at 10% 10%, rgba(56,189,248,.18), transparent 60%),
+        radial-gradient(520px 220px at 90% 20%, rgba(167,139,250,.18), transparent 60%),
+        radial-gradient(500px 260px at 60% 110%, rgba(52,211,153,.10), transparent 55%);
+      pointer-events:none;
+      filter: blur(2px);
+    }
+
+    .hero-inner{position:relative}
+    h1{
+      margin:0 0 10px;
+      letter-spacing:.02em;
+      font-size: 1.7rem;
+      line-height:1.2;
+    }
+    .lede{
+      margin:0;
+      color:var(--muted);
+      max-width: 78ch;
+      font-size:1.02rem;
+    }
+
+    .pillrow{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top: 16px;
+    }
+    .pill{
+      border:1px solid rgba(56,189,248,.30);
+      background: rgba(2,6,23,.35);
+      padding: 6px 10px;
+      border-radius:999px;
+      color:#dff6ff;
+      font-size:.86rem;
+      letter-spacing:.02em;
+      white-space:nowrap;
+    }
+    .pill b{color:var(--accent); font-weight:700}
+
+    main{margin-top: 18px;}
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    @media (max-width: 900px){
+      .grid{grid-template-columns:1fr}
+      h1{font-size:1.55rem}
+    }
+
+    .card{
+      border:1px solid var(--line);
+      background: var(--card);
+      backdrop-filter: blur(8px);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h2{
+      margin: 0 0 10px;
+      font-size: 1.08rem;
+      letter-spacing:.02em;
+    }
+
+    .card p{margin:0 0 10px; color:var(--muted)}
+    .card p:last-child{margin-bottom:0}
+
+    .note{
+      border-left: 3px solid rgba(56,189,248,.65);
+      padding: 10px 12px;
+      background: rgba(2,6,23,.32);
+      border-radius: 12px;
+      color: var(--muted);
+    }
+
+    .mono{font-family:var(--mono)}
+    .k{
+      display:inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,.25);
+      background: rgba(2,6,23,.35);
+      color:#dff6ff;
+      font-size: .85rem;
+      letter-spacing:.02em;
+    }
+
+    /* Table */
+    .tablewrap{
+      overflow:auto;
+      border-radius: 14px;
+      border:1px solid rgba(148,163,184,.22);
+      background: rgba(2,6,23,.25);
+    }
+    table{
+      width:100%;
+      border-collapse:collapse;
+      min-width: 860px;
+    }
+    th, td{
+      padding: 12px 12px;
+      border-bottom:1px solid rgba(148,163,184,.18);
+      vertical-align:top;
+    }
+    th{
+      text-align:left;
+      font-size:.86rem;
+      color:#dff6ff;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      background: rgba(2,6,23,.35);
+      position:sticky;
+      top:0;
+      z-index:1;
+    }
+    td{
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    .classcell{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color:#eaffff;
+      font-weight:700;
+    }
+    .badge{
+      width: 30px;
+      height: 30px;
+      border-radius: 10px;
+      display:grid;
+      place-items:center;
+      font-weight:800;
+      letter-spacing:.02em;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(56,189,248,.12);
+      color: #dff6ff;
+      box-shadow: 0 10px 22px rgba(0,0,0,.25);
+      flex: 0 0 auto;
+    }
+    .badge.sub{
+      background: rgba(167,139,250,.14);
+      border-color: rgba(167,139,250,.22);
+    }
+
+    .temp{
+      font-family:var(--mono);
+      color:#dff6ff;
+      white-space:nowrap;
+    }
+
+    .examples{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+    .ex{
+      border:1px solid rgba(148,163,184,.20);
+      background: rgba(2,6,23,.30);
+      padding: 5px 8px;
+      border-radius: 999px;
+      font-size:.86rem;
+      color:#dff6ff;
+      white-space:nowrap;
+    }
+
+    .section-title{
+      margin: 18px 0 10px;
+      font-size: 1.05rem;
+      letter-spacing:.04em;
+      color:#eaffff;
+    }
+
+    footer{
+      margin-top: 18px;
+      color: rgba(182,215,230,.85);
+      font-size:.92rem;
+    }
+    footer .fine{
+      margin-top: 8px;
+      color: rgba(182,215,230,.72);
+      font-size: .86rem;
+    }
+
+    .toc a{
+      color:#dff6ff;
+      text-decoration:none;
+      border-bottom: 1px dotted rgba(56,189,248,.40);
+    }
+    .toc a:hover{
+      border-bottom-color: rgba(56,189,248,.9);
+    }
+  </style>
+<link rel="icon" href="/wp-content/uploads/2025/11/cropped-0_3-25456-no-background.png">
+<script src="/assets/site.js" defer></script>
+</head>
+<body>
+<div class="wp-site-blocks">
+<atw-header></atw-header>
+<div class="wrap">
+    <header class="hero">
+      <div class="hero-inner">
+        <h1>Stellar Classes (OBAFGKM) and Sub-Stellar Classes (L/T/Y)</h1>
+        <p class="lede">
+          A compact, practical reference for spectral classes: what each class means physically, typical effective temperature ranges,
+          and real examples you can look up in any star catalog. This includes the main stellar sequence (O, B, A, F, G, K, M) and the
+          sub-stellar regime dominated by brown dwarfs (L, T, Y).
+        </p>
+        <div class="pillrow">
+          <span class="pill"><b>Stellar</b>: O B A F G K M</span>
+          <span class="pill"><b>Sub-stellar</b>: L T Y (brown dwarfs)</span>
+          <span class="pill">Key metric: <span class="mono">T<sub>eff</sub></span> (effective temperature)</span>
+          <span class="pill">Subclasses: 0–9 (e.g., G2, M5)</span>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="grid">
+        <section class="card">
+          <h2>How the classification works (in one minute)</h2>
+          <p>
+            The letter class is a <em>spectral</em> label based on absorption features in the object’s light, which correlate strongly with surface temperature.
+            The canonical sequence is <span class="mono">O–B–A–F–G–K–M</span> (hottest to coolest). Subclasses run from <span class="k">0</span> (hotter)
+            to <span class="k">9</span> (cooler) within each letter (e.g., <span class="k">G2</span> is warmer than <span class="k">G8</span>).
+          </p>
+          <div class="note">
+            Temperature ranges below are typical for <span class="mono">T<sub>eff</sub></span> and vary by luminosity class (dwarfs vs giants vs supergiants),
+            metallicity, and measurement method. Treat them as useful “working ranges,” not hard boundaries.
+          </div>
+        </section>
+
+        
+      </div>
+
+      <h2 id="stellar" class="section-title">Stellar spectral classes (O, B, A, F, G, K, M)</h2>
+      <div class="card" style="padding:0;">
+        <div class="tablewrap">
+          <table aria-label="Stellar classes table">
+            <thead>
+              <tr>
+                <th style="width:160px;">Class</th>
+                <th style="width:190px;">Typical T<sub>eff</sub></th>
+                <th>Defining traits (plain language)</th>
+                <th style="width:260px;">Real examples</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="classcell">
+                    <span class="badge">O</span>
+                    <span>O-type</span>
+                  </div>
+                </td>
+                <td class="temp">≈ 30,000–50,000 K</td>
+                <td>
+                  Extremely hot, massive, and short-lived. Strong ultraviolet output; ionizes surrounding gas (bright H II regions).
+                  Spectra show ionized helium lines in many O stars. Often found in young star-forming regions and associations.
+                </td>
+                <td>
+                  <div class="examples">
+                    <span class="ex">ζ Puppis (Zeta Puppis)</span>
+                    <span class="ex">θ¹ Ori C (Theta-1 Orionis C)</span>
+                    <span class="ex">HD 93250 (Carina region)</span>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="classcell">
+                    <span class="badge">B</span>
+                    <span>B-type</span>
+                  </div>
+                </td>
+                <td class="temp">≈ 10,000–30,000 K</td>
+                <td>
+                  Very hot, bright, and still relatively short-lived. Strong blue-white color; prominent neutral helium lines
+                  (cooler than O, so ionized helium fades). Many are rapid rotators; some exhibit emission lines (Be stars).
+                </td>
+                <td>
+                  <div class="examples">
+                    <span class="ex">Rigel (β Orionis)</span>
+                    <span class="ex">Spica (α Virginis)</span>
+                    <span class="ex">Regulus (α Leonis)</span>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="classcell">
+                    <span class="badge">A</span>
+                    <span>A-type</span>
+                  </div>
+                </td>
+                <td class="temp">≈ 7,500–10,000 K</td>
+                <td>
+                  White to blue-white. Strong hydrogen Balmer absorption lines are a hallmark in many A stars.
+                  Common “bright star” examples in the night sky; lifetimes typically hundreds of millions to ~1–2 billion years.
+                </td>
+                <td>
+                  <div class="examples">
+                    <span class="ex">Sirius A</span>
+                    <span class="ex">Vega</span>
+                    <span class="ex">Altair</span>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="classcell">
+                    <span class="badge">F</span>
+                    <span>F-type</span>
+                  </div>
+                </td>
+                <td class="temp">≈ 6,000–7,500 K</td>
+                <td>
+                  Yellow-white. Hydrogen lines weaken relative to A stars; metal lines become more prominent.
+                  Often considered a “sweet spot” for long-lived, stable stars that still provide substantial visible light.
+                </td>
+                <td>
+                  <div class="examples">
+                    <span class="ex">Procyon A</span>
+                    <span class="ex">Polaris (F7 Ib)</span>
+                    <span class="ex">γ Virginis (Porrima)</span>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="classcell">
+                    <span class="badge">G</span>
+                    <span>G-type</span>
+                  </div>
+                </td>
+                <td class="temp">≈ 5,200–6,000 K</td>
+                <td>
+                  Yellow. Good balance of lifespan and energy output; many discussions of habitability center here
+                  because the Sun is a G star. Spectra show many metal lines; hydrogen is present but not dominant.
+                </td>
+                <td>
+                  <div class="examples">
+                    <span class="ex">The Sun (G2 V)</span>
+                    <span class="ex">α Centauri A</span>
+                    <span class="ex">Tau Ceti</span>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="classcell">
+                    <span class="badge">K</span>
+                    <span>K-type</span>
+                  </div>
+                </td>
+                <td class="temp">≈ 3,700–5,200 K</td>
+                <td>
+                  Orange. Long-lived, typically quieter than many M dwarfs (though activity varies), making K dwarfs
+                  attractive targets in exoplanet searches. Spectra emphasize neutral metals and molecular features begin to appear.
+                </td>
+                <td>
+                  <div class="examples">
+                    <span class="ex">Arcturus (K1.5 III)</span>
+                    <span class="ex">Aldebaran (K5 III)</span>
+                    <span class="ex">ε Eridani</span>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="classcell">
+                    <span class="badge">M</span>
+                    <span>M-type</span>
+                  </div>
+                </td>
+                <td class="temp">≈ 2,400–3,700 K</td>
+                <td>
+                  Red. The most common stars in the Milky Way by number (especially M dwarfs).
+                  Strong molecular bands (notably titanium oxide in many M stars). Very long lifetimes; many are flare-active.
+                </td>
+                <td>
+                  <div class="examples">
+                    <span class="ex">Proxima Centauri (M5.5 V)</span>
+                    <span class="ex">Barnard’s Star</span>
+                    <span class="ex">Betelgeuse (M1–2 Ia)</span>
+                  </div>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <h2 id="substellar" class="section-title">Sub-stellar classes (L, T, Y): brown dwarfs and planetary-mass objects</h2>
+      <div class="card">
+        <p>
+          “Sub-stellar” objects are not massive enough to sustain long-term hydrogen fusion like true stars.
+          The most common sub-stellar spectral classes you will see are <span class="mono">L, T, Y</span>, which primarily describe <b>brown dwarfs</b>
+          (and, at the coldest end, objects that blur into gas-giant planet temperatures).
+        </p>
+        <div class="note" style="margin-top:12px;">
+          A practical mental model: <b>M</b> is “cool star,” <b>L</b> is “hot brown dwarf,” <b>T</b> is “cool methane brown dwarf,” and <b>Y</b> is “ultra-cool brown dwarf”
+          approaching planetary temperatures.
+        </div>
+      </div>
+
+      <div class="card" style="padding:0; margin-top: 14px;">
+        <div class="tablewrap">
+          <table aria-label="Sub-stellar classes table">
+            <thead>
+              <tr>
+                <th style="width:160px;">Class</th>
+                <th style="width:190px;">Typical T<sub>eff</sub></th>
+                <th>Defining traits (plain language)</th>
+                <th style="width:260px;">Real examples</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="classcell">
+                    <span class="badge sub">L</span>
+                    <span>L-type</span>
+                  </div>
+                </td>
+                <td class="temp">≈ 1,300–2,400 K</td>
+                <td>
+                  Brown dwarfs hotter than the T/Y classes. Many show dusty atmospheres; spectra often feature metal hydrides and strong alkali lines.
+                  Visually they are extremely dim; most are detected via infrared surveys.
+                </td>
+                <td>
+                  <div class="examples">
+                    <span class="ex">Teide 1</span>
+                    <span class="ex">Luhman 16A</span>
+                    <span class="ex">2MASSW J1507476−162738</span>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="classcell">
+                    <span class="badge sub">T</span>
+                    <span>T-type</span>
+                  </div>
+                </td>
+                <td class="temp">≈ 700–1,300 K</td>
+                <td>
+                  Cooler brown dwarfs where methane absorption becomes prominent in the infrared; atmospheres are less dusty than many L dwarfs.
+                  These are often described as “methane dwarfs.”
+                </td>
+                <td>
+                  <div class="examples">
+                    <span class="ex">Gliese 229B</span>
+                    <span class="ex">Luhman 16B</span>
+                    <span class="ex">WISE J0458+6434</span>
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="classcell">
+                    <span class="badge sub">Y</span>
+                    <span>Y-type</span>
+                  </div>
+                </td>
+                <td class="temp">≈ 250–700 K</td>
+                <td>
+                  Ultra-cool brown dwarfs with temperatures comparable to gas-giant planets. Extremely faint; detected almost exclusively in mid-infrared.
+                  Atmospheric chemistry is complex, with features consistent with very cold conditions.
+                </td>
+                <td>
+                  <div class="examples">
+                    <span class="ex">WISE 0855−0714</span>
+                    <span class="ex">WISE 1828+2650</span>
+                    <span class="ex">WISE J0350−5658</span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <h2 id="notes" class="section-title">Important notes (to prevent common misunderstandings)</h2>
+      <div class="grid">
+        <section class="card">
+          <h2>1) Spectral class vs luminosity class</h2>
+          <p>
+            Spectral class (OBAFGKM/LTY) is primarily about temperature and atmospheric features. Luminosity class (Roman numerals like V, IV, III, I)
+            describes whether the object is a main-sequence dwarf, subgiant, giant, or supergiant. Two objects can share a spectral class but have radically different sizes:
+            a <span class="mono">K1 V</span> dwarf and a <span class="mono">K1 III</span> giant do not “feel” similar in brightness or radius even if their spectral letter matches.
+          </p>
+        </section>
+
+        <section class="card">
+          <h2>2) The boundary between stars and brown dwarfs</h2>
+          <p>
+            The dividing line is not “temperature.” It is primarily mass: below roughly <span class="mono">0.075–0.080 M☉</span> (about <span class="mono">75–80 Jupiter masses</span>,
+            depending on composition) an object cannot sustain stable hydrogen fusion. Many brown dwarfs briefly burn deuterium early on, then cool over time—meaning a single object
+            can move through temperature regimes as it ages.
+          </p>
+        </section>
+      </div>
+
+      <footer class="card">
+       
+        <div class="fine">
+          Disclaimer: Temperature ranges and examples are representative and can vary across catalogs and measurement methods. This page is an educational reference, not a catalog substitute.
+        </div>
+      </footer>
+    </main>
+  </div>
+<atw-footer></atw-footer>
+</div>
+</body>
+</html>

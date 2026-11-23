@@ -1,0 +1,635 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Closest Confirmed Exoplanets — Fact-Based Reference (NASA/Caltech + Peer-Reviewed)</title>
+  <meta name="description" content="A reference for the closest confirmed exoplanets to Earth, with host-star context and cataloged orbital/physical parameters. Sources: NASA Exoplanet Catalog, NASA Exoplanet Archive (Caltech/IPAC), and peer-reviewed discovery/confirmation papers where applicable." />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Closest Confirmed Exoplanets" />
+  <meta property="og:description" content="Closest confirmed exoplanets with host-star context, mass/radius where available, orbits, and habitability-relevant irradiance facts" />
+  <meta property="og:type" content="article" />
+
+  <!-- Structured data: Article -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Article",
+    "headline":"Closest Confirmed Exoplanets — Reference",
+    "description":"Reference for the closest confirmed exoplanets to Earth, using NASA Exoplanet Catalog / NASA Exoplanet Archive parameters and peer-reviewed confirmations.",
+    "dateModified":"2025-12-19",
+    "about":[
+      {"@type":"Thing","name":"Exoplanets"},
+      {"@type":"Thing","name":"Radial velocity"},
+      {"@type":"Thing","name":"Nearby stars"}
+    ],
+    "isBasedOn":[
+      "https://science.nasa.gov/exoplanets/exoplanet-catalog/",
+      "https://exoplanetarchive.ipac.caltech.edu/"
+    ]
+  }
+  </script>
+
+  <style>
+    :root{
+      --bg:#0b1220;
+      --card:#0f1b33;
+      --ink:#eaf2ff;
+      --muted:#a8bddc;
+      --line:#22385f;
+      --accent:#6fd3c7;
+      --warn:#ffd59a;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+    }
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(1200px 700px at 20% -10%, rgba(111,211,199,.18), transparent 55%),
+                  radial-gradient(1200px 700px at 110% 0%, rgba(124,92,255,.12), transparent 55%),
+                  var(--bg);
+      color:var(--ink);
+      line-height:1.55;
+    }
+    a{color:var(--accent); text-decoration:none}
+    a:hover{text-decoration:underline}
+    header{
+      max-width:1100px;
+      margin: 0 auto;
+      padding: 3rem 1.25rem 1.5rem;
+    }
+    h1{
+      margin:0 0 .5rem 0;
+      font-weight: 800;
+      letter-spacing: .01em;
+      font-size: clamp(1.7rem, 2.6vw, 2.4rem);
+    }
+    .sub{
+      margin:0;
+      color:var(--muted);
+      max-width: 80ch;
+    }
+    .pillrow{
+      display:flex; flex-wrap:wrap; gap:.5rem;
+      margin-top:1rem;
+    }
+    .pill{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      padding:.35rem .6rem;
+      border-radius:999px;
+      color:var(--muted);
+      font-size:.9rem;
+    }
+    main{
+      max-width:1100px;
+      margin: 0 auto;
+      padding: 0 1.25rem 3rem;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .card .hd{
+      padding: 1.1rem 1.25rem .75rem;
+      border-bottom: 1px solid rgba(34,56,95,.8);
+      display:flex;
+      gap:1rem;
+      flex-wrap:wrap;
+      align-items: baseline;
+      justify-content: space-between;
+    }
+    .card .hd h2{
+      margin:0;
+      font-size:1.25rem;
+      letter-spacing:.01em;
+    }
+    .meta{
+      color:var(--muted);
+      font-size:.95rem;
+    }
+    .card .bd{ padding: 1rem 1.25rem 1.25rem; }
+    .note{
+      border-left: 4px solid var(--accent);
+      padding: .85rem 1rem;
+      background: rgba(111,211,199,.08);
+      border-radius: 12px;
+      color: var(--muted);
+      margin: .25rem 0 0;
+    }
+    .warn{
+      border-left: 4px solid var(--warn);
+      background: rgba(255,213,154,.08);
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: .9rem;
+      margin-top: .9rem;
+    }
+    .box{
+      grid-column: span 6;
+      border:1px solid rgba(34,56,95,.85);
+      background: rgba(15,27,51,.55);
+      border-radius: 16px;
+      padding: .9rem 1rem;
+      min-width: 240px;
+    }
+    .box h3{
+      margin:0 0 .5rem 0;
+      font-size: 1rem;
+      color: var(--ink);
+    }
+    dl{ margin:0 }
+    dt{
+      color: var(--muted);
+      font-size: .9rem;
+      margin-top: .6rem;
+    }
+    dd{
+      margin: .15rem 0 0 0;
+      font-size: 1rem;
+    }
+    .small{ font-size:.92rem; color:var(--muted) }
+    .kbd{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size:.92rem;
+      color: var(--ink);
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(34,56,95,.9);
+      padding: .1rem .35rem;
+      border-radius: 8px;
+    }
+    .toc{
+      padding: 1rem 1.25rem 1.25rem;
+    }
+    .toc a{ display:inline-block; margin-right: .85rem; margin-bottom: .4rem }
+    footer{
+      max-width:1100px;
+      margin: 0 auto;
+      padding: 0 1.25rem 3rem;
+      color: var(--muted);
+    }
+    @media (max-width: 900px){
+      .box{ grid-column: span 12; }
+    }
+  </style>
+<link rel="icon" href="/wp-content/uploads/2025/11/cropped-0_3-25456-no-background.png">
+<script src="/assets/site.js" defer></script>
+</head>
+<body>
+<div class="wp-site-blocks">
+<atw-header></atw-header>
+<header>
+    <h1>Closest Confirmed Exoplanets</h1>
+    <p class="sub">
+      This page lists nearby <strong>confirmed</strong> exoplanets and summarizes their host stars, measured (or catalog-estimated) masses/radii, and orbital parameters.
+      It intentionally avoids “life” claims and other unsupported inferences. When a value is a catalog estimate (common for radius in RV-only planets), it is labeled.
+      <span class="kbd">Last updated: 2025-12-19</span>
+    </p>
+    <div class="pillrow">
+      <span class="pill">Primary data: NASA Exoplanet Catalog + NASA Exoplanet Archive (Caltech/IPAC)</span>
+      <span class="pill">Confirmations: peer-reviewed papers (when relevant)</span>
+      
+    </div>
+  </header>
+
+  <main>
+
+    <section class="card" aria-label="Method and definitions">
+      <div class="hd">
+        <h2>Method and definitions</h2>
+        <div class="meta">How to interpret “habitability” here</div>
+      </div>
+      <div class="bd">
+        <div class="note warn">
+          <strong>Habitability is not asserted.</strong> This page only reports cataloged parameters and (where a source explicitly states it) whether the planet’s stellar irradiation places it in or near a published “habitable zone” definition. Being in an HZ is an irradiance criterion, not evidence of liquid water, a breathable atmosphere, or biology.
+        </div>
+        <div class="grid">
+          <div class="box">
+            <h3>What “confirmed” means here</h3>
+            <p class="small">
+              The planets below are treated as confirmed because they appear as confirmed entries in the NASA Exoplanet Catalog / Archive and/or have peer-reviewed confirmation papers.
+            </p>
+          </div>
+          <div class="box">
+            <h3>Common measurement caveats (reported as facts)</h3>
+            <p class="small">
+              Many nearby small planets are detected by <em>radial velocity</em>. For RV-only planets, the quoted mass is usually a minimum mass (<span class="kbd">m·sin(i)</span>) unless inclination is known.
+              Radii are often catalog estimates (not directly measured by transit).
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" aria-label="Quick navigation">
+      <div class="hd">
+        <h2>Systems on this page</h2>
+        <div class="meta">Closest first (approx.)</div>
+      </div>
+      <div class="toc">
+        <a href="#proxima">Proxima Centauri b</a>
+        <a href="#barnard">Barnard’s Star b–e</a>
+        <a href="#ross128">Ross 128 b</a>
+        <a href="#wolf1061">Wolf 1061 b–d</a>
+        <a href="#gj1061">GJ 1061 b–d</a>
+        <a href="#gj411">GJ 411 b</a>
+        <a href="#teegarden">Teegarden’s Star b–c</a>
+      </div>
+    </section>
+
+    <!-- Proxima -->
+    <section id="proxima" class="card">
+      <div class="hd">
+        <h2>Proxima Centauri b</h2>
+        <div class="meta">Host distance: ~4.24 ly (~1.30 pc)</div>
+      </div>
+      <div class="bd">
+        <p class="small">
+          Proxima Centauri b is the closest known confirmed exoplanet in orbit around the nearest star to the Sun (Proxima Centauri, part of the Alpha Centauri system).
+        </p>
+        <div class="grid">
+          <div class="box">
+            <h3>Host star</h3>
+            <dl>
+              <dt>Name</dt><dd>Proxima Centauri</dd>
+              <dt>Star type (catalog)</dt><dd>M-type (red dwarf)</dd>
+              <dt>Distance</dt><dd>~4.24 light-years (~1.30 pc)</dd>
+            </dl>
+          </div>
+          <div class="box">
+            <h3>Planet parameters (NASA catalog)</h3>
+            <dl>
+              <dt>Planet type</dt><dd>Super-Earth (classification)</dd>
+              <dt>Discovery method / year</dt><dd>Radial Velocity / 2016</dd>
+              <dt>Orbital period</dt><dd>~11.2 days</dd>
+              <dt>Orbital radius (semi-major axis)</dt><dd>~0.0485 AU</dd>
+              <dt>Mass</dt><dd>~1.055 Earth masses (RV-derived; typically minimum mass unless inclination known)</dd>
+              <dt>Radius</dt><dd>~1.02 Earth radii (catalog estimate)</dd>
+            </dl>
+          </div>
+          <div class="box">
+            <h3>Habitability-relevant facts (source-limited)</h3>
+            <dl>
+              <dt>“Habitable zone” statements</dt>
+              <dd>
+                The discovery/early characterization literature discusses Proxima b in the context of the star’s habitable zone by irradiation criteria.
+                This is not evidence of surface liquid water.
+              </dd>
+            </dl>
+          </div>
+          <div class="box">
+            <h3>Primary references</h3>
+            <p class="small">
+              NASA catalog entry:
+              <a href="https://science.nasa.gov/exoplanet-catalog/proxima-centauri-b/" target="_blank" rel="noopener">science.nasa.gov — Proxima Centauri b</a><br />
+              Context/irradiation paper:
+              <a href="https://www.aanda.org/articles/aa/full_html/2016/12/aa29576-16/aa29576-16.html" target="_blank" rel="noopener">Ribas et al. (2016), A&amp;A</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Barnard -->
+    <section id="barnard" class="card">
+      <div class="hd">
+        <h2>Barnard’s Star b–e</h2>
+        <div class="meta">Host distance: ~6 ly (Barnard’s Star)</div>
+      </div>
+      <div class="bd">
+        <p class="small">
+          Barnard’s Star is the nearest single star to the Sun. A set of sub-Earth planets (b–e) has been reported and confirmed using extreme-precision radial velocities.
+        </p>
+
+        <div class="grid">
+          <div class="box">
+            <h3>Host star</h3>
+            <dl>
+              <dt>Name</dt><dd>Barnard’s Star</dd>
+              <dt>Star type</dt><dd>M dwarf</dd>
+              <dt>Distance</dt><dd>~6 light-years</dd>
+            </dl>
+          </div>
+
+          <div class="box">
+            <h3>System-level constraints (peer-reviewed)</h3>
+            <dl>
+              <dt>Detection</dt><dd>Extreme precision radial velocity (MAROON-X + ESPRESSO)</dd>
+              <dt>HZ constraint (reported)</dt>
+              <dd>
+                The combined RV data constrain (rule out) planets above a stated mass threshold in the habitable-zone period range; see Basant et al. (2025).
+              </dd>
+            </dl>
+          </div>
+
+          <div class="box">
+            <h3>Planet b (NASA catalog)</h3>
+            <dl>
+              <dt>Type</dt><dd>Terrestrial (classification)</dd>
+              <dt>Period</dt><dd>~3.2 days</dd>
+              <dt>Orbital radius</dt><dd>~0.0229 AU</dd>
+              <dt>Mass</dt><dd>~0.299 Earth masses</dd>
+              <dt>Radius</dt><dd>~0.72 Earth radii (catalog estimate)</dd>
+            </dl>
+          </div>
+
+          <div class="box">
+            <h3>Planets c, d, e (peer-reviewed summary)</h3>
+            <dl>
+              <dt>Periods (reported)</dt><dd>~4.124 d (c), ~2.340 d (d), ~6.739 d (e)</dd>
+              <dt>Minimum masses (reported range)</dt><dd>~0.19–0.34 Earth masses</dd>
+              <dt>Orbit geometry (reported)</dt><dd>Nearly circular (in the cited works)</dd>
+            </dl>
+          </div>
+
+          <div class="box">
+            <h3>Primary references</h3>
+            <p class="small">
+              NASA catalog (planet b):
+              <a href="https://science.nasa.gov/exoplanet-catalog/barnard-b/" target="_blank" rel="noopener">science.nasa.gov — Barnard b</a><br />
+              A&amp;A (initial sub-Earth detection):
+              <a href="https://www.aanda.org/articles/aa/full_html/2024/10/aa51311-24/aa51311-24.html" target="_blank" rel="noopener">Hernández et al. (2024), A&amp;A</a><br />
+              Confirmation / 4-planet system:
+              <a href="https://arxiv.org/abs/2503.08095" target="_blank" rel="noopener">Basant et al. (2025), arXiv:2503.08095</a> (see also ADS record)
+            </p>
+          </div>
+
+          <div class="box">
+            <h3>Habitability-relevant facts</h3>
+            <dl>
+              <dt>HZ placement</dt><dd>These short-period planets orbit very close to the star (few-day periods). HZ membership is not claimed for them in the cited confirmations.</dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ross 128 -->
+    <section id="ross128" class="card">
+      <div class="hd">
+        <h2>Ross 128 b</h2>
+        <div class="meta">Host distance: ~3.375 pc (~11.0 ly)</div>
+      </div>
+      <div class="bd">
+        <p class="small">
+          Ross 128 b is a nearby small planet detected by radial velocity around a relatively quiet M dwarf (in the context of M-dwarf activity comparisons).
+        </p>
+        <div class="grid">
+          <div class="box">
+            <h3>Host star (NASA Exoplanet Archive)</h3>
+            <dl>
+              <dt>Name</dt><dd>Ross 128</dd>
+              <dt>Distance</dt><dd>3.37454 pc (~11.0 ly)</dd>
+            </dl>
+          </div>
+          <div class="box">
+            <h3>Planet parameters (NASA catalog)</h3>
+            <dl>
+              <dt>Type</dt><dd>Super-Earth (classification)</dd>
+              <dt>Discovery method / year</dt><dd>Radial Velocity / 2017</dd>
+              <dt>Orbital period</dt><dd>~9.9 days</dd>
+              <dt>Orbital radius</dt><dd>~0.0496 AU</dd>
+              <dt>Mass</dt><dd>~1.4 Earth masses</dd>
+              <dt>Radius</dt><dd>~1.11 Earth radii (catalog estimate)</dd>
+              <dt>Eccentricity</dt><dd>~0.12</dd>
+            </dl>
+          </div>
+          <div class="box">
+            <h3>Primary references</h3>
+            <p class="small">
+              NASA catalog:
+              <a href="https://science.nasa.gov/exoplanet-catalog/ross-128-b/" target="_blank" rel="noopener">science.nasa.gov — Ross 128 b</a><br />
+              NASA Exoplanet Archive overview:
+              <a href="https://exoplanetarchive.ipac.caltech.edu/overview/ROSS_128%20b" target="_blank" rel="noopener">exoplanetarchive.ipac.caltech.edu — Ross 128 overview</a>
+            </p>
+          </div>
+          <div class="box">
+            <h3>Habitability-relevant facts</h3>
+            <dl>
+              <dt>HZ discussions</dt>
+              <dd>
+                Some official communications describe Ross 128 b as “possibly temperate” or near an HZ boundary by irradiation criteria. This is not a measurement of surface conditions.
+              </dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Wolf 1061 -->
+    <section id="wolf1061" class="card">
+      <div class="hd">
+        <h2>Wolf 1061 b–d</h2>
+        <div class="meta">Host distance: ~4.306 pc (~14.0 ly)</div>
+      </div>
+      <div class="bd">
+        <p class="small">
+          Wolf 1061 hosts multiple RV-detected planets. Catalog values shown here reflect RV solutions and (where applicable) catalog-estimated radii.
+        </p>
+        <div class="grid">
+          <div class="box">
+            <h3>Host star (NASA Exoplanet Archive)</h3>
+            <dl>
+              <dt>Name</dt><dd>Wolf 1061</dd>
+              <dt>Distance</dt><dd>4.30592 pc (~14.0 ly)</dd>
+            </dl>
+          </div>
+          <div class="box">
+            <h3>Wolf 1061 b (NASA catalog)</h3>
+            <dl>
+              <dt>Type</dt><dd>Super-Earth (classification)</dd>
+              <dt>Discovery method / year</dt><dd>Radial Velocity / 2015</dd>
+              <dt>Period</dt><dd>~4.9 days</dd>
+              <dt>Orbital radius</dt><dd>~0.0375 AU</dd>
+              <dt>Mass</dt><dd>~1.91 Earth masses</dd>
+              <dt>Radius</dt><dd>~1.21 Earth radii (catalog estimate)</dd>
+              <dt>Eccentricity</dt><dd>~0.15</dd>
+            </dl>
+          </div>
+          <div class="box">
+            <h3>Wolf 1061 c and d</h3>
+            <p class="small">
+              For the latest c/d parameters, use the NASA Exoplanet Archive system overview (which aggregates peer-reviewed solutions and uncertainties):
+              <a href="https://exoplanetarchive.ipac.caltech.edu/overview/Wolf%201061" target="_blank" rel="noopener">Wolf 1061 — NASA Exoplanet Archive overview</a>.
+            </p>
+          </div>
+          <div class="box">
+            <h3>Primary references</h3>
+            <p class="small">
+              NASA catalog (b):
+              <a href="https://science.nasa.gov/exoplanet-catalog/wolf-1061-b/" target="_blank" rel="noopener">science.nasa.gov — Wolf 1061 b</a><br />
+              Archive overview (system):
+              <a href="https://exoplanetarchive.ipac.caltech.edu/overview/Wolf%201061" target="_blank" rel="noopener">exoplanetarchive.ipac.caltech.edu — Wolf 1061</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GJ 1061 -->
+    <section id="gj1061" class="card">
+      <div class="hd">
+        <h2>GJ 1061 b–d</h2>
+        <div class="meta">Host distance: ~12 ly (~3.7 pc, see archive/compiled catalogs)</div>
+      </div>
+      <div class="bd">
+        <p class="small">
+          GJ 1061 hosts three RV-confirmed small planets (b–d). Below are NASA catalog entries for planet b and the archive system summary for b–d.
+        </p>
+        <div class="grid">
+          <div class="box">
+            <h3>System summary (NASA Exoplanet Archive)</h3>
+            <dl>
+              <dt>Planets</dt><dd>b, c, d (confirmed)</dd>
+              <dt>Discovery method</dt><dd>Radial Velocity</dd>
+              <dt>Discovery reference</dt><dd>Dreizler et al. (2020), as aggregated by the archive</dd>
+            </dl>
+            <p class="small">
+              Archive overview:
+              <a href="https://exoplanetarchive.ipac.caltech.edu/overview/GJ1061" target="_blank" rel="noopener">GJ 1061 — NASA Exoplanet Archive</a>
+            </p>
+          </div>
+          <div class="box">
+            <h3>GJ 1061 b (NASA catalog)</h3>
+            <dl>
+              <dt>Type</dt><dd>Super-Earth (classification)</dd>
+              <dt>Discovery year</dt><dd>2020</dd>
+              <dt>Period</dt><dd>~3.2 days</dd>
+              <dt>Orbital radius</dt><dd>~0.021 AU</dd>
+              <dt>Mass</dt><dd>~1.37 Earth masses</dd>
+              <dt>Radius</dt><dd>~1.10 Earth radii (catalog estimate)</dd>
+              <dt>Eccentricity</dt><dd>&lt; 0.31</dd>
+            </dl>
+          </div>
+          <div class="box">
+            <h3>Primary references</h3>
+            <p class="small">
+              NASA catalog (b):
+              <a href="https://science.nasa.gov/exoplanet-catalog/gj-1061-b/" target="_blank" rel="noopener">science.nasa.gov — GJ 1061 b</a><br />
+              Archive overview (b–d):
+              <a href="https://exoplanetarchive.ipac.caltech.edu/overview/GJ1061" target="_blank" rel="noopener">exoplanetarchive.ipac.caltech.edu — GJ 1061</a>
+            </p>
+          </div>
+          <div class="box">
+            <h3>Habitability-relevant facts</h3>
+            <dl>
+              <dt>HZ placement</dt><dd>Not asserted here. Use published insolation/stellar parameters if you need a strict irradiance-zone classification.</dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GJ 411 -->
+    <section id="gj411" class="card">
+      <div class="hd">
+        <h2>GJ 411 b</h2>
+        <div class="meta">Nearby RV planet around an M dwarf</div>
+      </div>
+      <div class="bd">
+        <p class="small">
+          GJ 411 b is a nearby RV-detected planet with a cataloged mass in the super-Earth range.
+        </p>
+        <div class="grid">
+          <div class="box">
+            <h3>Planet parameters (NASA catalog)</h3>
+            <dl>
+              <dt>Type</dt><dd>Super-Earth (classification)</dd>
+              <dt>Discovery method / year</dt><dd>Radial Velocity / 2019</dd>
+              <dt>Period</dt><dd>~12.9 days</dd>
+              <dt>Orbital radius</dt><dd>~0.07879 AU</dd>
+              <dt>Mass</dt><dd>~2.69 Earth masses</dd>
+              <dt>Radius</dt><dd>~1.45 Earth radii (catalog estimate)</dd>
+              <dt>Eccentricity</dt><dd>~0.06</dd>
+            </dl>
+          </div>
+          <div class="box">
+            <h3>Primary references</h3>
+            <p class="small">
+              NASA catalog:
+              <a href="https://science.nasa.gov/exoplanet-catalog/gj-411-b/" target="_blank" rel="noopener">science.nasa.gov — GJ 411 b</a><br />
+              Archive overview:
+              <a href="https://exoplanetarchive.ipac.caltech.edu/overview/GJ-411" target="_blank" rel="noopener">exoplanetarchive.ipac.caltech.edu — GJ 411</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Teegarden -->
+    <section id="teegarden" class="card">
+      <div class="hd">
+        <h2>Teegarden’s Star b–c</h2>
+        <div class="meta">Two nearby small planets (RV)</div>
+      </div>
+      <div class="bd">
+        <p class="small">
+          Teegarden’s Star hosts at least two small RV-detected planets. Below are NASA catalog parameters for planet b, plus an archive overview link for the system.
+        </p>
+
+        <div class="grid">
+          <div class="box">
+            <h3>Teegarden’s Star b (NASA catalog)</h3>
+            <dl>
+              <dt>Type</dt><dd>Super-Earth (classification)</dd>
+              <dt>Discovery method / year</dt><dd>Radial Velocity / 2019</dd>
+              <dt>Period</dt><dd>~4.9 days</dd>
+              <dt>Orbital radius</dt><dd>~0.0259 AU</dd>
+              <dt>Mass</dt><dd>~1.16 Earth masses</dd>
+              <dt>Radius</dt><dd>~1.05 Earth radii (catalog estimate)</dd>
+            </dl>
+          </div>
+
+          <div class="box">
+            <h3>System overview (b and c)</h3>
+            <p class="small">
+              NASA Exoplanet Archive overview (lists b and c, discovery method, periods, and references):
+              <a href="https://exoplanetarchive.ipac.caltech.edu/overview/teegarden" target="_blank" rel="noopener">Teegarden’s Star — NASA Exoplanet Archive</a>
+            </p>
+          </div>
+
+          <div class="box">
+            <h3>Primary references</h3>
+            <p class="small">
+              NASA catalog (b):
+              <a href="https://science.nasa.gov/exoplanet-catalog/teegardens-star-b/" target="_blank" rel="noopener">science.nasa.gov — Teegarden’s Star b</a><br />
+              Archive overview:
+              <a href="https://exoplanetarchive.ipac.caltech.edu/overview/teegarden" target="_blank" rel="noopener">exoplanetarchive.ipac.caltech.edu — Teegarden system</a>
+            </p>
+          </div>
+
+          <div class="box">
+            <h3>Habitability-relevant facts</h3>
+            <dl>
+              <dt>HZ placement</dt><dd>Not asserted here. Use published stellar luminosity + orbital separation to compute irradiation if needed, and cite the method.</dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+
+  </main>
+
+  <footer>
+    <p>
+      Sources emphasized on this page: NASA Exoplanet Catalog (science.nasa.gov) and NASA Exoplanet Archive (exoplanetarchive.ipac.caltech.edu).
+      Barnard’s Star multi-planet confirmation is referenced via Basant et al. (2025) and related peer-reviewed/archival records.
+    </p>
+  </footer>
+<atw-footer></atw-footer>
+</div>
+</body>
+</html>

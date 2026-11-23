@@ -1,0 +1,727 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Specific Impulse, Exhaust Velocity (“Terminal Velocity”), and Commercial Readiness of Space Propulsion</title>
+  <meta name="description" content="A structured, engineering-oriented overview of space propulsion types (chemical, electric, nuclear, and speculative concepts), with typical specific impulse (Isp), effective exhaust velocity, and a practical view of commercial viability." />
+  <style>
+    :root{
+      --bg:#0b1324;        /* deep navy */
+      --card:#0f1a33;      /* panel */
+      --card2:#0c162d;     /* darker panel */
+      --text:#e8eefc;      /* near-white */
+      --muted:#9bb0cf;     /* slate */
+      --line:#1f2c4d;      /* rule */
+      --accent:#6fd3c7;    /* teal */
+      --accent2:#7aa6ff;   /* blue */
+      --warn:#ffcc66;      /* amber */
+      --bad:#ff6b7a;       /* red */
+      --good:#63e6be;      /* green-ish */
+      --shadow: 0 18px 50px rgba(0,0,0,.35);
+      --radius: 18px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    }
+    html,body{height:100%;}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color:var(--text);
+      background:
+        radial-gradient(1200px 700px at 18% 12%, rgba(111,211,199,.18), transparent 60%),
+        radial-gradient(900px 600px at 78% 18%, rgba(122,166,255,.14), transparent 62%),
+        linear-gradient(180deg, rgba(11,19,36,1), rgba(7,12,24,1));
+      line-height:1.45;
+    }
+    a{color:var(--accent); text-decoration:none;}
+    a:hover{text-decoration:underline;}
+    .wrap{max-width:1180px; margin:0 auto; padding:28px 18px 70px;}
+    header{
+      padding:18px 0 10px;
+      display:flex; gap:18px; align-items:flex-start; justify-content:space-between; flex-wrap:wrap;
+    }
+    h1{
+      margin:0;
+      font-size: clamp(1.55rem, 2.4vw, 2.25rem);
+      letter-spacing:.01em;
+    }
+    .lede{
+      margin:10px 0 0;
+      color:var(--muted);
+      max-width: 88ch;
+      font-size:1.02rem;
+    }
+    .pillbar{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;}
+    .pill{
+      font-size:.86rem;
+      border:1px solid rgba(148,163,184,.28);
+      background: rgba(15,26,51,.55);
+      padding:6px 10px;
+      border-radius:999px;
+      color:var(--muted);
+      backdrop-filter: blur(6px);
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:16px;
+      margin-top:16px;
+    }
+    @media (max-width: 980px){
+      .grid{grid-template-columns: 1fr; }
+    }
+    .card{
+      background: linear-gradient(180deg, rgba(15,26,51,.88), rgba(12,22,45,.88));
+      border:1px solid rgba(148,163,184,.18);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding:16px 16px 14px;
+    }
+    .card h2{margin:0 0 8px; font-size:1.12rem;}
+    .card p{margin:8px 0; color:var(--muted);}
+    .callout{
+      border-left:4px solid rgba(111,211,199,.7);
+      padding:10px 12px;
+      background: rgba(111,211,199,.06);
+      border-radius: 12px;
+      margin-top:10px;
+    }
+    .callout strong{color:var(--text);}
+    .controls{
+      display:flex; flex-wrap:wrap; gap:10px;
+      align-items:center;
+      margin:10px 0 2px;
+    }
+    .controls label{
+      display:flex; gap:8px; align-items:center;
+      font-size:.92rem; color:var(--muted);
+      border:1px solid rgba(148,163,184,.18);
+      background: rgba(15,26,51,.55);
+      padding:8px 10px;
+      border-radius:12px;
+    }
+    select, input[type="search"]{
+      background: rgba(8,14,28,.85);
+      border:1px solid rgba(148,163,184,.22);
+      color:var(--text);
+      padding:8px 10px;
+      border-radius:10px;
+      outline:none;
+      min-width: 210px;
+    }
+    input[type="checkbox"]{transform: translateY(1px);}
+    .meta{
+      display:flex; gap:10px; flex-wrap:wrap;
+      margin-top:10px;
+      font-size:.9rem;
+      color:var(--muted);
+    }
+    .kpi{
+      display:flex; gap:12px; flex-wrap:wrap;
+      margin-top:10px;
+    }
+    .kpi .box{
+      flex:1 1 200px;
+      border:1px solid rgba(148,163,184,.18);
+      background: rgba(15,26,51,.35);
+      border-radius: 14px;
+      padding:10px 12px;
+    }
+    .kpi .label{font-size:.82rem; color:var(--muted);}
+    .kpi .val{font-family: var(--mono); font-size:1.05rem; margin-top:4px;}
+    table{
+      width:100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      overflow:hidden;
+      border-radius: 14px;
+      border:1px solid rgba(148,163,184,.16);
+      background: rgba(10,18,36,.55);
+    }
+    th, td{
+      padding:10px 10px;
+      border-bottom:1px solid rgba(148,163,184,.14);
+      vertical-align:top;
+      font-size:.92rem;
+    }
+    th{
+      text-align:left;
+      color: rgba(232,238,252,.9);
+      font-size:.86rem;
+      letter-spacing:.03em;
+      text-transform:uppercase;
+      background: rgba(15,26,51,.7);
+    }
+    tr:hover td{background: rgba(111,211,199,.05);}
+    .mono{font-family: var(--mono);}
+    .tag{
+      display:inline-block;
+      padding:4px 8px;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,.18);
+      background: rgba(15,26,51,.35);
+      color:var(--muted);
+      font-size:.78rem;
+      margin-right:6px;
+      margin-top:4px;
+      white-space:nowrap;
+    }
+    .readiness{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:4px 10px;
+      border-radius:999px;
+      font-size:.8rem;
+      border:1px solid rgba(148,163,184,.18);
+      background: rgba(15,26,51,.35);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+    .dot{width:9px; height:9px; border-radius:99px; background: rgba(155,176,207,.6);}
+    .r-commercial .dot{background: var(--good);}
+    .r-emerging .dot{background: var(--accent);}
+    .r-rd .dot{background: var(--warn);}
+    .r-spec .dot{background: var(--bad);}
+    .small{font-size:.88rem; color:var(--muted);}
+    footer{margin-top:20px; color:var(--muted); font-size:.9rem;}
+    .hr{height:1px; background: rgba(148,163,184,.16); margin:14px 0;}
+    .note{color:var(--muted); font-size:.9rem;}
+    .tight li{margin:6px 0;}
+    .sources li{margin:7px 0;}
+  </style>
+<link rel="icon" href="/wp-content/uploads/2025/11/cropped-0_3-25456-no-background.png">
+<script src="/assets/site.js" defer></script>
+</head>
+<body>
+<div class="wp-site-blocks">
+<atw-header></atw-header>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Space Propulsion: Specific Impulse, “Terminal Velocity,” and Commercial Viability</h1>
+      <p class="lede">
+        “Specific impulse” (<span class="mono">Isp</span>) is the standard efficiency metric for rocket engines and in-space thrusters.
+        Many people say “terminal velocity,” but in propulsion engineering the engine property you usually mean is
+        <strong>effective exhaust velocity</strong> (<span class="mono">vₑ</span>), which is directly related to <span class="mono">Isp</span>.
+      </p>
+      <div class="pillbar">
+        <span class="pill">Isp → vₑ via vₑ = Isp · g₀</span>
+        <span class="pill">High Isp ≠ “better” for launch; thrust-to-weight matters</span>
+        <span class="pill">Commercial viability depends on TRL + economics + operations</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="grid">
+    <section class="card">
+      <h2>1) Clarifying “Terminal Velocity” (and what’s actually useful)</h2>
+      <p>
+        <strong>Terminal velocity</strong> is an atmospheric concept: it’s the speed where drag equals a driving force (e.g., gravity).
+        In space, there is effectively no terminal velocity.
+      </p>
+      <div class="callout">
+        <strong>For engines, the closest analog is:</strong>
+        <ul class="tight">
+          <li><span class="mono">Isp</span> (seconds): how efficiently propellant is converted into momentum.</li>
+          <li><span class="mono">vₑ</span> (m/s or km/s): effective exhaust velocity. Higher means less propellant for a given Δv.</li>
+          <li><strong>Thrust</strong> and <strong>thrust-to-weight</strong>: whether you can lift off, escape gravity wells, or maneuver quickly.</li>
+        </ul>
+      </div>
+
+      <div class="kpi">
+        <div class="box">
+          <div class="label">Standard gravity</div>
+          <div class="val">g₀ = 9.80665 m/s²</div>
+        </div>
+        <div class="box">
+          <div class="label">Conversion</div>
+          <div class="val">vₑ (m/s) = Isp · g₀</div>
+        </div>
+        <div class="box">
+          <div class="label">Rule of thumb</div>
+          <div class="val">300 s ≈ 2.94 km/s</div>
+        </div>
+      </div>
+
+      <p class="note">
+        The table below uses <span class="mono">Isp</span> and computes <span class="mono">vₑ</span>. Where a concept does not expel propellant
+        (solar sails, photon rockets), <span class="mono">Isp</span> is not directly comparable; those rows call that out explicitly.
+      </p>
+    </section>
+
+    <aside class="card">
+      <h2>2) Practical “Commercial Viability” Scale</h2>
+      <p>
+        The question “how close are we?” is less about physics and more about whether a technology is
+        <em>deployable, manufacturable, licensable, insurable, and operable</em> at a price a customer will pay.
+      </p>
+
+      <div class="meta">
+        <span class="readiness r-commercial"><span class="dot"></span> Commercial (in-service)</span>
+        <span class="readiness r-emerging"><span class="dot"></span> Emerging (flight demos / early market)</span>
+        <span class="readiness r-rd"><span class="dot"></span> R&amp;D (labs / prototypes)</span>
+        <span class="readiness r-spec"><span class="dot"></span> Speculative (no credible path yet)</span>
+      </div>
+
+      <div class="hr"></div>
+
+      <h2>3) Filters</h2>
+      <div class="controls">
+        <input id="q" type="search" placeholder="Search (e.g., Hall, NTR, Raptor, ion)..." />
+        <select id="cat">
+          <option value="all">All categories</option>
+          <option value="chemical">Chemical rockets</option>
+          <option value="electric">Electric / plasma</option>
+          <option value="nuclear">Nuclear</option>
+          <option value="airbreathing">Air-breathing / combined-cycle</option>
+          <option value="exotic">Exotic / hypothesized</option>
+        </select>
+        <select id="readiness">
+          <option value="all">All readiness levels</option>
+          <option value="Commercial">Commercial</option>
+          <option value="Emerging">Emerging</option>
+          <option value="R&#038;D">R&amp;D</option>
+          <option value="Speculative">Speculative</option>
+        </select>
+        <label><input id="hideSpec" type="checkbox" /> Hide speculative</label>
+      </div>
+      <p class="small">
+        Engineering reality check: “all known and hypothesized engines” is unbounded.
+        This page is designed as a practical catalog of the major families plus representative exemplars.
+      </p>
+    </aside>
+  </div>
+
+  <section class="card" style="margin-top:16px;">
+    <h2>4) Catalog of Propulsion Types (Isp, vₑ, and Viability)</h2>
+
+    <table id="engines">
+      <thead>
+        <tr>
+          <th style="width:15%">Category</th>
+          <th style="width:18%">Engine / Concept</th>
+          <th style="width:12%">Typical Isp (s)</th>
+          <th style="width:12%">vₑ (km/s)</th>
+          <th style="width:16%">Where it shines</th>
+          <th style="width:12%">Readiness</th>
+          <th>Notes on commercial viability</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <!-- CHEMICAL -->
+        <tr data-cat="chemical" data-ready="Commercial">
+          <td>Chemical</td>
+          <td><strong>LOX/RP-1</strong> (kerolox staged / GG)<div class="tag">launch</div><div class="tag">high thrust</div></td>
+          <td class="mono">~260–350</td>
+          <td class="mono" data-isp="305">≈2.99</td>
+          <td>Boost stages, reusable boosters, cost-efficient propellants.</td>
+          <td><span class="readiness r-commercial"><span class="dot"></span>Commercial</span></td>
+          <td>
+            Mature and dominant for launch. Example: Merlin 1D Vacuum Isp ~348 s (upper stage). <a href="#src-merlin">[S]</a>
+          </td>
+        </tr>
+
+        <tr data-cat="chemical" data-ready="Commercial">
+          <td>Chemical</td>
+          <td><strong>LOX/CH₄</strong> (methalox, staged combustion)<div class="tag">reusability</div><div class="tag">cleaner coking</div></td>
+          <td class="mono">~330–380</td>
+          <td class="mono" data-isp="350">≈3.43</td>
+          <td>Reusable systems, deep-throttling, long-duration storage vs LH₂.</td>
+          <td><span class="readiness r-commercial"><span class="dot"></span>Commercial</span></td>
+          <td>
+            In production (e.g., SpaceX Raptor family: ~347–350 s vacuum for sea-level variants; RVac targets ~380 s). <a href="#src-raptor">[S]</a>
+            BE-4 is a major methalox staged-combustion engine with ~340 s Isp listed. <a href="#src-be4">[S]</a>
+          </td>
+        </tr>
+
+        <tr data-cat="chemical" data-ready="Commercial">
+          <td>Chemical</td>
+          <td><strong>LOX/LH₂</strong> (hydrolox, expander / staged combustion)<div class="tag">upper stage</div><div class="tag">high Isp</div></td>
+          <td class="mono">~430–465+</td>
+          <td class="mono" data-isp="452">≈4.43</td>
+          <td>Upper stages, high-energy departure burns, deep-space injection.</td>
+          <td><span class="readiness r-commercial"><span class="dot"></span>Commercial</span></td>
+          <td>
+            RS-25 vacuum Isp ~452 s. <a href="#src-rs25">[S]</a>
+            RL10B-2 vacuum Isp ~465.5 s; RL10 variants continue for Vulcan/Centaur. <a href="#src-rl10">[S]</a>
+          </td>
+        </tr>
+
+        <tr data-cat="chemical" data-ready="Commercial">
+          <td>Chemical</td>
+          <td><strong>Solid Rocket Motors</strong><div class="tag">simple</div><div class="tag">high thrust</div></td>
+          <td class="mono">~260–280</td>
+          <td class="mono" data-isp="270">≈2.65</td>
+          <td>Boosters, kick stages, simple storage and rapid response.</td>
+          <td><span class="readiness r-commercial"><span class="dot"></span>Commercial</span></td>
+          <td>
+            Mature and reliable; Isp depends heavily on formulation and nozzle. NASA historical design study uses ~260 s (lower stages) and ~280 s (upper). <a href="#src-solids">[S]</a>
+          </td>
+        </tr>
+
+        <tr data-cat="chemical" data-ready="Commercial">
+          <td>Chemical</td>
+          <td><strong>Cold Gas</strong><div class="tag">attitude control</div></td>
+          <td class="mono">~50–80</td>
+          <td class="mono" data-isp="70">≈0.69</td>
+          <td>Ultra-simple attitude control where precision beats efficiency.</td>
+          <td><span class="readiness r-commercial"><span class="dot"></span>Commercial</span></td>
+          <td>
+            Commodity technology; low performance but low risk.
+          </td>
+        </tr>
+
+        <tr data-cat="chemical" data-ready="Commercial">
+          <td>Chemical</td>
+          <td><strong>Monoprop / Biprop RCS</strong> (hydrazine, green propellants, NTO/MMH, etc.)<div class="tag">spacecraft maneuvering</div></td>
+          <td class="mono">~220–330</td>
+          <td class="mono" data-isp="290">≈2.84</td>
+          <td>Short burns, attitude control, orbit trim, lander descent (some cases).</td>
+          <td><span class="readiness r-commercial"><span class="dot"></span>Commercial</span></td>
+          <td>
+            Highly mature. Trend: reduce toxicity/operations cost via “green” monoprops and electric alternatives.
+          </td>
+        </tr>
+
+        <tr data-cat="chemical" data-ready="Emerging">
+          <td>Chemical</td>
+          <td><strong>Hybrid Rockets</strong> (solid fuel + liquid oxidizer)<div class="tag">simpler than liquids</div></td>
+          <td class="mono">~250–330</td>
+          <td class="mono" data-isp="300">≈2.94</td>
+          <td>Some suborbital and niche orbital concepts; throttling and shutdown possible.</td>
+          <td><span class="readiness r-emerging"><span class="dot"></span>Emerging</span></td>
+          <td>
+            Commercially viable in certain niches, but not dominant for high-cadence orbital launch due to performance and scaling constraints.
+          </td>
+        </tr>
+
+        <!-- ELECTRIC / PLASMA -->
+        <tr data-cat="electric" data-ready="Commercial">
+          <td>Electric</td>
+          <td><strong>Hall-effect thrusters</strong> (Xe/Kr/Ar/I₂)<div class="tag">constellations</div><div class="tag">orbit-raising</div></td>
+          <td class="mono">~1,100–1,600 (typical)</td>
+          <td class="mono" data-isp="1500">≈14.71</td>
+          <td>Station-keeping, orbit raising, efficient deorbiting, tug services.</td>
+          <td><span class="readiness r-commercial"><span class="dot"></span>Commercial</span></td>
+          <td>
+            Very mature and widely commercialized; representative specific impulse regime ~1500 s is a common design point in NASA work. <a href="#src-hall-nasa">[S]</a>
+            Commercial vendors describe exhaust velocities &gt;25,000 m/s for some Hall designs. <a href="#src-busek-hall">[S]</a>
+          </td>
+        </tr>
+
+        <tr data-cat="electric" data-ready="Commercial">
+          <td>Electric</td>
+          <td><strong>Gridded ion thrusters</strong> (electrostatic ion engines)<div class="tag">deep space</div></td>
+          <td class="mono">~2,500–4,200+</td>
+          <td class="mono" data-isp="3000">≈29.42</td>
+          <td>Deep-space missions requiring high Δv over long time horizons.</td>
+          <td><span class="readiness r-commercial"><span class="dot"></span>Commercial</span></td>
+          <td>
+            Flight-proven class; e.g., NEXT-C systems are cited in literature with high-Isp throttle ranges. <a href="#src-nextc">[S]</a>
+            Newer work reports ~2500–3400 s ranges for advanced variants. <a href="#src-iep-2025">[S]</a>
+          </td>
+        </tr>
+
+        <tr data-cat="electric" data-ready="Emerging">
+          <td>Electric</td>
+          <td><strong>Iodine electric propulsion</strong> (Hall / ion with iodine)<div class="tag">supply chain</div><div class="tag">storage</div></td>
+          <td class="mono">~1,200–3,500 (design-dependent)</td>
+          <td class="mono" data-isp="2000">≈19.61</td>
+          <td>Lower-cost, denser propellant alternatives to xenon; smallsat mobility.</td>
+          <td><span class="readiness r-emerging"><span class="dot"></span>Emerging</span></td>
+          <td>
+            Rapidly progressing due to constellation economics and propellant logistics. NASA TechPort lists ongoing iodine Hall thruster development work. <a href="#src-iodine">[S]</a>
+          </td>
+        </tr>
+
+        <tr data-cat="electric" data-ready="Emerging">
+          <td>Electric</td>
+          <td><strong>Electrospray (colloid / ionic liquid)</strong><div class="tag">precision</div><div class="tag">drag makeup</div></td>
+          <td class="mono">~1,000–3,000+</td>
+          <td class="mono" data-isp="2000">≈19.61</td>
+          <td>Ultra-fine attitude/position control, formation flying, CubeSats.</td>
+          <td><span class="readiness r-emerging"><span class="dot"></span>Emerging</span></td>
+          <td>
+            Increasing commercial adoption for precision control; limited thrust (not a “get-to-orbit” system).
+          </td>
+        </tr>
+
+        <tr data-cat="electric" data-ready="R&#038;D">
+          <td>Electric</td>
+          <td><strong>VASIMR</strong> (RF-heated plasma, magnetic nozzle)<div class="tag">high power required</div></td>
+          <td class="mono">~2,000–10,000 (concept range)</td>
+          <td class="mono" data-isp="5000">≈49.03</td>
+          <td>Potential fast cargo transit if megawatt-class power becomes routine.</td>
+          <td><span class="readiness r-rd"><span class="dot"></span>R&amp;D</span></td>
+          <td>
+            Claims include Isp ~5000 s and higher in concept framing; the commercial blocker is power/thermal management at scale. <a href="#src-vasimr">[S]</a>
+          </td>
+        </tr>
+
+        <!-- NUCLEAR -->
+        <tr data-cat="nuclear" data-ready="R&#038;D">
+          <td>Nuclear</td>
+          <td><strong>Nuclear Thermal Rocket (NTR)</strong> (solid-core, LH₂ heated by reactor)<div class="tag">high thrust</div><div class="tag">~2× chemical Isp</div></td>
+          <td class="mono">~800–900+</td>
+          <td class="mono" data-isp="850">≈8.34</td>
+          <td>Fast transits to Mars/cislunar, high-thrust in-space burns.</td>
+          <td><span class="readiness r-rd"><span class="dot"></span>R&amp;D</span></td>
+          <td>
+            Historically demonstrated in ground tests (e.g., NERVA ~841 s vacuum Isp reported). <a href="#src-nerva">[S]</a>
+            Near-term programs have faced budget volatility (e.g., DRACO cancellation noted in the FY2026 budget discussion). <a href="#src-draco-budget">[S]</a>
+          </td>
+        </tr>
+
+        <tr data-cat="nuclear" data-ready="R&#038;D">
+          <td>Nuclear</td>
+          <td><strong>Nuclear Electric Propulsion (NEP)</strong> (reactor → power → ion/Hall)<div class="tag">very high Δv</div></td>
+          <td class="mono">~2,000–15,000+</td>
+          <td class="mono" data-isp="6000">≈58.84</td>
+          <td>High Δv missions, heavy cargo spirals, deep-space logistics.</td>
+          <td><span class="readiness r-rd"><span class="dot"></span>R&amp;D</span></td>
+          <td>
+            Physics is sound; commercial viability depends on space-qualified reactor supply chain, launch licensing, and system-level cost.
+            NASA electric propulsion programs reference multi-thousand-second regimes and beyond. <a href="#src-nasa-ion-program">[S]</a>
+          </td>
+        </tr>
+
+        <tr data-cat="nuclear" data-ready="Speculative">
+          <td>Nuclear</td>
+          <td><strong>Gas-core / Open-cycle NTR</strong><div class="tag">very high temp</div><div class="tag">materials challenge</div></td>
+          <td class="mono">~1,500–3,000 (theoretical)</td>
+          <td class="mono" data-isp="2000">≈19.61</td>
+          <td>Higher Isp than solid-core NTR while retaining meaningful thrust.</td>
+          <td><span class="readiness r-spec"><span class="dot"></span>Speculative</span></td>
+          <td>
+            Major unsolved engineering and containment challenges; no near-term commercial path.
+          </td>
+        </tr>
+
+        <tr data-cat="nuclear" data-ready="Speculative">
+          <td>Nuclear</td>
+          <td><strong>Fission fragment / Nuclear salt-water</strong><div class="tag">extreme</div></td>
+          <td class="mono">~5,000–50,000 (highly theoretical)</td>
+          <td class="mono" data-isp="10000">≈98.07</td>
+          <td>Extreme performance envelopes for far-future architectures.</td>
+          <td><span class="readiness r-spec"><span class="dot"></span>Speculative</span></td>
+          <td>
+            Conceptual designs exist; dominated by containment, safety, and political constraints.
+          </td>
+        </tr>
+
+        <!-- AIR-BREATHING / COMBINED CYCLE -->
+        <tr data-cat="airbreathing" data-ready="Speculative">
+          <td>Air-breathing</td>
+          <td><strong>SABRE / precooled combined-cycle</strong><div class="tag">SSTO concept</div></td>
+          <td class="mono">N/A (air-breather phases)</td>
+          <td class="mono">N/A</td>
+          <td>Atmospheric acceleration before switching to rocket mode.</td>
+          <td><span class="readiness r-spec"><span class="dot"></span>Speculative</span></td>
+          <td>
+            Ground test achievements exist for precooler work, but the original SABRE program did not complete and company status changed materially (bankruptcy cited). <a href="#src-sabre">[S]</a>
+          </td>
+        </tr>
+
+        <!-- EXOTIC / HYPOTHESIZED -->
+        <tr data-cat="exotic" data-ready="Speculative">
+          <td>Exotic</td>
+          <td><strong>Fusion rockets</strong> (magnetic confinement, ICF, pulsed fusion)<div class="tag">no reactor yet</div></td>
+          <td class="mono">~10,000–1,000,000+ (concept)</td>
+          <td class="mono" data-isp="100000">≈980.67</td>
+          <td>Interplanetary fast transits; potentially interstellar precursors.</td>
+          <td><span class="readiness r-spec"><span class="dot"></span>Speculative</span></td>
+          <td>
+            Commercial viability is gated by controlled fusion + lightweight, high-power space systems. Today: no credible near-term commercialization.
+          </td>
+        </tr>
+
+        <tr data-cat="exotic" data-ready="Speculative">
+          <td>Exotic</td>
+          <td><strong>Antimatter</strong> (catalyzed fission/fusion; pure annihilation)<div class="tag">energy-dense</div></td>
+          <td class="mono">~100,000–30,000,000 (theoretical)</td>
+          <td class="mono" data-isp="1000000">≈9806.65</td>
+          <td>Extreme energy density where propellant mass is minimal.</td>
+          <td><span class="readiness r-spec"><span class="dot"></span>Speculative</span></td>
+          <td>
+            Antimatter production, storage, and handling at useful scales remains far beyond commercial feasibility.
+          </td>
+        </tr>
+
+        <tr data-cat="exotic" data-ready="R&#038;D">
+          <td>Exotic</td>
+          <td><strong>Solar sail</strong> (photon pressure; no propellant)<div class="tag">propellantless</div></td>
+          <td class="mono">Effectively “∞”</td>
+          <td class="mono">N/A</td>
+          <td>Long-duration, low-acceleration trajectories; station-keeping; deep-space cruising.</td>
+          <td><span class="readiness r-rd"><span class="dot"></span>R&amp;D</span></td>
+          <td>
+            Flight demonstrations exist; commercial use is niche because acceleration is low and mission design is specialized.
+          </td>
+        </tr>
+
+        <tr data-cat="exotic" data-ready="Speculative">
+          <td>Exotic</td>
+          <td><strong>Beamed energy propulsion</strong> (laser sail, microwave thermal)<div class="tag">infrastructure</div></td>
+          <td class="mono">Varies / not directly comparable</td>
+          <td class="mono">N/A</td>
+          <td>Potentially high performance if you can build the transmitter infrastructure.</td>
+          <td><span class="readiness r-spec"><span class="dot"></span>Speculative</span></td>
+          <td>
+            The “engine” is only half the system; economics hinge on building and operating the beaming infrastructure.
+          </td>
+        </tr>
+
+        <tr data-cat="exotic" data-ready="Speculative">
+          <td>Exotic</td>
+          <td><strong>Photon rocket</strong> (pure light emission)<div class="tag">physics-limited</div></td>
+          <td class="mono">≈ c/g₀ ≈ 30,600,000</td>
+          <td class="mono">≈ 299,792 km/s</td>
+          <td>Ultimate Isp limit, but thrust per watt is extremely small.</td>
+          <td><span class="readiness r-spec"><span class="dot"></span>Speculative</span></td>
+          <td>
+            In practice, power generation and radiator mass dominate; not commercially plausible for spacecraft propulsion today.
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+
+    <p class="small" style="margin-top:10px;">
+      <strong>Interpretation tip:</strong> Launch/landing cares about thrust and mass flow; deep-space logistics cares about <span class="mono">Isp</span> and total delivered Δv.
+      Many “amazing Isp” concepts are not competitive because thrust is tiny, power is impractical, or system mass explodes.
+    </p>
+  </section>
+
+  <section class="card" style="margin-top:16px;">
+    <h2>5) How Close Are We, Really? The “Commercialization Blocker” Map</h2>
+    <p>
+      Most propulsion concepts don’t fail on first-principles physics; they fail on <strong>system economics</strong>:
+      mass, power, thermal rejection, manufacturing yield, regulatory constraints, and operational cadence.
+    </p>
+
+    <div class="grid" style="margin-top:10px;">
+      <div class="card" style="background: rgba(15,26,51,.35); box-shadow:none;">
+        <h2 style="font-size:1.02rem;">Already commercial (dominant)</h2>
+        <ul class="tight">
+          <li><strong>Chemical</strong> (kerolox, methalox, hydrolox, solids): best for launch/high thrust.</li>
+          <li><strong>Hall thrusters</strong>: now a baseline technology for satellites/constellations.</li>
+          <li><strong>Gridded ion</strong>: proven for deep-space and some commercial applications.</li>
+        </ul>
+      </div>
+
+      <div class="card" style="background: rgba(15,26,51,.35); box-shadow:none;">
+        <h2 style="font-size:1.02rem;">Near-term expansion (where we are “close”)</h2>
+        <ul class="tight">
+          <li><strong>Alternative propellants for EP</strong> (iodine/argon): supply-chain and cost drivers are pushing adoption. <a href="#src-iodine">[S]</a></li>
+          <li><strong>Higher-power EP</strong>: scaling power processing and lifetime while holding cost down.</li>
+          <li><strong>On-orbit tugs</strong>: EP + autonomy + refueling logistics (business model, not physics).</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid" style="margin-top:12px;">
+      <div class="card" style="background: rgba(15,26,51,.35); box-shadow:none;">
+        <h2 style="font-size:1.02rem;">Hard but plausible (decade-scale, uncertain)</h2>
+        <ul class="tight">
+          <li><strong>Nuclear thermal</strong>: the physics is straightforward, but program/budget volatility and licensing dominate time-to-market. <a href="#src-draco-budget">[S]</a></li>
+          <li><strong>Nuclear electric</strong>: same issues plus reactor mass, heat rejection, and integration cost.</li>
+        </ul>
+      </div>
+
+      <div class="card" style="background: rgba(15,26,51,.35); box-shadow:none;">
+        <h2 style="font-size:1.02rem;">Speculative (no credible commercial path yet)</h2>
+        <ul class="tight">
+          <li><strong>Fusion / antimatter / extreme fission concepts</strong>: blocked by foundational technology readiness and system mass/power realities.</li>
+          <li><strong>Beamed propulsion</strong>: depends on massive infrastructure and governance, not just vehicles.</li>
+          <li><strong>Photon rockets</strong>: physics allows it, engineering economics do not.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="card" style="margin-top:16px;">
+    <h2>6) Sources (representative, not exhaustive)</h2>
+    <p class="small">
+      This page intentionally mixes “hard numbers” references with high-level program status sources.
+      If you want, I can tighten this into a rigorously-cited catalog (with a single preferred data hierarchy:
+      OEM datasheets → NASA/ESA tech reports → peer-reviewed papers → secondary summaries).
+    </p>
+
+    <ol class="sources">
+      <li id="src-raptor">SpaceX Raptor summary data (Isp values and production status): Wikipedia snapshot. <a href="https://en.wikipedia.org/wiki/SpaceX_Raptor">https://en.wikipedia.org/wiki/SpaceX_Raptor</a> </li>
+      <li id="src-be4">BE-4 listed specific impulse: Wikipedia. <a href="https://en.wikipedia.org/wiki/BE-4">https://en.wikipedia.org/wiki/BE-4</a></li>
+      <li id="src-rs25">RS-25 Isp and engine specs: L3Harris RS-25 page. <a href="https://www.l3harris.com/all-capabilities/rs-25-engine">https://www.l3harris.com/all-capabilities/rs-25-engine</a></li>
+      <li id="src-rl10">RL10 vacuum Isp (465.5 s for RL10B-2) and program notes: Wikipedia and AIAA summary. <a href="https://en.wikipedia.org/wiki/RL10">https://en.wikipedia.org/wiki/RL10</a> | <a href="https://aerospaceamerica.aiaa.org/departments/improving-on-the-gold-standard/">https://aerospaceamerica.aiaa.org/departments/improving-on-the-gold-standard/</a></li>
+      <li id="src-merlin">Merlin Vacuum Isp ~348 s: Wikipedia. <a href="https://en.wikipedia.org/wiki/SpaceX_Merlin">https://en.wikipedia.org/wiki/SpaceX_Merlin</a></li>
+      <li id="src-solids">Typical solid motor Isp assumptions in NASA study: NASA NTRS PDF (1970). <a href="https://ntrs.nasa.gov/api/citations/19700020430/downloads/19700020430.pdf">https://ntrs.nasa.gov/api/citations/19700020430/downloads/19700020430.pdf</a></li>
+      <li id="src-hall-nasa">Hall thruster typical Isp regime (~1500 s) in NASA context: NASA NTRS (Oleson, 2001). <a href="https://ntrs.nasa.gov/api/citations/20010047837/downloads/20010047837.pdf">https://ntrs.nasa.gov/api/citations/20010047837/downloads/20010047837.pdf</a></li>
+      <li id="src-busek-hall">Commercial Hall thruster exhaust velocity statement (&gt;25,000 m/s): Busek Hall thrusters page. <a href="https://www.busek.com/hall-thrusters">https://www.busek.com/hall-thrusters</a></li>
+      <li id="src-nextc">NEXT-C flight ion system status (range context): AIAA paper (2020). <a href="https://arc.aiaa.org/doi/10.2514/6.2020-3604">https://arc.aiaa.org/doi/10.2514/6.2020-3604</a></li>
+      <li id="src-iep-2025">Advanced ion propulsion performance metrics (Isp spans 2500–3400 s reported): NASA NTRS IEPC 2025 PDF. <a href="https://ntrs.nasa.gov/api/citations/20250008168/downloads/IEPC2025133vFINALRH.pdf?attachment=true">https://ntrs.nasa.gov/api/citations/20250008168/downloads/IEPC2025133vFINALRH.pdf?attachment=true</a></li>
+      <li id="src-nasa-ion-program">High-Isp program ranges (3000–15000 s referenced): NASA ion propulsion program (IEPC PDF). <a href="https://electricrocket.org/IEPC/0158-0303iepc-full.pdf">https://electricrocket.org/IEPC/0158-0303iepc-full.pdf</a></li>
+      <li id="src-nerva">NERVA historical Isp (~841 s vacuum shown): Wikipedia. <a href="https://en.wikipedia.org/wiki/NERVA">https://en.wikipedia.org/wiki/NERVA</a></li>
+      <li id="src-draco-budget">Budget/program volatility example (FY2026 proposed cuts; DRACO impacts discussed): Ars Technica. <a href="https://arstechnica.com/space/2025/06/some-parts-of-trumps-proposed-budget-for-nasa-are-literally-draconian/">https://arstechnica.com/space/2025/06/some-parts-of-trumps-proposed-budget-for-nasa-are-literally-draconian/</a></li>
+      <li id="src-iodine">Iodine Hall thruster development listing: NASA TechPort. <a href="https://techport.nasa.gov/projects/9335">https://techport.nasa.gov/projects/9335</a></li>
+      <li id="src-vasimr">VASIMR Isp claim and concept overview: Ad Astra “Our Engine.” <a href="https://www.adastrarocket.com/our-engine/">https://www.adastrarocket.com/our-engine/</a></li>
+      <li id="src-sabre">SABRE status note (bankruptcy cited) and overview: Wikipedia. <a href="https://en.wikipedia.org/wiki/SABRE_(rocket_engine)">https://en.wikipedia.org/wiki/SABRE_(rocket_engine)</a></li>
+    </ol>
+  </section>
+
+ 
+</div>
+
+<script>
+  // Compute effective exhaust velocity v_e = Isp * g0 and render km/s where applicable.
+  (function(){
+    const g0 = 9.80665;
+    document.querySelectorAll('[data-isp]').forEach(cell => {
+      const isp = parseFloat(cell.getAttribute('data-isp'));
+      if (Number.isFinite(isp)){
+        const ve_kms = (isp * g0) / 1000;
+        cell.textContent = "≈" + ve_kms.toFixed(2);
+      }
+    });
+  })();
+
+  // Filtering
+  (function(){
+    const q = document.getElementById('q');
+    const cat = document.getElementById('cat');
+    const readiness = document.getElementById('readiness');
+    const hideSpec = document.getElementById('hideSpec');
+    const rows = Array.from(document.querySelectorAll('#engines tbody tr'));
+
+    function norm(s){ return (s || '').toLowerCase().trim(); }
+
+    function apply(){
+      const qq = norm(q.value);
+      const cc = cat.value;
+      const rr = readiness.value;
+      const hs = hideSpec.checked;
+
+      rows.forEach(r => {
+        const rCat = r.getAttribute('data-cat');
+        const rReady = r.getAttribute('data-ready');
+        const text = norm(r.innerText);
+
+        let show = true;
+        if (cc !== 'all' && rCat !== cc) show = false;
+        if (rr !== 'all' && rReady !== rr) show = false;
+        if (hs && rReady === 'Speculative') show = false;
+        if (qq && !text.includes(qq)) show = false;
+
+        r.style.display = show ? '' : 'none';
+      });
+    }
+
+    [q, cat, readiness, hideSpec].forEach(el => el.addEventListener('input', apply));
+    apply();
+  })();
+</script>
+<atw-footer></atw-footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy | Stargazer Consulting</title>
+  <meta name="description" content="Privacy Policy for Stargazer Consulting." />
+  <style>
+    :root {
+      --bg-1: #0b1020;
+      --bg-2: #121a35;
+      --bg-3: #1b2550;
+      --panel: rgba(255, 255, 255, 0.08);
+      --panel-border: rgba(255, 255, 255, 0.14);
+      --text: #ecf3ff;
+      --muted: #b9c7e6;
+      --heading: #ffffff;
+      --accent: #83e6d8;
+      --accent-2: #8ab4ff;
+      --max-width: 1120px;
+      --shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      line-height: 1.7;
+      background:
+        radial-gradient(circle at top left, rgba(131, 230, 216, 0.10), transparent 28%),
+        radial-gradient(circle at top right, rgba(138, 180, 255, 0.12), transparent 30%),
+        linear-gradient(180deg, var(--bg-3) 0%, var(--bg-2) 42%, var(--bg-1) 100%);
+      min-height: 100vh;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      width: min(92%, var(--max-width));
+      margin: 0 auto;
+    }
+
+    .hero {
+      padding: 72px 0 28px;
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.09), rgba(255,255,255,0.05));
+      border: 1px solid var(--panel-border);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      padding: 40px 34px;
+      backdrop-filter: blur(10px);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 14px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(131, 230, 216, 0.12);
+      border: 1px solid rgba(131, 230, 216, 0.24);
+      color: var(--accent);
+      font-size: 0.83rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3 {
+      color: var(--heading);
+      line-height: 1.2;
+      margin-top: 0;
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 5vw, 3.7rem);
+      margin-bottom: 14px;
+      letter-spacing: -0.03em;
+    }
+
+    h2 {
+      font-size: clamp(1.45rem, 2vw, 1.85rem);
+      margin-top: 40px;
+      margin-bottom: 14px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255,255,255,0.10);
+      scroll-margin-top: 120px;
+    }
+
+    h3 {
+      font-size: 1.08rem;
+      margin-top: 22px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      margin: 0 0 16px;
+      color: var(--text);
+    }
+
+    .lede {
+      font-size: 1.06rem;
+      max-width: 860px;
+      color: var(--muted);
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 260px minmax(0, 1fr);
+      gap: 24px;
+      padding: 24px 0 72px;
+      align-items: start;
+    }
+
+    .toc {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--panel-border);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      padding: 20px 18px;
+      align-self: start;
+    }
+
+    .toc h2 {
+      border-top: none;
+      padding-top: 0;
+      margin-top: 0;
+      margin-bottom: 12px;
+      font-size: 1rem;
+    }
+
+    .toc ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .toc li {
+      margin: 0 0 8px;
+    }
+
+    .toc a {
+      display: block;
+      padding: 8px 10px;
+      border-radius: 12px;
+      color: var(--muted);
+    }
+
+    .toc a:hover {
+      background: rgba(255,255,255,0.07);
+      color: var(--heading);
+      text-decoration: none;
+    }
+
+    .policy {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid var(--panel-border);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      padding: 34px 30px;
+      backdrop-filter: blur(8px);
+    }
+
+    .policy ul,
+    .policy ol {
+      margin: 0 0 18px 1.2rem;
+    }
+
+    .policy li {
+      margin-bottom: 8px;
+    }
+
+    .notice {
+      margin-bottom: 24px;
+      padding: 16px 18px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.05);
+      color: var(--muted);
+    }
+
+    .footer {
+      padding: 0 0 70px;
+    }
+
+    .footer-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--panel-border);
+      border-radius: 22px;
+      padding: 22px;
+      color: var(--muted);
+    }
+
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.94em;
+      background: rgba(255,255,255,0.08);
+      padding: 2px 7px;
+      border-radius: 8px;
+      color: #f7fbff;
+    }
+
+    @media (min-width: 1100px) {
+      .toc {
+        position: sticky;
+        top: 110px; /* adjust if your site header is taller */
+        z-index: 2;
+      }
+    }
+
+    @media (max-width: 1099px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .toc {
+        position: static;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .hero-card,
+      .policy,
+      .toc,
+      .footer-card {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      h2 {
+        scroll-margin-top: 90px;
+      }
+    }
+  </style>
+<link rel="icon" href="/wp-content/uploads/2025/11/cropped-0_3-25456-no-background.png">
+<script src="/assets/site.js" defer></script>
+</head>
+<body>
+<div class="wp-site-blocks">
+<atw-header></atw-header>
+<header class="hero">
+    <div class="container">
+      <div class="hero-card">
+        <div class="eyebrow">Stargazer Consulting</div>
+        <h1>Privacy Policy</h1>
+        <p class="lede">
+          This Privacy Policy explains how Stargazer Consulting collects, uses, discloses, protects, and retains personal information in connection with its website, marketing, advisory services, cybersecurity and compliance consulting, assessments, client onboarding, and related business operations.
+        </p>
+        <div class="meta">
+          <span><strong>Last Updated:</strong> March 30, 2026</span>
+          <span><strong>Contact:</strong> jacob.hesse@kemperastronautics.com</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="layout">
+      <aside class="toc" aria-label="Table of contents">
+        <h2>Contents</h2>
+        <ul>
+          <li><a href="#scope">1. Scope</a></li>
+          <li><a href="#information-we-collect">2. Information We Collect</a></li>
+          <li><a href="#how-we-use">3. How We Use Information</a></li>
+          <li><a href="#legal-bases">4. Legal Bases</a></li>
+          <li><a href="#disclosures">5. Disclosures</a></li>
+          <li><a href="#client-data">6. Client Data and Processor Role</a></li>
+          <li><a href="#security">7. Security Safeguards</a></li>
+          <li><a href="#retention">8. Retention</a></li>
+          <li><a href="#rights">9. Your Rights and Choices</a></li>
+          <li><a href="#california">10. California Privacy Notice</a></li>
+          <li><a href="#international">11. International Transfers</a></li>
+          <li><a href="#children">12. Children’s Privacy</a></li>
+          <li><a href="#third-party">13. Third-Party Sites and Services</a></li>
+          <li><a href="#changes">14. Changes to This Policy</a></li>
+          <li><a href="#contact">15. Contact Us</a></li>
+        </ul>
+      </aside>
+
+      <article class="policy">
+        <div class="notice">
+          This policy should match your actual tools, workflows, vendors, and legal obligations. Review it whenever your site stack or service model changes.
+        </div>
+
+        <h2 id="scope">1. Scope</h2>
+        <p>This Privacy Policy applies to personal information collected by Stargazer Consulting (“Stargazer,” “we,” “us,” or “our”) through:</p>
+        <ul>
+          <li>our website and any pages, forms, or downloadable resources hosted on or linked from it;</li>
+          <li>email, phone, scheduling, contact forms, newsletter or mailing list signups, and other marketing interactions;</li>
+          <li>client onboarding, sales conversations, statements of work, service delivery, workshops, assessments, readiness engagements, and advisory services;</li>
+          <li>security, compliance, governance, risk, privacy, and digital transformation consulting activities; and</li>
+          <li>business operations reasonably related to providing, securing, improving, and administering our services.</li>
+        </ul>
+        <p>This policy does not govern personal information processed by our clients where we act solely on their behalf as a service provider, contractor, or processor, except as described in Section 6 below.</p>
+
+        <h2 id="information-we-collect">2. Information We Collect</h2>
+        <h3>2.1 Information you provide directly</h3>
+        <p>We may collect the following categories of personal information when you contact us, engage our services, or interact with our website:</p>
+        <ul>
+          <li>identifiers and contact details, such as name, company name, job title, email address, phone number, mailing address, and business contact information;</li>
+          <li>commercial and engagement information, such as service inquiries, proposal details, contract information, billing contacts, and transaction records;</li>
+          <li>communications, such as emails, meeting notes, support inquiries, scheduling details, survey responses, and other correspondence;</li>
+          <li>professional information relevant to our services, such as company size, security maturity, compliance goals, technical environment, and operational needs;</li>
+          <li>documents and materials you choose to share with us in connection with an assessment, advisory project, or other engagement; and</li>
+          <li>marketing preferences, subscription preferences, and event registration details.</li>
+        </ul>
+
+        <h3>2.2 Information collected automatically</h3>
+        <p>When you visit our website, we may automatically collect limited technical and usage information, such as:</p>
+        <ul>
+          <li>IP address, browser type, operating system, device type, and approximate geolocation derived from IP;</li>
+          <li>pages visited, referral source, session activity, timestamps, and interactions with website content; and</li>
+          <li>analytics data generated through cookies, pixels, tags, logs, or similar technologies used to understand website performance and user behavior.</li>
+        </ul>
+
+        <h3>2.3 Sensitive information</h3>
+        <p>We do not intentionally seek to collect highly sensitive personal information from website visitors unless it is necessary for a legitimate business purpose and disclosed at the time of collection. In client engagements, we may be exposed to confidential or sensitive business information under contract. Where that occurs, we handle such information according to applicable contractual obligations, access controls, confidentiality requirements, and internal security procedures.</p>
+
+        <h2 id="how-we-use">3. How We Use Information</h2>
+        <p>We may use personal information for the following business and commercial purposes:</p>
+        <ul>
+          <li>to respond to inquiries, schedule calls, and communicate with prospects, clients, partners, and vendors;</li>
+          <li>to provide consulting, advisory, assessment, implementation support, training, and related professional services;</li>
+          <li>to prepare proposals, statements of work, contracts, invoices, and other business records;</li>
+          <li>to authenticate users, protect systems, detect security incidents, prevent fraud, and maintain the confidentiality, integrity, and availability of information;</li>
+          <li>to administer our website, monitor usage, improve content, and evaluate service and marketing effectiveness;</li>
+          <li>to send newsletters, updates, event information, or other marketing communications where permitted by law or with appropriate consent;</li>
+          <li>to comply with legal obligations, enforce our agreements, protect our rights, and support audits, investigations, or dispute resolution; and</li>
+          <li>to maintain internal records, perform financial administration, and support operational planning and quality improvement.</li>
+        </ul>
+
+        <h2 id="legal-bases">4. Legal Bases</h2>
+        <p>Where applicable law requires a legal basis for processing personal information, we rely on one or more of the following:</p>
+        <ul>
+          <li><strong>Contract:</strong> to take steps at your request before entering into a contract and to perform our contractual obligations.</li>
+          <li><strong>Legitimate interests:</strong> to operate, secure, improve, and market our business in ways that are proportionate and expected in a B2B consulting context.</li>
+          <li><strong>Consent:</strong> where consent is required, including for certain marketing communications or optional cookies and tracking technologies.</li>
+          <li><strong>Legal obligation:</strong> to comply with applicable law, lawful requests, tax rules, accounting obligations, and other regulatory requirements.</li>
+        </ul>
+
+        <h2 id="disclosures">5. Disclosures</h2>
+        <p>We may disclose personal information to the following categories of recipients, subject to appropriate safeguards and a need-to-know basis:</p>
+        <ul>
+          <li>service providers that support our operations, such as website hosting, email, analytics, scheduling, CRM, invoicing, document management, collaboration, and security tooling providers;</li>
+          <li>professional advisors, such as attorneys, accountants, auditors, insurers, or similar advisors;</li>
+          <li>payment processors and financial institutions, where applicable;</li>
+          <li>law enforcement, regulators, courts, or other parties when disclosure is required by law or reasonably necessary to protect rights, safety, or property; and</li>
+          <li>successors, acquirers, investors, or counterparties involved in a merger, sale, reorganization, financing, or similar transaction, subject to customary confidentiality protections.</li>
+        </ul>
+        <p>We do not sell personal information for money. We do not share personal information for cross-context behavioral advertising unless and until we expressly disclose that practice and provide any required notice or choice rights.</p>
+
+        <h2 id="client-data">6. Client Data and Processor Role</h2>
+        <p>In many engagements, Stargazer Consulting receives or accesses information on behalf of a client. In those situations, the client generally determines the purpose and means of processing, and we act as a service provider, contractor, or processor under the applicable agreement.</p>
+        <p>When acting in that role, we generally:</p>
+        <ul>
+          <li>process client data only for authorized business purposes described in the agreement or documented instructions;</li>
+          <li>limit access to personnel or approved subcontractors with a legitimate need to know;</li>
+          <li>apply reasonable administrative, technical, and physical safeguards appropriate to the sensitivity of the data and the nature of the engagement;</li>
+          <li>assist clients, where contractually required, with reasonable requests related to privacy, security, or data subject rights; and</li>
+          <li>return or securely dispose of client data at the end of the engagement, subject to contractual, legal, or archival requirements.</li>
+        </ul>
+
+        <h2 id="security">7. Security Safeguards</h2>
+        <p>We maintain a security program designed to protect personal information and confidential business information against unauthorized access, disclosure, alteration, and destruction. Depending on the nature of the information and engagement, safeguards may include:</p>
+        <ul>
+          <li>role-based access controls and least-privilege practices;</li>
+          <li>strong authentication and credential management;</li>
+          <li>secure device, account, and document handling practices;</li>
+          <li>contractual confidentiality obligations;</li>
+          <li>encryption in transit and, where appropriate, at rest;</li>
+          <li>security monitoring, logging, and incident response procedures;</li>
+          <li>vendor review and controlled use of third-party platforms; and</li>
+          <li>policy, training, and administrative governance measures aligned to the scale of our business.</li>
+        </ul>
+        <p>No method of transmission or storage is completely secure. We therefore cannot guarantee absolute security, but we work to maintain safeguards appropriate to the sensitivity of the information we handle and the risks presented by our operations.</p>
+
+        <h2 id="retention">8. Retention</h2>
+        <p>We retain personal information only for as long as reasonably necessary for the purposes described in this Privacy Policy, including to provide services, maintain business records, resolve disputes, enforce agreements, meet legal or regulatory obligations, and preserve appropriate audit trails.</p>
+
+        <h2 id="rights">9. Your Rights and Choices</h2>
+        <p>Depending on where you live and the context in which we process your personal information, you may have rights to request access, correction, deletion, restriction, objection, portability, or withdrawal of consent where applicable by law.</p>
+
+        <h2 id="california">10. California Privacy Notice</h2>
+        <p>If you are a California resident, you may have additional rights under California privacy law, subject to statutory exceptions and applicability thresholds.</p>
+
+        <h2 id="international">11. International Transfers</h2>
+        <p>Stargazer Consulting may use service providers or collaborators located in jurisdictions other than your own. When personal information is transferred across borders, we take reasonable steps to ensure appropriate safeguards are in place.</p>
+
+        <h2 id="children">12. Children’s Privacy</h2>
+        <p>Our website and services are intended for business and professional audiences and are not directed to children.</p>
+
+        <h2 id="third-party">13. Third-Party Sites and Services</h2>
+        <p>Our website or communications may contain links to third-party websites, scheduling services, payment tools, forms, or external platforms. We are not responsible for their privacy or security practices.</p>
+
+        <h2 id="changes">14. Changes to This Policy</h2>
+        <p>We may update this Privacy Policy from time to time to reflect changes in our services, legal obligations, business practices, technologies, or risk profile.</p>
+
+        <h2 id="contact">15. Contact Us</h2>
+        <p>
+          <strong>Stargazer Consulting</strong><br>
+          All These Worlds Are Yours, LLC<br>
+          2912 Valley View Terrace<br>
+          Jefferson City, MO 65109<br>
+          Email: <a href="mailto:jacob.hesse@kemperastronautics.com">jacob.hesse@kemperastronautics.com</a><br>
+          Website: <a href="/">alltheseworlds.us</a>
+        </p>
+      </article>
+    </div>
+  </main>
+
+  <footer class="footer">
+
+  </footer>
+<atw-footer></atw-footer>
+</div>
+</body>
+</html>

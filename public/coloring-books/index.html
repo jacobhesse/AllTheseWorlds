@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Books</title>
+  <meta name="description" content="A mobile-friendly page to showcase and link to my Amazon KDP books." />
+  <style>
+    :root{
+      --bg: #0b1220;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.10);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --border: rgba(255,255,255,.14);
+      --shadow: 0 18px 40px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 14px;
+      --max: 1160px;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color: var(--text);
+      background:
+        radial-gradient(1100px 650px at 10% -10%, rgba(99,102,241,.35), transparent 60%),
+        radial-gradient(950px 600px at 90% 0%, rgba(16,185,129,.22), transparent 55%),
+        radial-gradient(900px 650px at 50% 115%, rgba(236,72,153,.16), transparent 60%),
+        linear-gradient(180deg, #050814 0%, var(--bg) 60%, #070b16 100%);
+      line-height:1.45;
+    }
+
+    a{ color: inherit; }
+
+    .wrap{
+      width: min(var(--max), 100%);
+      margin: 0 auto;
+      padding: clamp(18px, 3vw, 34px);
+    }
+
+    header{
+      display:flex;
+      flex-wrap:wrap;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap: 14px;
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      box-shadow: var(--shadow);
+    }
+
+    .brand h1{
+      margin:0;
+      font-size: clamp(22px, 2.8vw, 34px);
+    }
+
+    .brand p{
+      margin:4px 0 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .grid{
+      margin-top:16px;
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+    }
+
+    .card{
+      grid-column: span 12;
+      display:grid;
+      grid-template-columns: 110px 1fr;
+      gap: 14px;
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      box-shadow: var(--shadow);
+    }
+
+    @media (min-width: 680px){
+      .card{ grid-column: span 6; }
+    }
+
+    @media (min-width: 1020px){
+      .card{ grid-column: span 4; }
+    }
+
+    .cover{
+      width:100%;
+      aspect-ratio: 2 / 3;
+      border-radius: var(--radius2);
+      border: 1px solid rgba(255,255,255,.14);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:12px;
+      text-align:center;
+      background: linear-gradient(135deg, rgba(99,102,241,.25), rgba(16,185,129,.18));
+    }
+
+    .cover img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      border-radius: var(--radius2);
+    }
+
+    .meta{
+      display:flex;
+      flex-direction:column;
+      gap: 8px;
+    }
+
+    .title{
+      margin:0;
+      font-size:18px;
+    }
+
+    .subtitle{
+      margin:0;
+      color: var(--muted);
+      font-size:14px;
+    }
+
+    .actions{
+      margin-top:auto;
+    }
+
+    .btn{
+      display:inline-block;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.12);
+      text-decoration:none;
+      font-weight:600;
+      font-size:14px;
+    }
+
+    .btn:hover{
+      background: rgba(255,255,255,.20);
+    }
+
+  </style>
+<link rel="icon" href="/wp-content/uploads/2025/11/cropped-0_3-25456-no-background.png">
+<script src="/assets/site.js" defer></script>
+</head>
+<body>
+<div class="wp-site-blocks">
+<atw-header></atw-header>
+<div class="wrap">
+
+<header>
+  <div class="brand">
+    <h1>My Books</h1>
+    <p>Browse my published books. Tap any book to view on Amazon.</p>
+  </div>
+</header>
+
+<section class="grid" id="grid">
+
+  <!-- COPY THIS BLOCK FOR EACH BOOK -->
+
+  <article class="card">
+
+    <a class="cover" href="https://www.amazon.com/Beautiful-Butterflies-Coloring-Jacob-Hesse/dp/B0C9S3HTHD?ref_=ast_author_dp_rw&#038;th=1&#038;psc=1&#038;dib=eyJ2IjoiMSJ9.lmm__V1iXALAV7Bs3h5d54DvHlxFBIpeQm9JqqcEk_hGvUUPOwUlS6ANCL7QN5cdzATVAuNMtNu-ue2KtoZy5DZFQEUlhmJuNc9Sjd2fI-eUKuMPq7W3jTR9J0Uwg2BPRHM3zaVKVmOBB7e_u1ymLpbe5U4HGTFNg49L5awaRekGlxbmMFmms3YOKx9wHoosjKWIABuBRvneqH8elpuJshaEV2FaRLzRX6Bx_MgcMI4.30M8Q8GO7S92N2wXIwsYB7I_JglScFSW6OCMGxPaWD8&#038;dib_tag=AUTHOR" target="_blank">
+      
+      <img decoding="async" src="/wp-content/uploads/2026/02/Butterflies.png">
+
+      
+    </a>
+
+    <div class="meta">
+
+      <h2 class="title">Beautiful Butterflies</h2>
+
+      <p class="subtitle">
+        Coloring Book Filled with Butterflies
+      </p>
+
+      <div class="actions">
+
+        <a class="btn" href="https://www.amazon.com/Beautiful-Butterflies-Coloring-Jacob-Hesse/dp/B0C9S3HTHD?ref_=ast_author_dp_rw&#038;th=1&#038;psc=1&#038;dib=eyJ2IjoiMSJ9.lmm__V1iXALAV7Bs3h5d54DvHlxFBIpeQm9JqqcEk_hGvUUPOwUlS6ANCL7QN5cdzATVAuNMtNu-ue2KtoZy5DZFQEUlhmJuNc9Sjd2fI-eUKuMPq7W3jTR9J0Uwg2BPRHM3zaVKVmOBB7e_u1ymLpbe5U4HGTFNg49L5awaRekGlxbmMFmms3YOKx9wHoosjKWIABuBRvneqH8elpuJshaEV2FaRLzRX6Bx_MgcMI4.30M8Q8GO7S92N2wXIwsYB7I_JglScFSW6OCMGxPaWD8&#038;dib_tag=AUTHOR" target="_blank">
+          View on Amazon
+        </a>
+
+      </div>
+
+    </div>
+
+  </article>
+
+  <article class="card">
+
+    <a class="cover" href="https://www.amazon.com/Work-Knowing-Yourself-Personal-Reflection/dp/B0GK7M9P9F?ref_=ast_author_dp_rw&#038;th=1&#038;psc=1&#038;dib=eyJ2IjoiMSJ9.lmm__V1iXALAV7Bs3h5d54DvHlxFBIpeQm9JqqcEk_hGvUUPOwUlS6ANCL7QN5cdzATVAuNMtNu-ue2KtoZy5DZFQEUlhmJuNc9Sjd2fI-eUKuMPq7W3jTR9J0Uwg2BPRHM3zaVKVmOBB7e_u1ymLpbe5U4HGTFNg49L5awaRekGlxbmMFmms3YOKx9wHoosjKWIABuBRvneqH8elpuJshaEV2FaRLzRX6Bx_MgcMI4.30M8Q8GO7S92N2wXIwsYB7I_JglScFSW6OCMGxPaWD8&#038;dib_tag=AUTHOR" target="_blank">
+      <img decoding="async" src="/wp-content/uploads/2026/02/Journal-cover.png">
+
+     
+    </a>
+
+    <div class="meta">
+
+      <h2 class="title">The Work of Knowing Yourself</h2>
+
+      <p class="subtitle">
+        Journal prompts to help you explore your beliefs and attitudes.
+      </p>
+
+      <div class="actions">
+
+        <a class="btn" href="https://www.amazon.com/Work-Knowing-Yourself-Personal-Reflection/dp/B0GK7M9P9F?ref_=ast_author_dp_rw&#038;th=1&#038;psc=1&#038;dib=eyJ2IjoiMSJ9.lmm__V1iXALAV7Bs3h5d54DvHlxFBIpeQm9JqqcEk_hGvUUPOwUlS6ANCL7QN5cdzATVAuNMtNu-ue2KtoZy5DZFQEUlhmJuNc9Sjd2fI-eUKuMPq7W3jTR9J0Uwg2BPRHM3zaVKVmOBB7e_u1ymLpbe5U4HGTFNg49L5awaRekGlxbmMFmms3YOKx9wHoosjKWIABuBRvneqH8elpuJshaEV2FaRLzRX6Bx_MgcMI4.30M8Q8GO7S92N2wXIwsYB7I_JglScFSW6OCMGxPaWD8&#038;dib_tag=AUTHOR" target="_blank">
+          View on Amazon
+        </a>
+
+      </div>
+
+    </div>
+
+  </article>
+
+
+  <article class="card">
+
+    <a class="cover" href="https://www.amazon.com/Space-Futurism-Coloring-Jacob-Hesse/dp/B0C6BWYGWP?ref_=ast_author_dp_rw&#038;th=1&#038;psc=1&#038;dib=eyJ2IjoiMSJ9.lmm__V1iXALAV7Bs3h5d54DvHlxFBIpeQm9JqqcEk_hGvUUPOwUlS6ANCL7QN5cdzATVAuNMtNu-ue2KtoZy5DZFQEUlhmJuNc9Sjd2fI-eUKuMPq7W3jTR9J0Uwg2BPRHM3zaVKVmOBB7e_u1ymLpbe5U4HGTFNg49L5awaRekGlxbmMFmms3YOKx9wHoosjKWIABuBRvneqH8elpuJshaEV2FaRLzRX6Bx_MgcMI4.30M8Q8GO7S92N2wXIwsYB7I_JglScFSW6OCMGxPaWD8&#038;dib_tag=AUTHOR" target="_blank">
+      <img decoding="async" src="/wp-content/uploads/2026/02/space-and-futurism.png">
+
+      
+    </a>
+
+    <div class="meta">
+
+      <h2 class="title">Space and Futurism Coloring Book</h2>
+
+      <p class="subtitle">
+        A coloring book of space, space ships, and other futuristic scenes.
+      </p>
+
+      <div class="actions">
+
+        <a class="btn" href="https://www.amazon.com/Space-Futurism-Coloring-Jacob-Hesse/dp/B0C6BWYGWP?ref_=ast_author_dp_rw&#038;th=1&#038;psc=1&#038;dib=eyJ2IjoiMSJ9.lmm__V1iXALAV7Bs3h5d54DvHlxFBIpeQm9JqqcEk_hGvUUPOwUlS6ANCL7QN5cdzATVAuNMtNu-ue2KtoZy5DZFQEUlhmJuNc9Sjd2fI-eUKuMPq7W3jTR9J0Uwg2BPRHM3zaVKVmOBB7e_u1ymLpbe5U4HGTFNg49L5awaRekGlxbmMFmms3YOKx9wHoosjKWIABuBRvneqH8elpuJshaEV2FaRLzRX6Bx_MgcMI4.30M8Q8GO7S92N2wXIwsYB7I_JglScFSW6OCMGxPaWD8&#038;dib_tag=AUTHOR" target="_blank">
+          View on Amazon
+        </a>
+
+      </div>
+
+    </div>
+
+  </article>
+
+
+  <article class="card">
+
+    <a class="cover" href="https://www.amazon.com/Pirates-Coloring-Book-High-Adventure/dp/B0DWN3DJ74?ref_=ast_author_dp_rw&#038;th=1&#038;psc=1&#038;dib=eyJ2IjoiMSJ9.lmm__V1iXALAV7Bs3h5d54DvHlxFBIpeQm9JqqcEk_hGvUUPOwUlS6ANCL7QN5cdzATVAuNMtNu-ue2KtoZy5DZFQEUlhmJuNc9Sjd2fI-eUKuMPq7W3jTR9J0Uwg2BPRHM3zaVKVmOBB7e_u1ymLpbe5U4HGTFNg49L5awaRekGlxbmMFmms3YOKx9wHoosjKWIABuBRvneqH8elpuJshaEV2FaRLzRX6Bx_MgcMI4.30M8Q8GO7S92N2wXIwsYB7I_JglScFSW6OCMGxPaWD8&#038;dib_tag=AUTHOR" target="_blank">
+      
+       <img decoding="async" src="/wp-content/uploads/2026/02/Pirates.png"> 
+
+    </a>
+
+    <div class="meta">
+
+      <h2 class="title">Pirates Coloring Book</h2>
+
+      <p class="subtitle">
+        Coloring books on the high seas &#8211; Pirates and pirate ships.
+      </p>
+
+      <div class="actions">
+
+        <a class="btn" href="https://www.amazon.com/Pirates-Coloring-Book-High-Adventure/dp/B0DWN3DJ74?ref_=ast_author_dp_rw&#038;th=1&#038;psc=1&#038;dib=eyJ2IjoiMSJ9.lmm__V1iXALAV7Bs3h5d54DvHlxFBIpeQm9JqqcEk_hGvUUPOwUlS6ANCL7QN5cdzATVAuNMtNu-ue2KtoZy5DZFQEUlhmJuNc9Sjd2fI-eUKuMPq7W3jTR9J0Uwg2BPRHM3zaVKVmOBB7e_u1ymLpbe5U4HGTFNg49L5awaRekGlxbmMFmms3YOKx9wHoosjKWIABuBRvneqH8elpuJshaEV2FaRLzRX6Bx_MgcMI4.30M8Q8GO7S92N2wXIwsYB7I_JglScFSW6OCMGxPaWD8&#038;dib_tag=AUTHOR" target="_blank">
+          View on Amazon
+        </a>
+
+      </div>
+
+    </div>
+
+  </article>
+
+
+  <article class="card">
+
+    <a class="cover" href="https://www.amazon.com/Medieval-Coloring-Warriors-Scoundrels-Heraldry/dp/B0C9SLCWTY?ref_=ast_author_dp_rw&#038;th=1&#038;psc=1&#038;dib=eyJ2IjoiMSJ9.lmm__V1iXALAV7Bs3h5d54DvHlxFBIpeQm9JqqcEk_hGvUUPOwUlS6ANCL7QN5cdzATVAuNMtNu-ue2KtoZy5DZFQEUlhmJuNc9Sjd2fI-eUKuMPq7W3jTR9J0Uwg2BPRHM3zaVKVmOBB7e_u1ymLpbe5U4HGTFNg49L5awaRekGlxbmMFmms3YOKx9wHoosjKWIABuBRvneqH8elpuJshaEV2FaRLzRX6Bx_MgcMI4.30M8Q8GO7S92N2wXIwsYB7I_JglScFSW6OCMGxPaWD8&#038;dib_tag=AUTHOR" target="_blank">
+      <img decoding="async" src="/wp-content/uploads/2026/02/Medeival.png"> 
+
+      
+    </a>
+
+    <div class="meta">
+
+      <h2 class="title">Medieval Coloring Book</h2>
+
+      <p class="subtitle">
+        Knights, warriors, scoundrels, &#038; heraldry.
+      </p>
+
+      <div class="actions">
+
+        <a class="btn" href="https://www.amazon.com/Medieval-Coloring-Warriors-Scoundrels-Heraldry/dp/B0C9SLCWTY?ref_=ast_author_dp_rw&#038;th=1&#038;psc=1&#038;dib=eyJ2IjoiMSJ9.lmm__V1iXALAV7Bs3h5d54DvHlxFBIpeQm9JqqcEk_hGvUUPOwUlS6ANCL7QN5cdzATVAuNMtNu-ue2KtoZy5DZFQEUlhmJuNc9Sjd2fI-eUKuMPq7W3jTR9J0Uwg2BPRHM3zaVKVmOBB7e_u1ymLpbe5U4HGTFNg49L5awaRekGlxbmMFmms3YOKx9wHoosjKWIABuBRvneqH8elpuJshaEV2FaRLzRX6Bx_MgcMI4.30M8Q8GO7S92N2wXIwsYB7I_JglScFSW6OCMGxPaWD8&#038;dib_tag=AUTHOR" target="_blank">
+          View on Amazon
+        </a>
+
+      </div>
+
+    </div>
+
+  </article>
+
+  <article class="card">
+
+    <a class="cover" href="https://www.amazon.com/Rural-America-Coloring-Jacob-Hesse/dp/B0C79QBK8H?ref_=ast_author_dp_rw&#038;th=1&#038;psc=1&#038;dib=eyJ2IjoiMSJ9.lmm__V1iXALAV7Bs3h5d54DvHlxFBIpeQm9JqqcEk_hGvUUPOwUlS6ANCL7QN5cdzATVAuNMtNu-ue2KtoZy5DZFQEUlhmJuNc9Sjd2fI-eUKuMPq7W3jTR9J0Uwg2BPRHM3zaVKVmOBB7e_u1ymLpbe5U4HGTFNg49L5awaRekGlxbmMFmms3YOKx9wHoosjKWIABuBRvneqH8elpuJshaEV2FaRLzRX6Bx_MgcMI4.30M8Q8GO7S92N2wXIwsYB7I_JglScFSW6OCMGxPaWD8&#038;dib_tag=AUTHOR" target="_blank">
+      <img decoding="async" src="/wp-content/uploads/2026/02/Rural-America-1.png">
+
+      
+    </a>
+
+    <div class="meta">
+
+      <h2 class="title">Rural America: A Coloring Book</h2>
+
+      <p class="subtitle">
+        Picturesque landscapes of rural America.
+      </p>
+
+      <div class="actions">
+
+        <a class="btn" href="https://www.amazon.com/Rural-America-Coloring-Jacob-Hesse/dp/B0C79QBK8H?ref_=ast_author_dp_rw&#038;th=1&#038;psc=1&#038;dib=eyJ2IjoiMSJ9.lmm__V1iXALAV7Bs3h5d54DvHlxFBIpeQm9JqqcEk_hGvUUPOwUlS6ANCL7QN5cdzATVAuNMtNu-ue2KtoZy5DZFQEUlhmJuNc9Sjd2fI-eUKuMPq7W3jTR9J0Uwg2BPRHM3zaVKVmOBB7e_u1ymLpbe5U4HGTFNg49L5awaRekGlxbmMFmms3YOKx9wHoosjKWIABuBRvneqH8elpuJshaEV2FaRLzRX6Bx_MgcMI4.30M8Q8GO7S92N2wXIwsYB7I_JglScFSW6OCMGxPaWD8&#038;dib_tag=AUTHOR" target="_blank">
+          View on Amazon
+        </a>
+
+      </div>
+
+    </div>
+
+  </article>
+
+
+</section>
+
+</div>
+<atw-footer></atw-footer>
+</div>
+</body>
+</html>

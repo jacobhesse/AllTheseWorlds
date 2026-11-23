@@ -1,0 +1,592 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>Project Management: Core Concepts &#038; Formulas (WBS, CPM, EVM, Risk, Agile)</title>
+  <meta name="description" content="University-level Project Management reference: scope/WBS, scheduling (CPM/PERT), cost &#038; Earned Value Management (EVM), risk (EMV), communications, resources, quality basics, and agile/lean flow metrics—plus authoritative PMI/ISO/GAO references." />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <meta name="theme-color" content="#0b1220" />
+
+  <!-- Canonical: set to your real published URL -->
+  <link rel="canonical" href="https://example.com/project-management-core-concepts-formulas" />
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+
+  <!-- Basic discovery -->
+  <meta name="author" content="Your Name or Organization" />
+  <meta name="keywords" content="project management formulas, critical path method, CPM, PERT, earned value management, EVM, CPI, SPI, EAC, ETC, VAC, WBS, schedule variance, cost variance, risk EMV, communication channels formula, agile metrics, Little's Law" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Project Management: Core Concepts &#038; Formulas" />
+  <meta property="og:description" content="WBS, CPM/PERT scheduling, EVM cost control, risk EMV, communications, resources, and agile flow metrics—organized for study with authoritative references." />
+  <meta property="og:url" content="https://example.com/project-management-core-concepts-formulas" />
+  <meta property="og:image" content="https://example.com/assets/project-management-cover.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Project Management: Core Concepts &#038; Formulas" />
+  <meta name="twitter:description" content="University-level PM fundamentals: key concepts, equations, and trusted references." />
+  <meta name="twitter:image" content="https://example.com/assets/project-management-cover.png" />
+
+  <!-- Structured data: Article + FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Project Management: Core Concepts & Formulas",
+    "description": "A structured reference of core concepts and formulas commonly taught in a university Project Management course: scope/WBS, CPM/PERT scheduling, EVM, risk, and agile flow metrics.",
+    "author": { "@type": "Person", "name": "Your Name" },
+    "publisher": { "@type": "Organization", "name": "Your Organization" },
+    "datePublished": "2026-02-26",
+    "dateModified": "2026-02-26",
+    "mainEntityOfPage": "https://example.com/project-management-core-concepts-formulas",
+    "about": [
+      { "@type": "Thing", "name": "Project management" },
+      { "@type": "Thing", "name": "Critical path method" },
+      { "@type": "Thing", "name": "Earned value management" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is Earned Value Management (EVM)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "EVM is an integrated method for measuring project performance by comparing planned value (PV), earned value (EV), and actual cost (AC) to compute cost and schedule variances and forecasts like EAC."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the Critical Path Method (CPM)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "CPM is a scheduling method that models activities and dependencies to compute earliest/latest start/finish times, float, and the longest path that determines minimum project duration."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is PERT used for?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "PERT estimates uncertain activity durations using optimistic, most-likely, and pessimistic estimates to compute an expected duration and variance."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root{
+      --bg:#0b1220;
+      --card:#101a33;
+      --text:#e8eefc;
+      --muted:#b9c5ea;
+      --accent:#7aa2ff;
+      --border:rgba(255,255,255,.10);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      background: radial-gradient(1200px 700px at 20% 0%, rgba(122,162,255,.22), transparent 55%),
+                  radial-gradient(900px 600px at 90% 10%, rgba(90,230,200,.10), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.55;
+    }
+    a{color:var(--accent); text-decoration:none}
+    a:hover{text-decoration:underline}
+    header{
+      padding: 56px 20px 24px;
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+    .badge{
+      display:inline-block;
+      padding:6px 10px;
+      border:1px solid var(--border);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 13px;
+      background: rgba(255,255,255,.04);
+    }
+    h1{
+      margin: 14px 0 10px;
+      font-size: clamp(28px, 3.2vw, 44px);
+      letter-spacing: -.02em;
+      line-height: 1.15;
+    }
+    .subtitle{
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 95ch;
+    }
+    main{
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 20px 70px;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    @media (min-width: 980px){
+      .grid{grid-template-columns: 360px 1fr;}
+      aside{position:sticky; top:18px; align-self:start;}
+    }
+    .card{
+      background: rgba(16,26,51,.82);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 16px;
+      box-shadow: 0 14px 40px rgba(0,0,0,.25);
+      backdrop-filter: blur(8px);
+    }
+    nav ul{list-style:none; padding:0; margin:10px 0 0;}
+    nav li{margin:8px 0}
+    .toc a{display:block; padding:8px 10px; border-radius: 12px;}
+    .toc a:hover{background: rgba(255,255,255,.06); text-decoration:none;}
+    section{scroll-margin-top: 18px;}
+    h2{ margin: 0 0 10px; font-size: 24px; letter-spacing: -.01em; }
+    h3{ margin: 18px 0 8px; font-size: 18px; }
+    .muted{color:var(--muted)}
+    .formula{
+      background: rgba(10,16,32,.85);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 14px;
+      overflow:auto;
+      margin: 10px 0;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 14px;
+      line-height: 1.45;
+      color: #dbe6ff;
+    }
+    table{
+      width:100%;
+      border-collapse: collapse;
+      margin: 10px 0 0;
+      font-size: 14px;
+    }
+    th, td{
+      border-bottom: 1px solid var(--border);
+      padding: 10px 8px;
+      vertical-align: top;
+    }
+    th{color: var(--muted); text-align:left; font-weight: 600;}
+    .note{
+      border-left: 4px solid var(--accent);
+      padding: 10px 12px;
+      margin: 12px 0 0;
+      background: rgba(122,162,255,.08);
+      border-radius: 12px;
+      color: var(--muted);
+    }
+    details{
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:10px 12px;
+      background: rgba(255,255,255,.03);
+      margin: 12px 0 0;
+    }
+    summary{cursor:pointer; color: var(--text); font-weight:600}
+    hr{border:none;border-top:1px solid var(--border);margin:18px 0;}
+    footer{
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .pill{
+      display:inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      margin: 6px 6px 0 0;
+      font-size: 12px;
+      color: var(--muted);
+    }
+  </style>
+<link rel="icon" href="/wp-content/uploads/2025/11/cropped-0_3-25456-no-background.png">
+<script src="/assets/site.js" defer></script>
+</head>
+<body>
+<div class="wp-site-blocks">
+<atw-header></atw-header>
+<header>
+    <span class="badge">University • Project Management • Study + Reference</span>
+    <h1>Project Management: Core Concepts &amp; Formulas</h1>
+    <p class="subtitle">
+      A typical university PM course blends governance (charters/baselines), planning (scope, schedule, cost),
+      execution and control (change, risk, quality), and delivery approaches (predictive, agile, hybrid).
+      This page focuses on the <strong>concepts</strong> you apply repeatedly and the <strong>equations</strong> you compute on exams and in practice.
+    </p>
+    <div class="pill">Scope &#038; WBS</div>
+    <div class="pill">CPM / PERT</div>
+    <div class="pill">EVM</div>
+    <div class="pill">Risk</div>
+    <div class="pill">Agile / Flow</div>
+  </header>
+
+  <main class="grid">
+    <aside class="card toc" aria-label="Table of contents">
+      <h2>Contents</h2>
+      <nav>
+        <ul>
+          <li><a href="#foundations">1) Foundations &amp; Baselines</a></li>
+          <li><a href="#scope">2) Scope, WBS, &amp; Estimating</a></li>
+          <li><a href="#schedule">3) Scheduling: CPM (Critical Path) &amp; Float</a></li>
+          <li><a href="#pert">4) Uncertainty: PERT &amp; Probabilistic Thinking</a></li>
+          <li><a href="#cost">5) Cost Control: Earned Value Management (EVM)</a></li>
+          <li><a href="#risk">6) Risk: EMV, Expected Loss, Prioritization</a></li>
+          <li><a href="#comms">7) Communications &amp; Stakeholders</a></li>
+          <li><a href="#resources">8) Resources &amp; Capacity</a></li>
+          <li><a href="#agile">9) Agile/Lean Metrics &amp; Flow</a></li>
+          <li><a href="#refs">10) References &amp; Free Material</a></li>
+        </ul>
+      </nav>
+    
+    </aside>
+
+    <article class="card">
+      <section id="foundations">
+        <h2>1) Foundations &amp; Baselines</h2>
+        <p class="muted">
+          Core idea: project control is baseline management. You define what “success” means, you set baselines,
+          you measure deviation, and you decide when/what to change (governance).
+        </p>
+
+        <h3>Constraints and the performance model</h3>
+        <table aria-label="Core PM constraints">
+          <thead><tr><th>Constraint</th><th>Operational meaning</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Scope</strong></td><td>What is included/excluded; acceptance criteria; WBS boundaries.</td></tr>
+            <tr><td><strong>Schedule</strong></td><td>When outputs are delivered; dependencies; critical path and float.</td></tr>
+            <tr><td><strong>Cost</strong></td><td>Budget and funding; burn; forecasts; procurement commitments.</td></tr>
+            <tr><td><strong>Quality</strong></td><td>Fitness for use; defect rates; verification/validation plan.</td></tr>
+            <tr><td><strong>Risk</strong></td><td>Uncertainty that matters; threats/opportunities; reserves.</td></tr>
+          </tbody>
+        </table>
+
+        <details>
+          <summary>Baseline types (exam-friendly)</summary>
+          <p class="muted">
+            Scope baseline (scope statement + WBS + WBS dictionary), schedule baseline (approved model + dates), and cost baseline (time-phased budget).
+            Change control governs modifications to these baselines.
+          </p>
+        </details>
+      </section>
+
+      <hr/>
+
+      <section id="scope">
+        <h2>2) Scope, WBS, &amp; Estimating</h2>
+        <p class="muted">
+          The Work Breakdown Structure (WBS) is the backbone of predictive planning: it decomposes deliverables into manageable work packages
+          that can be estimated, assigned, scheduled, and controlled.
+        </p>
+
+        <h3>Estimation accuracy concepts</h3>
+        <ul class="muted">
+          <li><strong>Analogous</strong> (top-down): fast, less precise.</li>
+          <li><strong>Parametric</strong>: uses rates (e.g., cost per unit) and drivers.</li>
+          <li><strong>Bottom-up</strong>: slower, often more accurate when decomposition is strong.</li>
+        </ul>
+
+        <h3>Common “back-of-the-napkin” formulas</h3>
+        <div class="formula">
+          Effort (person-hours) = Work quantity / Productivity rate<br/>
+          Cost = Effort × Labor rate + Materials + Other direct costs
+        </div>
+
+        <div class="note">
+          If your scope/WBS is wrong, your schedule and cost math will be precise but irrelevant. Most real project failures start upstream in scope clarity and assumptions.
+        </div>
+      </section>
+
+      <hr/>
+
+      <section id="schedule">
+        <h2>3) Scheduling: CPM (Critical Path) &amp; Float</h2>
+
+        <h3>Core CPM logic</h3>
+        <p class="muted">
+          CPM computes earliest and latest times across a dependency network. The <strong>critical path</strong> is the longest-duration path
+          (zero total float) that determines the minimum project duration.
+        </p>
+
+        <h3>Forward pass (earliest times)</h3>
+        <div class="formula">
+          ES(activity) = max{ EF(predecessors) }<br/>
+          EF(activity) = ES(activity) + Duration(activity)
+        </div>
+
+        <h3>Backward pass (latest times)</h3>
+        <div class="formula">
+          LF(activity) = min{ LS(successors) }<br/>
+          LS(activity) = LF(activity) − Duration(activity)
+        </div>
+
+        <h3>Float (slack)</h3>
+        <div class="formula">
+          Total Float (TF) = LS − ES = LF − EF
+        </div>
+
+        <details>
+          <summary>Why CPM matters beyond exams</summary>
+          <p class="muted">
+            CPM is the foundation for schedule risk analysis, change impact analysis, critical chain discussions, and credible execution forecasts.
+            Even agile programs often maintain a dependency network at the feature/release level.
+          </p>
+        </details>
+      </section>
+
+      <hr/>
+
+      <section id="pert">
+        <h2>4) Uncertainty: PERT &amp; Probabilistic Thinking</h2>
+        <p class="muted">
+          PERT addresses uncertain durations by using three-point estimates and computing an expected value and variance.
+          (This is a simplification, but it’s a standard intro tool.)
+        </p>
+
+        <h3>PERT expected duration</h3>
+        <div class="formula">
+          Expected time (te) = (O + 4M + P) / 6<br/>
+          O = optimistic, M = most likely, P = pessimistic
+        </div>
+
+        <h3>PERT activity variance (classic)</h3>
+        <div class="formula">
+          Variance (σ²) = ((P − O) / 6)²<br/>
+          Standard deviation (σ) = (P − O) / 6
+        </div>
+
+        <div class="note">
+          Modern practice often uses Monte Carlo schedule risk analysis rather than “pure PERT,” but PERT teaches the key mental model: uncertainty is quantifiable and must be budgeted.
+        </div>
+      </section>
+
+      <hr/>
+
+      <section id="cost">
+        <h2>5) Cost Control: Earned Value Management (EVM)</h2>
+        <p class="muted">
+          EVM integrates scope, schedule, and cost by comparing what you planned to do (PV), what you actually accomplished (EV),
+          and what you spent (AC).
+        </p>
+
+        <h3>Core EVM variables</h3>
+        <div class="formula">
+          PV (Planned Value) = budgeted cost of work scheduled<br/>
+          EV (Earned Value) = budgeted cost of work performed<br/>
+          AC (Actual Cost) = actual cost of work performed
+        </div>
+
+        <h3>Variances</h3>
+        <div class="formula">
+          CV (Cost Variance) = EV − AC<br/>
+          SV (Schedule Variance) = EV − PV
+        </div>
+
+        <h3>Performance indices</h3>
+        <div class="formula">
+          CPI (Cost Performance Index) = EV / AC<br/>
+          SPI (Schedule Performance Index) = EV / PV
+        </div>
+
+        <h3>Forecasting</h3>
+        <div class="formula">
+          BAC = Budget at Completion<br/>
+          EAC (simple) = BAC / CPI<br/>
+          ETC = EAC − AC<br/>
+          VAC = BAC − EAC
+        </div>
+
+        <h3>To-Complete Performance Index (TCPI)</h3>
+        <div class="formula">
+          TCPI (to meet BAC) = (BAC − EV) / (BAC − AC)<br/>
+          TCPI (to meet EAC) = (BAC − EV) / (EAC − AC)
+        </div>
+
+        <details>
+          <summary>Interpretation shortcuts</summary>
+          <p class="muted">
+            CPI &lt; 1 → over budget for earned progress. SPI &lt; 1 → behind schedule (in EV terms). Variances can be negative/positive;
+            indices give normalized “how bad/how good.”
+          </p>
+        </details>
+      </section>
+
+      <hr/>
+
+      <section id="risk">
+        <h2>6) Risk: EMV, Expected Loss, Prioritization</h2>
+        <p class="muted">
+          Risk management formalizes uncertainty: identify, analyze (qual + quant), plan responses, monitor.
+          Intro courses typically emphasize probability–impact thinking and decision analysis basics.
+        </p>
+
+        <h3>Expected Monetary Value (EMV)</h3>
+        <div class="formula">
+          EMV = Σ (Probability_i × Impact_i)
+        </div>
+
+        <h3>Risk exposure (simple)</h3>
+        <div class="formula">
+          Risk Exposure = Probability × Consequence
+        </div>
+
+        <details>
+          <summary>Decision tree expected value</summary>
+          <div class="formula">
+            Expected value at a decision node = max/min over alternatives of Σ (p × outcome)
+          </div>
+          <p class="muted">
+            Often used for make/buy decisions, response options, and evaluating whether mitigation cost is justified by expected loss reduction.
+          </p>
+        </details>
+      </section>
+
+      <hr/>
+
+      <section id="comms">
+        <h2>7) Communications &amp; Stakeholders</h2>
+        <p class="muted">
+          Projects fail socially before they fail mathematically. Stakeholder alignment, decision rights, and information cadence are control mechanisms.
+        </p>
+
+        <h3>Communication channels (classic exam formula)</h3>
+        <div class="formula">
+          Channels = n(n − 1) / 2
+        </div>
+        <p class="muted">
+          Where <strong>n</strong> is the number of stakeholders/participants in a communication network. This models why coordination cost rises nonlinearly with team size.
+        </p>
+      </section>
+
+      <hr/>
+
+      <section id="resources">
+        <h2>8) Resources &amp; Capacity</h2>
+        <p class="muted">
+          Resource planning translates scope into staffing, equipment, and constraints. The math is often simple; the challenge is constraints and contention.
+        </p>
+
+        <h3>Utilization and capacity (simple)</h3>
+        <div class="formula">
+          Utilization = Busy time / Available time<br/>
+          Capacity (per period) = Available hours × Productivity rate
+        </div>
+
+        <details>
+          <summary>Why “100% utilization” breaks projects</summary>
+          <p class="muted">
+            High utilization reduces flexibility, increases queueing delays, and amplifies variability. Many modern PMO operating models intentionally hold capacity buffers.
+          </p>
+        </details>
+      </section>
+
+      <hr/>
+
+      <section id="agile">
+        <h2>9) Agile/Lean Metrics &amp; Flow</h2>
+        <p class="muted">
+          Modern courses increasingly include agile and hybrid delivery. While agile de-emphasizes upfront deterministic baselines,
+          it still uses rigorous measurement—especially flow metrics.
+        </p>
+
+        <h3>Velocity (team-specific)</h3>
+        <div class="formula">
+          Velocity = Story points completed per iteration
+        </div>
+
+        <h3>Flow metrics</h3>
+        <div class="formula">
+          Throughput = Items completed per unit time<br/>
+          Cycle Time = Time from start to finish for an item<br/>
+          Lead Time = Time from request to delivery
+        </div>
+
+        <h3>Little’s Law (useful in Kanban/flow contexts)</h3>
+        <div class="formula">
+          WIP = Throughput × Cycle Time
+        </div>
+
+        <div class="note">
+          If you control WIP, you can often control cycle time. This is one of the most practical “formulas” in modern delivery management.
+        </div>
+      </section>
+
+      <hr/>
+
+      <section id="refs">
+        <h2>10) References &amp; Free Material</h2>
+        <p class="muted">Authoritative sources you can cite and link in course work or professional documentation:</p>
+
+        <h3>PMI (global PM standard and guidance)</h3>
+        <ul>
+          <li>
+            <a href="https://www.pmi.org/standards/pmbok" rel="noopener" target="_blank">
+              PMI — PMBOK® Guide / The Standard for Project Management (overview)
+            </a>
+          </li>
+          <li>
+            <a href="https://www.pmi.org/-/media/pmi/documents/public/pdf/pmbok-standards/pmbok-project-performance-domains.pdf" rel="noopener" target="_blank">
+              PMI — Project Performance Domains (PDF)
+            </a>
+          </li>
+        </ul>
+
+        <h3>ISO standard guidance</h3>
+        <ul>
+          <li>
+            <a href="https://www.iso.org/standard/74947.html" rel="noopener" target="_blank">
+              ISO 21502:2020 — Guidance on project management (official ISO page)
+            </a>
+          </li>
+        </ul>
+
+        <h3>GAO best-practice guides (schedule and cost reliability)</h3>
+        <ul>
+          <li>
+            <a href="https://www.gao.gov/assets/gao-16-89g.pdf" rel="noopener" target="_blank">
+              GAO — Schedule Assessment Guide (GAO-16-89G) (PDF)
+            </a>
+          </li>
+          <li>
+            <a href="https://www.gao.gov/products/gao-20-195g" rel="noopener" target="_blank">
+              GAO — Cost Estimating and Assessment Guide (GAO-20-195G)
+            </a>
+            (PDF: <a href="https://www.gao.gov/assets/gao-20-195g.pdf" rel="noopener" target="_blank">download</a>)
+          </li>
+        </ul>
+
+        <h3>High-rigor program/project governance example (spaceflight)</h3>
+        <ul>
+          <li>
+            <a href="https://ntrs.nasa.gov/api/citations/20220009501/downloads/PM%20Handbook_June%202024.pdf" rel="noopener" target="_blank">
+              NASA — Space Flight Program and Project Management Handbook (PDF)
+            </a>
+          </li>
+        </ul>
+
+       
+      </section>
+    </article>
+  </main>
+<atw-footer></atw-footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>How Globalization Changed the Way Work Is Coordinated — and How Deglobalization Will Change It Again</title>
+  <style>
+    :root{
+      --bg-0:#070A12;
+      --bg-1:#0B1020;
+      --card:#0F1730;
+      --text:#EAF0FF;
+      --muted:#B8C4E6;
+      --line:rgba(255,255,255,.10);
+      --accent:#6EE7FF;
+      --accent2:#A78BFA;
+      --shadow: 0 18px 45px rgba(0,0,0,.45);
+      --radius: 18px;
+      --maxw: 980px;
+    }
+
+    body{
+      margin:0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(900px 600px at 12% 8%, rgba(167,139,250,.18), transparent 55%),
+                  radial-gradient(900px 600px at 88% 18%, rgba(110,231,255,.14), transparent 55%),
+                  linear-gradient(180deg, var(--bg-0), var(--bg-1));
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    .sg-wrap{
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 28px 18px 72px;
+    }
+
+    .sg-hero{
+      border: 1px solid var(--line);
+      background: linear-gradient(135deg, rgba(110,231,255,.10), rgba(167,139,250,.10));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 26px 22px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .sg-hero:before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:
+        radial-gradient(2px 2px at 12% 28%, rgba(255,255,255,.65), transparent 70%),
+        radial-gradient(2px 2px at 22% 62%, rgba(255,255,255,.55), transparent 70%),
+        radial-gradient(2px 2px at 42% 18%, rgba(255,255,255,.55), transparent 70%),
+        radial-gradient(2px 2px at 68% 36%, rgba(255,255,255,.55), transparent 70%),
+        radial-gradient(2px 2px at 82% 22%, rgba(255,255,255,.55), transparent 70%),
+        radial-gradient(2px 2px at 88% 58%, rgba(255,255,255,.55), transparent 70%),
+        radial-gradient(2px 2px at 64% 78%, rgba(255,255,255,.55), transparent 70%);
+      opacity:.45;
+      pointer-events:none;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,.9), rgba(0,0,0,.35));
+    }
+
+    .sg-kicker{
+      display:inline-block;
+      letter-spacing:.12em;
+      text-transform: uppercase;
+      font-size: 12px;
+      color: var(--muted);
+      margin: 0 0 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    h1{
+      margin: 0 0 10px;
+      font-size: clamp(28px, 3.2vw, 44px);
+      line-height: 1.18;
+      position: relative;
+      z-index: 1;
+    }
+
+    .sg-subtitle{
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 70ch;
+      position: relative;
+      z-index: 1;
+    }
+
+    .sg-meta{
+      margin-top: 14px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .sg-pill{
+      border: 1px solid var(--line);
+      background: rgba(15,23,48,.45);
+      color: var(--muted);
+      padding: 8px 10px;
+      border-radius: 999px;
+      font-size: 12.5px;
+    }
+
+    .sg-content{
+      margin-top: 20px;
+      background: rgba(15,23,48,.55);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+    }
+
+    h2{
+      margin: 26px 0 10px;
+      font-size: 22px;
+      line-height: 1.25;
+    }
+
+    p{
+      margin: 10px 0;
+      color: rgba(234,240,255,.94);
+    }
+
+    .sg-divider{
+      height: 1px;
+      background: var(--line);
+      margin: 18px 0;
+    }
+
+    .sg-callout{
+      margin: 18px 0;
+      padding: 16px 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(110,231,255,.22);
+      background: linear-gradient(135deg, rgba(110,231,255,.10), rgba(167,139,250,.08));
+    }
+
+    .sg-callout strong{
+      color: var(--text);
+    }
+
+    .sg-list{
+      margin: 10px 0 10px 22px;
+      color: rgba(234,240,255,.92);
+    }
+    .sg-list li{ margin: 6px 0; }
+
+    a{
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px dashed rgba(110,231,255,.45);
+    }
+    a:hover{ border-bottom-style: solid; }
+
+    .sg-footer{
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 640px){
+      .sg-hero, .sg-content{ padding: 18px 16px; }
+    }
+  </style>
+<link rel="icon" href="/wp-content/uploads/2025/11/cropped-0_3-25456-no-background.png">
+<script src="/assets/site.js" defer></script>
+</head>
+<body>
+<div class="wp-site-blocks">
+<atw-header></atw-header>
+<article class="sg-wrap">
+    <header class="sg-hero">
+      <div class="sg-kicker">Work, coordination, systems</div>
+      <h1>How Globalization Changed the Way Work Is Coordinated — and How Deglobalization Will Change It Again</h1>
+      <p class="sg-subtitle">
+        Globalization did not merely move jobs across borders; it rewired how organizations coordinate.
+        Deglobalization is now changing the rules—introducing redundancy, regulatory friction, and regional autonomy that
+        will reshape how work flows next.
+      </p>
+      <div class="sg-meta">
+        <span class="sg-pill">Digital transformation</span>
+        <span class="sg-pill">Cross-cultural execution</span>
+        <span class="sg-pill">Operating models</span>
+        <span class="sg-pill">Resilience over efficiency</span>
+      </div>
+    </header>
+
+    <section class="sg-content">
+
+      <p>
+        For decades, globalization reshaped how work is organized, managed, and executed. It did not simply move jobs
+        across borders; it fundamentally altered <em>coordination</em>. Time zones replaced office floors. Digital tools
+        replaced hallway conversations. Process replaced proximity.
+      </p>
+
+      <p>
+        Now, that era is shifting. Deglobalization—driven by geopolitics, supply chain risk, regulatory divergence,
+        and cultural friction—is not reversing globalization outright. Instead, it is changing the rules under which
+        global coordination operates. Understanding this shift is critical for leaders, workers, and organizations that
+        still assume the global operating model of the past twenty years is intact.
+      </p>
+
+      <div class="sg-callout">
+        <strong>Core claim:</strong> Globalization reduced the cost of distributing work, but increased the cost of coordinating it.
+        Deglobalization will prioritize resilience and jurisdictional fit, even if it raises coordination friction.
+      </div>
+
+      <h2>Coordination Before Globalization: Proximity as the Organizing Principle</h2>
+      <p>
+        Before large-scale globalization, work coordination relied heavily on physical proximity. Teams were co-located.
+        Communication was synchronous by default. Informal knowledge flowed through observation, shared context, and
+        social cues.
+      </p>
+      <p>
+        Coordination costs were low because ambiguity could be resolved quickly. If something broke, someone walked down
+        the hall. Authority was visible. Accountability was personal. Culture was implicit.
+      </p>
+      <p>
+        This model did not scale well across borders, but it worked because humans evolved to coordinate in shared
+        physical environments.
+      </p>
+
+      <h2>Globalization Replaced Proximity with Process</h2>
+      <p>
+        Globalization broke the link between work and location. Organizations optimized for labor arbitrage, scale, and
+        continuous operations. But once teams were distributed across countries and time zones, proximity could no longer
+        carry coordination.
+      </p>
+      <p>
+        Process stepped in to fill the gap. Standard operating procedures, ticketing systems, documentation requirements,
+        escalation paths, and formal roles became substitutes for shared context. Communication shifted from conversational
+        to transactional. Work became modular so it could be handed off across borders with minimal friction.
+      </p>
+      <p>
+        This worked—up to a point. But it came with tradeoffs.
+      </p>
+
+      <h2>Digital Tools Didn’t Eliminate Coordination Costs — They Moved Them</h2>
+      <p>
+        Globalization coincided with the rise of collaboration software, project management platforms, and workflow tools.
+        These technologies made global coordination possible, but not effortless.
+      </p>
+      <p>
+        Instead of eliminating coordination costs, they redistributed them. Workers absorbed the burden through:
+      </p>
+      <ul class="sg-list">
+        <li>Increased documentation requirements</li>
+        <li>More meetings to compensate for lost context</li>
+        <li>Slower feedback loops across time zones</li>
+        <li>Greater dependence on written communication</li>
+        <li>Reduced tolerance for ambiguity</li>
+      </ul>
+      <p>
+        What once required social intelligence increasingly required system fluency. The ability to navigate tools,
+        queues, and workflows became as important as technical skill.
+      </p>
+
+      <h2>Cultural Differences Became Operational Risks</h2>
+      <p>
+        As work globalized, cultural differences stopped being abstract concepts and started affecting daily execution.
+        Assumptions about authority, escalation, ownership, time sensitivity, and acceptable risk varied across regions.
+      </p>
+      <p>
+        In many global teams, misunderstandings were misdiagnosed as performance issues rather than coordination failures.
+        The tools assumed uniform behavior, but the people using them did not operate under uniform norms.
+      </p>
+      <p>
+        Globalization forced organizations to confront a difficult truth: coordination is not just technical. It is cultural.
+      </p>
+
+      <div class="sg-divider"></div>
+
+      <h2>Why Deglobalization Is Emerging</h2>
+      <p>
+        Deglobalization is not a rejection of international collaboration. It is a response to accumulated fragility.
+        Supply chain disruptions, geopolitical tension, data sovereignty laws, and security concerns have exposed how brittle
+        hyper-global coordination can be.
+      </p>
+      <p>
+        Organizations are realizing that efficiency optimized for cost often sacrifices resilience. As a result, companies are
+        rethinking where work happens, how dependencies are structured, and how much coordination complexity they are willing
+        to tolerate.
+      </p>
+
+      <h2>Deglobalization Will Increase Redundancy — and Reduce Abstraction</h2>
+      <p>
+        One of the first changes deglobalization introduces is intentional redundancy. Instead of single global centers of
+        excellence, organizations are building regional capabilities. This reduces dependency on long coordination chains and
+        limits the blast radius of disruption.
+      </p>
+      <p>
+        Work will become less abstract and more context-aware. Regional teams will have greater autonomy, but also greater
+        responsibility. Coordination will rely less on universal processes and more on localized judgment.
+      </p>
+      <p>
+        This shift challenges the idea that one global workflow can serve everyone equally well.
+      </p>
+
+      <h2>Coordination Will Become More Political</h2>
+      <p>
+        As global integration weakens, coordination will increasingly involve regulatory alignment, data residency constraints,
+        security requirements, and national priorities. Decisions that were once operational will become political.
+      </p>
+      <p>
+        Where data is processed, who has access, and which standards apply will vary by jurisdiction. Coordination will require
+        negotiation, not just process compliance.
+      </p>
+      <p>
+        This will slow some workflows, but it will also make power dynamics more explicit rather than hidden behind tools.
+      </p>
+
+      <h2>Digital Transformation Will Fragment</h2>
+      <p>
+        During globalization, digital transformation aimed for standardization: one platform, one process, one source of truth.
+        Deglobalization will push in the opposite direction.
+      </p>
+      <p>
+        Organizations will still use shared systems, but with regional variation. Customization will return. Integration
+        complexity will increase. Leaders will need to decide where consistency matters and where divergence is acceptable.
+      </p>
+      <p>
+        The assumption that technology alone can harmonize global work will no longer hold.
+      </p>
+
+      <h2>What This Means for Workers and Leaders</h2>
+      <p>
+        For workers, coordination skills will matter more than ever. Technical competence will be necessary but insufficient.
+        Understanding how decisions flow, how authority is distributed, and how culture shapes expectations will define effectiveness.
+      </p>
+      <p>
+        For leaders, the challenge will be resisting false simplicity. Deglobalization does not mean retreating into silos—it
+        means designing coordination deliberately rather than assuming scale will solve everything.
+      </p>
+      <p>
+        The most resilient organizations will be those that treat coordination as a strategic capability, not an administrative afterthought.
+      </p>
+
+      <h2>The Bottom Line</h2>
+      <p>
+        Globalization changed work by replacing proximity with process and tools. Deglobalization will change it again by
+        reintroducing context, autonomy, and political constraint into coordination.
+      </p>
+      <p>
+        The future of work will not be purely global or purely local. It will be selectively connected, regionally aware,
+        and structurally honest about its limits.
+      </p>
+      <p>
+        Organizations that recognize this early will adapt. Those that cling to outdated assumptions about frictionless global
+        coordination will continue to be surprised when systems fail—not because the tools are broken, but because the world has changed.
+      </p>
+
+   
+    </section>
+  </article>
+<atw-footer></atw-footer>
+</div>
+</body>
+</html>

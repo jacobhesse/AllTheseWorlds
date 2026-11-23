@@ -1,0 +1,568 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+  <title>Worked Examples: Earth–Mars Hohmann Transfers</title>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Worked Examples: Earth-Mars Hohmann Transfers",
+  "keywords": ["Mars", "Hohmann transfer", "Astrophysics"],
+  "about": [
+    { "@type": "Thing", "name": "Mars" },
+    { "@type": "Thing", "name": "Hohmann transfer" }
+  ]
+}
+</script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --bg-main: #050816;
+      --bg-elevated: #0b1220;
+      --bg-soft: #111827;
+      --accent: #64f4ac;   /* mint accent */
+      --accent-soft: rgba(100, 244, 172, 0.12);
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --border-subtle: rgba(148, 163, 184, 0.35);
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #0b1220 0, #050816 50%, #020617 100%);
+      color: var(--text-main);
+    }
+
+    .astro-page {
+      min-height: 100vh;
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      padding: 3rem 1.5rem;
+      box-sizing: border-box;
+    }
+
+    .astro-container {
+      width: 100%;
+      max-width: 960px;
+      margin: 0 auto;
+      background: linear-gradient(145deg, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.9));
+      border-radius: 1.5rem;
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      box-shadow:
+        0 30px 80px rgba(15, 23, 42, 0.75),
+        0 0 0 1px rgba(15, 23, 42, 0.9);
+      padding: 2.75rem clamp(2rem, 5vw, 3rem);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .astro-container::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(100, 244, 172, 0.08) 0, transparent 55%),
+        radial-gradient(circle at 90% 20%, rgba(56, 189, 248, 0.08) 0, transparent 50%);
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .astro-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .page-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.25rem 0.85rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.9);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .page-tag-dot {
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 12px rgba(100, 244, 172, 0.9);
+    }
+
+    h1 {
+      font-size: clamp(1.9rem, 3vw, 2.4rem);
+      margin: 0 0 0.75rem;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: #f9fafb;
+    }
+
+    .subtitle {
+      margin: 0 0 2.25rem;
+      max-width: 40rem;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    h2 {
+      margin-top: 2rem;
+      margin-bottom: 0.5rem;
+      font-size: 1.2rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #e5e7eb;
+    }
+
+    h3 {
+      margin-top: 1.5rem;
+      margin-bottom: 0.35rem;
+      font-size: 1.05rem;
+      color: #e5e7eb;
+    }
+
+    p {
+      margin: 0.4rem 0 0.75rem;
+      font-size: 0.96rem;
+      line-height: 1.7;
+      color: var(--text-main);
+    }
+
+    .muted {
+      color: var(--text-muted);
+    }
+
+    .highlight {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    .callout {
+      margin: 1.75rem 0;
+      padding: 1.25rem 1.4rem;
+      border-radius: 1rem;
+      background: radial-gradient(circle at top left, rgba(100, 244, 172, 0.12), rgba(15, 23, 42, 0.95));
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .callout strong {
+      color: #e5e7eb;
+    }
+
+    .equation-block {
+      margin: 1rem 0 1.4rem;
+      padding: 0.9rem 1rem;
+      border-radius: 0.9rem;
+      background: #020617;
+      border: 1px solid rgba(15, 23, 42, 0.9);
+      font-family: "SF Mono", ui-monospace, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 0.85rem;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    .equation-block span {
+      color: #e5e7eb;
+    }
+
+    .equation-block .var {
+      color: var(--accent);
+    }
+
+    .equation-block .sym {
+      color: #e5e7eb;
+    }
+
+    .equation-block .comment {
+      color: var(--text-muted);
+    }
+
+    .example-card {
+      margin-top: 2rem;
+      padding: 1.6rem 1.5rem;
+      border-radius: 1.2rem;
+      background: radial-gradient(circle at top right, rgba(100, 244, 172, 0.08), rgba(15, 23, 42, 0.96));
+      border: 1px solid rgba(148, 163, 184, 0.4);
+    }
+
+    .example-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.35rem;
+    }
+
+    .example-title {
+      font-size: 1.15rem;
+      margin-bottom: 0.9rem;
+      color: #f9fafb;
+    }
+
+    .example-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 1.5rem;
+      margin-top: 1.1rem;
+    }
+
+    .example-section-title {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      margin-bottom: 0.3rem;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin: 0.2rem 0 0.8rem;
+    }
+
+    .pill {
+      padding: 0.15rem 0.65rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .pill strong {
+      color: #e5e7eb;
+    }
+
+    .step-list {
+      margin: 0.35rem 0 0.8rem;
+      padding-left: 1.1rem;
+      font-size: 0.9rem;
+    }
+
+    .step-list li {
+      margin-bottom: 0.45rem;
+      color: var(--text-main);
+      line-height: 1.5;
+    }
+
+    .phase-angle {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px dashed rgba(148, 163, 184, 0.5);
+    }
+
+    .phase-angle p strong {
+      color: var(--accent);
+    }
+
+    .footer-note {
+      margin-top: 2.5rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      border-top: 1px solid rgba(148, 163, 184, 0.3);
+      padding-top: 1.1rem;
+    }
+
+    @media (max-width: 768px) {
+      .astro-container {
+        padding: 2.1rem 1.6rem 2.3rem;
+        border-radius: 1.25rem;
+      }
+
+      .example-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+<link rel="icon" href="/wp-content/uploads/2025/11/cropped-0_3-25456-no-background.png">
+<script src="/assets/site.js" defer></script>
+</head>
+<body>
+<div class="wp-site-blocks">
+<atw-header></atw-header>
+<div class="astro-page">
+    <main class="astro-container">
+      <div class="astro-inner">
+        <div class="page-tag">
+          <span class="page-tag-dot"></span>
+          <span>Astrophysics • Astronavigation</span>
+        </div>
+
+        <h1>Worked Examples: Earth–Mars Hohmann Transfers</h1>
+        <p class="subtitle">
+          These examples show how you actually calculate a Hohmann transfer between Earth and Mars,
+          both outbound and return. You’ll see transfer time, orbital speeds, delta-v, and the all-important
+          launch phase angle that lets you “aim where the planet will be” instead of where it is now.
+        </p>
+
+<div class="article-image">
+    <img decoding="async" src="/wp-content/uploads/2026/03/jacob.hesse_a_realistic_near-future_technology_that_enables_i_1b7c6a0b-65cd-4001-bbd6-660d0a021c32_0.png" 
+         alt="Concept illustration of a human mission to Mars">
+    <p class="image-caption">
+        Concept illustration of an early human mission to Mars.
+    </p>
+</div>
+
+        <div class="callout">
+          <strong>Assumptions.</strong> To keep the math clean and teach the core ideas, we assume:
+          circular, coplanar orbits for Earth and Mars, and idealized burns (instantaneous changes in
+          velocity). Real missions use more detailed ephemerides and numerical solvers, but the logic here
+          is the same logic they build on.
+        </div>
+
+        <h2>Key Constants and Orbital Radii</h2>
+
+        <p>
+          We work in SI units, but think in astronomical units for intuition. One astronomical unit
+          (AU) is the average Earth–Sun distance.
+        </p>
+
+        <div class="equation-block">
+          <span class="var">r<sub>E</sub></span>
+          <span class="sym"> ≈ 1.0 AU ≈ 1.496 × 10¹¹ m</span>
+          <span class="comment">  (Earth orbital radius)</span><br />
+          <span class="var">r<sub>M</sub></span>
+          <span class="sym"> ≈ 1.52 AU ≈ 2.28 × 10¹¹ m</span>
+          <span class="comment">  (Mars orbital radius)</span><br />
+          <span class="var">μ<sub>☉</sub></span>
+          <span class="sym"> ≈ 1.327 × 10²⁰ m³/s²</span>
+          <span class="comment">  (Sun’s gravitational parameter)</span>
+        </div>
+
+        <p>
+          A Hohmann transfer between two circular orbits is an ellipse whose
+          semi-major axis is just the average of the radii:
+        </p>
+
+        <div class="equation-block">
+          <span class="var">a<sub>tr</sub></span>
+          <span class="sym"> = (r<sub>E</sub> + r<sub>M</sub>)/2 ≈ 1.89 × 10¹¹ m</span>
+        </div>
+
+        <p>
+          The transfer time is half the period of that ellipse:
+        </p>
+
+        <div class="equation-block">
+          <span class="var">T<sub>tr</sub></span>
+          <span class="sym"> = π √(a<sub>tr</sub>³ / μ<sub>☉</sub>) ≈ 2.24 × 10⁷ s ≈ </span>
+          <span class="highlight">259 days</span>
+        </div>
+
+        <p>
+          Whether you go Earth → Mars or Mars → Earth on a Hohmann path, the time of flight is about
+          eight and a half months.
+        </p>
+
+        <!-- Example 1: Earth to Mars -->
+        <section class="example-card" id="earth-to-mars">
+          <div class="example-label">Worked Example 1</div>
+          <div class="example-title">Earth → Mars Hohmann Transfer</div>
+
+          <p>
+            Here you start in low Earth orbit, escape Earth’s gravity, and insert into a solar
+            transfer ellipse that intersects Mars’s orbit exactly when Mars arrives there.
+          </p>
+
+          <div class="example-grid">
+            <div>
+              <div class="example-section-title">Orbital Speeds</div>
+              <p class="muted">
+                First compute circular orbital speeds of Earth and Mars around the Sun, then the
+                spacecraft’s speed on the transfer ellipse at those same radii (vis-viva equation).
+              </p>
+
+              <div class="equation-block">
+                <span class="var">v<sub>E</sub></span>
+                <span class="sym"> = √(μ<sub>☉</sub> / r<sub>E</sub>) ≈ </span>
+                <span class="highlight">29.8 km/s</span><br />
+                <span class="var">v<sub>M</sub></span>
+                <span class="sym"> = √(μ<sub>☉</sub> / r<sub>M</sub>) ≈ </span>
+                <span class="highlight">24.1 km/s</span><br />
+                <span class="var">v<sub>tr,E</sub></span>
+                <span class="sym"> = √( μ<sub>☉</sub>(2/r<sub>E</sub> − 1/a<sub>tr</sub>) ) ≈ </span>
+                <span class="highlight">32.7 km/s</span><br />
+                <span class="var">v<sub>tr,M</sub></span>
+                <span class="sym"> = √( μ<sub>☉</sub>(2/r<sub>M</sub> − 1/a<sub>tr</sub>) ) ≈ </span>
+                <span class="highlight">21.5 km/s</span>
+              </div>
+
+              <p>
+                In heliocentric terms, you speed up at Earth to climb outward, then speed up again
+                at Mars to match its faster local orbital speed.
+              </p>
+
+              <div class="example-section-title">Heliocentric Δv (Conceptual)</div>
+              <div class="pill-row">
+                <span class="pill"><strong>Δv₁</strong> ≈ +2.9 km/s (at Earth)</span>
+                <span class="pill"><strong>Δv₂</strong> ≈ +2.6 km/s (at Mars)</span>
+                <span class="pill"><strong>Total</strong> ≈ 5.5 km/s</span>
+              </div>
+              <p class="muted">
+                This is the “pure Sun-frame” cost to move from an Earth-like orbit to a
+                Mars-like orbit.
+              </p>
+            </div>
+
+            <div>
+              <div class="example-section-title">From Low Earth Orbit</div>
+              <p>
+                Real missions begin in low Earth orbit (LEO), then perform a trans-Mars injection (TMI)
+                burn to reach the required hyperbolic escape trajectory.
+              </p>
+
+              <div class="equation-block">
+                <span class="var">v<sub>circ,LEO</sub></span>
+                <span class="sym"> ≈ 7.7 km/s</span><br />
+                <span class="var">v<sub>esc,LEO</sub></span>
+                <span class="sym"> = √2 · v<sub>circ,LEO</sub> ≈ 10.9 km/s</span><br />
+                <span class="var">v<sub>∞</sub></span>
+                <span class="sym"> ≈ 2.9 km/s</span><br />
+                <span class="var">v<sub>p</sub></span>
+                <span class="sym"> = √(v<sub>esc</sub>² + v<sub>∞</sub>²) ≈ 11.3 km/s</span><br />
+                <span class="var">Δv<sub>TMI</sub></span>
+                <span class="sym"> = v<sub>p</sub> − v<sub>circ,LEO</sub> ≈ </span>
+                <span class="highlight">3.6 km/s</span>
+              </div>
+
+              <ol class="step-list">
+                <li>Launch to LEO.</li>
+                <li>Perform a ~3.6 km/s TMI burn to escape Earth with v<sub>∞</sub> ≈ 2.9 km/s.</li>
+                <li>Coast ~259 days on the transfer ellipse.</li>
+                <li>Burn at Mars (~2.6 km/s) or use aerobraking to enter Mars orbit.</li>
+              </ol>
+
+              <div class="phase-angle">
+                <h3>Launch Phase Angle (Earth → Mars)</h3>
+                <p>
+                  During the 259-day cruise, Mars moves about 135° around the Sun. The
+                  transfer geometry demands a 180° separation between your departure and
+                  arrival points along the orbit, so Mars must start about
+                  <strong>45° ahead of Earth at launch</strong>.
+                </p>
+                <p class="muted">
+                  In other words, you depart when Mars is already leading Earth in its orbit.
+                  You aim for where Mars will be 259 days in the future, not where it is today.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Example 2: Mars to Earth -->
+        <section class="example-card" id="mars-to-earth">
+          <div class="example-label">Worked Example 2</div>
+          <div class="example-title">Mars → Earth Hohmann Return</div>
+
+          <p>
+            Now you begin in low Mars orbit, drop inward toward the Sun, and time the transfer so Earth
+            arrives at the intersection point just as you do.
+          </p>
+
+          <div class="example-grid">
+            <div>
+              <div class="example-section-title">Orbital Speeds (Revisited)</div>
+              <p class="muted">
+                The transfer ellipse is the same, but now you are leaving from Mars’s orbit and falling
+                inward to Earth’s orbit.
+              </p>
+
+              <div class="equation-block">
+                <span class="var">v<sub>M</sub></span>
+                <span class="sym"> ≈ 24.1 km/s (Mars circular)</span><br />
+                <span class="var">v<sub>E</sub></span>
+                <span class="sym"> ≈ 29.8 km/s (Earth circular)</span><br />
+                <span class="var">v<sub>tr,M</sub></span>
+                <span class="sym"> ≈ 21.5 km/s (transfer at Mars)</span><br />
+                <span class="var">v<sub>tr,E</sub></span>
+                <span class="sym"> ≈ 32.7 km/s (transfer at Earth)</span>
+              </div>
+
+              <p>
+                At Mars you must slow down (retrograde burn) to drop inward. At Earth you must slow
+                down again to match Earth’s slower circular speed at that radius.
+              </p>
+
+              <div class="example-section-title">Heliocentric Δv (Conceptual)</div>
+              <div class="pill-row">
+                <span class="pill"><strong>Δv₁</strong> ≈ −2.6 km/s (at Mars)</span>
+                <span class="pill"><strong>Δv₂</strong> ≈ −2.9 km/s (at Earth)</span>
+                <span class="pill"><strong>Total</strong> ≈ 5.5 km/s</span>
+              </div>
+              <p class="muted">
+                Same total cost as the outbound trip, but paid at different points.
+              </p>
+            </div>
+
+            <div>
+              <div class="example-section-title">From Low Mars Orbit</div>
+              <p>
+                Assume a low Mars orbit (LMO) about 300 km above the surface. You need enough
+                hyperbolic excess speed relative to Mars to match the inward transfer ellipse.
+              </p>
+
+              <div class="equation-block">
+                <span class="var">v<sub>circ,LMO</sub></span>
+                <span class="sym"> ≈ 3.4 km/s</span><br />
+                <span class="var">v<sub>esc,LMO</sub></span>
+                <span class="sym"> ≈ 4.8 km/s</span><br />
+                <span class="var">v<sub>∞</sub></span>
+                <span class="sym"> ≈ |v<sub>M</sub> − v<sub>tr,M</sub>| ≈ 2.6 km/s</span><br />
+                <span class="var">v<sub>p</sub></span>
+                <span class="sym"> = √(v<sub>esc</sub>² + v<sub>∞</sub>²) ≈ 5.46 km/s</span><br />
+                <span class="var">Δv<sub>TEI</sub></span>
+                <span class="sym"> = v<sub>p</sub> − v<sub>circ,LMO</sub> ≈ </span>
+                <span class="highlight">2.1 km/s</span>
+              </div>
+
+              <ol class="step-list">
+                <li>Start in low Mars orbit.</li>
+                <li>Perform a ~2.1 km/s trans-Earth injection (TEI) burn to depart Mars with v<sub>∞</sub> ≈ 2.6 km/s.</li>
+                <li>Coast inward ~259 days on the transfer ellipse.</li>
+                <li>Burn at Earth (~3.6 km/s) or use aerobraking/aerocapture to enter LEO.</li>
+              </ol>
+
+              <div class="phase-angle">
+                <h3>Departure Phase Angle (Mars → Earth)</h3>
+                <p>
+                  During the 259-day cruise, Earth moves about 256° around the Sun, while Mars moves
+                  about 135°. For the transfer to meet Earth at the perihelion end of the ellipse, the
+                  geometry requires that at departure, Mars is roughly
+                  <strong>75–76° ahead of Earth</strong> in their orbits.
+                </p>
+                <p class="muted">
+                  You leave Mars when Earth is lagging far behind, knowing that the faster inner
+                  planet will sweep forward and arrive at the intersection point just as you fall inward.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="footer-note">
+          Together, these examples show how astronavigation turns simple physics into precise choreography:
+          you calculate the transfer ellipse, compute how long it takes, and then choose your launch date so
+          that Earth, Mars, and your spacecraft all meet at the same point in space at the same moment in time.
+        </div>
+      </div>
+    </main>
+  </div>
+<atw-footer></atw-footer>
+</div>
+</body>
+</html>

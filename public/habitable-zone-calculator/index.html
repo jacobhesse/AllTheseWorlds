@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Habitable Zone Calculator &#038; Reference Table by Spectral Class</title>
+  <meta name="description" content="Habitable zone reference flux (Seff) and inner/outer distances by stellar spectral class, plus a clear method to calculate HZ ranges from luminosity and effective stellar flux models." />
+  <link rel="canonical" href="/habitable-zone-calculator/" />
+
+  <!-- Structured data (Google-readable): Dataset + machine-readable rows -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Dataset",
+    "name": "Habitable Zone Reference Flux & Distances by Spectral Class",
+    "description": "Reference habitable zone (HZ) inner/outer distances by spectral class using representative main-sequence luminosities and conservative Runaway Greenhouse (inner) and Maximum Greenhouse (outer) effective flux (Seff) values.",
+    "url": "/habitable-zone-calculator/",
+    "keywords": [
+      "habitable zone",
+      "habitable zone calculator",
+      "Seff",
+      "Runaway Greenhouse",
+      "Maximum Greenhouse",
+      "spectral class",
+      "stellar luminosity",
+      "astronomy",
+      "exoplanets"
+    ],
+    "isAccessibleForFree": true,
+    "license": "https://creativecommons.org/licenses/by/4.0/",
+    "variableMeasured": [
+      {"@type":"PropertyValue","name":"Spectral class"},
+      {"@type":"PropertyValue","name":"Effective temperature","unitText":"K"},
+      {"@type":"PropertyValue","name":"Luminosity","unitText":"L_sun"},
+      {"@type":"PropertyValue","name":"Seff (inner, runaway greenhouse)"},
+      {"@type":"PropertyValue","name":"Seff (outer, maximum greenhouse)"},
+      {"@type":"PropertyValue","name":"Habitable zone inner distance","unitText":"AU"},
+      {"@type":"PropertyValue","name":"Habitable zone outer distance","unitText":"AU"}
+    ],
+    "distribution": [
+      {
+        "@type": "DataDownload",
+        "encodingFormat": "text/html",
+        "contentUrl": "/habitable-zone-calculator/"
+      }
+    ],
+    "hasPart": [
+      {
+        "@type":"Dataset",
+        "name":"HZ table rows",
+        "isAccessibleForFree":true,
+        "measurementTechnique":"d = sqrt[(L/Lsun)/Seff]",
+        "data": [
+          {"spectralClass":"O5 V","teffK":40000,"luminosityLsun":"8.0×10^5","seffInner":2.50,"seffOuter":0.65,"hzInnerAU":566,"hzOuterAU":"1.11×10^3"},
+          {"spectralClass":"B0 V","teffK":30000,"luminosityLsun":"2.0×10^4","seffInner":2.20,"seffOuter":0.55,"hzInnerAU":95.3,"hzOuterAU":191},
+          {"spectralClass":"A0 V","teffK":10000,"luminosityLsun":40,"seffInner":1.90,"seffOuter":0.48,"hzInnerAU":4.59,"hzOuterAU":9.13},
+          {"spectralClass":"F0 V","teffK":7200,"luminosityLsun":5.0,"seffInner":1.75,"seffOuter":0.47,"hzInnerAU":1.69,"hzOuterAU":3.26},
+          {"spectralClass":"G2 V (Sun)","teffK":5780,"luminosityLsun":1.0,"seffInner":1.11,"seffOuter":0.356,"hzInnerAU":0.95,"hzOuterAU":1.68},
+          {"spectralClass":"K5 V","teffK":4400,"luminosityLsun":0.17,"seffInner":0.88,"seffOuter":0.32,"hzInnerAU":0.44,"hzOuterAU":0.73},
+          {"spectralClass":"M0 V","teffK":3850,"luminosityLsun":0.08,"seffInner":0.80,"seffOuter":0.27,"hzInnerAU":0.316,"hzOuterAU":0.544},
+          {"spectralClass":"M3 V","teffK":3400,"luminosityLsun":0.01,"seffInner":0.79,"seffOuter":0.25,"hzInnerAU":0.113,"hzOuterAU":0.200},
+          {"spectralClass":"M5 V","teffK":3100,"luminosityLsun":0.002,"seffInner":0.75,"seffOuter":0.23,"hzInnerAU":0.0516,"hzOuterAU":0.0933}
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root{
+      --bg:#0b1324;
+      --card:#0f1a33;
+      --text:#e8eefc;
+      --muted:#9bb0cf;
+      --accent:#6fd3c7;
+      --rule:#1f2c4d;
+      --warn:#f6c177;
+    }
+
+    body{
+      margin:0;
+      background: radial-gradient(1200px 600px at 15% 5%, rgba(111,211,199,0.10), transparent 60%),
+                  radial-gradient(900px 520px at 85% 0%, rgba(155,176,207,0.10), transparent 58%),
+                  linear-gradient(180deg, #070d1a, #050913);
+      color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      line-height:1.55;
+    }
+
+    .atw-container{
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.25rem 1.25rem 3.25rem 1.25rem;
+    }
+
+    .atw-hero{
+      padding: 1.25rem 0 1.5rem 0;
+    }
+
+    .atw-hero h1{
+      margin:0 0 .45rem 0;
+      font-size: clamp(1.9rem, 3.2vw, 2.7rem);
+      line-height:1.15;
+      letter-spacing: .01em;
+    }
+
+    .atw-hero p{
+      margin:.35rem 0 0 0;
+      color: var(--muted);
+      font-size: 1.03rem;
+      max-width: 78ch;
+    }
+
+    .atw-grid{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 1.25rem;
+      align-items:start;
+      margin-top: 1.35rem;
+    }
+
+    @media (max-width: 980px){
+      .atw-grid{ grid-template-columns: 1fr; }
+    }
+
+    .atw-panel{
+      background: rgba(15,26,51,0.62);
+      border: 1px solid rgba(31,44,77,0.85);
+      border-radius: 16px;
+      padding: 1.1rem 1.15rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.22);
+    }
+
+    .atw-panel h2{
+      margin: 0 0 .6rem 0;
+      font-size: 1.2rem;
+      letter-spacing: .02em;
+    }
+
+    .atw-panel p{
+      margin: .6rem 0 0 0;
+      color: var(--muted);
+    }
+
+    .atw-kbd{
+      display:inline-block;
+      padding: .1rem .45rem;
+      border: 1px solid rgba(31,44,77,0.95);
+      border-bottom-color: rgba(31,44,77,0.65);
+      border-radius: 10px;
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+      font-size: .9rem;
+      white-space: nowrap;
+    }
+
+    .atw-note{
+      margin-top: .9rem;
+      padding: .75rem .85rem;
+      border-radius: 14px;
+      border: 1px solid rgba(31,44,77,0.9);
+      background: rgba(10,16,36,0.55);
+      color: var(--muted);
+      font-size: .98rem;
+    }
+
+    /* Table module (your theme, kept intact but embedded nicely) */
+    .hz-table-wrap{
+      --bg:#0b1324;--card:#0f1a33;--text:#e8eefc;--muted:#9bb0cf;--accent:#6fd3c7;--rule:#1f2c4d;
+
+      /* Background image slot (replace later) */
+      --bgimg: url("PASTE-YOUR-BACKGROUND-IMAGE-URL-HERE");
+
+      position: relative;
+      padding:2rem;
+      border-radius:16px;
+      overflow:hidden;
+      background:linear-gradient(180deg,var(--bg),#0d1830 40%,#0a1024);
+      isolation:isolate;
+      border: 1px solid rgba(31,44,77,0.75);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.28);
+    }
+
+    .hz-table-wrap::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:-2;
+      background-image: var(--bgimg);
+      background-size: cover;
+      background-position: center;
+      background-repeat:no-repeat;
+      opacity:0.22;
+      filter: saturate(0.7) contrast(0.95) brightness(0.85) blur(1px);
+      transform: scale(1.03);
+    }
+
+    .hz-table-wrap::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      z-index:-1;
+      background:
+        radial-gradient(1200px 600px at 20% 10%, rgba(111,211,199,0.10), transparent 60%),
+        radial-gradient(900px 500px at 80% 0%, rgba(155,176,207,0.08), transparent 55%),
+        linear-gradient(180deg, rgba(11,19,36,0.86), rgba(10,16,36,0.92));
+      pointer-events:none;
+    }
+
+    .hz-header{max-width:1000px;margin:0 auto 1rem auto;color:var(--text);}
+    .hz-header h2{margin:0 0 .25rem 0; font-size:clamp(1.35rem,2.2vw,1.95rem); line-height:1.2;}
+    .hz-header p{margin:.25rem 0 0 0; color:var(--muted); font-size:.98rem; max-width: 95ch;}
+    .hz-card{max-width:1000px;margin:0 auto;background:var(--card);border:1px solid var(--rule);border-radius:12px;overflow:hidden}
+    .hz-table{width:100%;border-collapse:collapse;font-size:.95rem;color:var(--text)}
+    .hz-table thead{background:rgba(255,255,255,0.03)}
+    .hz-table th,.hz-table td{padding:.75rem .9rem;border-bottom:1px solid var(--rule);vertical-align:middle;white-space:nowrap}
+    .hz-table th{font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;font-size:.78rem}
+    .hz-table tbody tr:hover{background:rgba(255,255,255,0.03)}
+    .hz-badge{display:inline-block;padding:.15rem .45rem;border:1px solid var(--rule);border-radius:999px;font-size:.75rem;color:var(--accent)}
+    .hz-foot{max-width:1000px;margin:.75rem auto 0 auto;color:var(--muted);font-size:.95rem}
+    .hz-foot code{background:rgba(255,255,255,0.06);padding:.1rem .35rem;border-radius:6px}
+
+    @media (max-width: 720px){
+      .hz-table{font-size:.9rem}
+      .hz-table th,.hz-table td{padding:.6rem .7rem}
+      .hz-table-wrap{padding:1.25rem}
+    }
+
+    /* Calculation section */
+    .calc{
+      margin-top: 1.25rem;
+    }
+
+    .calc h2{
+      margin: 0 0 .6rem 0;
+      font-size: 1.25rem;
+      letter-spacing: .02em;
+    }
+
+    .calc p{
+      margin: .65rem 0 0 0;
+      color: var(--muted);
+      max-width: 95ch;
+    }
+
+    .calc .eq{
+      margin: .85rem 0 0 0;
+      padding: .85rem .95rem;
+      border-radius: 14px;
+      border: 1px solid rgba(31,44,77,0.9);
+      background: rgba(10,16,36,0.55);
+      color: var(--text);
+      overflow-x:auto;
+    }
+
+    .calc .eq code{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: .95rem;
+    }
+
+    .calc ol{
+      margin: .75rem 0 0 1.25rem;
+      color: var(--muted);
+      max-width: 95ch;
+    }
+
+    .calc li{ margin: .4rem 0; }
+
+    .calc .warn{
+      margin-top: .9rem;
+      padding: .75rem .85rem;
+      border-radius: 14px;
+      border: 1px solid rgba(246,193,119,0.35);
+      background: rgba(246,193,119,0.08);
+      color: var(--muted);
+    }
+
+    .calc .warn strong{ color: var(--warn); font-weight: 650; }
+  </style>
+<link rel="icon" href="/wp-content/uploads/2025/11/cropped-0_3-25456-no-background.png">
+<script src="/assets/site.js" defer></script>
+</head>
+<body>
+<div class="wp-site-blocks">
+<atw-header></atw-header>
+<main class="atw-container">
+    <header class="atw-hero">
+      <h1>Habitable Zone Calculator &#038; Reference Table</h1>
+      <p>
+        This page provides a quick, defensible way to estimate habitable zone distances from a star’s luminosity and an effective stellar flux model. It also includes a reference table by spectral class so you can sanity-check outputs at a glance.
+      </p>
+    </header>
+
+    <section class="atw-grid" aria-label="Habitable zone overview">
+      <div class="atw-panel">
+        <h2>What these distances represent</h2>
+        <p>
+          The “habitable zone” here is the orbital range where an Earth-like planet could plausibly maintain surface liquid water, given an Earth-like atmosphere and greenhouse behavior. The table uses conservative boundaries commonly labeled as the inner edge (Runaway Greenhouse) and the outer edge (Maximum Greenhouse).
+        </p>
+        <div class="atw-note">
+          The key idea is simple: for a given boundary, you choose an effective flux threshold <span class="atw-kbd">S<sub>eff</sub></span> and then convert that into distance using the star’s luminosity.
+        </div>
+      </div>
+
+      <div class="atw-panel">
+        <h2>How to use the reference table</h2>
+        <p>
+          If you know the star’s spectral class and you want a fast, order-of-magnitude estimate, use the matching row and treat the result as a baseline. If you have the star’s measured luminosity and effective temperature, the calculation section below explains how to compute more precise inner/outer distances.
+        </p>
+      </div>
+    </section>
+
+<figure style="text-align:center; margin: 2rem 0;">
+  <img decoding="async" 
+    src="/wp-content/uploads/2026/04/Seven-stars-of-spectral-classes.png"
+    alt="spectral classes"
+    loading="lazy"
+    style="display:block; max-width:65%; height:auto; margin:0 auto; border-radius:12px;"
+  >
+</figure>
+
+    <!-- Reference table -->
+    <section class="hz-table-wrap" aria-labelledby="hz-title" itemscope itemtype="https://schema.org/Dataset">
+      <div class="hz-header">
+        <h2 id="hz-title" itemprop="name">Habitable Zone Reference Flux &#038; Distances by Spectral Class</h2>
+        <p itemprop="description">
+          Conservative edges shown: <span class="hz-badge" title="Inner edge where oceans evaporate">Runaway Greenhouse (inner)</span> &#038;
+          <span class="hz-badge" title="Outermost edge sustained by CO₂ warming">Maximum Greenhouse (outer)</span>.
+          Distances computed with <code>d = √[(L/L⊙)/S<sub>eff</sub>]</code> using representative main-sequence luminosities.
+        </p>
+      </div>
+
+      <div class="hz-card" role="region" aria-label="Habitable zone table">
+        <table class="hz-table" aria-describedby="hz-title">
+          <thead>
+            <tr>
+              <th scope="col">Spectral Class</th>
+              <th scope="col">T<sub>eff</sub> (K)</th>
+              <th scope="col">L/L⊙</th>
+              <th scope="col">S<sub>eff</sub> (Inner, Runaway GH)</th>
+              <th scope="col">S<sub>eff</sub> (Outer, Max GH)</th>
+              <th scope="col">HZ Inner (AU)</th>
+              <th scope="col">HZ Outer (AU)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>O5 V</td><td>40 000</td><td>8.0×10<sup>5</sup></td><td>2.50</td><td>0.65</td><td>566</td><td>1.11×10<sup>3</sup></td>
+            </tr>
+            <tr>
+              <td>B0 V</td><td>30 000</td><td>2.0×10<sup>4</sup></td><td>2.20</td><td>0.55</td><td>95.3</td><td>191</td>
+            </tr>
+            <tr>
+              <td>A0 V</td><td>10 000</td><td>40</td><td>1.90</td><td>0.48</td><td>4.59</td><td>9.13</td>
+            </tr>
+            <tr>
+              <td>F0 V</td><td>7 200</td><td>5.0</td><td>1.75</td><td>0.47</td><td>1.69</td><td>3.26</td>
+            </tr>
+            <tr>
+              <td>G2 V (Sun)</td><td>5 780</td><td>1.0</td><td>1.11</td><td>0.356</td><td>0.95</td><td>1.68</td>
+            </tr>
+            <tr>
+              <td>K5 V</td><td>4 400</td><td>0.17</td><td>0.88</td><td>0.32</td><td>0.44</td><td>0.73</td>
+            </tr>
+            <tr>
+              <td>M0 V</td><td>3 850</td><td>0.08</td><td>0.80</td><td>0.27</td><td>0.316</td><td>0.544</td>
+            </tr>
+            <tr>
+              <td>M3 V</td><td>3 400</td><td>0.01</td><td>0.79</td><td>0.25</td><td>0.113</td><td>0.200</td>
+            </tr>
+            <tr>
+              <td>M5 V</td><td>3 100</td><td>0.002</td><td>0.75</td><td>0.23</td><td>0.0516</td><td>0.0933</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="hz-foot">
+        <p>
+          Notes: Values are approximate and intended for comparative use. The effective flux thresholds S<sub>eff</sub> are commonly modeled as a function of stellar effective temperature (T<sub>eff</sub>) for Earth-like atmospheres. For star-specific work, compute S<sub>eff</sub> from the published polynomial fits using the star’s actual T<sub>eff</sub>, then compute distances from measured luminosity. O/B stars have very short lifetimes, so biological plausibility is low despite large HZ radii.
+        </p>
+      </div>
+    </section>
+
+    <!-- How to calculate HZ ranges -->
+    <section class="calc atw-panel" aria-labelledby="calc-title">
+      <h2 id="calc-title">How to Calculate Habitable Zone Ranges</h2>
+
+      <p>
+        The table’s inner and outer distances come from a two-step conversion: pick an effective stellar flux threshold for the boundary you care about, then translate that flux threshold into orbital distance using the star’s luminosity. Conceptually, you are solving for the distance where the planet receives a specific flux relative to Earth.
+      </p>
+
+      <div class="eq" role="note" aria-label="Habitable zone distance equation">
+        <code>
+          d (AU) = √[(L / L⊙) / S<sub>eff</sub>]
+        </code>
+      </div>
+
+      <p>
+        Here, <span class="atw-kbd">L/L⊙</span> is the star’s luminosity expressed in units of the Sun’s luminosity, and <span class="atw-kbd">S<sub>eff</sub></span> is the effective stellar flux threshold (in “Earth flux” units) for a specific habitable-zone boundary. Higher luminosity pushes the habitable zone outward; higher S<sub>eff</sub> pulls a boundary inward.
+      </p>
+
+      <p>
+        To compute the same kind of ranges shown in the table, proceed as follows.
+      </p>
+
+      <ol>
+        <li>
+          Determine the star’s luminosity <span class="atw-kbd">L/L⊙</span>. If you have a measured luminosity, use that. If not, you can use an approximate main-sequence luminosity associated with the star’s spectral class as a baseline.
+        </li>
+        <li>
+          Determine the star’s effective temperature <span class="atw-kbd">T<sub>eff</sub></span> (Kelvin). This matters because modern habitable-zone models adjust <span class="atw-kbd">S<sub>eff</sub></span> with spectral dependence; two stars with the same luminosity can have slightly different boundary flux thresholds depending on their spectra.
+        </li>
+        <li>
+          Choose which boundaries you want. In this page, the inner edge uses “Runaway Greenhouse” and the outer edge uses “Maximum Greenhouse.” Each boundary corresponds to a different <span class="atw-kbd">S<sub>eff</sub></span>.
+        </li>
+        <li>
+          Obtain <span class="atw-kbd">S<sub>eff</sub></span> for each boundary. For quick estimates, you can use representative values like those in the table. For higher fidelity, compute <span class="atw-kbd">S<sub>eff</sub></span> from the published polynomial fit for the chosen boundary using your star’s exact <span class="atw-kbd">T<sub>eff</sub></span>.
+        </li>
+        <li>
+          Compute distance for each boundary using the equation above. Use the inner boundary’s <span class="atw-kbd">S<sub>eff</sub></span> to compute <span class="atw-kbd">d<sub>inner</sub></span>, and the outer boundary’s <span class="atw-kbd">S<sub>eff</sub></span> to compute <span class="atw-kbd">d<sub>outer</sub></span>.
+        </li>
+      </ol>
+
+      <p>
+        A practical interpretation is that <span class="atw-kbd">S<sub>eff</sub></span> is a climate-model-informed “required irradiance” for a boundary. The inner boundary requires more incoming flux (larger <span class="atw-kbd">S<sub>eff</sub></span>) and therefore sits closer to the star; the outer boundary tolerates less flux (smaller <span class="atw-kbd">S<sub>eff</sub></span>) and therefore sits farther out.
+      </p>
+
+      <div class="warn" role="note" aria-label="Model limitations note">
+        <strong>Model caution:</strong> these boundaries assume an Earth-like planet with an Earth-like atmosphere and are not a guarantee of habitability. Real habitability depends on atmospheric composition, albedo, clouds, rotation, eccentricity, geothermal energy, and stellar activity (especially for M dwarfs).
+      </div>
+    </section>
+
+  </main>
+<atw-footer></atw-footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,1145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+  <title>ISO 27001:2022 Readiness | Stargazer Consulting</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --sg-bg: #030616;
+      --sg-bg-alt: #050b1f;
+      --sg-card: #0b1024;
+      --sg-primary: #38bdf8;
+      --sg-accent: #a855f7;
+      --sg-text: #e5e7eb;
+      --sg-muted: #9ca3af;
+      --sg-border: #1f2937;
+      --sg-radius-lg: 18px;
+      --sg-radius-xl: 26px;
+      --sg-shadow-soft: 0 22px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      color: var(--sg-text);
+      background:
+        radial-gradient(circle at 15% 20%, rgba(56, 189, 248, 0.08), transparent 55%),
+        radial-gradient(circle at 80% 0%, rgba(168, 85, 247, 0.10), transparent 60%),
+        radial-gradient(circle at 0% 100%, rgba(56, 189, 248, 0.08), transparent 55%),
+        linear-gradient(180deg, #020617, #020617 25%, #000000 100%);
+      min-height: 100vh;
+    }
+
+    .page-wrapper {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 28px 20px 64px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 32px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-orbit {
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      background:
+        radial-gradient(circle at 30% 30%, #ffffff, transparent 50%),
+        conic-gradient(from 180deg, var(--sg-primary), var(--sg-accent), var(--sg-primary));
+      position: relative;
+      box-shadow: 0 0 0 2px rgba(15, 23, 42, 0.7),
+                  0 0 32px rgba(56, 189, 248, 0.8);
+      overflow: hidden;
+    }
+
+    .logo-orbit::after {
+      content: "";
+      position: absolute;
+      inset: 9px;
+      border-radius: inherit;
+      border: 1px solid rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(6px);
+    }
+
+    .brand-text-primary {
+      font-size: 1.2rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .brand-text-primary span {
+      background: linear-gradient(90deg, var(--sg-primary), var(--sg-accent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .brand-text-secondary {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--sg-muted);
+    }
+
+    .header-cta {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 9px 18px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--sg-primary), var(--sg-accent));
+      color: #0b1024;
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow:
+        0 12px 32px rgba(56, 189, 248, 0.4),
+        0 0 0 1px rgba(15, 23, 42, 0.7);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn-primary span.icon {
+      font-size: 1.1rem;
+      margin-top: -1px;
+    }
+
+    .btn-ghost {
+      border-radius: 999px;
+      padding: 8px 16px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: rgba(15, 23, 42, 0.6);
+      color: var(--sg-muted);
+      font-size: 0.8rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn-ghost span.badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: radial-gradient(circle, var(--sg-primary), transparent 80%);
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.8);
+    }
+
+    /* HERO */
+
+    .hero {
+      border-radius: var(--sg-radius-xl);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      padding: 26px 24px 26px;
+      margin-bottom: 26px;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.14), transparent 55%),
+        radial-gradient(circle at 100% 0%, rgba(168, 85, 247, 0.16), transparent 55%),
+        linear-gradient(145deg, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.82));
+      box-shadow: var(--sg-shadow-soft);
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.3fr);
+      gap: 22px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background-image:
+        radial-gradient(circle at 20% 15%, rgba(248, 250, 252, 0.08), transparent 60%),
+        radial-gradient(circle at 80% 80%, rgba(15, 23, 42, 0.85), transparent 60%),
+        repeating-radial-gradient(circle at 100% 0%, rgba(148, 163, 184, 0.18), transparent 5px);
+      mix-blend-mode: soft-light;
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    .hero-left,
+    .hero-right {
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px 4px 4px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: rgba(15, 23, 42, 0.6);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--sg-muted);
+      margin-bottom: 12px;
+    }
+
+    .eyebrow-pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, #f9fafb, transparent 60%);
+      box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.9);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .eyebrow-pill::after {
+      content: "";
+      position: absolute;
+      inset: 4px;
+      border-radius: inherit;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      opacity: 0.85;
+    }
+
+    .eyebrow-pill span {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #020617;
+      z-index: 1;
+    }
+
+    h1.hero-title {
+      font-size: clamp(1.9rem, 3.1vw, 2.4rem);
+      line-height: 1.1;
+      margin: 0 0 10px;
+      letter-spacing: 0.01em;
+    }
+
+    h1.hero-title span.highlight {
+      background: linear-gradient(120deg, var(--sg-primary), var(--sg-accent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 0.98rem;
+      color: var(--sg-muted);
+      max-width: 32rem;
+      margin-bottom: 18px;
+    }
+
+    .hero-metrics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    .pill-metric {
+      border-radius: 999px;
+      padding: 6px 11px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: rgba(15, 23, 42, 0.75);
+      font-size: 0.75rem;
+      color: var(--sg-muted);
+      display: inline-flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .pill-metric strong {
+      font-size: 0.78rem;
+      color: var(--sg-text);
+    }
+
+    /* Hero Right: orbit panel */
+
+    .hero-right-card {
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at 25% 0%, rgba(248, 250, 252, 0.12), transparent 55%),
+        linear-gradient(165deg, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.9));
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      padding: 16px 16px 14px;
+      box-shadow:
+        0 18px 40px rgba(15, 23, 42, 0.85),
+        0 0 0 1px rgba(15, 23, 42, 0.8);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mini-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      gap: 8px;
+    }
+
+    .mini-title {
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--sg-muted);
+    }
+
+    .mini-status {
+      font-size: 0.7rem;
+      color: var(--sg-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .mini-status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: radial-gradient(circle, var(--sg-primary), transparent 70%);
+      box-shadow: 0 0 16px rgba(56, 189, 248, 0.9);
+    }
+
+    .orbit-diagram {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 10 / 8;
+      margin-bottom: 10px;
+    }
+
+    .orbit-ring {
+      position: absolute;
+      border-radius: 999px;
+      border: 1px dashed rgba(148, 163, 184, 0.4);
+      inset: 12%;
+    }
+
+    .orbit-ring:nth-child(2) {
+      inset: 23%;
+      border-style: solid;
+      opacity: 0.8;
+    }
+
+    .orbit-ring:nth-child(3) {
+      inset: 37%;
+      border-style: solid;
+      opacity: 0.7;
+      border-color: rgba(56, 189, 248, 0.6);
+    }
+
+    .planet-core {
+      position: absolute;
+      inset: 45%;
+      border-radius: 999px;
+      background:
+        radial-gradient(circle at 30% 20%, #f9fafb, transparent 60%),
+        radial-gradient(circle at 80% 80%, rgba(56, 189, 248, 0.8), rgba(15, 23, 42, 0.9));
+      box-shadow:
+        0 0 0 1px rgba(15, 23, 42, 1),
+        0 0 26px rgba(168, 85, 247, 0.9);
+    }
+
+    .orbit-badge {
+      position: absolute;
+      padding: 6px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: rgba(15, 23, 42, 0.92);
+      font-size: 0.68rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--sg-muted);
+      backdrop-filter: blur(6px);
+      white-space: nowrap;
+    }
+
+    .orbit-badge strong {
+      color: var(--sg-text);
+      font-size: 0.72rem;
+    }
+
+    .orbit-badge span.dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--sg-primary);
+      box-shadow: 0 0 9px rgba(56, 189, 248, 0.9);
+    }
+
+    .orbit-badge.iso {
+      top: 10%;
+      left: 9%;
+    }
+
+    .orbit-badge.controls {
+      top: 68%;
+      right: 4%;
+    }
+
+    .orbit-badge.audit {
+      bottom: 12%;
+      left: 26%;
+    }
+
+    .hero-right-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 0.72rem;
+      color: var(--sg-muted);
+    }
+
+    .hero-right-footer span strong {
+      color: var(--sg-text);
+    }
+
+    .hero-right-footer .tag {
+      border-radius: 999px;
+      padding: 4px 9px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.92);
+      font-size: 0.7rem;
+    }
+
+    /* Sections */
+
+    .section {
+      margin-bottom: 26px;
+      border-radius: var(--sg-radius-xl);
+      border: 1px solid rgba(148, 163, 184, 0.22);
+      background: radial-gradient(circle at 0 0, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.96));
+      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.65);
+      padding: 20px 20px 18px;
+    }
+
+    .section-header {
+      margin-bottom: 12px;
+    }
+
+    .section-kicker {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--sg-muted);
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-size: 1.1rem;
+      margin: 0;
+    }
+
+    .section-title span {
+      background: linear-gradient(120deg, var(--sg-primary), var(--sg-accent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .section-body {
+      font-size: 0.92rem;
+      color: var(--sg-muted);
+      line-height: 1.55;
+    }
+
+    .section-body p {
+      margin: 0 0 10px;
+    }
+
+    .muted {
+      color: var(--sg-muted);
+    }
+
+    /* Two-column layout */
+
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    /* Cards & list styles */
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    .card {
+      border-radius: var(--sg-radius-lg);
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      background: radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.12), transparent 60%),
+                  rgba(15, 23, 42, 0.96);
+      padding: 12px 12px 10px;
+      font-size: 0.86rem;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .card-icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, #e0f2fe, transparent 70%);
+      border: 1px solid rgba(56, 189, 248, 0.9);
+      font-size: 0.78rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #0b1024;
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.7);
+    }
+
+    .card-title {
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--sg-muted);
+    }
+
+    .list-compact {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 0.9rem;
+      color: var(--sg-muted);
+    }
+
+    .list-compact li {
+      margin-bottom: 6px;
+    }
+
+    /* Roadmap */
+
+    .roadmap {
+      margin-top: 10px;
+      border-radius: var(--sg-radius-lg);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background:
+        radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.1), transparent 55%),
+        rgba(15, 23, 42, 0.97);
+      padding: 12px 14px 10px;
+    }
+
+    .timeline-row {
+      display: grid;
+      grid-template-columns: 0.4fr 0.6fr 1.3fr;
+      gap: 10px;
+      font-size: 0.85rem;
+      align-items: start;
+      padding: 7px 0;
+      border-bottom: 1px dashed rgba(51, 65, 85, 0.9);
+    }
+
+    .timeline-row:last-child {
+      border-bottom: none;
+    }
+
+    .timeline-step {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-weight: 600;
+    }
+
+    .timeline-badge {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, #e0f2fe, transparent 70%);
+      border: 1px solid rgba(56, 189, 248, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      color: #020617;
+    }
+
+    .timeline-phase {
+      font-weight: 500;
+      color: var(--sg-text);
+    }
+
+    .timeline-detail {
+      color: var(--sg-muted);
+      line-height: 1.5;
+    }
+
+    /* CTA */
+
+    .cta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-top: 6px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(51, 65, 85, 0.95);
+      font-size: 0.9rem;
+      color: var(--sg-muted);
+    }
+
+    .cta strong {
+      color: var(--sg-text);
+    }
+
+    .cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .cta-note {
+      font-size: 0.78rem;
+      color: var(--sg-muted);
+      margin-top: 4px;
+    }
+
+    a {
+      color: var(--sg-primary);
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 880px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .card-grid {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      }
+      .timeline-row {
+        grid-template-columns: 0.5fr 1.5fr;
+      }
+      .timeline-detail {
+        grid-column: span 2;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-wrapper {
+        padding: 20px 16px 48px;
+      }
+      header {
+        margin-bottom: 20px;
+      }
+      .hero {
+        padding: 18px 16px 18px;
+      }
+      .section {
+        padding: 16px 15px 15px;
+      }
+      .card-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .two-col {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .timeline-row {
+        grid-template-columns: 0.6fr 1.4fr;
+      }
+    }
+  </style>
+<link rel="icon" href="/wp-content/uploads/2025/11/cropped-0_3-25456-no-background.png">
+<script src="/assets/site.js" defer></script>
+</head>
+<body>
+<div class="wp-site-blocks">
+<atw-header></atw-header>
+<div class="page-wrapper">
+    <header>
+      <div class="brand">
+        <div class="logo-orbit"></div>
+        <div>
+          <div class="brand-text-primary">
+            <span>Stargazer Consulting</span>
+          </div>
+          <div class="brand-text-secondary">
+            Cybersecurity • ISO 27001 • vCISO
+          </div>
+        </div>
+      </div>
+      <div class="header-cta">
+        <a href="#contact" class="btn-primary">
+          <span class="icon">✦</span>
+          <span>Book an ISO 27001 Readiness Call</span>
+        </a>
+        <a href="#roadmap" class="btn-ghost">
+          <span class="badge-dot"></span>
+          <span>See our certification roadmap</span>
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-left">
+          <div class="eyebrow">
+            <div class="eyebrow-pill"><span>27001</span></div>
+            <span>ISO 27001:2022 Readiness</span>
+          </div>
+          <h1 class="hero-title">
+            Turn information security from a cost center into a
+            <span class="highlight">competitive advantage</span>.
+          </h1>
+          <p class="hero-subtitle">
+            ISO 27001:2022 certification tells clients, regulators, and partners that your
+            organization takes information security seriously. Stargazer Consulting guides you
+            from “we should do this” to audit-ready and confident.
+          </p>
+          <a href="#contact" class="btn-primary">
+            <span class="icon">🚀</span>
+            <span>Start your ISO 27001 journey</span>
+          </a>
+          <div class="hero-metrics">
+            <div class="pill-metric">
+              <strong>Outcome-focused.</strong> Controls that fit the way you actually work.
+            </div>
+            <div class="pill-metric">
+              <strong>Right-sized.</strong> Built for growing small and mid-size businesses.
+            </div>
+            <div class="pill-metric">
+              <strong>Audit-aware.</strong> Designed with certification in mind from day one.
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-right">
+          <div class="hero-right-card">
+            <div class="mini-header">
+              <div class="mini-title">Information Security Orbit</div>
+              <div class="mini-status">
+                <span class="mini-status-dot"></span>
+                <span>Alignment to ISO 27001:2022</span>
+              </div>
+            </div>
+
+            <div class="orbit-diagram">
+              <div class="orbit-ring"></div>
+              <div class="orbit-ring"></div>
+              <div class="orbit-ring"></div>
+              <div class="planet-core"></div>
+
+              <div class="orbit-badge iso">
+                <span class="dot"></span>
+                <strong>Business Goals</strong>
+                <span>Revenue, trust, growth</span>
+              </div>
+              <div class="orbit-badge controls">
+                <span class="dot"></span>
+                <strong>Annex A Controls</strong>
+                <span>Policies, tech, people</span>
+              </div>
+              <div class="orbit-badge audit">
+                <span class="dot"></span>
+                <strong>Audit Readiness</strong>
+                <span>Evidence, stories, proof</span>
+              </div>
+            </div>
+
+            <div class="hero-right-footer">
+              <span>
+                <strong>ISO 27001:2022</strong> connects your strategy, risks, and controls into
+                one coherent security story.
+              </span>
+              <span class="tag">We help you tell it clearly.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- What is ISO 27001 -->
+      <section class="section">
+        <div class="two-col">
+          <div class="section-header">
+            <div class="section-kicker">The standard</div>
+            <h2 class="section-title">
+              What ISO <span>27001:2022</span> really asks for
+            </h2>
+            <div class="section-body">
+              <p>
+                ISO 27001:2022 is the global standard for building and maintaining an
+                Information Security Management System (ISMS). It is not just a checklist of
+                technical controls. It is a way of running your business so that risks to
+                information are identified, prioritized, and treated in a structured, repeatable
+                way.
+              </p>
+              <p>
+                At its core, the standard asks your organization to
+                <strong>understand its context, identify the information that matters most,
+                evaluate risks to that information, implement appropriate controls, and
+                continuously improve</strong>. The 2022 revision modernized Annex A controls to
+                reflect today’s realities: cloud services, remote work, identity and access
+                management, supplier risks, and more.
+              </p>
+            </div>
+          </div>
+          <div class="section-body">
+            <p>
+              A well-implemented ISMS does three things for you:
+            </p>
+            <ul class="list-compact">
+              <li>
+                Connects information security to business strategy, contracts, and growth.
+              </li>
+              <li>
+                Gives leadership clear visibility into risk and clear justification for investing
+                (or not) in specific controls.
+              </li>
+              <li>
+                Provides a defensible story for regulators, customers, and partners:
+                <strong>“Here is how we protect your data.”</strong>
+              </li>
+            </ul>
+            <p>
+              Certification is the formal proof, but the real value is a security practice that
+              works every day, not just during the audit.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Why work with a consultant -->
+      <section class="section">
+        <div class="section-header">
+          <div class="section-kicker">Why bring in Stargazer</div>
+          <h2 class="section-title">
+            From confusion to clarity: how a consultant changes your ISO 27001 trajectory
+          </h2>
+        </div>
+        <div class="section-body">
+          <p>
+            Many organizations start reading ISO 27001 and quickly get stuck in the orbit of
+            questions: Where do we begin? Which controls actually apply to us? Are we doing
+            “enough”? How do we avoid building paperwork that nobody uses?
+          </p>
+          <p>
+            A good consultant doesn’t just “fill in templates.” Stargazer Consulting acts as a
+            guide, translator, and challenger — helping you build an ISMS that aligns with how
+            your business actually operates, while keeping certification and long-term
+            maintainability in view.
+          </p>
+        </div>
+
+        <div class="card-grid">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-icon">①</div>
+              <div class="card-title">Clarity on scope and priorities</div>
+            </div>
+            <p>
+              We help you define <strong>what’s in scope</strong> for your ISMS — systems,
+              locations, teams, and data flows — and tie that scope to your contracts, critical
+              services, and growth plans. This avoids wasted effort and misaligned expectations
+              with your auditor.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div class="card-icon">②</div>
+              <div class="card-title">Risk-driven, not checklist-driven</div>
+            </div>
+            <p>
+              Instead of blindly implementing every control, we
+              <strong>start from risk</strong>. We help you identify real-world threats to your
+              business, then select and justify Annex A controls that make sense for your size,
+              complexity, and risk appetite.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div class="card-icon">③</div>
+              <div class="card-title">Practical policies and procedures</div>
+            </div>
+            <p>
+              We turn the standard into <strong>plain-language policies, procedures, and
+              playbooks</strong> that your teams can actually follow. The outcome is
+              documentation that auditors respect and employees understand.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div class="card-icon">④</div>
+              <div class="card-title">Evidence and audit readiness</div>
+            </div>
+            <p>
+              We work backwards from audit expectations: what evidence will your certifying body
+              want to see? We help you design logs, reports, meeting minutes, and registers that
+              naturally generate that evidence as part of your normal operations.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div class="card-icon">⑤</div>
+              <div class="card-title">Leadership alignment &#038; communication</div>
+            </div>
+            <p>
+              ISO 27001 is as much about leadership and culture as it is about technology. We
+              support <strong>management review, communication plans, and KPIs</strong> so that
+              executives can see, steer, and support the ISMS over time.
+            </p>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div class="card-icon">⑥</div>
+              <div class="card-title">Sustainable, not fragile</div>
+            </div>
+            <p>
+              Our goal is to create an ISMS that your team can own and maintain without constant
+              firefighting. We embed routines, calendars, and ownership so you’re not starting
+              from scratch before each surveillance audit.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- How certification works & where we plug in -->
+      <section class="section" id="roadmap">
+        <div class="two-col">
+          <div>
+            <div class="section-header">
+              <div class="section-kicker">The journey</div>
+              <h2 class="section-title">
+                How ISO <span>27001:2022</span> certification typically unfolds
+              </h2>
+            </div>
+            <div class="section-body">
+              <p>
+                Every organization is different, but most ISO 27001 journeys follow a similar
+                pattern: understand your current state, design and implement the ISMS, run it
+                long enough to gather evidence, and then invite the certifying body in.
+              </p>
+              <p>
+                Stargazer Consulting can step in at any point, but we deliver the most value
+                when we guide you through the full lifecycle — so that scope, risk, controls,
+                and evidence all line up when the auditor arrives.
+              </p>
+            </div>
+          </div>
+          <div class="section-body">
+            <div class="roadmap">
+              <div class="timeline-row">
+                <div class="timeline-step">
+                  <div class="timeline-badge">1</div>
+                  <span>Assess</span>
+                </div>
+                <div class="timeline-phase">
+                  Gap analysis &#038; current-state mapping
+                </div>
+                <div class="timeline-detail">
+                  We review your existing policies, technical controls, vendor landscape, and
+                  documentation to identify gaps against ISO 27001:2022 and Annex A. You get a
+                  clear picture of where you are and what “good enough” looks like for
+                  certification.
+                </div>
+              </div>
+
+              <div class="timeline-row">
+                <div class="timeline-step">
+                  <div class="timeline-badge">2</div>
+                  <span>Design</span>
+                </div>
+                <div class="timeline-phase">
+                  ISMS architecture &#038; roadmap
+                </div>
+                <div class="timeline-detail">
+                  Together we define ISMS scope, risk methodology, Statement of Applicability,
+                  and governance structure. We build a prioritized roadmap that sequences
+                  policies, processes, controls, and tools into realistic phases.
+                </div>
+              </div>
+
+              <div class="timeline-row">
+                <div class="timeline-step">
+                  <div class="timeline-badge">3</div>
+                  <span>Implement</span>
+                </div>
+                <div class="timeline-phase">
+                  Controls, training &#038; operations
+                </div>
+                <div class="timeline-detail">
+                  We co-create or refine your security policies, implement or tune controls,
+                  roll out training, and launch the ISMS calendar: risk reviews, internal
+                  audits, corrective actions, supplier reviews, and management reviews.
+                </div>
+              </div>
+
+              <div class="timeline-row">
+                <div class="timeline-step">
+                  <div class="timeline-badge">4</div>
+                  <span>Certify</span>
+                </div>
+                <div class="timeline-phase">
+                  Audit preparation &#038; support
+                </div>
+                <div class="timeline-detail">
+                  We help you select a certification body, prepare evidence and narratives,
+                  brief leaders on what to expect, and support you through Stage 1 and Stage 2
+                  audits. After certification, we refine your ISMS based on audit findings and
+                  lessons learned.
+                </div>
+              </div>
+            </div>
+            <p class="cta-note">
+              Already started on ISO 27001? We can plug into a specific phase (for example,
+              risk assessment, Statement of Applicability, or internal audit) and help you
+              close the loop.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Who we help & outcomes -->
+      <section class="section">
+        <div class="two-col">
+          <div>
+            <div class="section-header">
+              <div class="section-kicker">Fit</div>
+              <h2 class="section-title">
+                Who gets the most value from working with <span>Stargazer</span>
+              </h2>
+            </div>
+            <div class="section-body">
+              <p>
+                We specialize in small and mid-sized organizations that are
+                <strong>selling into enterprise or regulated markets</strong> — companies that
+                need to demonstrate strong security without building an oversized security
+                bureaucracy.
+              </p>
+              <p>
+                Typical clients include SaaS providers, professional services firms handling
+                sensitive client data, legal and eDiscovery providers, and organizations
+                preparing for vendor assessments, RFPs, or regulatory scrutiny.
+              </p>
+              <p>
+                The common thread: leadership recognizes that information security is now a
+                core business capability, not a side project for IT.
+              </p>
+            </div>
+          </div>
+          <div class="section-body">
+            <p>
+              When ISO 27001 is implemented well, you can expect:
+            </p>
+            <ul class="list-compact">
+              <li>
+                Stronger positioning in sales conversations (“Yes, we are ISO 27001:2022
+                certified. Here is what that means for you.”).
+              </li>
+              <li>
+                Fewer surprises from security questionnaires and vendor due diligence.
+              </li>
+              <li>
+                Clear accountability for security decisions and risk acceptance.
+              </li>
+              <li>
+                Better alignment between IT, security, legal, operations, and leadership.
+              </li>
+              <li>
+                A calmer, more predictable security practice that can scale as you grow.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA section -->
+      <section class="section" id="contact">
+        <div class="section-header">
+          <div class="section-kicker">Next step</div>
+          <h2 class="section-title">
+            Plot your course to <span>ISO 27001:2022</span> certification
+          </h2>
+        </div>
+        <div class="section-body">
+          <p>
+            The most useful first step is a focused conversation about where you are today,
+            what’s driving your need for ISO 27001, and what success would look like twelve to
+            eighteen months from now. From there, we can outline a pragmatic path: what to keep,
+            what to fix, and what to build.
+          </p>
+          <p>
+            Whether you are starting from a blank slate or trying to rescue a stalled project,
+            Stargazer Consulting can help you turn ISO 27001 into a real advantage — not just a
+            certificate on the wall.
+          </p>
+        </div>
+        <div class="cta">
+          <div>
+            <strong>Ready to get specific?</strong>
+            <div class="muted">
+              Use the button below or your preferred channel to request an ISO 27001 readiness
+              call. We will review your situation and recommend next steps — no hard sell.
+            </div>
+          </div>
+          <div class="cta-actions">
+            <a href="mailto:info@stargazersecurity.com?subject=ISO%2027001%20Readiness%20Call"
+               class="btn-primary">
+              <span class="icon">✉️</span>
+              <span>Email Stargazer about ISO 27001</span>
+            </a>
+            <a href="#top" class="btn-ghost">
+              <span>Back to top</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+<atw-footer></atw-footer>
+</div>
+</body>
+</html>

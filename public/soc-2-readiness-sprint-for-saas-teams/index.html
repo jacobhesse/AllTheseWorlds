@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SOC 2 Readiness Sprint for SaaS Teams | Stargazer Consulting</title>
+  <meta name="description" content="A SOC 2 readiness sprint for growth-stage SaaS companies that need a practical, execution-focused plan without overloading engineering." />
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #eaf2ff;
+      line-height: 1.7;
+      background:
+        radial-gradient(1200px 700px at 10% -10%, rgba(58,160,255,.18), transparent 50%),
+        radial-gradient(1000px 600px at 120% 10%, rgba(29,209,161,.14), transparent 50%),
+        linear-gradient(180deg, #0f1533, #0b0f25 45%, #0a0d1f 100%);
+      min-height: 100vh;
+    }
+
+    a {
+      color: #8fd3ff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .page-wrap {
+      width: 100%;
+      padding: 48px 20px 72px;
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      padding: 48px 0 28px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 16px;
+      padding: 8px 14px;
+      border: 1px solid rgba(58,160,255,.35);
+      border-radius: 999px;
+      background: rgba(58,160,255,.10);
+      color: #8fd3ff;
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    h1 {
+      margin: 0 0 18px;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      line-height: 1.15;
+      color: #ffffff;
+      max-width: 900px;
+    }
+
+    .accent {
+      color: #1dd1a1;
+    }
+
+    .hero p {
+      max-width: 850px;
+      margin: 0 0 18px;
+      font-size: 1.08rem;
+      color: #d7e6ff;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 26px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 22px;
+      border-radius: 10px;
+      font-weight: 700;
+      transition: 0.2s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #1dd1a1, #3aa0ff);
+      color: #08111f;
+      box-shadow: 0 10px 24px rgba(29,209,161,.18);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      text-decoration: none;
+    }
+
+    .btn-secondary {
+      border: 1px solid rgba(143,211,255,.35);
+      background: rgba(255,255,255,.04);
+      color: #dff3ff;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,.08);
+      text-decoration: none;
+    }
+
+    .grid {
+      display: grid;
+      gap: 22px;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .card {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(143,211,255,.10);
+      border-radius: 18px;
+      padding: 26px;
+      box-shadow: 0 12px 32px rgba(0,0,0,.18);
+      backdrop-filter: blur(6px);
+    }
+
+    .section {
+      margin-top: 28px;
+      padding-top: 18px;
+    }
+
+    .section h2 {
+      margin: 0 0 16px;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      color: #ffffff;
+    }
+
+    .section p {
+      margin: 0 0 14px;
+      color: #d7e6ff;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      color: #8fd3ff;
+      font-size: 1.18rem;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 10px;
+      color: #dce9ff;
+    }
+
+    .statements {
+      display: grid;
+      gap: 16px;
+      margin-top: 12px;
+    }
+
+    .statement {
+      padding: 18px 20px;
+      border-left: 4px solid #1dd1a1;
+      background: rgba(255,255,255,.04);
+      border-radius: 10px;
+      color: #e8f4ff;
+    }
+
+    .cta-panel {
+      margin-top: 36px;
+      padding: 30px;
+      border-radius: 20px;
+      background:
+        linear-gradient(135deg, rgba(58,160,255,.16), rgba(29,209,161,.12)),
+        rgba(255,255,255,.04);
+      border: 1px solid rgba(143,211,255,.18);
+      box-shadow: 0 16px 36px rgba(0,0,0,.20);
+    }
+
+    .cta-panel h2 {
+      margin-top: 0;
+      margin-bottom: 12px;
+      color: #ffffff;
+    }
+
+    .cta-panel p {
+      max-width: 780px;
+      color: #d7e6ff;
+      margin-bottom: 18px;
+    }
+
+    .price {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #1dd1a1;
+    }
+
+    .note {
+      font-size: 0.96rem;
+      color: #b8cbea;
+    }
+
+    @media (max-width: 900px) {
+      .grid-2,
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 24px;
+      }
+    }
+  </style>
+<link rel="icon" href="/wp-content/uploads/2025/11/cropped-0_3-25456-no-background.png">
+<script src="/assets/site.js" defer></script>
+</head>
+<body>
+<div class="wp-site-blocks">
+<atw-header></atw-header>
+<div class="page-wrap">
+    <div class="container">
+
+      <section class="hero">
+        <div class="eyebrow">Stargazer Consulting | SOC 2 Readiness</div>
+        <h1>SOC 2 readiness for SaaS teams <span class="accent">without derailing engineering</span></h1>
+        <p>
+          For growth-stage SaaS companies, the hard part of SOC 2 is usually not the audit itself. It is the hidden
+          engineering load, unclear ownership, competing priorities, and the slow drift into reactive work.
+        </p>
+        <p>
+          This readiness sprint is designed to give your team a practical path forward: a clear assessment of where you
+          stand, what matters most, what can wait, and how to move toward SOC 2 without turning compliance into a constant interruption.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://calendly.com/jacob-hesse-kemperastronautics/30min" target="_blank">
+  Book a Call
+</a>
+          <a class="btn btn-secondary" href="#deliverables">See What’s Included</a>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="grid grid-3">
+          <div class="card">
+            <h3>Who this is for</h3>
+            <p>
+              Growth-stage B2B SaaS companies, typically in the 30–100 employee range, preparing for a first SOC 2
+              initiative to support enterprise sales and customer trust.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>The real problem</h3>
+            <p>
+              SOC 2 efforts often become messy because engineering, security, operations, and leadership are not aligned
+              on scope, ownership, sequencing, or effort.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>The outcome</h3>
+            <p>
+              A 30-day readiness sprint that gives you an actionable roadmap, prioritized risks, and a clearer path to
+              execution with less disruption.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>The pattern most CTOs run into</h2>
+        <div class="grid grid-2">
+          <div class="card">
+            <h3>What usually happens</h3>
+            <ul>
+              <li>SOC 2 becomes “important,” but no one defines ownership clearly.</li>
+              <li>Engineering gets pulled into unplanned work with little context.</li>
+              <li>Policies, controls, vendors, and evidence requests start appearing all at once.</li>
+              <li>Momentum stalls because nobody is sure what should happen first.</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>What this causes</h3>
+            <ul>
+              <li>Lost engineering time and unnecessary interruption</li>
+              <li>Rework caused by poor sequencing</li>
+              <li>Confusion across teams about accountability</li>
+              <li>Longer, more frustrating paths to audit readiness</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>A focused 30-day readiness sprint</h2>
+        <div class="card">
+          <p>
+            This is not generic compliance consulting. It is a focused engagement meant to help your team understand
+            where you are, where the risk actually is, and how to move forward in a way that is realistic for your stage.
+          </p>
+
+          <div class="statements">
+            <div class="statement">Minimize engineering disruption by defining what truly requires technical effort and what does not.</div>
+            <div class="statement">Clarify ownership across engineering, leadership, operations, and security-related responsibilities.</div>
+            <div class="statement">Reduce wasted effort by sequencing the work in a practical, execution-focused order.</div>
+            <div class="statement">Create a roadmap your team can actually use rather than a vague list of control requirements.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="deliverables">
+        <h2>What’s included</h2>
+        <div class="grid grid-2">
+          <div class="card">
+            <h3>Core deliverables</h3>
+            <ul>
+              <li>SOC 2 readiness gap assessment</li>
+              <li>Prioritized risk scorecard</li>
+              <li>30–90 day execution roadmap</li>
+              <li>Core policy starter set</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Execution layer</h3>
+            <ul>
+              <li>Ownership and accountability mapping</li>
+              <li>Identification of likely bottlenecks and friction points</li>
+              <li>Analysis of where teams typically lose momentum</li>
+              <li>Recommendations to reduce coordination breakdowns</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Why this approach is different</h2>
+        <div class="card">
+          <p>
+            Most SOC 2 support focuses on controls, documentation, and audit mechanics. Those things matter, but they are
+            not usually the reason a growth-stage SaaS team gets bogged down.
+          </p>
+          <p>
+            The bigger issue is execution. Work gets diffused across teams. Engineering absorbs effort it did not plan for.
+            Leadership underestimates the coordination burden. The process becomes heavier than it needed to be.
+          </p>
+          <p>
+            This readiness sprint addresses the technical and operational side of SOC 2, but it also focuses on how the work
+            actually moves through your organization.
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>Typical engagement</h2>
+        <div class="grid grid-2">
+          <div class="card">
+            <h3>Investment</h3>
+            <p class="price">$5,000 – $12,000</p>
+            <p class="note">
+              Final scope depends on organizational complexity, current state, and the level of support needed.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Best fit</h3>
+            <p>
+              This is best suited for SaaS companies that expect SOC 2 to matter in the next 3–6 months and want a clearer,
+              more efficient path forward before the process starts consuming attention across the organization.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta-panel" id="contact">
+        <h2>Start with a conversation</h2>
+        <p>
+          If SOC 2 is on your roadmap and you want to avoid unnecessary disruption, we can talk through your current stage,
+          likely friction points, and what a practical readiness plan would look like for your environment.
+        </p>
+        <a class="btn btn-primary" href="https://calendly.com/jacob-hesse-kemperastronautics/30min" target="_blank">
+  Book a Call
+</a>
+      </section>
+
+    </div>
+  </div>
+<atw-footer></atw-footer>
+</div>
+</body>
+</html>

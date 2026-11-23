@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Fifty Nearest Stars &amp; Sub-stellar Objects — Distance, Coordinates, Class, Planets – All These Worlds</title>
+
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root{
+      --bg:#0b1020; --panel:#111935; --edge:#22305b; --ink:#e9eeff; --muted:#a8b3d8; --accent:#7aa2ff;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; padding:32px; background:radial-gradient(1100px 700px at 15% 10%, #1a2654 0%, #0b1020 60%);
+      color:var(--ink); font:15.5px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial,sans-serif;
+    }
+    header{max-width:1200px;margin:0 auto 16px}
+    h1{margin:0 0 6px 0; font-size:clamp(22px,3.4vw,36px); letter-spacing:.2px}
+    .lede{color:var(--muted); margin:0 0 18px 0}
+    .card{
+      max-width:1200px; margin:0 auto; background:var(--panel); border:1px solid var(--edge);
+      border-radius:16px; padding:16px; box-shadow:0 12px 36px rgba(0,0,0,.35)
+    }
+    .controls{display:flex; flex-wrap:wrap; gap:10px; margin-bottom:12px}
+    .controls input,.controls select{
+      background:#0f1633; color:var(--ink); border:1px solid var(--edge); border-radius:10px; padding:10px 12px; outline:none
+    }
+    .controls input{flex:1 1 280px}
+    table{
+      width:100%; border-collapse:separate; border-spacing:0; background:#0e1430;
+      border:1px solid var(--edge); border-radius:12px; overflow:hidden
+    }
+    thead th{
+      background:#0f1a3a; color:#e9eeff; text-align:left; padding:12px 14px; border-bottom:1px solid var(--edge);
+      cursor:pointer; user-select:none; position:sticky; top:0; z-index:1;
+    }
+    thead th .sort{font-size:12px; color:var(--muted); margin-left:6px; opacity:.85}
+    tbody td{padding:12px 14px; border-bottom:1px solid #1a2550}
+    tbody tr:hover{background:#0f1a3a}
+    code{background:#0c1330; padding:.12rem .35rem; border-radius:6px; border:1px solid #1e2b57}
+    caption{caption-side:bottom; text-align:left; padding:10px 2px 0; color:var(--muted); font-size:.95rem}
+    a{color:var(--accent); text-decoration:none}
+    a:hover{text-decoration:underline}
+    .nowrap{white-space:nowrap}
+    .chip{display:inline-block; padding:.15rem .45rem; border-radius:999px; border:1px solid var(--edge); background:#0f1a3a; color:#dbe4ff; font-size:.85rem}
+    .foot{margin-top:10px; color:var(--muted)}
+  </style>
+<link rel="icon" href="/wp-content/uploads/2025/11/cropped-0_3-25456-no-background.png">
+<script src="/assets/site.js" defer></script>
+</head>
+<body>
+<div class="wp-site-blocks">
+<atw-header></atw-header>
+<header>
+  <h1 class="lede">
+    A compact reference of the 50 closest individual objects (counting components separately) with distances, J2000 coordinates, spectral class, and any confirmed or well-supported planets.
+  </h1>
+</header>
+
+<section class="card">
+  <div class="controls">
+    <input id="filter" type="search" placeholder="Filter by name, class, planet, etc." aria-label="Filter table">
+    <select id="limit" aria-label="Rows to show">
+      <option value="50">Show 50</option>
+      <option value="25">Show 25</option>
+      <option value="10">Show 10</option>
+    </select>
+  </div>
+
+  <table id="stars">
+    <thead>
+    <tr>
+      <th data-key="rank"># <span class="sort">↕</span></th>
+      <th data-key="name">Name <span class="sort">↕</span></th>
+      <th data-key="distance">Distance (ly) <span class="sort">↕</span></th>
+      <th data-key="ra">RA (J2000) <span class="sort">↕</span></th>
+      <th data-key="dec">Dec (J2000) <span class="sort">↕</span></th>
+      <th data-key="class">Class <span class="sort">↕</span></th>
+      <th data-key="planets">Known Planets <span class="sort">↕</span></th>
+    </tr>
+    </thead>
+    <tbody></tbody>
+    <caption>Distances rounded; coordinates are approximate J2000. “Known Planets” list only widely accepted confirmations; contested or retracted claims are omitted.</caption>
+  </table>
+
+  <p class="foot">Tip: click a header to sort; use the filter to search across all columns.</p>
+</section>
+
+<script>
+const data = [
+  // Distances ~rounded; coordinates J2000 (approx). Components counted separately to reach 50.
+  {rank:1,  name:"Proxima Centauri (Alpha Cen C)", distance:4.246, ra:"14:29:43", dec:"−62:40:46", class:"M5.5 V", planets:"Proxima b"},
+  {rank:2,  name:"Alpha Centauri A",                distance:4.367, ra:"14:39:36", dec:"−60:50:02", class:"G2 V",   planets:"—"},
+  {rank:3,  name:"Alpha Centauri B",                distance:4.367, ra:"14:39:35", dec:"−60:50:14", class:"K1 V",   planets:"—"},
+  {rank:4,  name:"Barnard’s Star (GJ 699)",         distance:5.96,  ra:"17:57:48", dec:"+04:41:36", class:"M4 V",   planets:"—"},
+  {rank:5,  name:"Luhman 16 A (WISE J1049−5319A)",  distance:6.50,  ra:"10:49:18", dec:"−53:19:10", class:"L7.5",   planets:"—"},
+  {rank:6,  name:"Luhman 16 B (WISE J1049−5319B)",  distance:6.50,  ra:"10:49:18", dec:"−53:19:10", class:"T0.5",   planets:"—"},
+  {rank:7,  name:"WISE 0855−0714",                  distance:7.4,   ra:"08:55:10", dec:"−07:14:00", class:"Y dwarf",planets:"—"},
+  {rank:8,  name:"Wolf 359 (GJ 406)",               distance:7.86,  ra:"10:56:29", dec:"+07:00:53", class:"M6 V",   planets:"—"},
+  {rank:9,  name:"Lalande 21185 (GJ 411)",          distance:8.31,  ra:"11:03:20", dec:"+35:58:12", class:"M2 V",   planets:"GJ 411 b"},
+  {rank:10, name:"Sirius A (Alpha CMa A)",          distance:8.60,  ra:"06:45:09", dec:"−16:42:58", class:"A1 V",   planets:"—"},
+  {rank:11, name:"Sirius B",                        distance:8.60,  ra:"06:45:09", dec:"−16:42:58", class:"DA2 WD", planets:"—"},
+  {rank:12, name:"BL Ceti (Luyten 726–8 A)",        distance:8.73,  ra:"01:39:01", dec:"−17:57:01", class:"M5.5 V", planets:"—"},
+  {rank:13, name:"UV Ceti (Luyten 726–8 B)",        distance:8.73,  ra:"01:39:01", dec:"−17:57:01", class:"M6 V",   planets:"—"},
+  {rank:14, name:"Ross 154 (V1216 Sgr)",            distance:9.69,  ra:"18:49:49", dec:"−23:50:10", class:"M3.5 V", planets:"—"},
+  {rank:15, name:"Ross 248 (HH And)",               distance:10.32, ra:"23:41:55", dec:"+44:10:06", class:"M6 V",   planets:"—"},
+  {rank:16, name:"Epsilon Eridani",                 distance:10.48, ra:"03:32:55", dec:"−09:27:29", class:"K2 V",   planets:"ε Eri b"},
+  {rank:17, name:"Lacaille 9352 (GJ 887)",          distance:10.74, ra:"23:06:29", dec:"−35:51:10", class:"M2/3 V", planets:"GJ 887 b, c"},
+  {rank:18, name:"Ross 128 (GJ 447)",               distance:11.01, ra:"11:47:44", dec:"+00:48:16", class:"M4 V",   planets:"Ross 128 b"},
+  {rank:19, name:"EZ Aquarii A (GJ 866 A)",         distance:11.3,  ra:"22:38:33", dec:"−15:18:07", class:"M5 V",   planets:"—"},
+  {rank:20, name:"EZ Aquarii B (GJ 866 B)",         distance:11.3,  ra:"22:38:33", dec:"−15:18:07", class:"M5 V",   planets:"—"},
+  {rank:21, name:"EZ Aquarii C (GJ 866 C)",         distance:11.3,  ra:"22:38:33", dec:"−15:18:07", class:"M4.5 V", planets:"—"},
+  {rank:22, name:"Procyon A (Alpha CMi A)",         distance:11.46, ra:"07:39:18", dec:"+05:13:30", class:"F5 IV–V",planets:"—"},
+  {rank:23, name:"Procyon B",                       distance:11.46, ra:"07:39:18", dec:"+05:13:30", class:"DA WD",  planets:"—"},
+  {rank:24, name:"61 Cygni A (GJ 820 A)",           distance:11.41, ra:"21:06:54", dec:"+38:44:58", class:"K5 V",   planets:"—"},
+  {rank:25, name:"61 Cygni B (GJ 820 B)",           distance:11.41, ra:"21:06:55", dec:"+38:44:31", class:"K7 V",   planets:"—"},
+  {rank:26, name:"Struve 2398 A (GJ 725 A)",        distance:11.62, ra:"18:42:46", dec:"+59:37:49", class:"M3 V",   planets:"—"},
+  {rank:27, name:"Struve 2398 B (GJ 725 B)",        distance:11.62, ra:"18:42:47", dec:"+59:37:36", class:"M3.5 V", planets:"—"},
+  {rank:28, name:"Groombridge 34 A (GJ 15 A)",      distance:11.62, ra:"00:18:22", dec:"+44:01:23", class:"M1 V",   planets:"—"},
+  {rank:29, name:"Groombridge 34 B (GJ 15 B)",      distance:11.62, ra:"00:18:25", dec:"+44:01:38", class:"M3.5 V", planets:"—"},
+  {rank:30, name:"Epsilon Indi A",                  distance:11.88, ra:"22:03:21", dec:"−56:47:10", class:"K5 V",   planets:"—"},
+  {rank:31, name:"Epsilon Indi Ba",                 distance:11.88, ra:"22:04:10", dec:"−56:46:57", class:"T1",     planets:"—"},
+  {rank:32, name:"Epsilon Indi Bb",                 distance:11.88, ra:"22:04:10", dec:"−56:46:57", class:"T6",     planets:"—"},
+  {rank:33, name:"DX Cancri (GJ 1111)",             distance:11.8,  ra:"08:29:49", dec:"+26:46:33", class:"M6 V",   planets:"—"},
+  {rank:34, name:"Tau Ceti (GJ 71)",                distance:11.9,  ra:"01:44:04", dec:"−15:56:15", class:"G8.5 V", planets:"candidate signals"},
+  {rank:35, name:"Van Maanen’s Star (Van Maanen 2)",distance:14.1,  ra:"00:49:09", dec:"+05:23:19", class:"DZ WD",  planets:"—"},
+  {rank:36, name:"Kruger 60 A (GJ 860 A)",          distance:13.1,  ra:"22:27:59", dec:"+57:41:45", class:"M3 V",   planets:"—"},
+  {rank:37, name:"Kruger 60 B (GJ 860 B)",          distance:13.1,  ra:"22:27:59", dec:"+57:41:45", class:"M4 V",   planets:"—"},
+  {rank:38, name:"GJ 1061",                         distance:12.0,  ra:"03:35:59", dec:"−44:30:45", class:"M5.5 V", planets:"b, c, d"},
+  {rank:39, name:"YZ Ceti (GJ 54.1)",               distance:12.1,  ra:"01:12:31", dec:"−16:59:56", class:"M4.5 V", planets:"b, c, d"},
+  {rank:40, name:"GJ 1002",                         distance:15.8,  ra:"00:06:43", dec:"−07:32:17", class:"M5.5 V", planets:"b, c"},
+  {rank:41, name:"Teegarden’s Star (GJ 3673)",      distance:12.5,  ra:"02:53:00", dec:"+16:52:53", class:"M7 V",   planets:"b, c"},
+  {rank:42, name:"Kapteyn’s Star (GJ 191)",         distance:12.8,  ra:"05:11:40", dec:"−45:01:06", class:"sdM1",   planets:"—"},
+  {rank:43, name:"Luyten’s Star (GJ 273)",          distance:12.36, ra:"07:27:24", dec:"+05:13:33", class:"M3.5 V", planets:"b, c"},
+  {rank:44, name:"GJ 876",                          distance:15.2,  ra:"22:53:16", dec:"−14:15:49", class:"M4 V",   planets:"b, c, d, e"},
+  {rank:45, name:"GJ 832",                          distance:16.1,  ra:"21:33:34", dec:"−49:00:32", class:"M1.5 V", planets:"b, c"},
+  {rank:46, name:"Wolf 424 A (GJ 473 A)",           distance:14.3,  ra:"12:20:05", dec:"+09:32:40", class:"M4 V",   planets:"—"},
+  {rank:47, name:"Wolf 424 B (GJ 473 B)",           distance:14.3,  ra:"12:20:05", dec:"+09:32:40", class:"M5 V",   planets:"—"},
+  {rank:48, name:"Ross 614 A (GJ 234 A)",           distance:13.0,  ra:"16:14:41", dec:"+07:10:40", class:"M4.5 V", planets:"—"},
+  {rank:49, name:"Ross 614 B (GJ 234 B)",           distance:13.0,  ra:"16:14:41", dec:"+07:10:40", class:"M6 V",   planets:"—"},
+  {rank:50, name:"GJ 729 (Ross 154 is #14; this is GJ 729)", distance:8.9, ra:"19:19:11", dec:"−17:38:57", class:"M3.5 V", planets:"—"},
+];
+
+const tbody = document.querySelector('#stars tbody');
+const filterInput = document.getElementById('filter');
+const limitSel = document.getElementById('limit');
+
+function render(rows){
+  tbody.innerHTML = '';
+  const lim = parseInt(limitSel.value,10);
+  rows.slice(0, lim).forEach(obj => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td class="nowrap">${obj.rank}</td>
+      <td>${obj.name}</td>
+      <td class="nowrap">${obj.distance.toFixed(2)}</td>
+      <td class="nowrap"><code>${obj.ra}</code></td>
+      <td class="nowrap"><code>${obj.dec}</code></td>
+      <td><span class="chip">${obj.class}</span></td>
+      <td>${obj.planets || "—"}</td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+function applyFilter(){
+  const q = filterInput.value.toLowerCase().trim();
+  const filtered = data.filter(o =>
+    Object.values(o).join(' ').toLowerCase().includes(q)
+  );
+  render(filtered);
+}
+
+filterInput.addEventListener('input', applyFilter);
+limitSel.addEventListener('change', applyFilter);
+
+// sorting
+const getCellValue = (o, key) => o[key];
+const headers = document.querySelectorAll('#stars thead th');
+headers.forEach(h => {
+  let asc = true;
+  h.addEventListener('click', () => {
+    const key = h.dataset.key;
+    const sorted = [...data].sort((a,b) => {
+      const v1 = getCellValue(asc ? a : b, key);
+      const v2 = getCellValue(asc ? b : a, key);
+      if (typeof v1 === 'number' && typeof v2 === 'number') return v1 - v2;
+      return String(v1).localeCompare(String(v2), undefined, {numeric:true, sensitivity:'base'});
+    });
+    asc = !asc;
+    render(sorted);
+  });
+});
+
+// initial
+render(data);
+</script>
+<atw-footer></atw-footer>
+</div>
+</body>
+</html>

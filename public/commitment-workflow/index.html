@@ -1,0 +1,1278 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Customer Delivery CRM &#8211; Commitment Workflow Prototype</title>
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --surface: #ffffff;
+      --surface-soft: #f9fafc;
+      --border: #dfe5ee;
+      --border-strong: #c9d3e1;
+      --text: #172033;
+      --muted: #667085;
+      --muted-2: #8a95a8;
+      --brand: #2457d6;
+      --brand-soft: #eaf0ff;
+      --green: #14804a;
+      --green-bg: #e8f7ef;
+      --yellow: #9a6700;
+      --yellow-bg: #fff5d6;
+      --red: #b42318;
+      --red-bg: #ffe7e4;
+      --purple: #6941c6;
+      --purple-bg: #f0eafd;
+      --orange: #c2410c;
+      --orange-bg: #fff0e6;
+      --slate: #344054;
+      --shadow: 0 10px 30px rgba(23, 32, 51, 0.08);
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.45;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .app-shell {
+      display: grid;
+      grid-template-columns: 260px minmax(0, 1fr);
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      background: #101828;
+      color: #eaecf0;
+      padding: 24px 18px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #4776ff, #7f56d9);
+      font-weight: 800;
+      color: white;
+      box-shadow: 0 8px 22px rgba(71, 118, 255, 0.35);
+    }
+
+    .brand-copy strong {
+      display: block;
+      font-size: 14px;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-copy span {
+      display: block;
+      color: #98a2b3;
+      font-size: 12px;
+      margin-top: 2px;
+    }
+
+    .nav-group { margin-bottom: 26px; }
+
+    .nav-label {
+      font-size: 11px;
+      color: #98a2b3;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin: 0 10px 10px;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      color: #d0d5dd;
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .nav-item.active {
+      background: #1d2939;
+      color: #ffffff;
+      box-shadow: inset 3px 0 0 #4776ff;
+    }
+
+    .main {
+      padding: 28px 34px 48px;
+      min-width: 0;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .breadcrumb {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 360px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 10px 14px;
+      border-radius: 999px;
+      color: var(--muted-2);
+    }
+
+    .commitment-hero {
+      background: linear-gradient(135deg, #ffffff 0%, #f7f9ff 100%);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 22px;
+    }
+
+    .hero-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: flex-start;
+      margin-bottom: 22px;
+    }
+
+    .record-identity {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      min-width: 0;
+    }
+
+    .record-tile {
+      width: 62px;
+      height: 62px;
+      border-radius: 18px;
+      background: #111827;
+      color: white;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: -0.03em;
+      flex: 0 0 auto;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 30px;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+    }
+
+    .record-subtitle {
+      color: var(--muted);
+      margin-top: 6px;
+      font-size: 14px;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 700;
+      border: 1px solid transparent;
+      white-space: nowrap;
+    }
+
+    .badge.blue { background: var(--brand-soft); color: var(--brand); border-color: #d7e2ff; }
+    .badge.green { background: var(--green-bg); color: var(--green); border-color: #c9ebd8; }
+    .badge.yellow { background: var(--yellow-bg); color: var(--yellow); border-color: #ffdf7a; }
+    .badge.red { background: var(--red-bg); color: var(--red); border-color: #ffc9c3; }
+    .badge.purple { background: var(--purple-bg); color: var(--purple); border-color: #d8c8fa; }
+    .badge.gray { background: #f2f4f7; color: #475467; border-color: #e4e7ec; }
+    .badge.orange { background: var(--orange-bg); color: var(--orange); border-color: #ffd7bd; }
+
+    .hero-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .btn {
+      border: 1px solid var(--border-strong);
+      background: var(--surface);
+      color: var(--text);
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-weight: 750;
+      font-size: 13px;
+      cursor: default;
+      box-shadow: 0 2px 6px rgba(23, 32, 51, 0.04);
+    }
+
+    .btn.primary {
+      background: var(--brand);
+      color: white;
+      border-color: var(--brand);
+    }
+
+    .btn.danger {
+      background: var(--red);
+      color: white;
+      border-color: var(--red);
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .metric-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px;
+      min-height: 92px;
+    }
+
+    .metric-label {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 8px;
+      font-weight: 650;
+    }
+
+    .metric-value {
+      font-size: 20px;
+      font-weight: 850;
+      letter-spacing: -0.03em;
+    }
+
+    .metric-note {
+      font-size: 12px;
+      color: var(--muted-2);
+      margin-top: 4px;
+    }
+
+    .page-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(330px, 0.8fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 4px 16px rgba(23, 32, 51, 0.04);
+      margin-bottom: 18px;
+      overflow: hidden;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, #ffffff, #fbfcfe);
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .section-subtitle {
+      margin: 3px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .section-body { padding: 18px 20px 20px; }
+
+    .field-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .field-grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+    .field {
+      background: var(--surface-soft);
+      border: 1px solid #edf1f7;
+      border-radius: var(--radius-md);
+      padding: 12px;
+      min-height: 74px;
+    }
+
+    .field label {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+
+    .field .value {
+      font-size: 14px;
+      font-weight: 750;
+      color: var(--text);
+    }
+
+    .field .helper {
+      font-size: 12px;
+      color: var(--muted-2);
+      margin-top: 4px;
+    }
+
+    .wide { grid-column: 1 / -1; }
+
+    .textarea-card {
+      background: var(--surface-soft);
+      border: 1px solid #edf1f7;
+      border-radius: var(--radius-md);
+      padding: 14px;
+      margin-bottom: 12px;
+    }
+
+    .textarea-card label {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 750;
+      margin-bottom: 8px;
+    }
+
+    .textarea-card p {
+      margin: 0;
+      color: #344054;
+      font-size: 14px;
+    }
+
+    .commitment-flow {
+      display: grid;
+      grid-template-columns: repeat(8, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .stage {
+      border: 1px solid var(--border);
+      background: #f8fafc;
+      border-radius: 12px;
+      padding: 10px 8px;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 750;
+      color: var(--muted);
+      position: relative;
+      min-height: 56px;
+      display: grid;
+      place-items: center;
+    }
+
+    .stage.complete {
+      background: var(--green-bg);
+      color: var(--green);
+      border-color: #c9ebd8;
+    }
+
+    .stage.current {
+      background: var(--yellow-bg);
+      color: var(--yellow);
+      border-color: #ffdf7a;
+      box-shadow: inset 0 -3px 0 var(--yellow);
+    }
+
+    .stage.risk {
+      background: var(--red-bg);
+      color: var(--red);
+      border-color: #ffc9c3;
+      box-shadow: inset 0 -3px 0 var(--red);
+    }
+
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 34px minmax(0, 1fr);
+      gap: 10px;
+    }
+
+    .timeline-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      background: var(--brand-soft);
+      color: var(--brand);
+      font-size: 13px;
+      font-weight: 850;
+      margin-top: 2px;
+    }
+
+    .timeline-dot.red { background: var(--red-bg); color: var(--red); }
+    .timeline-dot.yellow { background: var(--yellow-bg); color: var(--yellow); }
+    .timeline-dot.green { background: var(--green-bg); color: var(--green); }
+    .timeline-dot.purple { background: var(--purple-bg); color: var(--purple); }
+
+    .timeline-content {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+      background: var(--surface-soft);
+    }
+
+    .timeline-content strong {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 3px;
+    }
+
+    .timeline-content span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    .table th,
+    .table td {
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      padding: 12px 8px;
+      vertical-align: top;
+    }
+
+    .table th {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      background: #fbfcfe;
+    }
+
+    .table tr:last-child td { border-bottom: none; }
+
+    .record-name {
+      font-weight: 850;
+      display: block;
+      color: var(--text);
+    }
+
+    .record-meta {
+      color: var(--muted);
+      font-size: 12px;
+      display: block;
+      margin-top: 3px;
+    }
+
+    .mini-card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .mini-card {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px;
+      background: #ffffff;
+    }
+
+    .mini-card strong {
+      display: block;
+      font-size: 20px;
+      letter-spacing: -0.04em;
+    }
+
+    .mini-card span {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 650;
+    }
+
+    .right-rail .section-body { padding: 16px; }
+
+    .impact-panel {
+      display: grid;
+      gap: 12px;
+    }
+
+    .impact-score {
+      background: linear-gradient(135deg, #fff9f7, #ffffff);
+      border: 1px solid #ffd7bd;
+      border-radius: 16px;
+      padding: 16px;
+    }
+
+    .score-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .score-number {
+      font-size: 38px;
+      font-weight: 900;
+      letter-spacing: -0.06em;
+      color: var(--orange);
+    }
+
+    .score-label {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 750;
+    }
+
+    .progress-bar {
+      height: 10px;
+      border-radius: 999px;
+      background: #e4e7ec;
+      overflow: hidden;
+      margin-top: 12px;
+    }
+
+    .progress-fill {
+      width: 72%;
+      height: 100%;
+      background: linear-gradient(90deg, #f97316, #facc15);
+      border-radius: inherit;
+    }
+
+    .signal-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .signal-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--surface-soft);
+      font-size: 13px;
+    }
+
+    .signal-item strong {
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .signal-item span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .next-action {
+      border: 1px solid #c8d7ff;
+      background: var(--brand-soft);
+      border-radius: 16px;
+      padding: 14px;
+    }
+
+    .next-action strong {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--brand);
+    }
+
+    .next-action p {
+      margin: 0 0 12px;
+      color: #344054;
+      font-size: 13px;
+    }
+
+    .mini-btn {
+      display: inline-flex;
+      background: var(--brand);
+      color: white;
+      border-radius: 9px;
+      padding: 8px 10px;
+      font-size: 12px;
+      font-weight: 850;
+    }
+
+    .pill-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .source-card {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px;
+      background: var(--surface-soft);
+      display: grid;
+      gap: 10px;
+    }
+
+    .source-card .source-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .source-card strong { font-size: 14px; }
+    .source-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .footer-note {
+      color: var(--muted);
+      font-size: 12px;
+      text-align: center;
+      margin-top: 28px;
+    }
+
+    @media (max-width: 1180px) {
+      .hero-metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .page-grid { grid-template-columns: 1fr; }
+      .right-rail {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+      }
+      .right-rail .section { margin-bottom: 0; }
+    }
+
+    @media (max-width: 860px) {
+      .app-shell { grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+      .main { padding: 20px; }
+      .topbar, .hero-top { flex-direction: column; align-items: stretch; }
+      .hero-actions { justify-content: flex-start; }
+      .search-box { min-width: 0; }
+      .hero-metrics, .field-grid, .field-grid.three, .right-rail, .mini-card-grid { grid-template-columns: 1fr; }
+      .commitment-flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+  </style>
+<link rel="icon" href="/wp-content/uploads/2025/11/cropped-0_3-25456-no-background.png">
+<script src="/assets/site.js" defer></script>
+</head>
+<body>
+<div class="wp-site-blocks">
+<atw-header></atw-header>
+<div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">CD</div>
+        <div class="brand-copy">
+          <strong>Customer Delivery CRM</strong>
+          <span>SaaS account operations</span>
+        </div>
+      </div>
+
+      <div class="nav-group">
+        <p class="nav-label">Workspace</p>
+        <div class="nav-item">◎ Dashboard</div>
+        <div class="nav-item">◉ Accounts</div>
+        <div class="nav-item">◇ Contacts</div>
+        <div class="nav-item">△ Handoffs</div>
+        <div class="nav-item">▣ Implementations</div>
+      </div>
+
+      <div class="nav-group">
+        <p class="nav-label">Customer Operations</p>
+        <div class="nav-item active">◆ Commitments</div>
+        <div class="nav-item">⚠ Risks &#038; Blockers</div>
+        <div class="nav-item">☑ Tasks</div>
+        <div class="nav-item">☷ Support Impact</div>
+        <div class="nav-item">↻ Renewals</div>
+        <div class="nav-item">⬡ Health</div>
+      </div>
+
+      <div class="nav-group">
+        <p class="nav-label">Admin</p>
+        <div class="nav-item">⚙ Settings</div>
+        <div class="nav-item">⇄ Integrations</div>
+        <div class="nav-item">▤ Audit Log</div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="topbar">
+        <div>
+          <div class="breadcrumb">Commitments / Open Commitments / COM-000245</div>
+        </div>
+        <div class="search-box">⌕ Search accounts, commitments, projects, tickets, owners&#8230;</div>
+      </div>
+
+      <section class="commitment-hero">
+        <div class="hero-top">
+          <div class="record-identity">
+            <div class="record-tile">COM</div>
+            <div>
+              <h1>Deliver API Root Cause Analysis and Fix ETA</h1>
+              <div class="record-subtitle">COM-000245 · Northstar Analytics · Linked to Implementation Project IMP-000118</div>
+              <div class="badge-row">
+                <span class="badge orange">● Status: At Risk</span>
+                <span class="badge red">Risk if Missed: High</span>
+                <span class="badge blue">Direction: Vendor to Customer</span>
+                <span class="badge purple">Source: Support-Impact Item</span>
+                <span class="badge yellow">Renewal Impact: Medium</span>
+                <span class="badge gray">Verification Required</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-actions">
+            <button class="btn">Add Update</button>
+            <button class="btn">Add Evidence</button>
+            <button class="btn danger">Escalate</button>
+            <button class="btn primary">Mark Fulfilled</button>
+          </div>
+        </div>
+
+        <div class="hero-metrics">
+          <div class="metric-card">
+            <div class="metric-label">Current Due Date</div>
+            <div class="metric-value" style="color: var(--red);">Apr 27</div>
+            <div class="metric-note">2 days overdue</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">Internal Owner</div>
+            <div class="metric-value">Samir Patel</div>
+            <div class="metric-note">Support Engineering Lead</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">Customer Owner</div>
+            <div class="metric-value">Marcus Lee</div>
+            <div class="metric-note">Technical Owner</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">Evidence</div>
+            <div class="metric-value">2</div>
+            <div class="metric-note">RCA draft + ticket reference</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">Status Age</div>
+            <div class="metric-value">4 days</div>
+            <div class="metric-note">At Risk since Apr 25</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">Account Impact</div>
+            <div class="metric-value" style="color: var(--orange);">Medium</div>
+            <div class="metric-note">Renewal in 74 days</div>
+          </div>
+        </div>
+      </section>
+
+      <div class="page-grid">
+        <div class="content-column">
+          <section class="section">
+            <div class="section-header">
+              <div>
+                <h2 class="section-title">Commitment Lifecycle</h2>
+                <p class="section-subtitle">Workflow-controlled accountability state for the customer obligation.</p>
+              </div>
+              <span class="badge orange">Current: At Risk</span>
+            </div>
+            <div class="section-body">
+              <div class="commitment-flow">
+                <div class="stage complete">Draft</div>
+                <div class="stage complete">Open</div>
+                <div class="stage complete">In Progress</div>
+                <div class="stage current">At Risk</div>
+                <div class="stage">Blocked</div>
+                <div class="stage">Escalated</div>
+                <div class="stage">Fulfilled</div>
+                <div class="stage">Verified / Closed</div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section-header">
+              <div>
+                <h2 class="section-title">Commitment Overview</h2>
+                <p class="section-subtitle">The durable record of what was promised, who owns it, and why it matters.</p>
+              </div>
+              <button class="btn">Edit Commitment</button>
+            </div>
+            <div class="section-body">
+              <div class="textarea-card">
+                <label>Commitment Description</label>
+                <p>Provide Northstar Analytics with a written root cause analysis for the API sync timeout incident, a customer-facing remediation summary, and a confirmed ETA for the permanent fix.</p>
+              </div>
+              <div class="textarea-card">
+                <label>Verification Criteria</label>
+                <p>Customer technical owner receives RCA document, confirms workaround is acceptable, and accepts the fix ETA before the executive renewal check-in.</p>
+              </div>
+              <div class="field-grid three">
+                <div class="field">
+                  <label>Commitment Type</label>
+                  <div class="value">Support</div>
+                  <div class="helper">RCA and fix ETA</div>
+                </div>
+                <div class="field">
+                  <label>Commitment Category</label>
+                  <div class="value">Customer Confidence</div>
+                  <div class="helper">Impacts renewal narrative</div>
+                </div>
+                <div class="field">
+                  <label>Expectation Level</label>
+                  <div class="value">Critical</div>
+                  <div class="helper">Executive sponsor aware</div>
+                </div>
+                <div class="field">
+                  <label>Priority</label>
+                  <div class="value">High</div>
+                </div>
+                <div class="field">
+                  <label>Customer Visible</label>
+                  <div class="value">Yes</div>
+                </div>
+                <div class="field">
+                  <label>Private Internal Notes</label>
+                  <div class="value">Restricted</div>
+                  <div class="helper">Requires private-note permission</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section-header">
+              <div>
+                <h2 class="section-title">Ownership, Dates, and Accountability</h2>
+                <p class="section-subtitle">Commitments require owners, due dates, status aging, and verification responsibility.</p>
+              </div>
+              <span class="badge red">Overdue</span>
+            </div>
+            <div class="section-body">
+              <div class="field-grid three">
+                <div class="field">
+                  <label>Internal Owner</label>
+                  <div class="value">Samir Patel</div>
+                  <div class="helper">Support Engineering Lead</div>
+                </div>
+                <div class="field">
+                  <label>Owning Team</label>
+                  <div class="value">Support Engineering</div>
+                </div>
+                <div class="field">
+                  <label>Verifier</label>
+                  <div class="value">Daniel Brooks</div>
+                  <div class="helper">Customer Success Manager</div>
+                </div>
+                <div class="field">
+                  <label>Customer Owner</label>
+                  <div class="value">Marcus Lee</div>
+                  <div class="helper">Technical Owner</div>
+                </div>
+                <div class="field">
+                  <label>Original Due Date</label>
+                  <div class="value">Apr 24, 2026</div>
+                </div>
+                <div class="field">
+                  <label>Current Due Date</label>
+                  <div class="value">Apr 27, 2026</div>
+                  <div class="helper">Moved once with reason</div>
+                </div>
+                <div class="field">
+                  <label>Created Date</label>
+                  <div class="value">Apr 21, 2026</div>
+                </div>
+                <div class="field">
+                  <label>Last Update</label>
+                  <div class="value">Apr 28, 2026</div>
+                </div>
+                <div class="field">
+                  <label>Status Age</label>
+                  <div class="value">4 days</div>
+                  <div class="helper">At Risk</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section-header">
+              <div>
+                <h2 class="section-title">Source Lineage</h2>
+                <p class="section-subtitle">Shows exactly where the commitment came from and what records it affects.</p>
+              </div>
+              <span class="badge purple">Support-Originated</span>
+            </div>
+            <div class="section-body">
+              <div class="source-card">
+                <div class="source-top">
+                  <strong>Originating Support-Impact Item: SUP-004912</strong>
+                  <span class="badge red">Critical Escalation</span>
+                </div>
+                <p>API sync timeout is affecting customer reporting confidence during renewal preparation. Commitment was created from the support-impact record during the Apr 21 escalation review.</p>
+                <div class="pill-stack">
+                  <span class="badge gray">Account: Northstar Analytics</span>
+                  <span class="badge gray">Project: IMP-000118</span>
+                  <span class="badge gray">Milestone: Hypercare Complete</span>
+                  <span class="badge gray">Renewal: RNW-000076</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section-header">
+              <div>
+                <h2 class="section-title">Commitment Updates</h2>
+                <p class="section-subtitle">Structured history of progress, blockers, revised dates, and next actions.</p>
+              </div>
+              <button class="btn">Add Update</button>
+            </div>
+            <div class="section-body">
+              <div class="timeline">
+                <div class="timeline-item">
+                  <div class="timeline-dot red">!</div>
+                  <div class="timeline-content">
+                    <strong>Status changed to At Risk</strong>
+                    <span>Samir Patel · Apr 25, 2026 · RCA draft complete, but permanent fix ETA still awaiting engineering validation.</span>
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-dot yellow">↻</div>
+                  <div class="timeline-content">
+                    <strong>Due date revised with reason</strong>
+                    <span>Daniel Brooks · Apr 24, 2026 · Moved from Apr 24 to Apr 27 because engineering needed additional API logs from production telemetry.</span>
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-dot purple">◆</div>
+                  <div class="timeline-content">
+                    <strong>Commitment created from support escalation</strong>
+                    <span>Support Ops · Apr 21, 2026 · Created during customer-impact review and published to account timeline.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section-header">
+              <div>
+                <h2 class="section-title">Evidence and Verification</h2>
+                <p class="section-subtitle">Evidence supports the source, fulfillment, verification, cancellation, or escalation history.</p>
+              </div>
+              <button class="btn">Add Evidence</button>
+            </div>
+            <div class="section-body" style="padding: 0;">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Evidence</th>
+                    <th>Purpose</th>
+                    <th>Added By</th>
+                    <th>Visibility</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="record-name">Draft RCA &#8211; API Sync Timeout</span><span class="record-meta">Text note + internal file reference · Apr 26</span></td>
+                    <td><span class="badge blue">Fulfillment</span></td>
+                    <td>Samir Patel</td>
+                    <td><span class="badge gray">Internal</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="record-name">Zendesk Ticket ZD-88214</span><span class="record-meta">Escalation source and customer-impact thread</span></td>
+                    <td><span class="badge purple">Source</span></td>
+                    <td>Support Ops</td>
+                    <td><span class="badge green">Customer-visible</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="record-name">Executive Check-In Agenda</span><span class="record-meta">May 6 renewal confidence meeting</span></td>
+                    <td><span class="badge yellow">Verification</span></td>
+                    <td>Daniel Brooks</td>
+                    <td><span class="badge gray">Internal</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section-header">
+              <div>
+                <h2 class="section-title">Commitment Queue</h2>
+                <p class="section-subtitle">Portfolio view for operational accountability across accounts, projects, and teams.</p>
+              </div>
+              <span class="badge red">3 High-Impact Open</span>
+            </div>
+            <div class="section-body" style="padding: 0;">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Commitment</th>
+                    <th>Account / Source</th>
+                    <th>Owner</th>
+                    <th>Due</th>
+                    <th>Status</th>
+                    <th>Impact</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="record-name">Deliver API RCA and fix ETA</span><span class="record-meta">COM-000245 · Support follow-up</span></td>
+                    <td>Northstar Analytics<br><span class="record-meta">Support-Impact</span></td>
+                    <td>Samir Patel</td>
+                    <td><span style="color: var(--red); font-weight: 800;">Overdue 2d</span></td>
+                    <td><span class="badge orange">At Risk</span></td>
+                    <td><span class="badge red">High</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="record-name">Customer to approve SSO certificate rotation</span><span class="record-meta">COM-000251 · Customer dependency</span></td>
+                    <td>Atlas LegalOps<br><span class="record-meta">Implementation</span></td>
+                    <td>Customer: Priya Shah</td>
+                    <td>May 2</td>
+                    <td><span class="badge yellow">Waiting on Customer</span></td>
+                    <td><span class="badge yellow">Medium</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="record-name">Provide migration validation report</span><span class="record-meta">COM-000238 · Handoff promise</span></td>
+                    <td>Beacon Health<br><span class="record-meta">Project IMP-000112</span></td>
+                    <td>Nina Alvarez</td>
+                    <td>May 4</td>
+                    <td><span class="badge blue">In Progress</span></td>
+                    <td><span class="badge red">Critical</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="record-name">Confirm renewal value narrative</span><span class="record-meta">COM-000256 · Renewal readiness</span></td>
+                    <td>Northstar Analytics<br><span class="record-meta">Renewal RNW-000076</span></td>
+                    <td>Daniel Brooks</td>
+                    <td>May 6</td>
+                    <td><span class="badge blue">Open</span></td>
+                    <td><span class="badge yellow">Medium</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+
+        <aside class="right-rail">
+          <section class="section">
+            <div class="section-header">
+              <div>
+                <h2 class="section-title">Impact Snapshot</h2>
+                <p class="section-subtitle">Transparent risk signals generated by the commitment.</p>
+              </div>
+            </div>
+            <div class="section-body">
+              <div class="impact-panel">
+                <div class="impact-score">
+                  <div class="score-row">
+                    <div>
+                      <div class="score-label">Commitment Risk Indicator</div>
+                      <div class="score-number">72</div>
+                    </div>
+                    <span class="badge orange">Elevated</span>
+                  </div>
+                  <div class="progress-bar"><div class="progress-fill"></div></div>
+                </div>
+                <div class="signal-list">
+                  <div class="signal-item">
+                    <div>
+                      <strong>Delivery Health Impact</strong>
+                      <span>Hypercare transition confidence is affected</span>
+                    </div>
+                    <span class="badge yellow">Medium</span>
+                  </div>
+                  <div class="signal-item">
+                    <div>
+                      <strong>Account Health Impact</strong>
+                      <span>Customer confidence risk before exec check-in</span>
+                    </div>
+                    <span class="badge yellow">Medium</span>
+                  </div>
+                  <div class="signal-item">
+                    <div>
+                      <strong>Renewal Impact</strong>
+                      <span>Open issue must be explained before renewal review</span>
+                    </div>
+                    <span class="badge yellow">Medium</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section-header">
+              <div>
+                <h2 class="section-title">Next Best Action</h2>
+                <p class="section-subtitle">Recommended operational action for the owner.</p>
+              </div>
+            </div>
+            <div class="section-body">
+              <div class="next-action">
+                <strong>Escalate fix ETA confirmation</strong>
+                <p>Request engineering validation by 2:00 PM today and prepare a customer-facing RCA summary for CSM review before the May 6 executive check-in.</p>
+                <span class="mini-btn">Create Escalation Task</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section-header">
+              <div>
+                <h2 class="section-title">Related Records</h2>
+                <p class="section-subtitle">Lineage and roll-up targets anchored to this commitment.</p>
+              </div>
+            </div>
+            <div class="section-body">
+              <div class="mini-card-grid">
+                <div class="mini-card"><strong>NA</strong><span>Account</span></div>
+                <div class="mini-card"><strong>IMP</strong><span>Project</span></div>
+                <div class="mini-card"><strong>SUP</strong><span>Support Impact</span></div>
+                <div class="mini-card"><strong>RNW</strong><span>Renewal</span></div>
+                <div class="mini-card"><strong>3</strong><span>Evidence Items</span></div>
+                <div class="mini-card"><strong>4</strong><span>Watchers</span></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section-header">
+              <div>
+                <h2 class="section-title">Watchers</h2>
+                <p class="section-subtitle">Users notified on status, due date, evidence, and escalation changes.</p>
+              </div>
+            </div>
+            <div class="section-body">
+              <div class="signal-list">
+                <div class="signal-item">
+                  <div>
+                    <strong>Daniel Brooks</strong>
+                    <span>CSM · verifier</span>
+                  </div>
+                  <span class="badge blue">All</span>
+                </div>
+                <div class="signal-item">
+                  <div>
+                    <strong>Priya Nair</strong>
+                    <span>Implementation Owner</span>
+                  </div>
+                  <span class="badge yellow">Due</span>
+                </div>
+                <div class="signal-item">
+                  <div>
+                    <strong>Maya Chen</strong>
+                    <span>Account Owner</span>
+                  </div>
+                  <span class="badge red">Risk</span>
+                </div>
+                <div class="signal-item">
+                  <div>
+                    <strong>Elena Ramirez</strong>
+                    <span>Customer executive sponsor</span>
+                  </div>
+                  <span class="badge gray">No portal</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section-header">
+              <div>
+                <h2 class="section-title">Account Roll-Up</h2>
+                <p class="section-subtitle">How commitments appear in Customer 360 and executive views.</p>
+              </div>
+            </div>
+            <div class="section-body">
+              <div class="mini-card-grid">
+                <div class="mini-card"><strong>8</strong><span>Open commitments</span></div>
+                <div class="mini-card"><strong>2</strong><span>Overdue</span></div>
+                <div class="mini-card"><strong>3</strong><span>Vendor-owned</span></div>
+                <div class="mini-card"><strong>4</strong><span>Customer-owned</span></div>
+                <div class="mini-card"><strong>2</strong><span>High impact</span></div>
+                <div class="mini-card"><strong>1</strong><span>Renewal gap</span></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section-header">
+              <div>
+                <h2 class="section-title">Available Workflow Actions</h2>
+                <p class="section-subtitle">Actions are controlled by status, role, and validation rules.</p>
+              </div>
+            </div>
+            <div class="section-body">
+              <div class="pill-stack">
+                <span class="badge blue">Add Update</span>
+                <span class="badge yellow">Change Due Date</span>
+                <span class="badge orange">Escalate</span>
+                <span class="badge red">Mark Blocked</span>
+                <span class="badge green">Mark Fulfilled</span>
+                <span class="badge purple">Add Evidence</span>
+                <span class="badge gray">Supersede</span>
+              </div>
+            </div>
+          </section>
+        </aside>
+      </div>
+
+      <div class="footer-note">Customer Delivery CRM prototype · Commitment Workflow detail + portfolio queue · Static HTML mockup</div>
+    </main>
+  </div>
+<atw-footer></atw-footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,634 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+
+  <title>Phases of Project Management</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg-deep: #020314;
+      --bg-card: #0b1020;
+      --bg-card-soft: #101630;
+      --accent-mint: #00f5a0;
+      --accent-cyan: #00d9f5;
+      --accent-soft: rgba(0, 245, 160, 0.08);
+      --text-main: #e6f0ff;
+      --text-muted: #9aa3c2;
+      --border-subtle: rgba(255, 255, 255, 0.06);
+      --shadow-soft: 0 22px 45px rgba(0, 0, 0, 0.75);
+      --radius-xl: 1.5rem;
+      --radius-lg: 1rem;
+      --radius-pill: 999px;
+      --transition-fast: 180ms ease-out;
+      --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: var(--font-sans);
+      color: var(--text-main);
+      background:
+        radial-gradient(circle at top, #0c1638 0, transparent 55%),
+        radial-gradient(circle at bottom right, #07101f 0, transparent 55%),
+        radial-gradient(circle at bottom left, #05101a 0, transparent 55%),
+        linear-gradient(145deg, #020307 0%, #020314 60%, #01010a 100%);
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      padding: 3rem 1.5rem;
+    }
+
+    .page-wrapper {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      background: radial-gradient(circle at top left, rgba(0, 245, 160, 0.06), transparent 60%),
+        radial-gradient(circle at top right, rgba(0, 217, 245, 0.08), transparent 60%),
+        linear-gradient(135deg, rgba(8, 14, 36, 0.98), rgba(5, 9, 25, 0.98));
+      border-radius: 2rem;
+      padding: 2.5rem 2.25rem 2.25rem;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(0, 245, 160, 0.1), transparent 55%),
+        radial-gradient(circle at 90% 0%, rgba(0, 217, 245, 0.16), transparent 55%);
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.25rem 0.9rem;
+      border-radius: var(--radius-pill);
+      background: rgba(2, 6, 23, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      color: var(--accent-cyan);
+      font-size: 0.76rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 0.9rem;
+    }
+
+    .eyebrow-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, #ffffff, #00d9f5);
+    }
+
+    h1 {
+      font-size: clamp(2rem, 3vw, 2.6rem);
+      margin: 0 0 0.75rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .hero-highlight {
+      background: linear-gradient(120deg, var(--accent-mint), var(--accent-cyan));
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      max-width: 640px;
+      color: var(--text-muted);
+      font-size: 0.98rem;
+      line-height: 1.6;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .hero-meta span {
+      padding: 0.35rem 0.9rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: rgba(15, 23, 42, 0.8);
+      backdrop-filter: blur(10px);
+    }
+
+    /* Main layout */
+
+    .content-grid {
+      margin-top: 2rem;
+      display: grid;
+      grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.4fr);
+      gap: 1.75rem;
+    }
+
+    @media (max-width: 900px) {
+      body {
+        padding: 2.25rem 1rem;
+      }
+      .hero {
+        padding: 2rem 1.5rem 1.8rem;
+        border-radius: 1.5rem;
+      }
+      .content-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    /* Phase cards */
+
+    .phase-card {
+      background: radial-gradient(circle at top left, rgba(0, 245, 160, 0.08), transparent 60%),
+        radial-gradient(circle at bottom right, rgba(15, 23, 42, 0.95), #050818);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-subtle);
+      padding: 1.6rem 1.55rem;
+      margin-bottom: 1.2rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast);
+    }
+
+    .phase-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(0, 217, 245, 0.16), transparent 60%);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--transition-fast);
+    }
+
+    .phase-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 26px 50px rgba(0, 0, 0, 0.85);
+      border-color: rgba(148, 163, 184, 0.6);
+    }
+
+    .phase-card:hover::after {
+      opacity: 1;
+    }
+
+    .phase-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent-mint);
+      margin-bottom: 0.25rem;
+    }
+
+    .phase-index {
+      width: 1.6rem;
+      height: 1.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      color: var(--accent-cyan);
+      background: radial-gradient(circle at 30% 30%, rgba(248, 250, 252, 0.15), rgba(15, 23, 42, 0.95));
+    }
+
+    .phase-card h2 {
+      font-size: 1.1rem;
+      margin: 0 0 0.35rem;
+    }
+
+    .phase-tagline {
+      font-size: 0.9rem;
+      color: var(--accent-cyan);
+      margin-bottom: 0.6rem;
+    }
+
+    .phase-text {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      margin: 0.4rem 0 0.6rem;
+    }
+
+    .phase-keyline {
+      font-size: 0.86rem;
+      color: var(--text-main);
+      margin-top: 0.35rem;
+    }
+
+    .phase-keyline strong {
+      color: var(--accent-mint);
+      font-weight: 600;
+    }
+
+    /* Timeline strip */
+
+    .timeline {
+      background: linear-gradient(145deg, rgba(15, 23, 42, 0.96), rgba(10, 16, 35, 0.98));
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-subtle);
+      padding: 1.4rem 1.25rem 1.3rem;
+      margin-top: 0.4rem;
+    }
+
+    .timeline-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .timeline-title {
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+    }
+
+    .timeline-chip {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.8rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      color: var(--accent-cyan);
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .timeline-row {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 0.4rem;
+      font-size: 0.76rem;
+    }
+
+    .timeline-step {
+      position: relative;
+      padding: 0.5rem 0.45rem 0.45rem;
+      border-radius: 0.9rem;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      background: radial-gradient(circle at top, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.92));
+      text-align: left;
+      line-height: 1.4;
+    }
+
+    .timeline-step span {
+      display: block;
+    }
+
+    .step-label {
+      font-size: 0.67rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(148, 163, 184, 0.9);
+      margin-bottom: 0.1rem;
+    }
+
+    .step-name {
+      font-size: 0.8rem;
+      color: var(--text-main);
+    }
+
+    .step-focus {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-top: 0.15rem;
+    }
+
+    @media (max-width: 800px) {
+      .timeline-row {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      }
+    }
+
+    /* Sidebar */
+
+    .sidebar-card {
+      background: linear-gradient(155deg, rgba(15, 23, 42, 0.98), rgba(2, 6, 23, 0.98));
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-subtle);
+      padding: 1.5rem 1.4rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .sidebar-title {
+      font-size: 0.96rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.6rem;
+    }
+
+    .sidebar-heading {
+      font-size: 1.05rem;
+      margin: 0 0 0.55rem;
+    }
+
+    .sidebar-text {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 0.85rem;
+    }
+
+    .sidebar-pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .sidebar-pill {
+      font-size: 0.78rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(148, 163, 184, 0.65);
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--accent-mint);
+      white-space: nowrap;
+    }
+
+    .sidebar-note {
+      border-radius: var(--radius-lg);
+      background: radial-gradient(circle at top left, var(--accent-soft), rgba(15, 23, 42, 0.98));
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      padding: 0.9rem 0.9rem;
+      font-size: 0.83rem;
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    .sidebar-note strong {
+      color: var(--accent-cyan);
+      font-weight: 600;
+    }
+
+    a {
+      color: var(--accent-cyan);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+<link rel="icon" href="/wp-content/uploads/2025/11/cropped-0_3-25456-no-background.png">
+<script src="/assets/site.js" defer></script>
+</head>
+<body>
+<div class="wp-site-blocks">
+<atw-header></atw-header>
+<main class="page-wrapper">
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          <span>Project Management Fundamentals</span>
+        </div>
+        <h1>
+          The Five Phases of <span class="hero-highlight">Project Management</span>
+        </h1>
+        <p class="hero-subtitle">
+          Modern projects live at the intersection of strategy, technology, and people.
+          The classic five-phase project lifecycle gives you a shared language and
+          a repeatable structure so work can move from idea to impact without chaos.
+        </p>
+        <div class="hero-meta">
+          <span>Works for any industry or methodology</span>
+          <span>Align teams, expectations, and outcomes</span>
+          <span>Bridge the gap between vision and delivery</span>
+        </div>
+      </div>
+    </section>
+
+
+<div style="text-align:center;">
+  <img decoding="async" 
+    src="/wp-content/uploads/2026/04/Phases-of-project-management-illustration.png" 
+    alt="Project Management Phases"
+    style="width:65%; max-width:1000px; height:auto;"
+  >
+</div>
+
+    <section class="content-grid">
+      <div>
+        <!-- Phase 1 -->
+        <article class="phase-card">
+          <div class="phase-label">
+            <span class="phase-index">01</span>
+            <span>Initiation</span>
+          </div>
+          <h2>Define why the project exists</h2>
+          <p class="phase-tagline">From vague idea to clear business case.</p>
+          <p class="phase-text">
+            Initiation answers the question, “Why are we doing this at all?”
+            You clarify the problem or opportunity, define high-level goals,
+            identify key stakeholders, and confirm whether the work is feasible
+            and worth the investment.
+          </p>
+          <p class="phase-text">
+            Typical outputs include a business case, a high-level scope statement,
+            initial risks and assumptions, and a named sponsor who owns the outcome.
+          </p>
+          <p class="phase-keyline">
+            <strong>Key outcome:</strong> a go / no-go decision backed by
+            a shared understanding of value.
+          </p>
+        </article>
+
+        <!-- Phase 2 -->
+        <article class="phase-card">
+          <div class="phase-label">
+            <span class="phase-index">02</span>
+            <span>Planning</span>
+          </div>
+          <h2>Design how the work will happen</h2>
+          <p class="phase-tagline">Turning intent into a realistic roadmap.</p>
+          <p class="phase-text">
+            Planning translates the vision into a concrete path. You break down
+            deliverables into smaller pieces of work, estimate effort and cost,
+            define timelines, and clarify roles, responsibilities, and decision rights.
+          </p>
+          <p class="phase-text">
+            This phase often produces the project plan, schedule, budget,
+            communication plan, risk register, and success metrics that will
+            guide execution and governance.
+          </p>
+          <p class="phase-keyline">
+            <strong>Key outcome:</strong> a plan that is achievable, visible to
+            stakeholders, and flexible enough to adapt.
+          </p>
+        </article>
+
+        <!-- Phase 3 -->
+        <article class="phase-card">
+          <div class="phase-label">
+            <span class="phase-index">03</span>
+            <span>Execution</span>
+          </div>
+          <h2>Deliver the work with the team</h2>
+          <p class="phase-tagline">Coordinating people, tasks, and decisions.</p>
+          <p class="phase-text">
+            Execution is where the plan becomes reality. The project team performs
+            the work, builds deliverables, and collaborates with stakeholders
+            while the project manager removes roadblocks and keeps everyone aligned.
+          </p>
+          <p class="phase-text">
+            Communication, coordination, and coaching matter as much as tasks
+            and timelines. The best execution blends structure with enough
+            flexibility to respond to new information.
+          </p>
+          <p class="phase-keyline">
+            <strong>Key outcome:</strong> working deliverables that move the
+            project measurably closer to its goals.
+          </p>
+        </article>
+
+        <!-- Phase 4 -->
+        <article class="phase-card">
+          <div class="phase-label">
+            <span class="phase-index">04</span>
+            <span>Monitoring &amp; Controlling</span>
+          </div>
+          <h2>Keep the project on course</h2>
+          <p class="phase-tagline">Measure, adjust, and protect the value.</p>
+          <p class="phase-text">
+            Monitoring and controlling runs alongside execution. You track
+            progress against the plan, compare actuals to forecasts, and use
+            data to decide when to change scope, timing, or resources.
+          </p>
+          <p class="phase-text">
+            This is where risk management, issue management, and change control
+            live. Instead of surprises at the end, you surface variances early
+            and fix them while they are still small.
+          </p>
+          <p class="phase-keyline">
+            <strong>Key outcome:</strong> a project that stays aligned with
+            objectives even as reality shifts.
+          </p>
+        </article>
+
+        <!-- Phase 5 -->
+        <article class="phase-card">
+          <div class="phase-label">
+            <span class="phase-index">05</span>
+            <span>Closing</span>
+          </div>
+          <h2>Finish well and capture the learning</h2>
+          <p class="phase-tagline">Formal handoff and honest reflection.</p>
+          <p class="phase-text">
+            Closing is more than “the work is done.” You verify that all
+            deliverables meet acceptance criteria, obtain formal sign-off,
+            and ensure that operations or support teams are ready to own
+            the solution going forward.
+          </p>
+          <p class="phase-text">
+            You also review what worked, what did not, and why. Lessons learned,
+            documentation, and updated standards turn one project’s experience
+            into reusable knowledge for the next.
+          </p>
+          <p class="phase-keyline">
+            <strong>Key outcome:</strong> a clean finish, documented value,
+            and insights you can apply to future projects.
+          </p>
+        </article>
+
+        <!-- Compact visual timeline -->
+        <section class="timeline">
+          <div class="timeline-header">
+            <div class="timeline-title">The lifecycle at a glance</div>
+            <div class="timeline-chip">Idea → Delivery → Learning</div>
+          </div>
+          <div class="timeline-row">
+            <div class="timeline-step">
+              <span class="step-label">01</span>
+              <span class="step-name">Initiation</span>
+              <span class="step-focus">Why this project, why now?</span>
+            </div>
+            <div class="timeline-step">
+              <span class="step-label">02</span>
+              <span class="step-name">Planning</span>
+              <span class="step-focus">What we will do and how.</span>
+            </div>
+            <div class="timeline-step">
+              <span class="step-label">03</span>
+              <span class="step-name">Execution</span>
+              <span class="step-focus">Doing the work with the team.</span>
+            </div>
+            <div class="timeline-step">
+              <span class="step-label">04</span>
+              <span class="step-name">Monitor &amp; Control</span>
+              <span class="step-focus">Staying on scope, time, and value.</span>
+            </div>
+            <div class="timeline-step">
+              <span class="step-label">05</span>
+              <span class="step-name">Closing</span>
+              <span class="step-focus">Handoff and lessons learned.</span>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="sidebar-card">
+        <div class="sidebar-title">Using the phases</div>
+        <h3 class="sidebar-heading">Make the lifecycle work for you</h3>
+        <p class="sidebar-text">
+          Frameworks like waterfall, agile, or hybrid all move through these
+          same ideas, even if they use different labels. The five phases give
+          you a way to talk about where you are, what comes next, and what
+          “done” looks like at each step.
+        </p>
+        <p class="sidebar-text">
+          In practice, phases often overlap. You may refine plans during
+          execution or perform mini-closures at the end of each iteration.
+          The goal is not rigid steps, but clarity and intentionality.
+        </p>
+
+        <div class="sidebar-pill-list">
+          <span class="sidebar-pill">Clarify scope</span>
+          <span class="sidebar-pill">Align stakeholders</span>
+          <span class="sidebar-pill">Reduce risk</span>
+          <span class="sidebar-pill">Protect budget</span>
+          <span class="sidebar-pill">Deliver value</span>
+        </div>
+
+        <div class="sidebar-note">
+          <strong>Practical tip:</strong> when a project feels chaotic, ask
+          “Which phase are we actually in?” and “What have we not completed
+          from the earlier phases?” Often, the fix is not more effort, but
+          returning to clarify purpose, scope, or success criteria.
+        </div>
+      </aside>
+    </section>
+  </main>
+<atw-footer></atw-footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ISO vs SOC 2 – All These Worlds</title>
+<link rel="stylesheet" href="/assets/base.css">
+<link rel="icon" href="/wp-content/uploads/2025/11/cropped-0_3-25456-no-background.png">
+<script src="/assets/site.js" defer></script>
+</head>
+<body>
+<atw-header></atw-header>
+<main class="atw-content wide">
+<!-- Stargazer Consulting | WordPress-ready HTML page -->
+<script>
+  const isMobile = (
+    window.matchMedia("(max-width: 768px)").matches &&
+    ('ontouchstart' in window || navigator.maxTouchPoints > 0)
+  );
+</script>
+<div class="stargazer-page">
+  <style>
+    .stargazer-page{
+      --bg0:#070A12;
+      --bg1:#0B1220;
+      --card:#0F1B2D;
+      --text:#EAF0FF;
+      --muted:rgba(234,240,255,.78);
+      --soft:rgba(234,240,255,.12);
+      --line:rgba(234,240,255,.18);
+      --accent:#7C5CFF;
+      --accent2:#29D3FF;
+      --warn:#FFCF5A;
+      --ok:#35E6A5;
+      --shadow: 0 14px 38px rgba(0,0,0,.38);
+      color:var(--text);
+      background: radial-gradient(1100px 700px at 15% 0%, rgba(124,92,255,.18), transparent 55%),
+                  radial-gradient(900px 600px at 85% 20%, rgba(41,211,255,.14), transparent 50%),
+                  linear-gradient(180deg, var(--bg0), var(--bg1));
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding: clamp(18px, 2.6vw, 34px);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Helvetica Neue", sans-serif;
+      box-shadow: var(--shadow);
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .sg-header{
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 22px;
+    }
+    .sg-kicker{
+      display:inline-block;
+      padding: 6px 10px;
+      border:1px solid var(--soft);
+      border-radius: 999px;
+      background: rgba(234,240,255,.06);
+      color: var(--muted);
+      font-size: 12.5px;
+      letter-spacing:.2px;
+    }
+    .sg-title{
+      margin: 12px 0 8px;
+      line-height:1.1;
+      font-size: clamp(30px, 3.2vw, 44px);
+      letter-spacing: -0.6px;
+    }
+    .sg-subtitle{
+      margin: 0;
+      color: var(--muted);
+      max-width: 70ch;
+      font-size: 16.5px;
+      line-height:1.55;
+    }
+    .sg-grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
+      align-items: start;
+    }
+    @media (max-width: 920px){
+      .sg-grid{ grid-template-columns: 1fr; }
+    }
+    .sg-card{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px;
+    }
+    .sg-card h2, .sg-card h3{
+      margin: 0 0 10px;
+      letter-spacing: -0.3px;
+    }
+    .sg-card h2{ font-size: 20px; }
+    .sg-card h3{ font-size: 16px; color: var(--text); }
+    .sg-card p{
+      margin: 0 0 12px;
+      color: var(--muted);
+      line-height: 1.62;
+      font-size: 15.5px;
+    }
+    .sg-card p:last-child{ margin-bottom:0; }
+    .sg-highlight{
+      border-left: 3px solid var(--accent2);
+      padding: 10px 12px;
+      background: rgba(41,211,255,.06);
+      border-radius: 12px;
+      margin-top: 12px;
+    }
+    .sg-callout{
+      display:flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 14px 14px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(124,92,255,.07);
+    }
+    .sg-dot{
+      width: 10px; height: 10px;
+      border-radius: 999px;
+      margin-top: 6px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 0 4px rgba(124,92,255,.12);
+      flex: 0 0 auto;
+    }
+    .sg-cta{
+      margin-top: 14px;
+      display:flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items:center;
+    }
+    .sg-btn{
+      display:inline-block;
+      text-decoration:none;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      color: var(--text);
+      background: rgba(234,240,255,.07);
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      font-weight: 600;
+      letter-spacing: .2px;
+      font-size: 14px;
+    }
+    .sg-btn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(234,240,255,.35);
+      background: rgba(234,240,255,.10);
+    }
+    .sg-btn.primary{
+      background: linear-gradient(135deg, rgba(124,92,255,.95), rgba(41,211,255,.92));
+      border: 0;
+      color: #08101C;
+    }
+    .sg-mini{
+      font-size: 12.5px;
+      color: var(--muted);
+    }
+    .sg-tag{
+      display:inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border:1px solid var(--soft);
+      background: rgba(234,240,255,.06);
+      color: var(--muted);
+      font-size: 12.5px;
+      margin-right: 6px;
+      margin-top: 8px;
+    }
+    .sg-divider{
+      height: 1px;
+      background: var(--line);
+      margin: 16px 0;
+    }
+    .sg-table{
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      overflow:hidden;
+      border:1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255,255,255,.03);
+    }
+    .sg-table th, .sg-table td{
+      text-align:left;
+      vertical-align: top;
+      padding: 12px 12px;
+      border-bottom:1px solid var(--line);
+      color: var(--muted);
+      font-size: 14.5px;
+      line-height:1.5;
+    }
+    .sg-table th{
+      color: var(--text);
+      font-size: 13px;
+      letter-spacing:.25px;
+      text-transform: uppercase;
+      background: rgba(255,255,255,.04);
+    }
+    .sg-table tr:last-child td{ border-bottom:0; }
+    .sg-badge{
+      display:inline-block;
+      padding: 4px 9px;
+      border-radius: 999px;
+      font-size: 12.5px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      color: var(--text);
+      white-space: nowrap;
+    }
+    .sg-badge.ok{ border-color: rgba(53,230,165,.35); background: rgba(53,230,165,.08); }
+    .sg-badge.warn{ border-color: rgba(255,207,90,.35); background: rgba(255,207,90,.08); }
+  </style>
+
+  <header class="sg-header">
+    <span class="sg-kicker">Stargazer Consulting • Compliance clarity for growing organizations</span>
+    <h1 class="sg-title">ISO 27001 vs SOC 2: Which One Do I Need?</h1>
+    <p class="sg-subtitle">
+      Both ISO 27001 and SOC 2 can demonstrate security maturity, but they solve different business problems.
+      The right choice depends less on “what’s better” and more on who needs assurance, what they expect to see,
+      and how you want to scale compliance over time.
+    </p>
+  </header>
+
+  <div class="sg-grid">
+    <main class="sg-card">
+      <h2>The practical difference</h2>
+      <p>
+        Think of <strong>ISO 27001</strong> as an independently certified full information security management system (ISMS): a structured,
+        auditable program for managing risk, improving controls, and continuously operating security as a business capability.
+        Think of <strong>SOC 2</strong> as an assurance report focused on how your controls perform against specific
+        Trust Services Criteria (most commonly Security, often with Availability, Confidentiality, and others).
+      </p>
+
+      <div class="sg-highlight">
+        <p>
+          If you want a durable compliance backbone that can support multiple frameworks, ISO 27001 tends to be the better long-game.
+          If you need a fast, customer-recognized assurance artifact in North American SaaS procurement cycles, SOC 2 is often the shortest path.
+        </p>
+      </div>
+
+      <div class="sg-divider"></div>
+
+      <h2>When ISO 27001 is usually the right move</h2>
+      <p>
+        ISO 27001 is typically the right choice when you want a globally recognized certification, you need to build a repeatable security program,
+        or you expect to layer additional requirements later (privacy, vendor risk, sector-specific controls). It is also a strong fit when leadership
+        wants security to be governed like operations: defined roles, measured objectives, internal audits, management reviews, and continuous improvement.
+      </p>
+      <span class="sg-tag">Best for: long-term governance</span>
+      <span class="sg-tag">Global recognition</span>
+      <span class="sg-tag">Scales across frameworks</span>
+
+      <div class="sg-divider"></div>
+
+      <h2>When SOC 2 is usually the right move</h2>
+      <p>
+        SOC 2 is typically the right choice when your buyers, partners, or enterprise prospects explicitly request a SOC 2 report, or when your company’s
+        commercial motion is heavily US-centric and driven by security questionnaires. SOC 2 is also common when you want an assurance deliverable that
+        maps cleanly into vendor risk workflows and can be produced as Type I (design) and later Type II (operating effectiveness).
+      </p>
+      <span class="sg-tag">Best for: US enterprise procurement</span>
+      <span class="sg-tag">Vendor due diligence</span>
+      <span class="sg-tag">SaaS credibility signal</span>
+
+      <div class="sg-divider"></div>
+
+      <h2>Decision matrix: choose based on what your customers will actually accept</h2>
+      <table class="sg-table" role="table" aria-label="ISO 27001 vs SOC 2 decision matrix">
+        <thead>
+          <tr>
+            <th>Situation</th>
+            <th>Best default</th>
+            <th>Why this tends to work</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Your enterprise prospects are explicitly asking for a SOC 2 report</td>
+            <td><span class="sg-badge warn">SOC 2 first</span></td>
+            <td>It directly satisfies a common procurement checkbox without needing extra translation.</td>
+          </tr>
+          <tr>
+            <td>You need a globally understood security credential across regions and industries</td>
+            <td><span class="sg-badge ok">ISO 27001</span></td>
+            <td>ISO certification is widely recognized and positions security as an operating system, not a one-off report.</td>
+          </tr>
+          <tr>
+            <td>You want a compliance foundation that can expand into multiple frameworks over time</td>
+            <td><span class="sg-badge ok">ISO 27001</span></td>
+            <td>An ISMS can become the governance layer that makes additional attestations cheaper and faster later.</td>
+          </tr>
+          <tr>
+            <td>You’re a SaaS vendor selling mostly in North America and facing heavy vendor questionnaires</td>
+            <td><span class="sg-badge warn">SOC 2 first</span></td>
+            <td>SOC 2 often reduces friction in security reviews because customers know how to interpret it.</td>
+          </tr>
+          <tr>
+            <td>You want the “best of both worlds” without doing double work</td>
+            <td><span class="sg-badge ok">ISO-led, SOC-mapped</span></td>
+            <td>Build an ISO-style program and map controls to SOC 2 criteria so the second effort becomes incremental.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="sg-divider"></div>
+
+      <h2>The path I recommend for most growing companies</h2>
+      <p>
+        If you are building a serious, durable security program, I generally favor an ISO 27001-aligned operating model—even if you pursue SOC 2 first for commercial reasons.
+        The reason is simple: many organizations can produce a SOC 2 report, but fewer build a security management system that keeps working as the company scales.
+        The highest-leverage approach is to implement governance, risk management, and control operations in a way that makes future audits easier, not harder.
+      </p>
+      <p>
+        In practice, this often looks like choosing the framework that your buyers demand today, while architecting the program so that your next assurance milestone
+        is a straightforward mapping exercise instead of a rebuild.
+      </p>
+
+      <div class="sg-callout">
+        <div class="sg-dot" aria-hidden="true"></div>
+        <div>
+          
+        </div>
+      </div>
+    </main>
+
+    <aside class="sg-card">
+      <h2>Quick guidance</h2>
+      <p>
+        If your immediate goal is to close deals with mid-market or enterprise buyers in the US, SOC 2 is often the shortest route to reduce friction.
+        If your goal is to build a long-lived security operating system that stands up to growth, acquisitions, international expansion, and multiple compliance demands, ISO 27001 is the stronger foundation.
+      </p>
+
+      <div class="sg-divider"></div>
+
+      <h2>Common misconceptions</h2>
+      <p>
+        A frequent mistake is treating these as mutually exclusive. They are not. The real question is sequencing and design: whether you are building controls in a way
+        that can be evidenced repeatedly without heroics, and whether your governance model is mature enough to keep controls operating when priorities shift.
+      </p>
+
+      <div class="sg-divider"></div>
+
+      <h2>What “done” looks like</h2>
+      <p>
+        A credible outcome is not just passing an audit. It is having security controls that are easy to evidence, consistently followed, and owned by the business—so
+        the next customer security review is a routine process, not an emergency.
+      </p>
+
+      <div class="sg-cta">
+        <a class="sg-btn primary" href="/contact/">Book a readiness call</a>
+        <a class="sg-btn" href="/iso-270012022/">Explore ISO 27001 help</a>
+        <a class="sg-btn" href="/vciso/">Virtual CISO services</a>
+      </div>
+
+     
+    </aside>
+  </div>
+
+  <footer style="margin-top:20px; padding-top:14px; border-top:1px solid var(--line);">
+    <p class="sg-mini" style="margin:0;">
+      Disclaimer: This page provides general information and is not legal advice. Requirements and buyer expectations vary by industry, data types, and contract terms.
+    </p>
+  </footer>
+</div>
+</main>
+<atw-footer></atw-footer>
+</body>
+</html>

@@ -1,0 +1,589 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>Introduction to Spaceflight: Core Concepts &#038; Formulas (Orbits, Δv, Rockets, Attitude)</title>
+  <meta name="description" content="Introduction to Spaceflight reference: orbital mechanics, two-body motion, Keplerian elements, transfers and maneuvers, rocket propulsion (Isp, thrust, rocket equation), attitude dynamics, and reentry fundamentals—plus authoritative NASA/ESA references." />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <meta name="theme-color" content="#0b1220" />
+
+  <!-- Canonical: set to your real published URL -->
+  <link rel="canonical" href="/spaceflight/" />
+
+  <!-- Basic discovery -->
+  <meta name="author" content="All These Worlds Are Yours" />
+  <meta name="keywords" content="Introduction to Spaceflight, orbital mechanics, astrodynamics, vis-viva equation, Hohmann transfer, delta-v, rocket equation, specific impulse, thrust equation, Kepler laws, orbital elements, attitude dynamics, reentry heating" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Introduction to Spaceflight: Core Concepts &#038; Formulas" />
+  <meta property="og:description" content="Orbits, maneuvers, Δv, rockets, attitude dynamics, and reentry—organized for study with authoritative NASA/ESA links." />
+  <meta property="og:url" content="/spaceflight/" />
+  <meta property="og:image" content="https://example.com/assets/intro-to-spaceflight-cover.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Introduction to Spaceflight: Core Concepts &#038; Formulas" />
+  <meta name="twitter:description" content="University-level spaceflight fundamentals: key equations, definitions, and trusted reference links." />
+  <meta name="twitter:image" content="https://example.com/assets/intro-to-spaceflight-cover.png" />
+
+  <!-- Optional: if you host a sitemap -->
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+
+  <!-- Structured data: Article + FAQPage (helps indexing for “what is Δv”, etc.) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Introduction to Spaceflight: Core Concepts & Formulas",
+    "description": "A structured reference of core concepts and formulas commonly taught in an Introduction to Spaceflight university course (orbits, maneuvers, rocket propulsion, attitude dynamics, and reentry).",
+    "author": { "@type": "Person", "name": "Your Name" },
+    "publisher": { "@type": "Organization", "name": "Your Organization" },
+    "datePublished": "2026-02-26",
+    "dateModified": "2026-02-26",
+    "mainEntityOfPage": "https://example.com/introduction-to-spaceflight-core-concepts-formulas",
+    "about": [
+      { "@type": "Thing", "name": "Astrodynamics" },
+      { "@type": "Thing", "name": "Rocket propulsion" },
+      { "@type": "Thing", "name": "Spacecraft attitude control" }
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is Δv in spaceflight?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Δv (delta-v) is the change in velocity a spacecraft can produce via propulsion, and it is the primary ‘currency’ used to budget maneuvers like launches, transfers, plane changes, rendezvous, and landing."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the rocket equation?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The Tsiolkovsky rocket equation relates achievable Δv to effective exhaust velocity (or Isp) and the ratio of initial-to-final mass: Δv = ve ln(m0/mf)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the vis-viva equation used for?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Vis-viva gives orbital speed at a position r on a conic orbit: v^2 = μ(2/r − 1/a). It’s used to compute speeds and Δv for transfers in the two-body approximation."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root{
+      --bg:#0b1220;
+      --card:#101a33;
+      --text:#e8eefc;
+      --muted:#b9c5ea;
+      --accent:#7aa2ff;
+      --border:rgba(255,255,255,.10);
+      --code:#0a1020;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(1200px 700px at 20% 0%, rgba(122,162,255,.25), transparent 55%),
+                  radial-gradient(900px 600px at 90% 10%, rgba(240,180,90,.10), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.55;
+    }
+    a{color:var(--accent); text-decoration:none}
+    a:hover{text-decoration:underline}
+    header{
+      padding: 56px 20px 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .badge{
+      display:inline-block;
+      padding:6px 10px;
+      border:1px solid var(--border);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 13px;
+      background: rgba(255,255,255,.04);
+    }
+    h1{
+      margin: 14px 0 10px;
+      font-size: clamp(28px, 3.2vw, 44px);
+      letter-spacing: -.02em;
+      line-height: 1.15;
+    }
+    .subtitle{
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 85ch;
+    }
+    main{
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px 70px;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    @media (min-width: 980px){
+      .grid{grid-template-columns: 340px 1fr;}
+      aside{position:sticky; top:18px; align-self:start;}
+    }
+    .card{
+      background: rgba(16,26,51,.82);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 16px;
+      box-shadow: 0 14px 40px rgba(0,0,0,.25);
+      backdrop-filter: blur(8px);
+    }
+    nav ul{list-style:none; padding:0; margin:10px 0 0;}
+    nav li{margin:8px 0}
+    .toc a{display:block; padding:8px 10px; border-radius: 12px;}
+    .toc a:hover{background: rgba(255,255,255,.06); text-decoration:none;}
+    section{scroll-margin-top: 18px;}
+    h2{ margin: 0 0 10px; font-size: 24px; letter-spacing: -.01em; }
+    h3{ margin: 18px 0 8px; font-size: 18px; }
+    .muted{color:var(--muted)}
+    .formula{
+      background: rgba(10,16,32,.85);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 14px;
+      overflow:auto;
+      margin: 10px 0;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 14px;
+      line-height: 1.45;
+      color: #dbe6ff;
+    }
+    .kvs{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin: 10px 0 0;
+    }
+    @media (min-width: 720px){
+      .kvs{grid-template-columns: 1fr 1fr;}
+    }
+    .kv{
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px;
+      background: rgba(255,255,255,.03);
+    }
+    .kv strong{display:block; margin-bottom:6px}
+    table{
+      width:100%;
+      border-collapse: collapse;
+      margin: 10px 0 0;
+      font-size: 14px;
+    }
+    th, td{
+      border-bottom: 1px solid var(--border);
+      padding: 10px 8px;
+      vertical-align: top;
+    }
+    th{color: var(--muted); text-align:left; font-weight: 600;}
+    .note{
+      border-left: 4px solid var(--accent);
+      padding: 10px 12px;
+      margin: 12px 0 0;
+      background: rgba(122,162,255,.08);
+      border-radius: 12px;
+      color: var(--muted);
+    }
+    details{
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:10px 12px;
+      background: rgba(255,255,255,.03);
+      margin: 12px 0 0;
+    }
+    summary{cursor:pointer; color: var(--text); font-weight:600}
+    footer{
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .pill{
+      display:inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      margin: 6px 6px 0 0;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    hr{border:none;border-top:1px solid var(--border);margin:18px 0;}
+  </style>
+<link rel="icon" href="/wp-content/uploads/2025/11/cropped-0_3-25456-no-background.png">
+<script src="/assets/site.js" defer></script>
+</head>
+<body>
+<div class="wp-site-blocks">
+<atw-header></atw-header>
+<header>
+    <span class="badge">University • Introduction to Spaceflight • Study + Reference</span>
+    <h1>Introduction to Spaceflight: Core Concepts &amp; Formulas</h1>
+    <p class="subtitle">
+      This page consolidates the most-used <strong>concepts</strong> and <strong>equations</strong> from a typical Intro to Spaceflight course:
+      two-body orbital mechanics, Keplerian elements, transfers and maneuvers (Δv), rocket propulsion (thrust, Isp, rocket equation),
+      spacecraft attitude dynamics, and reentry fundamentals.
+    </p>
+    <div class="pill">Orbits</div>
+    <div class="pill">Δv &#038; Transfers</div>
+    <div class="pill">Rocket Propulsion</div>
+    <div class="pill">Attitude Control</div>
+    <div class="pill">Reentry</div>
+  </header>
+
+  <main class="grid">
+    <aside class="card toc" aria-label="Table of contents">
+      <h2>Contents</h2>
+      <nav>
+        <ul>
+          <li><a href="#foundations">1) Foundations, Units, &amp; Constants</a></li>
+          <li><a href="#two-body">2) Two-Body Motion &amp; Kepler Orbits</a></li>
+          <li><a href="#elements">3) Orbital Elements &amp; Key Equations</a></li>
+          <li><a href="#maneuvers">4) Maneuvers &amp; Transfers (Δv)</a></li>
+          <li><a href="#propulsion">5) Rocket Propulsion &amp; the Rocket Equation</a></li>
+          <li><a href="#attitude">6) Attitude Dynamics &amp; Control Basics</a></li>
+          <li><a href="#reentry">7) Reentry &amp; Heating (Intro Level)</a></li>
+          <li><a href="#refs">8) References &amp; Free Learning Material</a></li>
+        </ul>
+      </nav>
+
+     
+    </aside>
+
+    <article class="card">
+      <section id="foundations">
+        <h2>1) Foundations, Units, &amp; Constants</h2>
+        <p class="muted">
+          Most intro spaceflight analysis starts with the <strong>two-body approximation</strong> (spacecraft mass negligible compared to the central body,
+          only gravity acts), then adds perturbations (J2, drag, third-body, SRP) and operational effects.
+        </p>
+
+        <div class="kvs">
+          <div class="kv">
+            <strong>Core variables</strong>
+            <div class="formula">
+              r = position magnitude from central body center (m)<br/>
+              v = inertial speed (m/s)<br/>
+              μ = GM = standard gravitational parameter (m³/s²)<br/>
+              a = semi-major axis (m)<br/>
+              e = eccentricity (-)<br/>
+              i = inclination (rad or deg)<br/>
+              Ω = RAAN (rad or deg)<br/>
+              ω = argument of periapsis (rad or deg)<br/>
+              ν = true anomaly (rad or deg)<br/>
+              h = specific angular momentum magnitude (m²/s)<br/>
+              ε = specific orbital energy (J/kg)
+            </div>
+          </div>
+
+          <div class="kv">
+            <strong>Rocket/propulsion variables</strong>
+            <div class="formula">
+              T = thrust (N)<br/>
+              ṁ = propellant mass flow rate (kg/s)<br/>
+              Isp = specific impulse (s)<br/>
+              ve = effective exhaust velocity (m/s) = g0·Isp<br/>
+              m0 = initial mass (kg)<br/>
+              mf = final mass (kg)
+            </div>
+          </div>
+        </div>
+
+        <details>
+          <summary>Common unit pitfalls (worth teaching explicitly)</summary>
+          <p class="muted">
+            (1) Keep angles consistent (rad vs deg). (2) Use consistent distance units (m vs km) when using μ. (3) Remember that Isp in seconds
+            implies ve = g0·Isp. (4) Δv budgets are usually in m/s.
+          </p>
+        </details>
+      </section>
+
+      <hr/>
+
+      <section id="two-body">
+        <h2>2) Two-Body Motion &amp; Kepler Orbits</h2>
+        <h3>Newton’s law of gravitation → central-force acceleration</h3>
+        <div class="formula">
+          a⃗ = &#8211; μ r⃗ / r³
+        </div>
+
+        <h3>Kepler’s laws (conceptual anchors)</h3>
+        <ul class="muted">
+          <li>Orbits are conic sections with the central body at a focus (ellipse for bound orbits).</li>
+          <li>Equal areas in equal times (angular momentum conservation).</li>
+          <li>Period relates to semi-major axis (for bound orbits).</li>
+        </ul>
+      </section>
+
+      <hr/>
+
+      <section id="elements">
+        <h2>3) Orbital Elements &amp; Key Equations</h2>
+
+        <h3>Vis-viva equation (speed on a conic)</h3>
+        <div class="formula">
+          v² = μ ( 2/r − 1/a )
+        </div>
+
+        <h3>Specific orbital energy</h3>
+        <div class="formula">
+          ε = v²/2 − μ/r = − μ/(2a)
+        </div>
+
+        <h3>Specific angular momentum</h3>
+        <div class="formula">
+          h = | r⃗ × v⃗ |<br/>
+          For conics: h² = μ a (1 − e²)
+        </div>
+
+        <h3>Orbital period (elliptic)</h3>
+        <div class="formula">
+          n = √( μ / a³ )  (mean motion, rad/s)<br/>
+          P = 2π / n = 2π √( a³ / μ )
+        </div>
+
+        <h3>Periapsis / apoapsis radii</h3>
+        <div class="formula">
+          rp = a(1 − e)<br/>
+          ra = a(1 + e)
+        </div>
+
+        <h3>Flight path angle (common maneuver geometry)</h3>
+        <div class="formula">
+          tan(γ) = (e sinν) / (1 + e cosν)
+        </div>
+
+        <div class="note">
+          In many intro courses, you compute v at periapsis/apoapsis with vis-viva, then compute impulsive Δv for burns at those points.
+        </div>
+      </section>
+
+      <hr/>
+
+      <section id="maneuvers">
+        <h2>4) Maneuvers &amp; Transfers (Δv)</h2>
+        <p class="muted">
+          Δv budgeting treats burns as either <strong>impulsive</strong> (instantaneous velocity change) or <strong>finite</strong> (burn over time).
+          Intro courses typically emphasize impulsive transfers because the math is clean and surprisingly predictive.
+        </p>
+
+        <h3>Hohmann transfer (coplanar, circular-to-circular)</h3>
+        <div class="formula">
+          a_t = (r1 + r2)/2<br/>
+          v1 = √(μ/r1),  v2 = √(μ/r2)<br/>
+          v_p (transfer at r1) = √( μ(2/r1 − 1/a_t) )<br/>
+          v_a (transfer at r2) = √( μ(2/r2 − 1/a_t) )<br/>
+          Δv1 = v_p − v1<br/>
+          Δv2 = v2 − v_a<br/>
+          Δv_total = |Δv1| + |Δv2|
+        </div>
+
+        <h3>Transfer time (half an ellipse)</h3>
+        <div class="formula">
+          t_H = π √( a_t³ / μ )
+        </div>
+
+        <h3>Plane change (simple approximation)</h3>
+        <div class="formula">
+          Δv_plane ≈ 2 v sin(Δi/2)
+        </div>
+        <p class="muted">
+          This is why plane changes are usually done where orbital speed is low (near apoapsis) when possible.
+        </p>
+
+        <details>
+          <summary>Rendezvous: why it’s harder than “meet me there”</summary>
+          <p class="muted">
+            Rendezvous requires matching <strong>position</strong> and <strong>velocity</strong> in the same orbital frame at the same time.
+            It’s fundamentally a phasing problem (timing and relative motion), not just a “go to that point” problem.
+          </p>
+        </details>
+      </section>
+
+      <hr/>
+
+      <section id="propulsion">
+        <h2>5) Rocket Propulsion &amp; the Rocket Equation</h2>
+
+        <h3>Thrust (momentum + pressure term)</h3>
+        <div class="formula">
+          T = ṁ ve + (pe − p0) Ae
+        </div>
+        <p class="muted">
+          Here ve is effective exhaust velocity, pe is exit pressure, p0 ambient pressure, and Ae nozzle exit area.
+        </p>
+
+        <h3>Specific impulse (Isp) relationship</h3>
+        <div class="formula">
+          ve = g0 · Isp
+        </div>
+
+        <h3>Tsiolkovsky rocket equation (idealized impulsive Δv)</h3>
+        <div class="formula">
+          Δv = ve ln(m0/mf) = g0 Isp ln(m0/mf)
+        </div>
+
+        <h3>Mass ratio and propellant fraction</h3>
+        <div class="formula">
+          Mass ratio: MR = m0/mf<br/>
+          Propellant fraction (simple): (m0 − mf)/m0
+        </div>
+
+        <details>
+          <summary>Staging (why it exists)</summary>
+          <p class="muted">
+            The rocket equation rewards shedding dead mass. Dropping empty tanks/engines increases the effective mass ratio for the remaining stages,
+            improving Δv for a given Isp.
+          </p>
+        </details>
+      </section>
+
+      <hr/>
+
+      <section id="attitude">
+        <h2>6) Attitude Dynamics &amp; Control Basics</h2>
+
+        <h3>Attitude kinematics (concept)</h3>
+        <p class="muted">
+          Attitude describes orientation of the spacecraft body frame relative to an inertial or orbital frame. Intro courses often cover
+          Euler angles conceptually and introduce quaternions as a singularity-free representation.
+        </p>
+
+        <h3>Rigid-body rotational dynamics (principal axes form)</h3>
+        <div class="formula">
+          I1 ω̇1 + (I3 − I2) ω2 ω3 = τ1<br/>
+          I2 ω̇2 + (I1 − I3) ω3 ω1 = τ2<br/>
+          I3 ω̇3 + (I2 − I1) ω1 ω2 = τ3
+        </div>
+        <p class="muted">
+          I1, I2, I3 are principal moments of inertia, ω is body angular rate, and τ is applied control torque (reaction wheels, thrusters, magnetic torquers).
+        </p>
+
+        <h3>Gravity-gradient torque (conceptual form)</h3>
+        <div class="formula">
+          τ_gg ∝ (3μ/r³) (I_max − I_min) sin(2θ)
+        </div>
+
+        <div class="note">
+          Many intro courses focus on “what creates torque” and “how controllers generate torque,” without requiring full control design.
+        </div>
+      </section>
+
+      <hr/>
+
+      <section id="reentry">
+        <h2>7) Reentry &amp; Heating (Intro Level)</h2>
+        <p class="muted">
+          Reentry is about trading orbital energy for atmospheric heating and deceleration while staying within thermal and structural limits.
+          Full modeling is complex; intro courses often use scaling relations and qualitative regimes.
+        </p>
+
+        <h3>Ballistic coefficient (how “hard” you punch through the air)</h3>
+        <div class="formula">
+          β = m / (CD A)
+        </div>
+
+        <h3>Convective heating scaling (rule-of-thumb form)</h3>
+        <div class="formula">
+          q̇ ∝ √(ρ/Rn) · v³
+        </div>
+        <p class="muted">
+          q̇ is heat rate, ρ is atmospheric density, Rn is nose radius, v is velocity. (The exact constants depend on the chosen correlation/model.)
+        </p>
+
+        <details>
+          <summary>Why reentry gets hot</summary>
+          <p class="muted">
+            The dominant story is kinetic energy + compression and viscous dissipation in shocked flow. Thermal protection systems manage that heat
+            via ablation, radiation, conduction, and controlled surface temperatures.
+          </p>
+        </details>
+      </section>
+
+      <hr/>
+
+      <section id="refs">
+        <h2>8) References &amp; Free Learning Material</h2>
+        <p class="muted">Authoritative links you can cite or use as primary study sources:</p>
+
+        <h3>NASA (spaceflight fundamentals)</h3>
+        <ul>
+          <li>
+            <a href="https://science.nasa.gov/learn/basics-of-space-flight/chapter3-2/" rel="noopener" target="_blank">
+              NASA Basics of Space Flight — “The Rocket Equation” (Chapter 3: Gravity &#038; Mechanics)
+            </a>
+          </li>
+          <li>
+            <a href="https://science.nasa.gov/resource/orbits-and-keplers-laws/" rel="noopener" target="_blank">
+              NASA — Orbits and Kepler’s Laws
+            </a>
+          </li>
+        </ul>
+
+        <h3>NASA Glenn (propulsion equations)</h3>
+        <ul>
+          <li>
+            <a href="https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/rocket-thrust-equation/" rel="noopener" target="_blank">
+              Rocket Thrust Equation (NASA Glenn)
+            </a>
+          </li>
+          <li>
+            <a href="https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/specific-impulse/" rel="noopener" target="_blank">
+              Specific Impulse (NASA Glenn)
+            </a>
+          </li>
+        </ul>
+
+        <h3>ESA (orbits overview)</h3>
+        <ul>
+          <li>
+            <a href="https://www.esa.int/Enabling_Support/Space_Transportation/Types_of_orbits" rel="noopener" target="_blank">
+              ESA — Types of Orbits
+            </a>
+          </li>
+        </ul>
+
+        <h3>Open textbook-style reference (PDF)</h3>
+        <ul>
+          <li>
+            <a href="https://cmp.felk.cvut.cz/~kukelova/pajdla/Bate%2C%20Mueller%2C%20and%20White%20-%20Fundamentals%20of%20Astrodynamics.pdf" rel="noopener" target="_blank">
+              Bate, Mueller, &#038; White — Fundamentals of Astrodynamics (PDF)
+            </a>
+          </li>
+        </ul>
+
+       
+      </section>
+    </article>
+  </main>
+<atw-footer></atw-footer>
+</div>
+</body>
+</html>

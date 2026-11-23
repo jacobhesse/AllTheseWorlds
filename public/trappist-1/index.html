@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TRAPPIST-1 – All These Worlds</title>
+<link rel="stylesheet" href="/assets/base.css">
+<link rel="icon" href="/wp-content/uploads/2025/11/cropped-0_3-25456-no-background.png">
+<script src="/assets/site.js" defer></script>
+</head>
+<body>
+<atw-header></atw-header>
+<main class="atw-content wide">
+<style>
+  :root{
+    --bg1:#0f1533;
+    --bg2:#0b0f25;
+    --bg3:#0a0d1f;
+    --card:#111735;
+    --card2:#0d1330;
+    --text:#eaf1ff;
+    --muted:#a9b6d3;
+    --line:rgba(255,255,255,.10);
+    --blue:#67b7ff;
+    --teal:#39d0b6;
+    --gold:#ffd166;
+    --red:#ff7b7b;
+    --shadow:0 18px 45px rgba(0,0,0,.35);
+    --radius:20px;
+  }
+
+  *{box-sizing:border-box}
+
+  body{
+    margin:0;
+    font-family: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color:var(--text);
+    line-height:1.65;
+    background:
+      radial-gradient(1200px 700px at 10% -10%, rgba(58,160,255,.18), transparent 50%),
+      radial-gradient(1000px 600px at 120% 10%, rgba(29,209,161,.14), transparent 50%),
+      linear-gradient(180deg, var(--bg1), var(--bg2) 45%, var(--bg3) 100%) !important;
+  }
+
+  .wrap{
+    width:min(1120px, calc(100% - 28px));
+    margin:0 auto;
+    padding:36px 0 72px;
+  }
+
+  .hero{
+    position:relative;
+    overflow:hidden;
+    padding:34px 30px 28px;
+    border:1px solid var(--line);
+    border-radius:28px;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02)),
+      radial-gradient(900px 280px at 0% 0%, rgba(103,183,255,.16), transparent 55%),
+      radial-gradient(700px 260px at 100% 10%, rgba(57,208,182,.12), transparent 52%),
+      rgba(8,12,28,.72);
+    box-shadow:var(--shadow);
+    backdrop-filter: blur(4px);
+  }
+
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    font-size:.82rem;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:#c9d9ff;
+    padding:8px 12px;
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:999px;
+    background:rgba(255,255,255,.04);
+  }
+
+  h1{
+    margin:18px 0 12px;
+    font-size:clamp(2rem, 4vw, 3.5rem);
+    line-height:1.08;
+    letter-spacing:-.03em;
+  }
+
+  .dek{
+    margin:0;
+    max-width:900px;
+    font-size:1.08rem;
+    color:var(--muted);
+  }
+
+  .chips{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:18px;
+  }
+
+  .chip{
+    padding:8px 12px;
+    border-radius:999px;
+    border:1px solid rgba(255,255,255,.10);
+    background:rgba(255,255,255,.04);
+    color:#d9e5ff;
+    font-size:.92rem;
+  }
+
+  .grid{
+    display:grid;
+    grid-template-columns: 1.1fr .9fr;
+    gap:20px;
+    margin-top:22px;
+  }
+
+  .card{
+    border:1px solid var(--line);
+    background:linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.02));
+    border-radius:var(--radius);
+    padding:24px;
+    box-shadow:var(--shadow);
+  }
+
+  .card h2, .section h2{
+    margin:0 0 12px;
+    font-size:1.55rem;
+    letter-spacing:-.02em;
+  }
+
+  .card p:last-child{margin-bottom:0}
+
+  .statgrid{
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0,1fr));
+    gap:12px;
+  }
+
+  .stat{
+    padding:14px 14px 12px;
+    border-radius:16px;
+    border:1px solid rgba(255,255,255,.08);
+    background:rgba(255,255,255,.035);
+  }
+
+  .stat .label{
+    display:block;
+    font-size:.8rem;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    color:#afbfdf;
+    margin-bottom:4px;
+  }
+
+  .stat .value{
+    font-size:1.05rem;
+    font-weight:700;
+    color:#fff;
+  }
+
+  .section{
+    margin-top:24px;
+    padding:28px;
+    border:1px solid var(--line);
+    border-radius:24px;
+    background:
+      linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.02)),
+      rgba(9,13,31,.72);
+    box-shadow:var(--shadow);
+  }
+
+  .lede{
+    color:var(--muted);
+    margin-top:-2px;
+  }
+
+  .planet-grid{
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0,1fr));
+    gap:16px;
+    margin-top:18px;
+  }
+
+  .planet{
+    padding:18px;
+    border-radius:18px;
+    border:1px solid rgba(255,255,255,.09);
+    background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+  }
+
+  .planet-top{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:14px;
+    margin-bottom:10px;
+  }
+
+  .planet h3{
+    margin:0;
+    font-size:1.16rem;
+    letter-spacing:-.01em;
+  }
+
+  .earthlike{
+    display:inline-flex;
+    align-items:center;
+    white-space:nowrap;
+    padding:7px 10px;
+    border-radius:999px;
+    font-size:.8rem;
+    font-weight:700;
+    border:1px solid rgba(255,255,255,.12);
+  }
+
+  .high{background:rgba(57,208,182,.12); color:#9ef1df}
+  .mod{background:rgba(255,209,102,.12); color:#ffe4a0}
+  .low{background:rgba(255,123,123,.12); color:#ffb3b3}
+
+  .meta{
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0,1fr));
+    gap:8px 12px;
+    margin:12px 0 12px;
+    font-size:.95rem;
+    color:#dce7ff;
+  }
+
+  .meta strong{
+    color:#fff;
+  }
+
+  .callout{
+    margin-top:16px;
+    padding:16px 18px;
+    border-left:4px solid var(--blue);
+    border-radius:16px;
+    background:rgba(103,183,255,.08);
+    color:#dbe8ff;
+  }
+
+  .columns{
+    display:grid;
+    grid-template-columns:repeat(2, minmax(0,1fr));
+    gap:18px;
+    margin-top:10px;
+  }
+
+  ul.clean{
+    margin:10px 0 0 0;
+    padding-left:18px;
+  }
+
+  ul.clean li{margin:8px 0}
+
+  .sources{
+    margin-top:18px;
+    font-size:.96rem;
+    color:var(--muted);
+  }
+
+  .sources a{
+    color:#b7d8ff;
+    text-decoration:none;
+  }
+
+  .sources a:hover{ text-decoration:underline; }
+
+  .footer-note{
+    margin-top:18px;
+    padding-top:16px;
+    border-top:1px solid rgba(255,255,255,.08);
+    color:var(--muted);
+    font-size:.94rem;
+  }
+
+  @media (max-width: 900px){
+    .grid, .planet-grid, .columns{
+      grid-template-columns:1fr;
+    }
+  }
+</style>
+
+<div class="wrap">
+  <section class="hero">
+    <div class="eyebrow">Exoplanet Systems • TRAPPIST-1 • Updated for current research</div>
+    <h1>TRAPPIST-1 and Its Seven Rocky Worlds</h1>
+    <p class="dek">
+      TRAPPIST-1 is still one of the most important exoplanet systems ever found. It gives us seven Earth-sized,
+      likely rocky planets around a single ultracool red dwarf. But the current picture is more nuanced than the
+      early “seven Earths” headlines suggested. The system now looks less like a chain of ready-made Earth twins
+      and more like a laboratory for testing how atmospheres, water inventories, and potential habitability survive
+      around active red dwarfs.
+    </p>
+    <div class="chips">
+      <span class="chip">7 rocky planets</span>
+      <span class="chip">Ultracool M dwarf</span>
+      <span class="chip">Best candidate: TRAPPIST-1e</span>
+      <span class="chip">Stellar flares are a major complication</span>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h2>The star itself</h2>
+        <p>
+          TRAPPIST-1 is an <strong>M8 ultracool red dwarf</strong> with only about <strong>9% of the Sun’s mass</strong>
+          and about <strong>12% of the Sun’s radius</strong>. Its surface temperature is roughly <strong>2566 K</strong>,
+          making it dramatically cooler and dimmer than the Sun. It appears to be an older star, with an estimated age
+          of about <strong>7.6 billion years</strong>, and its measured metallicity is roughly solar, meaning the system
+          is not chemically exotic by stellar standards.
+        </p>
+        <p>
+          All seven known planets orbit much closer to TRAPPIST-1 than Mercury orbits the Sun. In the broad habitable-zone
+          sense, <strong>e, f, and g</strong> sit in the region where liquid water is not automatically impossible,
+          while <strong>b, c, and d</strong> lie inward of that zone and <strong>h</strong> lies beyond it.
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>At a glance</h2>
+        <div class="statgrid">
+          <div class="stat">
+            <span class="label">Spectral Type</span>
+            <span class="value">M8.0 V</span>
+          </div>
+          <div class="stat">
+            <span class="label">Temperature</span>
+            <span class="value">~2566 K</span>
+          </div>
+          <div class="stat">
+            <span class="label">Mass</span>
+            <span class="value">~0.0898 M☉</span>
+          </div>
+          <div class="stat">
+            <span class="label">Radius</span>
+            <span class="value">~0.1192 R☉</span>
+          </div>
+          <div class="stat">
+            <span class="label">Rotation Period</span>
+            <span class="value">~3.3 days</span>
+          </div>
+          <div class="stat">
+            <span class="label">Best Present Habitability Case</span>
+            <span class="value">TRAPPIST-1e</span>
+          </div>
+        </div>
+        <div class="callout">
+          <strong>Bottom line:</strong> If “Earth-like” means rocky and terrestrial in size, most of the system qualifies loosely.
+          If it means a surface environment that could resemble Earth, <strong>only TRAPPIST-1e currently stands out</strong>,
+          and even there the decisive question is whether it has retained a durable secondary atmosphere.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Planet by planet</h2>
+    <p class="lede">
+      The strongest way to evaluate Earth-likeness is to separate three different questions:
+      <strong>Is the planet rocky?</strong> <strong>Does it receive roughly temperate levels of starlight?</strong>
+      <strong>Does current evidence support a meaningful atmosphere?</strong> Those questions do not all point in the same direction.
+    </p>
+
+    <div class="planet-grid">
+      <article class="planet">
+        <div class="planet-top">
+          <h3>TRAPPIST-1 b</h3>
+          <span class="earthlike low">Earth-like: low</span>
+        </div>
+        <div class="meta">
+          <div><strong>Radius:</strong> ~1.12 Earths</div>
+          <div><strong>Mass:</strong> ~1.37 Earths</div>
+          <div><strong>Insolation:</strong> ~4.15 × Earth</div>
+          <div><strong>Equilibrium Temp:</strong> ~398 K</div>
+        </div>
+        <p>
+          b is Earth-like only in size and rocky character. Current Webb results strongly favor a <strong>hot, bare rock</strong>
+          with <strong>no substantial atmosphere</strong>. It is one of the clearest cases where “Earth-sized” does not imply
+          “Earth-like” in any climatic or biological sense.
+        </p>
+      </article>
+
+      <article class="planet">
+        <div class="planet-top">
+          <h3>TRAPPIST-1 c</h3>
+          <span class="earthlike low">Earth-like: low</span>
+        </div>
+        <div class="meta">
+          <div><strong>Radius:</strong> ~1.10 Earths</div>
+          <div><strong>Mass:</strong> ~1.31 Earths</div>
+          <div><strong>Insolation:</strong> ~2.21 × Earth</div>
+          <div><strong>Equilibrium Temp:</strong> ~340 K</div>
+        </div>
+        <p>
+          c remains a rocky terrestrial planet, but Webb has ruled out a <strong>thick CO<sub>2</sub>-rich atmosphere</strong>,
+          and the present interpretation is that if it has any atmosphere at all, it is likely <strong>thin</strong>.
+          It looks more like a hot, volatile-poor world than a temperate Earth analogue.
+        </p>
+      </article>
+
+      <article class="planet">
+        <div class="planet-top">
+          <h3>TRAPPIST-1 d</h3>
+          <span class="earthlike low">Earth-like: low to marginal</span>
+        </div>
+        <div class="meta">
+          <div><strong>Radius:</strong> ~0.79 Earth</div>
+          <div><strong>Mass:</strong> ~0.39 Earth</div>
+          <div><strong>Insolation:</strong> ~1.12 × Earth</div>
+          <div><strong>Equilibrium Temp:</strong> ~286 K</div>
+        </div>
+        <p>
+          d once looked tempting because its equilibrium temperature is not wildly different from Earth’s. But newer analyses
+          of Webb data do <strong>not</strong> support a clearly detectable atmosphere. It now looks much less persuasive as an
+          Earth-like candidate than it did when the system was first announced.
+        </p>
+      </article>
+
+      <article class="planet">
+        <div class="planet-top">
+          <h3>TRAPPIST-1 e</h3>
+          <span class="earthlike high">Earth-like: highest in system</span>
+        </div>
+        <div class="meta">
+          <div><strong>Radius:</strong> ~0.92 Earth</div>
+          <div><strong>Mass:</strong> ~0.69 Earth</div>
+          <div><strong>Insolation:</strong> ~0.65 × Earth</div>
+          <div><strong>Equilibrium Temp:</strong> ~250 K</div>
+        </div>
+        <p>
+          e is the system’s best present-day habitability candidate. Current work has <strong>not yet confirmed an atmosphere</strong>,
+          but the planet remains the most credible place in the system for a stable temperate environment if a
+          <strong>secondary atmosphere</strong> exists. This is the planet most often singled out in current research as the
+          strongest analogue to a temperate rocky world.
+        </p>
+      </article>
+
+      <article class="planet">
+        <div class="planet-top">
+          <h3>TRAPPIST-1 f</h3>
+          <span class="earthlike mod">Earth-like: possible, but conditional</span>
+        </div>
+        <div class="meta">
+          <div><strong>Radius:</strong> ~1.05 Earths</div>
+          <div><strong>Mass:</strong> ~1.04 Earths</div>
+          <div><strong>Insolation:</strong> ~0.37 × Earth</div>
+          <div><strong>Equilibrium Temp:</strong> ~218 K</div>
+        </div>
+        <p>
+          f is colder than e and likely needs a stronger greenhouse blanket to support liquid water at the surface.
+          It remains scientifically interesting because interior models allow for a <strong>larger water inventory</strong>
+          than Earth’s, making it a plausible volatile-rich rocky world if it retained enough atmosphere.
+        </p>
+      </article>
+
+      <article class="planet">
+        <div class="planet-top">
+          <h3>TRAPPIST-1 g</h3>
+          <span class="earthlike mod">Earth-like: low to moderate</span>
+        </div>
+        <div class="meta">
+          <div><strong>Radius:</strong> ~1.13 Earths</div>
+          <div><strong>Mass:</strong> ~1.32 Earths</div>
+          <div><strong>Insolation:</strong> ~0.25 × Earth</div>
+          <div><strong>Equilibrium Temp:</strong> ~197 K</div>
+        </div>
+        <p>
+          g lies in the habitable zone in the formal sense, but it is clearly colder than e. Some climate models show
+          that a sufficiently robust atmosphere could warm it above freezing, while others keep it in a global snowball state.
+          It is best treated as a <strong>cold, atmosphere-dependent habitability case</strong>.
+        </p>
+      </article>
+
+      <article class="planet">
+        <div class="planet-top">
+          <h3>TRAPPIST-1 h</h3>
+          <span class="earthlike low">Earth-like: very low</span>
+        </div>
+        <div class="meta">
+          <div><strong>Radius:</strong> ~0.76 Earth</div>
+          <div><strong>Mass:</strong> ~0.33 Earth</div>
+          <div><strong>Insolation:</strong> ~0.14 × Earth</div>
+          <div><strong>Equilibrium Temp:</strong> ~172 K</div>
+        </div>
+        <p>
+          h is beyond the habitable zone and is the least Earth-like of the outer worlds for surface conditions.
+          If it is interesting astrobiologically, it would more likely be because of a speculative
+          <strong>subsurface volatile reservoir</strong> than anything like an Earth-style surface biosphere.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>What kinds of materials are likely in the system?</h2>
+    <div class="columns">
+      <div>
+        <p>
+          The default expectation is familiar rocky-planet chemistry: <strong>iron-rich cores</strong>,
+          <strong>silicate mantles</strong>, and crustal material dominated by elements such as
+          <strong>oxygen, magnesium, silicon, and iron</strong>. The system does not look like a family of mini-Neptunes.
+          The measured densities of the planets place them much closer to the terrestrial regime than the gas-rich regime.
+        </p>
+        <p>
+          On the innermost planets, especially <strong>b</strong> and probably <strong>c</strong>, the present evidence points toward
+          surfaces that may be comparatively dry, volatile-poor, and perhaps dominated by exposed rock.
+        </p>
+      </div>
+      <div>
+        <p>
+          Farther out, especially for <strong>f</strong> and possibly <strong>g</strong>, models allow a larger role for
+          <strong>water, ice, and other volatiles</strong>. That does not mean those planets are confirmed water worlds,
+          but it does mean the outer system may contain more substantial water inventories than Earth.
+        </p>
+        <p>
+          Atmospheres, where present, are expected to be <strong>secondary atmospheres</strong> composed of heavier molecules
+          rather than thick primordial hydrogen-helium envelopes. The strongest present atmospheric cases in the system are
+          therefore not “mini gas planets,” but rocky worlds that may or may not have retained heavier gases over time.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>If life exists there, where would it most likely be?</h2>
+    <p>
+      Based on current research, the best answer is still <strong>TRAPPIST-1e</strong>. If any planet in the system has the right
+      combination of a stable rocky surface, durable atmosphere, and long-lived liquid water, e is the leading candidate.
+      <strong>f</strong> is the next most interesting world, but only under more demanding atmospheric assumptions.
+      <strong>g</strong> is colder and more marginal. <strong>h</strong> is mainly a speculative subsurface case.
+      The inner planets now look much less attractive for life at the surface.
+    </p>
+    <div class="callout">
+      <strong>Important caution:</strong> Webb can help determine whether some of these planets have atmospheres and what broad
+      chemistry those atmospheres might have, but it is <strong>not likely</strong> to deliver a clean biosignature detection
+      for TRAPPIST-1. The near-term question is still atmospheric survival, not proof of life.
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>What is known about the flare activity of the star?</h2>
+    <p>
+      TRAPPIST-1 is an active star, and that fact matters profoundly. Stellar flares and magnetic surface features can contaminate
+      transit spectra, making it harder to tell whether a signal belongs to the planet or to the star itself.
+      Recent work indicates that energetic flares occur frequently enough to be a persistent complication rather than an occasional nuisance.
+    </p>
+    <p>
+      That matters in two ways. First, it makes atmospheric characterization more difficult. Second, it raises the question of whether
+      the star’s long-term radiation environment can strip atmospheres or alter their chemistry over time. TRAPPIST-1 is therefore not
+      just a planet-discovery story. It is also a test case for how harsh stellar activity reshapes the prospects for habitability around red dwarfs.
+    </p>
+  </section>
+
+  <section class="section">
+    <h2>Why this system changed the exoplanet field</h2>
+    <p>
+      TRAPPIST-1 changed our outlook in two opposite directions at once.
+    </p>
+    <ul class="clean">
+      <li>
+        It made the field more optimistic by showing that a single low-mass star can host a tightly packed family of
+        <strong>Earth-sized rocky planets</strong>, including several in or near the habitable zone.
+      </li>
+      <li>
+        It also made the field more realistic by showing that <strong>habitable zone</strong> is only the beginning of the question.
+        Around active M dwarfs, astronomers also have to ask whether planets can keep atmospheres, whether those atmospheres are chemically stable,
+        and whether stellar activity can mimic or obscure planetary signals.
+      </li>
+    </ul>
+    <p>
+      The deeper lesson is that Earth-sized planets may be common, but truly Earth-like environments may be rarer and more contingent than
+      raw planet counts suggest. TRAPPIST-1 did not reduce the importance of exoplanet science. It made the field more precise about what needs
+      to be measured next.
+    </p>
+
+    <div class="footer-note">
+      This article reflects the current research picture rather than the earliest post-discovery headlines.
+      As new Webb results continue to appear, the strongest candidate planets—especially e, f, and g—may be re-ranked as atmosphere constraints improve.
+    </div>
+
+    <div class="sources">
+      <strong>Primary and official sources consulted:</strong><br>
+      NASA Exoplanet Archive (TRAPPIST-1 system parameters)<br>
+      NASA Science: “What is Webb Revealing About the TRAPPIST-1 System?”<br>
+      STScI / JWST news release on TRAPPIST-1e atmosphere constraints<br>
+      Recent JWST and atmospheric modeling papers on TRAPPIST-1 b, c, d, and e
+    </div>
+  </section>
+</div>
+</main>
+<atw-footer></atw-footer>
+</body>
+</html>

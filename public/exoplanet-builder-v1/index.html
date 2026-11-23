@@ -1,0 +1,836 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exoplanet Builder v1 – All These Worlds</title>
+<link rel="stylesheet" href="/assets/base.css">
+<link rel="icon" href="/wp-content/uploads/2025/11/cropped-0_3-25456-no-background.png">
+<script src="/assets/site.js" defer></script>
+</head>
+<body>
+<atw-header></atw-header>
+<main class="atw-content">
+<h1>Exoplanet Builder v1</h1>
+<pre class="wp-block-code"><code>import React, { useMemo, useState } from "react";
+
+const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
+const round = (v, d = 2) => Number(v).toFixed(d);
+
+const GAS_MW = {
+  H2: 2,
+  He: 4,
+  CH4: 16,
+  H2O: 18,
+  N2: 28,
+  O2: 32,
+  CO2: 44,
+};
+
+const PRESETS = {
+  Earthlike: {
+    name: "Aurelia",
+    starMass: 1,
+    starLuminosity: 1,
+    systemAge: 4.6,
+    semiMajorAxis: 1,
+    eccentricity: 0.016,
+    planetMass: 1,
+    planetRadius: 1,
+    coreFraction: 32,
+    waterFraction: 3,
+    atmospherePressure: 1,
+    albedo: 0.3,
+    internalHeating: 1,
+    n2: 78,
+    o2: 21,
+    co2: 0.04,
+    h2: 0,
+    he: 0,
+    ch4: 0.0002,
+    h2o: 0.96,
+  },
+  SuperEarth: {
+    name: "Thalor",
+    starMass: 0.85,
+    starLuminosity: 0.54,
+    systemAge: 6.2,
+    semiMajorAxis: 0.62,
+    eccentricity: 0.05,
+    planetMass: 4.8,
+    planetRadius: 1.62,
+    coreFraction: 35,
+    waterFraction: 7,
+    atmospherePressure: 4.2,
+    albedo: 0.27,
+    internalHeating: 1.15,
+    n2: 71,
+    o2: 8,
+    co2: 6,
+    h2: 0,
+    he: 0,
+    ch4: 1,
+    h2o: 14,
+  },
+  OceanWorld: {
+    name: "Nerion",
+    starMass: 0.92,
+    starLuminosity: 0.75,
+    systemAge: 3.8,
+    semiMajorAxis: 0.95,
+    eccentricity: 0.03,
+    planetMass: 2.4,
+    planetRadius: 1.48,
+    coreFraction: 20,
+    waterFraction: 42,
+    atmospherePressure: 3,
+    albedo: 0.42,
+    internalHeating: 1.05,
+    n2: 64,
+    o2: 5,
+    co2: 3,
+    h2: 0,
+    he: 0,
+    ch4: 1,
+    h2o: 27,
+  },
+  DesertWorld: {
+    name: "Kharis",
+    starMass: 1.08,
+    starLuminosity: 1.28,
+    systemAge: 5.1,
+    semiMajorAxis: 1.08,
+    eccentricity: 0.09,
+    planetMass: 0.88,
+    planetRadius: 0.95,
+    coreFraction: 34,
+    waterFraction: 0.4,
+    atmospherePressure: 0.42,
+    albedo: 0.22,
+    internalHeating: 0.85,
+    n2: 84,
+    o2: 4,
+    co2: 9,
+    h2: 0,
+    he: 0,
+    ch4: 0.02,
+    h2o: 2.58,
+  },
+  MiniNeptune: {
+    name: "Velis",
+    starMass: 0.72,
+    starLuminosity: 0.23,
+    systemAge: 2.2,
+    semiMajorAxis: 0.18,
+    eccentricity: 0.02,
+    planetMass: 8.5,
+    planetRadius: 2.7,
+    coreFraction: 18,
+    waterFraction: 18,
+    atmospherePressure: 80,
+    albedo: 0.38,
+    internalHeating: 1.2,
+    n2: 4,
+    o2: 0,
+    co2: 6,
+    h2: 56,
+    he: 28,
+    ch4: 3,
+    h2o: 3,
+  },
+  HotRocky: {
+    name: "Pyrra",
+    starMass: 1.14,
+    starLuminosity: 1.62,
+    systemAge: 1.8,
+    semiMajorAxis: 0.09,
+    eccentricity: 0.04,
+    planetMass: 1.6,
+    planetRadius: 1.14,
+    coreFraction: 41,
+    waterFraction: 0.1,
+    atmospherePressure: 0.08,
+    albedo: 0.11,
+    internalHeating: 1.35,
+    n2: 28,
+    o2: 0,
+    co2: 59,
+    h2: 0,
+    he: 0,
+    ch4: 0,
+    h2o: 13,
+  },
+};
+
+const DEFAULTS = PRESETS.Earthlike;
+
+function deriveLuminosityFromMass(m) {
+  if (m &lt; 0.43) return 0.23 * Math.pow(m, 2.3);
+  if (m &lt; 2) return Math.pow(m, 4.0);
+  return 1.5 * Math.pow(m, 3.5);
+}
+
+function spectralClass(m) {
+  if (m >= 16) return "O";
+  if (m >= 2.1) return "B";
+  if (m >= 1.4) return "A";
+  if (m >= 1.04) return "F";
+  if (m >= 0.8) return "G";
+  if (m >= 0.45) return "K";
+  return "M";
+}
+
+function normalizeGases(raw) {
+  const sum = raw.H2 + raw.He + raw.CH4 + raw.H2O + raw.N2 + raw.O2 + raw.CO2;
+  if (sum &lt;= 0) {
+    return { H2: 0, He: 0, CH4: 0, H2O: 0, N2: 100, O2: 0, CO2: 0 };
+  }
+  return {
+    H2: (raw.H2 / sum) * 100,
+    He: (raw.He / sum) * 100,
+    CH4: (raw.CH4 / sum) * 100,
+    H2O: (raw.H2O / sum) * 100,
+    N2: (raw.N2 / sum) * 100,
+    O2: (raw.O2 / sum) * 100,
+    CO2: (raw.CO2 / sum) * 100,
+  };
+}
+
+function gasLabel(gases) {
+  const sorted = Object.entries(gases).sort((a, b) => b&#91;1] - a&#91;1]).filter((&#91;, v]) => v > 0.5);
+  return sorted.slice(0, 3).map((&#91;k, v]) => `${k} ${round(v, 1)}%`).join(" · ");
+}
+
+function molecularSpeed(tempK, molecularWeight) {
+  const k = 1.380649e-23;
+  const amu = 1.66053906660e-27;
+  const m = molecularWeight * amu;
+  return Math.sqrt((3 * k * tempK) / m);
+}
+
+function classifyWorld({ mass, radius, gases, waterFraction, pressure }) {
+  const lightGas = gases.H2 + gases.He;
+  if (lightGas > 45 &amp;&amp; radius > 1.7) return "Mini-Neptune / volatile-rich world";
+  if (waterFraction > 25) return "Ocean world";
+  if (mass &lt; 0.3 &amp;&amp; radius &lt; 0.8) return "Small rocky world";
+  if (mass > 2 &amp;&amp; radius &lt; 1.8) return "Rocky super-Earth";
+  if (pressure &lt; 0.02) return "Thin-atmosphere rocky world";
+  return "Temperate rocky planet";
+}
+
+function climateBand(surfaceTemp, pressure) {
+  if (pressure &lt; 0.01) return "Airless or nearly airless";
+  if (surfaceTemp &lt; 120) return "Cryogenic";
+  if (surfaceTemp &lt; 240) return "Deep freeze";
+  if (surfaceTemp &lt; 273) return "Cold";
+  if (surfaceTemp &lt; 320) return "Temperate";
+  if (surfaceTemp &lt; 390) return "Hot";
+  return "Extreme greenhouse";
+}
+
+function hydrologyState(surfaceTemp, pressure, waterFraction) {
+  if (waterFraction &lt; 0.05) return "Effectively dry surface";
+  if (pressure &lt; 0.006) return "Liquid water unstable at the surface";
+  if (surfaceTemp &lt; 250) return "Water mostly locked as ice";
+  if (surfaceTemp &lt; 273) return "Patchy melt zones possible";
+  if (surfaceTemp &lt;= 340) return "Liquid surface water plausible";
+  if (surfaceTemp &lt;= 647 &amp;&amp; pressure > 1) return "Water likely shifts toward steam-dominated cycle";
+  return "Stable surface liquid water unlikely";
+}
+
+function geologyClass(index) {
+  if (index &lt; 0.8) return "Mostly geologically quiet";
+  if (index &lt; 1.6) return "Low ongoing activity";
+  if (index &lt; 2.6) return "Moderate tectonic and volcanic activity";
+  if (index &lt; 3.6) return "Strong internal activity";
+  return "Highly active interior";
+}
+
+function tectonicsLikelihood(mass, waterFraction, geologyIndex, age) {
+  let score = 0;
+  if (mass >= 0.7 &amp;&amp; mass &lt;= 3.5) score += 1.2;
+  if (waterFraction >= 0.1 &amp;&amp; waterFraction &lt;= 10) score += 1;
+  if (geologyIndex > 1.2) score += 1.2;
+  if (age > 1 &amp;&amp; age &lt; 8) score += 0.8;
+  if (mass > 5) score -= 0.4;
+  if (waterFraction > 25) score -= 0.2;
+  if (score &lt; 1.2) return "Low";
+  if (score &lt; 2.4) return "Possible";
+  if (score &lt; 3.4) return "Likely";
+  return "Strongly favored";
+}
+
+function magnetosphereLikelihood(coreFraction, geologyIndex, rotationHint = 1) {
+  const score = coreFraction / 20 + geologyIndex * 0.7 + rotationHint;
+  if (score &lt; 3) return "Weak or intermittent";
+  if (score &lt; 5) return "Plausible";
+  return "Likely sustained";
+}
+
+function expectedDensity(coreFraction, waterFraction, mass) {
+  const core = clamp(coreFraction / 100, 0, 1);
+  const water = clamp(waterFraction / 100, 0, 1);
+  const mantle = clamp(1 - core - water, 0, 1);
+  const base = core * 8.0 + mantle * 3.8 + water * 1.5;
+  const compression = 1 + 0.08 * Math.log2(Math.max(mass, 0.25));
+  return base * compression;
+}
+
+function formationNarrative({ semiMajorAxis, frostLine, waterFraction, eccentricity, systemAge, starClass, lightGas, mass }) {
+  const lines = &#91;];
+  if (semiMajorAxis &lt; frostLine &amp;&amp; waterFraction > 10) {
+    lines.push("Its volatile inventory suggests either formation beyond the system snow line followed by inward migration, or substantial delivery of icy planetesimals after initial assembly.");
+  } else if (semiMajorAxis &lt; frostLine) {
+    lines.push("Its composition is consistent with formation in the warmer inner disk, where refractory rock and metal dominate over ices.");
+  } else {
+    lines.push("Its orbit lies near or beyond the classical snow line, where water ice and volatile-rich solids are more available during planet formation.");
+  }
+
+  if (eccentricity > 0.15) {
+    lines.push("The elevated eccentricity hints at past dynamical disturbance, such as planet-planet scattering, resonant migration, or long-term secular forcing.");
+  } else {
+    lines.push("Its modest eccentricity is consistent with a comparatively settled orbital history or long-term tidal and collisional damping.");
+  }
+
+  if (lightGas > 35 &amp;&amp; mass > 2) {
+    lines.push("Retention of light gases implies that it crossed the threshold where nebular gas capture or long-lived volatile envelopes become plausible.");
+  } else {
+    lines.push("Its bulk properties favor a secondary atmosphere shaped more by volcanism, impacts, chemical weathering, and atmospheric escape than by primordial nebular gas retention.");
+  }
+
+  if (systemAge &lt; 1.5) {
+    lines.push(`At roughly ${round(systemAge, 1)} billion years old around a ${starClass}-type star, the world is probably still emerging from an era of elevated stellar activity and impact cleanup.`);
+  } else if (systemAge &lt; 6) {
+    lines.push(`At about ${round(systemAge, 1)} billion years, it likely sits in a mature phase where long-term climate and tectonic feedbacks matter more than violent early assembly.`);
+  } else {
+    lines.push(`Its old age suggests a world that has already passed through multiple climate and geochemical regimes, with escape, mantle cooling, and orbital stability shaping the present state.`);
+  }
+
+  return lines;
+}
+
+function buildWarnings(model) {
+  const warnings = &#91;];
+
+  if (model.mantleFraction &lt; 0) {
+    warnings.push("Bulk composition is over-allocated. Core fraction and water fraction together exceed 100%.");
+  }
+
+  if (model.planetRadius &lt;= 0 || model.planetMass &lt;= 0) {
+    warnings.push("Mass and radius must both be positive.");
+  }
+
+  const densityDelta = Math.abs(model.bulkDensity - model.expectedDensity) / Math.max(model.expectedDensity, 0.1);
+  if (densityDelta > 0.45) {
+    warnings.push("Mass, radius, and bulk composition imply a density that is well outside the rough range expected for this composition. The world may need a different interior mix or volatile envelope.");
+  }
+
+  if (model.lightGas > 45 &amp;&amp; model.planetRadius &lt; 1.5) {
+    warnings.push("A strongly H2/He-rich atmosphere on a compact rocky-sized radius is difficult to maintain without a puffier volatile envelope or higher thermal compression than this toy model assumes.");
+  }
+
+  if (model.surfaceTemp > 700 &amp;&amp; model.atmospherePressure > 50) {
+    warnings.push("This enters an extreme regime where simplified greenhouse assumptions become unreliable and atmospheric chemistry would likely be strongly non-linear.");
+  }
+
+  if (model.atmospherePressure &lt; 0.01 &amp;&amp; model.gasRetention.N2 === "unlikely") {
+    warnings.push("The planet struggles to retain heavier gases over long timescales, so a durable surface atmosphere is not strongly supported.");
+  }
+
+  if (model.semiMajorAxis &lt; 0.03 * Math.sqrt(model.starLuminosity)) {
+    warnings.push("The orbit is extremely close to the star. Tidal locking, atmospheric stripping, and irradiation effects may dominate the planet’s evolution.");
+  }
+
+  if (model.waterFraction > 60 &amp;&amp; model.bulkDensity > 5) {
+    warnings.push("Very high water fraction combined with high density is internally inconsistent for a first-order planet model.");
+  }
+
+  if (warnings.length === 0) warnings.push("No major first-order physical contradictions detected. This does not mean the world is confirmed realistic; it means the inputs remain within a plausible coarse-grained envelope.");
+
+  return warnings;
+}
+
+function computeModel(state) {
+  const starMass = Number(state.starMass);
+  const starLuminosity = Number(state.starLuminosity) > 0 ? Number(state.starLuminosity) : deriveLuminosityFromMass(starMass);
+  const systemAge = Number(state.systemAge);
+  const semiMajorAxis = Number(state.semiMajorAxis);
+  const eccentricity = clamp(Number(state.eccentricity), 0, 0.95);
+  const planetMass = Number(state.planetMass);
+  const planetRadius = Number(state.planetRadius);
+  const coreFraction = Number(state.coreFraction);
+  const waterFraction = Number(state.waterFraction);
+  const mantleFraction = 100 - coreFraction - waterFraction;
+  const atmospherePressure = Number(state.atmospherePressure);
+  const albedo = clamp(Number(state.albedo), 0, 0.95);
+  const internalHeating = Number(state.internalHeating);
+
+  const gases = normalizeGases({
+    H2: Number(state.h2),
+    He: Number(state.he),
+    CH4: Number(state.ch4),
+    H2O: Number(state.h2o),
+    N2: Number(state.n2),
+    O2: Number(state.o2),
+    CO2: Number(state.co2),
+  });
+
+  const avgInsolation = starLuminosity / (Math.pow(semiMajorAxis, 2) * Math.sqrt(1 - eccentricity * eccentricity));
+  const equilibriumTemp = 278.5 * Math.pow(avgInsolation * (1 - albedo), 0.25);
+  const greenhouseIndex = Math.log10(1 + atmospherePressure) * (
+    gases.CO2 * 0.85 + gases.CH4 * 0.5 + gases.H2O * 0.28 + gases.H2 * 0.18 + gases.He * 0.04
+  ) / 5;
+  const greenhouseBoost = clamp(greenhouseIndex, 0, 220);
+  const surfaceTemp = equilibriumTemp + greenhouseBoost;
+
+  const gravity = 9.80665 * (planetMass / Math.pow(planetRadius, 2));
+  const escapeVelocity = 11.186 * Math.sqrt(planetMass / planetRadius);
+  const bulkDensity = 5.51 * (planetMass / Math.pow(planetRadius, 3));
+  const expectedDensityValue = expectedDensity(coreFraction, waterFraction, planetMass);
+
+  const starClass = spectralClass(starMass);
+  const frostLine = 2.7 * Math.sqrt(starLuminosity);
+  const lightGas = gases.H2 + gases.He;
+
+  const stellarActivity = clamp(1.8 - systemAge / 5 + (starMass &lt; 0.8 ? 0.25 : 0) + (starMass > 1.2 ? 0.15 : 0), 0.85, 2.4);
+  const exobaseTemp = surfaceTemp + 200 * stellarActivity;
+  const escapeMS = escapeVelocity * 1000;
+
+  const gasRetention = Object.fromEntries(
+    Object.entries(GAS_MW).map((&#91;gas, mw]) => {
+      const vrms = molecularSpeed(exobaseTemp, mw);
+      const ratio = escapeMS / (6 * vrms);
+      const label = ratio > 1.4 ? "likely" : ratio > 1.0 ? "borderline" : "unlikely";
+      return &#91;gas, label];
+    })
+  );
+
+  const geologyIndex = clamp(
+    Math.pow(planetMass, 0.45) * Math.exp(-systemAge / 7) * (0.85 + internalHeating * 0.35) * (1 + eccentricity * 1.8),
+    0,
+    5
+  );
+
+  const tidalNote = eccentricity > 0.12 ? "Some tidal heating contribution is plausible." : "Tidal heating is probably minor.";
+  const tectonics = tectonicsLikelihood(planetMass, waterFraction, geologyIndex, systemAge);
+  const magnetosphere = magnetosphereLikelihood(coreFraction, geologyIndex, 1);
+  const climate = climateBand(surfaceTemp, atmospherePressure);
+  const hydrology = hydrologyState(surfaceTemp, atmospherePressure, waterFraction);
+  const worldType = classifyWorld({ mass: planetMass, radius: planetRadius, gases, waterFraction, pressure: atmospherePressure });
+
+  const oxygenRich = gases.O2 > 15;
+  const co2Heavy = gases.CO2 > 20;
+  const reducing = gases.H2 + gases.CH4 > 25;
+
+  let chemistrySummary = "Silicate-metal dominated interior with secondary atmospheric chemistry.";
+  if (lightGas > 45) chemistrySummary = "Volatile-rich chemistry with a substantial light-gas envelope over a deeper heavy-element interior.";
+  else if (waterFraction > 25) chemistrySummary = "Water-rich bulk chemistry with high-pressure ice or deep ocean layers likely beneath the surface envelope.";
+  else if (co2Heavy) chemistrySummary = "Oxidized atmospheric chemistry dominated by carbon dioxide and secondary volatile cycling.";
+  else if (reducing) chemistrySummary = "Reducing atmospheric chemistry with hydrogen- and methane-bearing pathways likely shaping haze, escape, and photochemistry.";
+  else if (oxygenRich) chemistrySummary = "Oxygen-rich present-day atmosphere. In a real system, sustained free oxygen would usually imply a strong source term such as biology or intense photolysis plus escape.";
+
+  const formation = formationNarrative({
+    semiMajorAxis,
+    frostLine,
+    waterFraction,
+    eccentricity,
+    systemAge,
+    starClass,
+    lightGas,
+    mass: planetMass,
+  });
+
+  const warnings = buildWarnings({
+    mantleFraction,
+    planetRadius,
+    planetMass,
+    bulkDensity,
+    expectedDensity: expectedDensityValue,
+    lightGas,
+    surfaceTemp,
+    atmospherePressure,
+    gasRetention,
+    semiMajorAxis,
+    starLuminosity,
+    waterFraction,
+  });
+
+  let plausibility = 84;
+  const densityPenalty = clamp(Math.abs(bulkDensity - expectedDensityValue) * 7, 0, 30);
+  plausibility -= densityPenalty;
+  if (warnings.some((w) => !w.startsWith("No major"))) plausibility -= (warnings.length - 1) * 6;
+  if (gasRetention.H2 === "unlikely" &amp;&amp; lightGas > 30) plausibility -= 15;
+  if (surfaceTemp > 800) plausibility -= 8;
+  if (mantleFraction &lt; 0) plausibility = 0;
+  plausibility = clamp(Math.round(plausibility), 0, 100);
+
+  return {
+    name: state.name,
+    starMass,
+    starLuminosity,
+    systemAge,
+    semiMajorAxis,
+    eccentricity,
+    planetMass,
+    planetRadius,
+    coreFraction,
+    waterFraction,
+    mantleFraction,
+    atmospherePressure,
+    albedo,
+    gases,
+    avgInsolation,
+    equilibriumTemp,
+    greenhouseBoost,
+    surfaceTemp,
+    gravity,
+    escapeVelocity,
+    bulkDensity,
+    expectedDensity: expectedDensityValue,
+    starClass,
+    frostLine,
+    lightGas,
+    gasRetention,
+    geologyIndex,
+    tectonics,
+    magnetosphere,
+    climate,
+    hydrology,
+    worldType,
+    chemistrySummary,
+    formation,
+    warnings,
+    plausibility,
+    tidalNote,
+  };
+}
+
+function SectionTitle({ children, subtitle }) {
+  return (
+    &lt;div className="mb-4">
+      &lt;h2 className="text-xl font-semibold tracking-tight text-white">{children}&lt;/h2>
+      {subtitle ? &lt;p className="mt-1 text-sm text-slate-400">{subtitle}&lt;/p> : null}
+    &lt;/div>
+  );
+}
+
+function LabeledInput({ label, value, onChange, step = "any", min, max, suffix }) {
+  return (
+    &lt;label className="block">
+      &lt;div className="mb-1 flex items-center justify-between text-sm text-slate-300">
+        &lt;span>{label}&lt;/span>
+        {suffix ? &lt;span className="text-slate-500">{suffix}&lt;/span> : null}
+      &lt;/div>
+      &lt;input
+        type="number"
+        value={value}
+        min={min}
+        max={max}
+        step={step}
+        onChange={(e) => onChange(e.target.value)}
+        className="w-full rounded-2xl border border-white/10 bg-slate-950/60 px-3 py-2 text-sm text-white outline-none ring-0 transition focus:border-cyan-400/50"
+      />
+    &lt;/label>
+  );
+}
+
+function MetricCard({ label, value, detail }) {
+  return (
+    &lt;div className="rounded-3xl border border-white/10 bg-white/5 p-4 shadow-sm">
+      &lt;div className="text-xs uppercase tracking-&#91;0.14em] text-slate-400">{label}&lt;/div>
+      &lt;div className="mt-2 text-2xl font-semibold text-white">{value}&lt;/div>
+      &lt;div className="mt-1 text-sm text-slate-400">{detail}&lt;/div>
+    &lt;/div>
+  );
+}
+
+function Pill({ children, tone = "slate" }) {
+  const tones = {
+    slate: "bg-slate-800/80 text-slate-200",
+    cyan: "bg-cyan-500/15 text-cyan-200",
+    amber: "bg-amber-500/15 text-amber-200",
+    emerald: "bg-emerald-500/15 text-emerald-200",
+    rose: "bg-rose-500/15 text-rose-200",
+  };
+  return &lt;span className={`inline-flex rounded-full px-3 py-1 text-xs font-medium ${tones&#91;tone]}`}>{children}&lt;/span>;
+}
+
+function Bar({ value }) {
+  const tone = value >= 75 ? "bg-emerald-400" : value >= 50 ? "bg-amber-400" : "bg-rose-400";
+  return (
+    &lt;div className="mt-2 h-3 w-full overflow-hidden rounded-full bg-slate-800">
+      &lt;div className={`h-full rounded-full ${tone}`} style={{ width: `${value}%` }} />
+    &lt;/div>
+  );
+}
+
+function WorldNarrative({ model }) {
+  const narrative = &#91;
+    `${model.name || "This planet"} is modeled as a ${model.worldType.toLowerCase()} orbiting a ${model.starClass}-type star at ${round(model.semiMajorAxis, 2)} AU.`,
+    `Average stellar forcing is about ${round(model.avgInsolation, 2)} times Earth’s, which yields an equilibrium temperature near ${round(model.equilibriumTemp, 0)} K before greenhouse effects are included.`,
+    `Given the assumed atmospheric mass and gas mix, the surface settles into a ${model.climate.toLowerCase()} regime around ${round(model.surfaceTemp, 0)} K. ${model.hydrology}.`,
+    `Gravity is ${round(model.gravity, 2)} m/s² and escape velocity is ${round(model.escapeVelocity, 2)} km/s, which makes retention of ${model.gasRetention.N2 === "likely" ? "heavy gases" : "only the heaviest gases"} plausible over geological time.`,
+    `Its interior is best described as ${model.chemistrySummary.toLowerCase()} Geological state: ${geologyClass(model.geologyIndex).toLowerCase()}, with plate tectonics rated ${model.tectonics.toLowerCase()} and magnetic shielding ${model.magnetosphere.toLowerCase()}.`,
+  ];
+  return (
+    &lt;div className="space-y-3 text-sm leading-7 text-slate-300">
+      {narrative.map((line, i) => (
+        &lt;p key={i}>{line}&lt;/p>
+      ))}
+    &lt;/div>
+  );
+}
+
+export default function ExoplanetWorldbuilderApp() {
+  const &#91;state, setState] = useState(DEFAULTS);
+
+  const model = useMemo(() => computeModel(state), &#91;state]);
+
+  const setField = (field, value) => setState((s) => ({ ...s, &#91;field]: value }));
+  const loadPreset = (name) => setState(PRESETS&#91;name]);
+
+  return (
+    &lt;div className="min-h-screen bg-&#91;radial-gradient(circle_at_top,_rgba(34,211,238,0.12),_transparent_28%),linear-gradient(180deg,#020617_0%,#0b1120_46%,#111827_100%)] text-slate-100">
+      &lt;div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+        &lt;div className="mb-8 grid gap-6 lg:grid-cols-&#91;1.25fr_0.75fr]">
+          &lt;div className="rounded-&#91;2rem] border border-white/10 bg-white/5 p-6 shadow-2xl backdrop-blur">
+            &lt;div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+              &lt;div>
+                &lt;div className="mb-2 inline-flex rounded-full bg-cyan-500/10 px-3 py-1 text-xs font-medium uppercase tracking-&#91;0.16em] text-cyan-200">
+                  Physically bounded exoplanet modeler
+                &lt;/div>
+                &lt;h1 className="text-3xl font-semibold tracking-tight text-white sm:text-4xl">Exoplanet Worldbuilder&lt;/h1>
+                &lt;p className="mt-3 max-w-3xl text-sm leading-6 text-slate-300 sm:text-base">
+                  Enter stellar, orbital, interior, and atmospheric assumptions to generate a constrained first-order model of an exoplanet. The app uses coarse physics and astrophysical plausibility checks rather than fantasy worldbuilding rules.
+                &lt;/p>
+              &lt;/div>
+              &lt;div className="rounded-3xl border border-white/10 bg-slate-950/50 px-4 py-3">
+                &lt;div className="text-xs uppercase tracking-&#91;0.14em] text-slate-400">Model plausibility&lt;/div>
+                &lt;div className="mt-1 text-3xl font-semibold text-white">{model.plausibility}/100&lt;/div>
+                &lt;div className="text-sm text-slate-400">Higher means fewer first-order contradictions.&lt;/div>
+                &lt;Bar value={model.plausibility} />
+              &lt;/div>
+            &lt;/div>
+          &lt;/div>
+
+          &lt;div className="rounded-&#91;2rem] border border-white/10 bg-white/5 p-6 shadow-2xl backdrop-blur">
+            &lt;SectionTitle subtitle="Start from a plausible template and then modify the system.">Presets&lt;/SectionTitle>
+            &lt;div className="grid grid-cols-2 gap-3">
+              {Object.keys(PRESETS).map((preset) => (
+                &lt;button
+                  key={preset}
+                  onClick={() => loadPreset(preset)}
+                  className="rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3 text-left text-sm text-slate-200 transition hover:border-cyan-400/50 hover:bg-slate-900"
+                >
+                  &lt;div className="font-medium text-white">{preset.replace(/(&#91;A-Z])/g, " $1").trim()}&lt;/div>
+                  &lt;div className="mt-1 text-xs text-slate-400">{PRESETS&#91;preset].name}&lt;/div>
+                &lt;/button>
+              ))}
+            &lt;/div>
+          &lt;/div>
+        &lt;/div>
+
+        &lt;div className="grid gap-6 xl:grid-cols-&#91;380px_minmax(0,1fr)]">
+          &lt;div className="space-y-6">
+            &lt;div className="rounded-&#91;2rem] border border-white/10 bg-white/5 p-6 backdrop-blur">
+              &lt;SectionTitle subtitle="These fields define the stellar environment and the planet itself.">Inputs&lt;/SectionTitle>
+              &lt;div className="space-y-6">
+                &lt;div>
+                  &lt;div className="mb-3 text-xs font-medium uppercase tracking-&#91;0.16em] text-slate-400">Planet identity&lt;/div>
+                  &lt;label className="block">
+                    &lt;div className="mb-1 text-sm text-slate-300">Planet name&lt;/div>
+                    &lt;input
+                      type="text"
+                      value={state.name}
+                      onChange={(e) => setField("name", e.target.value)}
+                      className="w-full rounded-2xl border border-white/10 bg-slate-950/60 px-3 py-2 text-sm text-white outline-none transition focus:border-cyan-400/50"
+                    />
+                  &lt;/label>
+                &lt;/div>
+
+                &lt;div>
+                  &lt;div className="mb-3 text-xs font-medium uppercase tracking-&#91;0.16em] text-slate-400">Star and system&lt;/div>
+                  &lt;div className="grid grid-cols-2 gap-3">
+                    &lt;LabeledInput label="Star mass" value={state.starMass} onChange={(v) => setField("starMass", v)} step="0.01" min="0.08" suffix="solar masses" />
+                    &lt;LabeledInput label="Star luminosity" value={state.starLuminosity} onChange={(v) => setField("starLuminosity", v)} step="0.01" min="0.001" suffix="solar luminosities" />
+                    &lt;LabeledInput label="System age" value={state.systemAge} onChange={(v) => setField("systemAge", v)} step="0.1" min="0.01" suffix="Gyr" />
+                    &lt;LabeledInput label="Albedo" value={state.albedo} onChange={(v) => setField("albedo", v)} step="0.01" min="0" max="0.95" suffix="0–0.95" />
+                  &lt;/div>
+                &lt;/div>
+
+                &lt;div>
+                  &lt;div className="mb-3 text-xs font-medium uppercase tracking-&#91;0.16em] text-slate-400">Orbit&lt;/div>
+                  &lt;div className="grid grid-cols-2 gap-3">
+                    &lt;LabeledInput label="Semi-major axis" value={state.semiMajorAxis} onChange={(v) => setField("semiMajorAxis", v)} step="0.01" min="0.01" suffix="AU" />
+                    &lt;LabeledInput label="Eccentricity" value={state.eccentricity} onChange={(v) => setField("eccentricity", v)} step="0.01" min="0" max="0.95" suffix="0–0.95" />
+                  &lt;/div>
+                &lt;/div>
+
+                &lt;div>
+                  &lt;div className="mb-3 text-xs font-medium uppercase tracking-&#91;0.16em] text-slate-400">Bulk planet&lt;/div>
+                  &lt;div className="grid grid-cols-2 gap-3">
+                    &lt;LabeledInput label="Planet mass" value={state.planetMass} onChange={(v) => setField("planetMass", v)} step="0.01" min="0.01" suffix="Earth masses" />
+                    &lt;LabeledInput label="Planet radius" value={state.planetRadius} onChange={(v) => setField("planetRadius", v)} step="0.01" min="0.1" suffix="Earth radii" />
+                    &lt;LabeledInput label="Core fraction" value={state.coreFraction} onChange={(v) => setField("coreFraction", v)} step="0.1" min="0" max="100" suffix="% by mass" />
+                    &lt;LabeledInput label="Water fraction" value={state.waterFraction} onChange={(v) => setField("waterFraction", v)} step="0.1" min="0" max="100" suffix="% by mass" />
+                    &lt;LabeledInput label="Atmospheric pressure" value={state.atmospherePressure} onChange={(v) => setField("atmospherePressure", v)} step="0.01" min="0" suffix="bar" />
+                    &lt;LabeledInput label="Internal heating" value={state.internalHeating} onChange={(v) => setField("internalHeating", v)} step="0.01" min="0.2" max="2" suffix="relative scale" />
+                  &lt;/div>
+                &lt;/div>
+
+                &lt;div>
+                  &lt;div className="mb-3 text-xs font-medium uppercase tracking-&#91;0.16em] text-slate-400">Atmospheric composition&lt;/div>
+                  &lt;div className="grid grid-cols-2 gap-3">
+                    &lt;LabeledInput label="N2" value={state.n2} onChange={(v) => setField("n2", v)} step="0.1" min="0" suffix="relative share" />
+                    &lt;LabeledInput label="O2" value={state.o2} onChange={(v) => setField("o2", v)} step="0.1" min="0" suffix="relative share" />
+                    &lt;LabeledInput label="CO2" value={state.co2} onChange={(v) => setField("co2", v)} step="0.1" min="0" suffix="relative share" />
+                    &lt;LabeledInput label="H2" value={state.h2} onChange={(v) => setField("h2", v)} step="0.1" min="0" suffix="relative share" />
+                    &lt;LabeledInput label="He" value={state.he} onChange={(v) => setField("he", v)} step="0.1" min="0" suffix="relative share" />
+                    &lt;LabeledInput label="CH4" value={state.ch4} onChange={(v) => setField("ch4", v)} step="0.1" min="0" suffix="relative share" />
+                    &lt;LabeledInput label="H2O vapor" value={state.h2o} onChange={(v) => setField("h2o", v)} step="0.1" min="0" suffix="relative share" />
+                  &lt;/div>
+                  &lt;p className="mt-3 text-xs leading-5 text-slate-500">
+                    Gas inputs are normalized internally, so the values do not need to add up to 100. They define the relative atmospheric mix.
+                  &lt;/p>
+                &lt;/div>
+              &lt;/div>
+            &lt;/div>
+          &lt;/div>
+
+          &lt;div className="space-y-6">
+            &lt;div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+              &lt;MetricCard label="World type" value={model.worldType} detail={`${model.starClass}-type host star`} />
+              &lt;MetricCard label="Surface gravity" value={`${round(model.gravity, 2)} m/s²`} detail={`${round(model.gravity / 9.80665, 2)} g`} />
+              &lt;MetricCard label="Surface temperature" value={`${round(model.surfaceTemp, 0)} K`} detail={`${model.climate} climate`} />
+              &lt;MetricCard label="Bulk density" value={`${round(model.bulkDensity, 2)} g/cc`} detail={`Expected ~${round(model.expectedDensity, 2)} g/cc`} />
+            &lt;/div>
+
+            &lt;div className="grid gap-6 lg:grid-cols-2">
+              &lt;div className="rounded-&#91;2rem] border border-white/10 bg-white/5 p-6 backdrop-blur">
+                &lt;SectionTitle subtitle="Derived from orbit, host star, albedo, atmosphere, and basic retention physics.">Planet model&lt;/SectionTitle>
+                &lt;div className="grid gap-3 sm:grid-cols-2">
+                  &lt;div className="rounded-2xl bg-slate-950/50 p-4">
+                    &lt;div className="text-xs uppercase tracking-&#91;0.14em] text-slate-500">Average insolation&lt;/div>
+                    &lt;div className="mt-2 text-xl font-semibold text-white">{round(model.avgInsolation, 2)} S⊕&lt;/div>
+                  &lt;/div>
+                  &lt;div className="rounded-2xl bg-slate-950/50 p-4">
+                    &lt;div className="text-xs uppercase tracking-&#91;0.14em] text-slate-500">Equilibrium temperature&lt;/div>
+                    &lt;div className="mt-2 text-xl font-semibold text-white">{round(model.equilibriumTemp, 0)} K&lt;/div>
+                  &lt;/div>
+                  &lt;div className="rounded-2xl bg-slate-950/50 p-4">
+                    &lt;div className="text-xs uppercase tracking-&#91;0.14em] text-slate-500">Greenhouse boost&lt;/div>
+                    &lt;div className="mt-2 text-xl font-semibold text-white">+{round(model.greenhouseBoost, 0)} K&lt;/div>
+                  &lt;/div>
+                  &lt;div className="rounded-2xl bg-slate-950/50 p-4">
+                    &lt;div className="text-xs uppercase tracking-&#91;0.14em] text-slate-500">Escape velocity&lt;/div>
+                    &lt;div className="mt-2 text-xl font-semibold text-white">{round(model.escapeVelocity, 2)} km/s&lt;/div>
+                  &lt;/div>
+                  &lt;div className="rounded-2xl bg-slate-950/50 p-4">
+                    &lt;div className="text-xs uppercase tracking-&#91;0.14em] text-slate-500">Hydrology&lt;/div>
+                    &lt;div className="mt-2 text-base font-medium text-white">{model.hydrology}&lt;/div>
+                  &lt;/div>
+                  &lt;div className="rounded-2xl bg-slate-950/50 p-4">
+                    &lt;div className="text-xs uppercase tracking-&#91;0.14em] text-slate-500">Dominant gases&lt;/div>
+                    &lt;div className="mt-2 text-base font-medium text-white">{gasLabel(model.gases)}&lt;/div>
+                  &lt;/div>
+                &lt;/div>
+              &lt;/div>
+
+              &lt;div className="rounded-&#91;2rem] border border-white/10 bg-white/5 p-6 backdrop-blur">
+                &lt;SectionTitle subtitle="Interior activity and field generation are inferred heuristically from mass, age, orbit, and composition.">Geology and history&lt;/SectionTitle>
+                &lt;div className="space-y-4">
+                  &lt;div className="flex flex-wrap gap-2">
+                    &lt;Pill tone="cyan">{geologyClass(model.geologyIndex)}&lt;/Pill>
+                    &lt;Pill tone="emerald">Tectonics: {model.tectonics}&lt;/Pill>
+                    &lt;Pill tone="amber">Magnetic field: {model.magnetosphere}&lt;/Pill>
+                  &lt;/div>
+                  &lt;div className="rounded-2xl bg-slate-950/50 p-4 text-sm leading-7 text-slate-300">
+                    &lt;p>&lt;span className="font-medium text-white">Snow line:&lt;/span> {round(model.frostLine, 2)} AU&lt;/p>
+                    &lt;p>&lt;span className="font-medium text-white">Interior structure:&lt;/span> Core {round(model.coreFraction, 1)}% · Mantle {round(model.mantleFraction, 1)}% · Water/ice {round(model.waterFraction, 1)}%&lt;/p>
+                    &lt;p>&lt;span className="font-medium text-white">Tidal note:&lt;/span> {model.tidalNote}&lt;/p>
+                  &lt;/div>
+                  &lt;div className="space-y-3 text-sm leading-7 text-slate-300">
+                    {model.formation.map((line, i) => (
+                      &lt;p key={i}>{line}&lt;/p>
+                    ))}
+                  &lt;/div>
+                &lt;/div>
+              &lt;/div>
+            &lt;/div>
+
+            &lt;div className="grid gap-6 lg:grid-cols-2">
+              &lt;div className="rounded-&#91;2rem] border border-white/10 bg-white/5 p-6 backdrop-blur">
+                &lt;SectionTitle subtitle="Whether a gas is retained is estimated using a simple thermal escape criterion at an exobase-like temperature.">Atmospheric retention&lt;/SectionTitle>
+                &lt;div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+                  {Object.entries(model.gasRetention).map((&#91;gas, status]) => {
+                    const tone = status === "likely" ? "emerald" : status === "borderline" ? "amber" : "rose";
+                    return (
+                      &lt;div key={gas} className="rounded-2xl bg-slate-950/50 p-4">
+                        &lt;div className="text-xs uppercase tracking-&#91;0.14em] text-slate-500">{gas}&lt;/div>
+                        &lt;div className="mt-2">&lt;Pill tone={tone}>{status}&lt;/Pill>&lt;/div>
+                      &lt;/div>
+                    );
+                  })}
+                &lt;/div>
+                &lt;p className="mt-4 text-sm leading-6 text-slate-400">
+                  This is a first-order screen, not a full atmospheric evolution code. It ignores detailed photochemistry, stellar wind history, non-thermal escape pathways, and mantle-atmosphere coupling.
+                &lt;/p>
+              &lt;/div>
+
+              &lt;div className="rounded-&#91;2rem] border border-white/10 bg-white/5 p-6 backdrop-blur">
+                &lt;SectionTitle subtitle="The chemistry summary is based on bulk fractions and atmospheric composition, not a full equilibrium chemistry solver.">Chemistry and atmosphere&lt;/SectionTitle>
+                &lt;div className="rounded-2xl bg-slate-950/50 p-4 text-sm leading-7 text-slate-300">
+                  &lt;p>{model.chemistrySummary}&lt;/p>
+                  &lt;p className="mt-3">&lt;span className="font-medium text-white">Atmosphere:&lt;/span> {gasLabel(model.gases)}&lt;/p>
+                  &lt;p>&lt;span className="font-medium text-white">Pressure:&lt;/span> {round(model.atmospherePressure, 2)} bar&lt;/p>
+                  &lt;p>&lt;span className="font-medium text-white">Climate band:&lt;/span> {model.climate}&lt;/p>
+                &lt;/div>
+              &lt;/div>
+            &lt;/div>
+
+            &lt;div className="grid gap-6 lg:grid-cols-&#91;1.1fr_0.9fr]">
+              &lt;div className="rounded-&#91;2rem] border border-white/10 bg-white/5 p-6 backdrop-blur">
+                &lt;SectionTitle subtitle="A synthesized write-up of the modeled world.">Generated planet profile&lt;/SectionTitle>
+                &lt;WorldNarrative model={model} />
+              &lt;/div>
+
+              &lt;div className="rounded-&#91;2rem] border border-white/10 bg-white/5 p-6 backdrop-blur">
+                &lt;SectionTitle subtitle="This catches obvious contradictions and regimes where the simplifications begin to fail.">Physics bounds and warnings&lt;/SectionTitle>
+                &lt;div className="space-y-3">
+                  {model.warnings.map((warning, i) => (
+                    &lt;div key={i} className="rounded-2xl border border-white/10 bg-slate-950/50 p-4 text-sm leading-6 text-slate-300">
+                      {warning}
+                    &lt;/div>
+                  ))}
+                &lt;/div>
+              &lt;/div>
+            &lt;/div>
+
+            &lt;div className="rounded-&#91;2rem] border border-white/10 bg-white/5 p-6 backdrop-blur">
+              &lt;SectionTitle subtitle="What this model is and is not doing.">Model scope&lt;/SectionTitle>
+              &lt;div className="grid gap-4 lg:grid-cols-3">
+                &lt;div className="rounded-2xl bg-slate-950/50 p-4 text-sm leading-7 text-slate-300">
+                  &lt;div className="mb-2 font-medium text-white">Included&lt;/div>
+                  Stellar flux, eccentric-orbit averaging, equilibrium temperature, simplified greenhouse forcing, density checks, rough atmospheric escape, interior activity heuristics, snow-line formation context, and coarse geology/climate interpretation.
+                &lt;/div>
+                &lt;div className="rounded-2xl bg-slate-950/50 p-4 text-sm leading-7 text-slate-300">
+                  &lt;div className="mb-2 font-medium text-white">Approximate&lt;/div>
+                  Greenhouse heating, volatile retention, tectonics, magnetic shielding, and water stability are heuristic and intended for fast exploratory modeling rather than publication-grade prediction.
+                &lt;/div>
+                &lt;div className="rounded-2xl bg-slate-950/50 p-4 text-sm leading-7 text-slate-300">
+                  &lt;div className="mb-2 font-medium text-white">Not included&lt;/div>
+                  3D circulation, cloud feedbacks, radiative-convective coupling, equilibrium chemistry, mantle redox evolution, stellar flare histories, spin-orbit states, biosignatures, and retrieval-style observational uncertainties.
+                &lt;/div>
+              &lt;/div>
+            &lt;/div>
+          &lt;/div>
+        &lt;/div>
+      &lt;/div>
+    &lt;/div>
+  );
+}
+</code></pre>
+</main>
+<atw-footer></atw-footer>
+</body>
+</html>

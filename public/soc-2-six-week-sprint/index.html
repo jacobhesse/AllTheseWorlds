@@ -1,0 +1,654 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SOC 2 Readiness Sprint | 6-Week Program | Stargazer Consulting</title>
+  <meta name="description" content="A six-week fixed-fee SOC 2 readiness sprint for SaaS companies that need a clear, structured path to policies, controls, evidence, and audit readiness." />
+  <style>
+    :root{
+      --bg-1:#0f1533;
+      --bg-2:#0b0f25;
+      --bg-3:#0a0d1f;
+      --panel:rgba(255,255,255,0.06);
+      --panel-strong:rgba(255,255,255,0.10);
+      --border:rgba(255,255,255,0.12);
+      --text:#e8eeff;
+      --muted:#bcc8ea;
+      --accent:#67e8f9;
+      --accent-2:#86efac;
+      --shadow:0 18px 50px rgba(0,0,0,0.35);
+      --radius:20px;
+      --max:1160px;
+    }
+
+    *{
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(103,232,249,0.12), transparent 26%),
+        radial-gradient(circle at top right, rgba(134,239,172,0.08), transparent 24%),
+        linear-gradient(180deg, var(--bg-1), var(--bg-2) 45%, var(--bg-3) 100%);
+      line-height:1.6;
+    }
+
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    .container{
+      width:min(var(--max), calc(100% - 40px));
+      margin:0 auto;
+    }
+
+    .section{
+      padding:72px 0;
+    }
+
+    .eyebrow{
+      display:inline-block;
+      font-size:0.82rem;
+      font-weight:700;
+      letter-spacing:0.12em;
+      text-transform:uppercase;
+      color:var(--accent);
+      margin-bottom:14px;
+    }
+
+    h1,h2,h3{
+      margin:0 0 16px 0;
+      line-height:1.15;
+      color:#fff;
+    }
+
+    h1{
+      font-size:clamp(2.4rem, 5vw, 4.3rem);
+      max-width:880px;
+    }
+
+    h2{
+      font-size:clamp(1.8rem, 3vw, 2.6rem);
+    }
+
+    h3{
+      font-size:1.12rem;
+    }
+
+    p{
+      margin:0 0 16px 0;
+      color:var(--muted);
+      font-size:1.03rem;
+    }
+
+    .hero{
+      padding:92px 0 68px;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.2fr 0.8fr;
+      gap:28px;
+      align-items:stretch;
+    }
+
+    .hero-copy,
+    .hero-card,
+    .panel,
+    .timeline-card,
+    .price-card,
+    .faq-item,
+    .deliverable-item,
+    .cta,
+    .band{
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(8px);
+    }
+
+    .hero-copy{
+      padding:42px;
+    }
+
+    .hero-copy .lead{
+      font-size:1.16rem;
+      color:#dbe6ff;
+      max-width:760px;
+      margin-bottom:20px;
+    }
+
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-top:28px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:14px 22px;
+      border-radius:12px;
+      font-weight:700;
+      transition:transform 0.15s ease, opacity 0.15s ease;
+    }
+
+    .btn:hover{
+      transform:translateY(-1px);
+      opacity:0.97;
+    }
+
+    .btn-primary{
+      background:linear-gradient(90deg, var(--accent), var(--accent-2));
+      color:#051019;
+    }
+
+    .btn-secondary{
+      border:1px solid rgba(255,255,255,0.16);
+      background:rgba(255,255,255,0.04);
+      color:var(--text);
+    }
+
+    .hero-card{
+      padding:32px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+
+    .label{
+      font-size:0.8rem;
+      text-transform:uppercase;
+      letter-spacing:0.1em;
+      color:var(--accent);
+      margin-bottom:10px;
+      font-weight:700;
+    }
+
+    .hero-price{
+      font-size:3rem;
+      font-weight:800;
+      line-height:1;
+      margin:10px 0 8px;
+      color:#fff;
+    }
+
+    .hero-price-sub{
+      color:var(--muted);
+      margin-bottom:18px;
+    }
+
+    .hero-list,
+    .mini-list{
+      padding-left:18px;
+      margin:0;
+      color:var(--muted);
+    }
+
+    .hero-list li,
+    .mini-list li{
+      margin-bottom:10px;
+    }
+
+    .band{
+      padding:28px 30px;
+      background:linear-gradient(180deg, rgba(103,232,249,0.08), rgba(255,255,255,0.04));
+    }
+
+    .band p{
+      margin:0;
+      color:#dbe7ff;
+      font-size:1.06rem;
+    }
+
+    .grid-2{
+      display:grid;
+      grid-template-columns:repeat(2, 1fr);
+      gap:24px;
+    }
+
+    .grid-3{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:20px;
+    }
+
+    .grid-4{
+      display:grid;
+      grid-template-columns:repeat(4, 1fr);
+      gap:18px;
+    }
+
+    .panel{
+      padding:28px;
+    }
+
+    .timeline{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:20px;
+      margin-top:28px;
+    }
+
+    .timeline-card{
+      padding:24px;
+    }
+
+    .week{
+      display:inline-block;
+      font-size:0.8rem;
+      font-weight:700;
+      letter-spacing:0.12em;
+      text-transform:uppercase;
+      color:var(--accent);
+      margin-bottom:10px;
+    }
+
+    .deliverables{
+      display:grid;
+      grid-template-columns:repeat(2, 1fr);
+      gap:18px;
+      margin-top:28px;
+    }
+
+    .deliverable-item{
+      padding:22px;
+    }
+
+    .pricing-wrap{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:24px;
+      align-items:start;
+    }
+
+    .price-card{
+      padding:34px;
+      background:linear-gradient(180deg, rgba(103,232,249,0.10), rgba(255,255,255,0.05));
+    }
+
+    .price{
+      font-size:3.3rem;
+      line-height:1;
+      font-weight:800;
+      margin:8px 0 12px;
+      color:#fff;
+    }
+
+    .small{
+      font-size:0.95rem;
+      color:var(--muted);
+    }
+
+    .divider{
+      height:1px;
+      background:rgba(255,255,255,0.1);
+      margin:22px 0;
+    }
+
+    .faq{
+      display:grid;
+      gap:18px;
+      margin-top:28px;
+    }
+
+    .faq-item{
+      padding:24px;
+    }
+
+    .cta{
+      text-align:center;
+      padding:38px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(103,232,249,0.08));
+    }
+
+    .cta p{
+      max-width:760px;
+      margin:0 auto 20px;
+    }
+
+    @media (max-width: 980px){
+      .hero-grid,
+      .grid-2,
+      .grid-3,
+      .grid-4,
+      .timeline,
+      .deliverables,
+      .pricing-wrap{
+        grid-template-columns:1fr;
+      }
+
+      .hero{
+        padding-top:66px;
+      }
+    }
+
+    @media (max-width: 640px){
+      .container{
+        width:min(var(--max), calc(100% - 28px));
+      }
+
+      .hero-copy,
+      .hero-card,
+      .panel,
+      .timeline-card,
+      .price-card,
+      .faq-item,
+      .deliverable-item,
+      .cta,
+      .band{
+        padding:24px;
+      }
+
+      .hero-price,
+      .price{
+        font-size:2.5rem;
+      }
+
+      .btn{
+        width:100%;
+      }
+    }
+  </style>
+<link rel="icon" href="/wp-content/uploads/2025/11/cropped-0_3-25456-no-background.png">
+<script src="/assets/site.js" defer></script>
+</head>
+<body>
+<div class="wp-site-blocks">
+<atw-header></atw-header>
+<section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">Stargazer Consulting</div>
+          <h1>Build a real SOC 2 readiness program in six weeks</h1>
+          <p class="lead">
+            The six-week SOC 2 Readiness Sprint gives your company a clear, structured path from scattered effort to a working readiness system with policies, controls, evidence structure, and defined next steps.
+          </p>
+          <p>
+            Many teams start SOC 2 with good intentions, a platform, and a few templates. The difficulty comes later: organizing the work across the company, assigning ownership, keeping documentation aligned to operations, and building an evidence process that does not become a scramble.
+          </p>
+          <p>
+            This sprint is designed to make that manageable. It creates momentum, structure, and clarity without dragging the work out across months of stop-and-start internal effort.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://calendly.com/jacob-hesse-kemperastronautics/30min">Book a Call</a>
+            <a class="btn btn-secondary" href="#pricing">See Pricing</a>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div>
+            <div class="label">6-Week Fixed-Fee Program</div>
+            <div class="hero-price">$15,000</div>
+            <div class="hero-price-sub">Remote delivery • structured weekly cadence • fixed fee</div>
+            <ul class="hero-list">
+              <li>Six weekly working sessions</li>
+              <li>Core policy and control structure</li>
+              <li>Evidence framework and operating cadence</li>
+              <li>End-of-sprint readiness review and roadmap</li>
+            </ul>
+          </div>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://calendly.com/jacob-hesse-kemperastronautics/30min">Start the Sprint</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="band">
+        <p>
+          <strong>This is for companies that want a stronger answer than “we should probably get moving on SOC 2.”</strong>
+          It turns the initiative into a defined program your team can understand, execute, and continue operating after the sprint.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="why-this-works">
+    <div class="container">
+      <div class="eyebrow">Why This Works</div>
+      <h2>Where most SOC 2 efforts become difficult</h2>
+      <div class="grid-3" style="margin-top:28px;">
+        <div class="panel">
+          <h3>The work spans multiple teams</h3>
+          <p>
+            SOC 2 is rarely blocked by a lack of information. It becomes difficult when engineering, operations, leadership, and vendors all affect the final result.
+          </p>
+        </div>
+        <div class="panel">
+          <h3>Documentation and reality drift apart</h3>
+          <p>
+            Policies are relatively easy to draft. The harder part is making sure they match the way the company actually works and can be supported with evidence later.
+          </p>
+        </div>
+        <div class="panel">
+          <h3>Momentum breaks down</h3>
+          <p>
+            Without a defined structure, SOC 2 tends to compete with normal business priorities and stretch into a longer, less predictable effort than expected.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="fit">
+    <div class="container">
+      <div class="grid-2">
+        <div class="panel">
+          <div class="eyebrow">Best Fit</div>
+          <h2>Who this sprint is for</h2>
+          <ul class="mini-list">
+            <li>B2B SaaS companies preparing for SOC 2 because customers, prospects, or procurement teams expect it</li>
+            <li>Founders, CTOs, and operators who want a structured path rather than an open-ended consulting engagement</li>
+            <li>Teams that have started the conversation internally but need a more organized way to move the work forward</li>
+            <li>Companies that want practical progress toward Type I or Type II readiness</li>
+          </ul>
+        </div>
+
+        <div class="panel">
+          <div class="eyebrow">What This Is Not</div>
+          <h2>What to expect from the sprint</h2>
+          <ul class="mini-list">
+            <li>Not a guaranteed audit in six weeks</li>
+            <li>Not a purely theoretical advisory engagement</li>
+            <li>Not a checklist exercise disconnected from your real environment</li>
+            <li>Not a substitute for internal participation and decision-making</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="outcomes">
+    <div class="container">
+      <div class="eyebrow">Outcomes</div>
+      <h2>What you should have by the end of the sprint</h2>
+      <div class="grid-4" style="margin-top:28px;">
+        <div class="panel">
+          <h3>Clear scope</h3>
+          <p>A documented view of your in-scope systems, boundaries, and readiness baseline.</p>
+        </div>
+        <div class="panel">
+          <h3>Core documentation</h3>
+          <p>Policies and supporting procedures that reflect the way your company actually operates.</p>
+        </div>
+        <div class="panel">
+          <h3>Control ownership</h3>
+          <p>A clearer structure for who owns key controls and how they should function over time.</p>
+        </div>
+        <div class="panel">
+          <h3>Evidence structure</h3>
+          <p>A practical framework for collecting and maintaining evidence before audit pressure sets in.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="timeline">
+    <div class="container">
+      <div class="eyebrow">Six Weeks</div>
+      <h2>How the sprint works</h2>
+      <div class="timeline">
+        <div class="timeline-card">
+          <div class="week">Week 1</div>
+          <h3>Scope and baseline</h3>
+          <p>Confirm systems, boundaries, trust criteria focus, and the current-state readiness picture.</p>
+        </div>
+        <div class="timeline-card">
+          <div class="week">Week 2</div>
+          <h3>Gap review and priorities</h3>
+          <p>Identify what needs attention first and create a more realistic sequence for the work.</p>
+        </div>
+        <div class="timeline-card">
+          <div class="week">Week 3</div>
+          <h3>Policy and procedure buildout</h3>
+          <p>Create or refine core documentation to support a functioning readiness program.</p>
+        </div>
+        <div class="timeline-card">
+          <div class="week">Week 4</div>
+          <h3>Control design and ownership</h3>
+          <p>Translate requirements into operating controls, accountability, and recurring activity.</p>
+        </div>
+        <div class="timeline-card">
+          <div class="week">Week 5</div>
+          <h3>Evidence framework</h3>
+          <p>Build the structure for evidence capture, review, and retention so the program can hold up under scrutiny.</p>
+        </div>
+        <div class="timeline-card">
+          <div class="week">Week 6</div>
+          <h3>Readiness review and roadmap</h3>
+          <p>Review progress, identify remaining gaps, and define the strongest next step toward audit readiness.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="deliverables">
+    <div class="container">
+      <div class="eyebrow">Deliverables</div>
+      <h2>What you receive</h2>
+      <div class="deliverables">
+        <div class="deliverable-item">
+          <h3>Scope and readiness baseline</h3>
+          <p>A practical view of systems, boundaries, current controls, and readiness state.</p>
+        </div>
+        <div class="deliverable-item">
+          <h3>Core policy package</h3>
+          <p>Foundational documentation aligned to your environment and operating reality.</p>
+        </div>
+        <div class="deliverable-item">
+          <h3>Control mapping and ownership model</h3>
+          <p>A working structure for assigning and maintaining important controls.</p>
+        </div>
+        <div class="deliverable-item">
+          <h3>Evidence collection framework</h3>
+          <p>Folders, conventions, and guidance for recurring evidence capture and review.</p>
+        </div>
+        <div class="deliverable-item">
+          <h3>Operating cadence recommendations</h3>
+          <p>A repeatable rhythm for access reviews, changes, incidents, risk activities, and related controls.</p>
+        </div>
+        <div class="deliverable-item">
+          <h3>End-of-sprint roadmap</h3>
+          <p>A clear view of what is in place, what remains open, and what should happen next.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="pricing">
+    <div class="container">
+      <div class="pricing-wrap">
+        <div class="price-card">
+          <div class="eyebrow">Pricing</div>
+          <h2>Fixed-fee engagement</h2>
+          <div class="price">$15,000</div>
+          <p class="small">Six weeks • remote delivery • no hourly billing</p>
+          <div class="divider"></div>
+          <ul class="mini-list">
+            <li>Six weekly working sessions</li>
+            <li>Async review and support between sessions</li>
+            <li>Templates, working documents, and implementation guidance</li>
+            <li>Final readiness review and roadmap</li>
+          </ul>
+          <div class="hero-actions" style="margin-top:24px;">
+            <a class="btn btn-primary" href="https://calendly.com/jacob-hesse-kemperastronautics/30min">Book a Call</a>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="eyebrow">Why Companies Buy This</div>
+          <h2>A simpler path than piecing it together over time</h2>
+          <p>
+            The value of the sprint is not just information. It is structure, prioritization, momentum, and a clearer operating model for work that otherwise tends to spread across multiple people and competing priorities.
+          </p>
+          <p>
+            Companies buy this when they want to move faster with less rework, avoid months of stop-and-start effort, and build a readiness program that is more likely to hold together when customers and auditors begin asking harder questions.
+          </p>
+          <p>
+            In other words, the alternative is not really “doing nothing.” The alternative is usually taking longer, using more internal attention, and getting to clarity later than expected.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="faq-section">
+    <div class="container">
+      <div class="eyebrow">FAQ</div>
+      <h2>Common questions</h2>
+      <div class="faq">
+        <div class="faq-item">
+          <h3>Does this include the audit?</h3>
+          <p>No. This sprint is for readiness, structure, and implementation progress. The audit itself is a separate engagement with an audit firm.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Is this better for Type I or Type II?</h3>
+          <p>It can support preparation for either. The emphasis depends on your current state, customer expectations, and timing.</p>
+        </div>
+        <div class="faq-item">
+          <h3>Will our team still need to participate?</h3>
+          <p>Yes. Internal participation is necessary. The sprint is designed to make that participation more organized, efficient, and easier to sustain.</p>
+        </div>
+        <div class="faq-item">
+          <h3>What happens after the sprint?</h3>
+          <p>You leave with a stronger readiness foundation, clearer ownership, and a defined next-step path toward continued maturity or audit preparation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="cta">
+    <div class="container">
+      <div class="cta">
+        <div class="eyebrow">Next Step</div>
+        <h2>Move SOC 2 from a good intention to a managed program</h2>
+        <p>
+          If your company already knows SOC 2 matters and the real challenge is organizing the work in a way that is realistic, efficient, and durable, this sprint is built for that stage.
+        </p>
+        <div class="hero-actions" style="justify-content:center;">
+          <a class="btn btn-primary" href="https://calendly.com/jacob-hesse-kemperastronautics/30min">Book a Call</a>
+        </div>
+      </div>
+    </div>
+  </section>
+<atw-footer></atw-footer>
+</div>
+</body>
+</html>

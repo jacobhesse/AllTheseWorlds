@@ -1,0 +1,1418 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>College Thermodynamics — Fundamental Topics, Equations, and Explanations</title>
+  <meta name="description" content="A structured, course-level reference of core thermodynamics topics with key equations and concise explanations." />
+  <style>
+    :root{
+      --bg: #0b1220;
+      --panel: rgba(255,255,255,0.06);
+      --panel2: rgba(255,255,255,0.08);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.70);
+      --faint: rgba(255,255,255,0.55);
+      --line: rgba(255,255,255,0.14);
+      --accent: #7dd3fc;   /* sky */
+      --accent2:#a78bfa;   /* violet */
+      --ok:#34d399;
+      --warn:#fbbf24;
+      --bad:#fb7185;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Helvetica Neue", sans-serif;
+      --radius: 18px;
+      --shadow: 0 18px 60px rgba(0,0,0,0.35);
+    }
+
+    * { box-sizing: border-box; }
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 700px at 15% 10%, rgba(125, 211, 252, 0.22), transparent 55%),
+        radial-gradient(1000px 600px at 85% 15%, rgba(167, 139, 250, 0.20), transparent 55%),
+        radial-gradient(800px 600px at 50% 90%, rgba(52, 211, 153, 0.12), transparent 60%),
+        linear-gradient(180deg, #070b14 0%, #0b1220 35%, #060a12 100%);
+      min-height:100vh;
+    }
+
+    a{ color: var(--accent); text-decoration: none; }
+    a:hover{ text-decoration: underline; }
+
+    header{
+      padding: 56px 22px 24px;
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+    .title{
+      display:flex;
+      gap:16px;
+      align-items:flex-start;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    h1{
+      margin:0;
+      font-size: clamp(28px, 3.2vw, 44px);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+    .subtitle{
+      margin:12px 0 0;
+      color: var(--muted);
+      max-width: 78ch;
+      line-height:1.55;
+    }
+
+    .meta{
+      display:flex;
+      gap:10px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+      color: var(--faint);
+      font-size: 14px;
+    }
+    .chip{
+      background: var(--panel);
+      border: 1px solid var(--line);
+      padding: 8px 10px;
+      border-radius: 999px;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      backdrop-filter: blur(10px);
+    }
+    .dot{
+      width:10px; height:10px; border-radius: 99px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 0 3px rgba(125,211,252,0.10);
+    }
+
+    main{
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 10px 22px 70px;
+    }
+
+    .layout{
+      display:grid;
+      grid-template-columns: 340px 1fr;
+      gap: 18px;
+      align-items:start;
+    }
+
+    @media (max-width: 980px){
+      .layout{ grid-template-columns: 1fr; }
+      .toc{ position: static !important; }
+    }
+
+    .card{
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .cardHeader{
+      padding: 16px 16px 10px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+    }
+    .cardHeader h2{
+      margin:0;
+      font-size: 16px;
+      letter-spacing: 0.01em;
+      color: rgba(255,255,255,0.86);
+    }
+    .cardBody{ padding: 14px 16px 18px; }
+
+    .toc{
+      position: sticky;
+      top: 14px;
+    }
+    .search{
+      width:100%;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      margin-top: 10px;
+    }
+    input[type="search"]{
+      width:100%;
+      padding: 12px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: rgba(0,0,0,0.22);
+      color: var(--text);
+      outline: none;
+    }
+    input[type="search"]::placeholder{ color: rgba(255,255,255,0.45); }
+    .btn{
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      padding: 12px 12px;
+      border-radius: 12px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .btn:hover{ background: rgba(255,255,255,0.10); }
+
+    .tocList{
+      margin: 12px 0 0;
+      padding: 0;
+      list-style: none;
+      max-height: 62vh;
+      overflow:auto;
+    }
+    .tocList li{
+      margin: 0;
+      border-top: 1px dashed rgba(255,255,255,0.12);
+    }
+    .tocList a{
+      display:block;
+      padding: 10px 10px;
+      color: rgba(255,255,255,0.82);
+    }
+    .tocList a small{
+      color: rgba(255,255,255,0.55);
+      display:block;
+      margin-top: 3px;
+      line-height:1.3;
+    }
+
+    section.topic{
+      padding: 0;
+      margin: 0 0 16px;
+    }
+
+    .topicInner{
+      padding: 16px 16px 18px;
+      border-top: 1px solid rgba(255,255,255,0.10);
+    }
+    .topicTitle{
+      display:flex;
+      align-items:flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+    .topicTitle h3{
+      margin:0;
+      font-size: 18px;
+      letter-spacing: -0.01em;
+    }
+    .tagRow{
+      display:flex;
+      gap:8px;
+      flex-wrap: wrap;
+      align-items:center;
+    }
+    .tag{
+      font-size: 12px;
+      color: rgba(255,255,255,0.78);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 6px 8px;
+      border-radius: 999px;
+    }
+    .tag.ok{ border-color: rgba(52,211,153,0.38); }
+    .tag.warn{ border-color: rgba(251,191,36,0.40); }
+    .tag.bad{ border-color: rgba(251,113,133,0.38); }
+
+    .explain{
+      margin: 10px 0 0;
+      color: var(--muted);
+      line-height: 1.55;
+      max-width: 95ch;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 12px;
+    }
+    @media (max-width: 860px){
+      .grid{ grid-template-columns: 1fr; }
+    }
+
+    .box{
+      background: rgba(0,0,0,0.18);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 14px;
+      padding: 12px 12px 10px;
+    }
+    .box h4{
+      margin: 0 0 8px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.80);
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .eq{
+      font-family: var(--mono);
+      font-size: 13px;
+      line-height: 1.45;
+      color: rgba(255,255,255,0.88);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .bullets{
+      margin: 0;
+      padding-left: 18px;
+      color: rgba(255,255,255,0.78);
+      line-height: 1.55;
+      font-size: 14px;
+    }
+    .bullets li{ margin: 6px 0; }
+
+    .note{
+      margin-top: 12px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(125, 211, 252, 0.22);
+      background: rgba(125, 211, 252, 0.08);
+      color: rgba(255,255,255,0.84);
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    footer{
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 22px 22px 60px;
+      color: rgba(255,255,255,0.55);
+      font-size: 13px;
+      line-height:1.5;
+    }
+    .kbd{
+      font-family: var(--mono);
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(0,0,0,0.22);
+      padding: 2px 6px;
+      border-radius: 8px;
+      color: rgba(255,255,255,0.80);
+    }
+
+    .hidden{ display:none !important; }
+  </style>
+<link rel="icon" href="/wp-content/uploads/2025/11/cropped-0_3-25456-no-background.png">
+<script src="/assets/site.js" defer></script>
+</head>
+<body>
+<div class="wp-site-blocks">
+<atw-header></atw-header>
+<header>
+    <div class="title">
+      <div>
+        <h1>College Thermodynamics</h1>
+        <p class="subtitle">
+          A structured reference of <strong>fundamental topics</strong>, <strong>core equations</strong>, and
+          <strong>concise explanations</strong> typically covered in a one-semester, college-level engineering
+          thermodynamics course (and broadly consistent with physics thermodynamics foundations).
+        </p>
+        <div class="meta">
+          <span class="chip"><span class="dot"></span>Use as a course map + formula reference</span>
+          <span class="chip">Covers: properties, laws, cycles, mixtures, exergy</span>
+          <span class="chip">Notation: SI default (unit reminders included)</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="layout">
+      <!-- TOC -->
+      <aside class="card toc" aria-label="Table of contents">
+        <div class="cardHeader">
+          <h2>Navigate</h2>
+          <div class="search" role="search">
+            <input id="q" type="search" placeholder="Filter topics (e.g., entropy, exergy, Rankine)..." aria-label="Filter topics" />
+            <button class="btn" id="clearBtn" type="button">Clear</button>
+          </div>
+        </div>
+        <div class="cardBody">
+          <ul class="tocList" id="tocList">
+            <!-- populated by JS -->
+          </ul>
+          <div class="note">
+            Tip: Use <span class="kbd">Ctrl</span>+<span class="kbd">F</span> (or <span class="kbd">⌘</span>+<span class="kbd">F</span>) for exact symbol search (e.g., <span class="kbd">dU</span>, <span class="kbd">Tds</span>).
+          </div>
+        </div>
+      </aside>
+
+      <!-- CONTENT -->
+      <div class="card" id="contentCard">
+        <div class="cardHeader">
+          <h2>Core Topics</h2>
+        </div>
+
+        <!-- SECTION 0: FOUNDATIONS -->
+        <section class="topic" id="foundations" data-title="Foundations &#038; Thermodynamic Language" data-keywords="definitions system boundary state equilibrium process path cycle intensive extensive">
+          <div class="topicInner">
+            <div class="topicTitle">
+              <h3>Foundations &#038; Thermodynamic Language</h3>
+              <div class="tagRow">
+                <span class="tag ok">Concepts</span>
+                <span class="tag">Systems</span>
+                <span class="tag">State/Process</span>
+              </div>
+            </div>
+            <p class="explain">
+              Thermodynamics studies energy, entropy, and equilibrium constraints. A course begins by defining
+              <em>systems</em>, <em>states</em>, and <em>processes</em>, distinguishing
+              <strong>properties (state functions)</strong> from <strong>path functions</strong>, and establishing
+              consistent sign conventions and units.
+            </p>
+            <div class="grid">
+              <div class="box">
+                <h4>Core definitions</h4>
+                <ul class="bullets">
+                  <li><strong>System</strong> vs <strong>surroundings</strong>; <strong>boundary</strong></li>
+                  <li><strong>Closed system</strong>: fixed mass; <strong>control volume</strong>: mass flow allowed</li>
+                  <li><strong>State</strong>: described by properties (P, T, v, u, h, s, …)</li>
+                  <li><strong>Process</strong>: change of state; <strong>cycle</strong>: returns to initial state</li>
+                  <li><strong>Equilibrium</strong>: mechanical/thermal/phase/chemical equilibrium</li>
+                  <li><strong>Quasi-equilibrium</strong>: process proceeds through near-equilibrium states</li>
+                  <li><strong>Intensive</strong> vs <strong>extensive</strong> properties</li>
+                </ul>
+              </div>
+              <div class="box">
+                <h4>Sign conventions (typical engineering)</h4>
+                <div class="eq">Q > 0 : heat added to system
+W > 0 : work done by system
+ΔE = E2 − E1</div>
+                <div class="note">
+                  Many texts define work/heat with these signs; always verify in your course.
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 1: PROPERTIES -->
+        <section class="topic" id="properties" data-title="Properties of Pure Substances" data-keywords="PVT equation of state phase diagram saturation quality v u h s tables">
+          <div class="topicInner">
+            <div class="topicTitle">
+              <h3>Properties of Pure Substances</h3>
+              <div class="tagRow">
+                <span class="tag ok">Properties</span>
+                <span class="tag">Phase behavior</span>
+                <span class="tag">Tables</span>
+              </div>
+            </div>
+            <p class="explain">
+              You’ll learn to compute thermodynamic properties from <strong>equations of state</strong> and
+              <strong>property tables</strong> (water/steam, refrigerants). Central ideas: phase diagrams, saturation,
+              quality, and identifying states from given property pairs.
+            </p>
+            <div class="grid">
+              <div class="box">
+                <h4>Phase equilibrium &#038; quality</h4>
+                <div class="eq">x = (m_vapor) / (m_total)   (in saturated mixture)
+
+Specific volume:
+v = (1−x) v_f + x v_g
+
+Internal energy:
+u = (1−x) u_f + x u_g
+
+Enthalpy:
+h = (1−x) h_f + x h_g
+
+Entropy:
+s = (1−x) s_f + x s_g</div>
+                <ul class="bullets">
+                  <li>Subscripts: <span class="kbd">f</span> saturated liquid, <span class="kbd">g</span> saturated vapor</li>
+                  <li>Use if you are <em>in the two-phase dome</em></li>
+                </ul>
+              </div>
+              <div class="box">
+                <h4>Equations of state (EOS)</h4>
+                <div class="eq">Ideal gas:   PV = nRT   or   Pv = RT
+
+Compressibility:  Z = Pv/(RT)  ⇒  Pv = ZRT
+
+Common real-gas EOS (course-dependent):
+Van der Waals: (P + a/v^2)(v − b) = RT</div>
+                <ul class="bullets">
+                  <li><strong>Critical point</strong>, triple point, saturation lines</li>
+                  <li>P–v and T–s diagrams for process visualization</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 2: WORK & HEAT -->
+        <section class="topic" id="work-heat" data-title="Work, Heat, and Process Paths" data-keywords="boundary work pdv polytropic isothermal isobaric isochoric adiabatic cyclic">
+          <div class="topicInner">
+            <div class="topicTitle">
+              <h3>Work, Heat, and Process Paths</h3>
+              <div class="tagRow">
+                <span class="tag ok">Energy transfer</span>
+                <span class="tag">Path functions</span>
+                <span class="tag warn">Sign-sensitive</span>
+              </div>
+            </div>
+            <p class="explain">
+              Heat and work are <strong>modes of energy transfer</strong> across a boundary, not stored in a system.
+              Boundary work depends on the path (e.g., quasi-static compression/expansion).
+            </p>
+            <div class="grid">
+              <div class="box">
+                <h4>Boundary work</h4>
+                <div class="eq">δW_b = P dV   (quasi-equilibrium)
+
+W_b = ∫(1→2) P dV
+
+Polytropic:  PV^n = constant
+W_b = (P2V2 − P1V1)/(1 − n)   (n ≠ 1)
+
+Isothermal ideal gas (T constant):
+W_b = nRT ln(V2/V1) = mRT ln(v2/v1)</div>
+                <ul class="bullets">
+                  <li>On a P–V diagram, work is the area under the curve.</li>
+                </ul>
+              </div>
+              <div class="box">
+                <h4>Other work modes (typical)</h4>
+                <div class="eq">Shaft work (turbines/compressors): Ẇ_shaft
+
+Electrical work: Ẇ_elec = V I  (if applicable)
+
+Spring work (simple model): W = ∫ F dx</div>
+                <ul class="bullets">
+                  <li>Many problems separate <em>boundary work</em> from <em>shaft work</em>.</li>
+                  <li>Heat transfer rate is <span class="kbd">Q̇</span>; work rate is <span class="kbd">Ẇ</span>.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 3: FIRST LAW (CLOSED) -->
+        <section class="topic" id="first-law-closed" data-title="First Law for Closed Systems" data-keywords="first law energy conservation closed system deltaE internal energy kinetic potential">
+          <div class="topicInner">
+            <div class="topicTitle">
+              <h3>First Law (Closed Systems)</h3>
+              <div class="tagRow">
+                <span class="tag ok">Law</span>
+                <span class="tag">Energy accounting</span>
+                <span class="tag">ΔU, ΔKE, ΔPE</span>
+              </div>
+            </div>
+            <p class="explain">
+              The First Law is energy conservation. For a closed system, changes in total energy equal heat in minus
+              work out (with the chosen sign convention).
+            </p>
+            <div class="grid">
+              <div class="box">
+                <h4>Energy balance</h4>
+                <div class="eq">E = U + KE + PE
+
+ΔE = Q − W
+
+ΔU + ΔKE + ΔPE = Q − W
+
+KE = (1/2) m V^2
+PE = m g z</div>
+                <ul class="bullets">
+                  <li>Many textbook problems neglect ΔKE, ΔPE unless stated.</li>
+                </ul>
+              </div>
+              <div class="box">
+                <h4>Special processes (common)</h4>
+                <div class="eq">Constant volume: W_b = 0  ⇒  Q = ΔU  (if only boundary work)
+
+Adiabatic: Q = 0  ⇒  ΔE = −W
+
+Cyclic: ΔE_cycle = 0  ⇒  Q_net = W_net</div>
+                <ul class="bullets">
+                  <li>Be explicit about which work terms exist in the model.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 4: CONTROL VOLUME / STEADY FLOW -->
+        <section class="topic" id="control-volume" data-title="Control Volumes &#038; Steady-Flow Energy Equation (SFEE)" data-keywords="control volume steady flow open system mass flow enthalpy SFEE nozzle diffuser turbine compressor pump">
+          <div class="topicInner">
+            <div class="topicTitle">
+              <h3>Control Volumes &#038; Steady-Flow Energy Equation (SFEE)</h3>
+              <div class="tagRow">
+                <span class="tag ok">Open systems</span>
+                <span class="tag">Enthalpy</span>
+                <span class="tag">Devices</span>
+              </div>
+            </div>
+            <p class="explain">
+              For flowing systems, energy crosses the boundary via mass. This motivates <strong>enthalpy</strong>
+              and the standard energy equation used for turbines, compressors, nozzles, throttles, heat exchangers,
+              and mixing chambers.
+            </p>
+            <div class="grid">
+              <div class="box">
+                <h4>Enthalpy &#038; flow work</h4>
+                <div class="eq">h = u + Pv    (specific enthalpy)
+
+Flow work per unit mass ~ Pv
+Total specific energy for flow: e = u + Pv + (V^2/2) + gz = h + (V^2/2) + gz</div>
+              </div>
+              <div class="box">
+                <h4>SFEE (single-inlet/single-outlet, steady)</h4>
+                <div class="eq">Q̇ − Ẇ = ṁ[(h2 − h1) + (V2^2 − V1^2)/2 + g(z2 − z1)]
+
+Per unit mass:
+q − w = (h2 − h1) + (V2^2 − V1^2)/2 + g(z2 − z1)</div>
+                <ul class="bullets">
+                  <li>Apply device assumptions (adiabatic, negligible ΔKE, etc.) to simplify.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="grid">
+              <div class="box">
+                <h4>Common device models (typical simplifications)</h4>
+                <ul class="bullets">
+                  <li><strong>Nozzle/Diffuser</strong>: usually q≈0, w≈0 → Δh ≈ −Δ(V²/2)</li>
+                  <li><strong>Turbine</strong>: usually q≈0, ΔKE small → w_out ≈ h1 − h2</li>
+                  <li><strong>Compressor/Pump</strong>: usually q≈0 → w_in ≈ h2 − h1 (pump often uses vΔP)</li>
+                  <li><strong>Throttling valve</strong>: q≈0, w≈0 → <strong>h1 ≈ h2</strong> (Joule–Thomson context)</li>
+                  <li><strong>Heat exchanger</strong>: w≈0, ΔKE small → heat transfer changes enthalpy streams</li>
+                  <li><strong>Mixing chamber</strong>: combine mass + energy balances (often adiabatic)</li>
+                </ul>
+              </div>
+              <div class="box">
+                <h4>Continuity (mass conservation)</h4>
+                <div class="eq">Steady flow:  ṁ_in = ṁ_out
+
+For a stream:
+ṁ = ρ A V = A V / v</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 5: SECOND LAW -->
+        <section class="topic" id="second-law" data-title="Second Law, Entropy, and Irreversibility" data-keywords="second law entropy clausius inequality reversible irreversible entropy generation Sgen">
+          <div class="topicInner">
+            <div class="topicTitle">
+              <h3>Second Law, Entropy, and Irreversibility</h3>
+              <div class="tagRow">
+                <span class="tag ok">Law</span>
+                <span class="tag">Entropy</span>
+                <span class="tag bad">Irreversibility</span>
+              </div>
+            </div>
+            <p class="explain">
+              The Second Law introduces entropy as a state function and imposes directionality: real processes
+              generate entropy. Reversible processes are idealizations that define upper bounds on performance.
+            </p>
+            <div class="grid">
+              <div class="box">
+                <h4>Clausius inequality &#038; entropy</h4>
+                <div class="eq">Cyclic form:
+∮ (δQ/T) ≤ 0   (equality for reversible)
+
+Between states:
+ΔS ≥ ∫(1→2) (δQ/T)   (equality for reversible path)
+
+Definition (reversible):
+dS = δQ_rev / T</div>
+              </div>
+              <div class="box">
+                <h4>Entropy balance (control volume / system)</h4>
+                <div class="eq">Closed system:
+ΔS = ∫(δQ/T_boundary) + S_gen
+
+Control volume (rate form):
+dS_cv/dt = Σ( Q̇_k / T_k ) + Σ(ṁ_in s_in) − Σ(ṁ_out s_out) + Ṡ_gen
+
+Second law constraint:
+S_gen ≥ 0   and   Ṡ_gen ≥ 0</div>
+              </div>
+            </div>
+            <div class="note">
+              Typical entropy-generation sources: friction, unrestrained expansion, mixing, finite-ΔT heat transfer, shocks,
+              viscous dissipation, chemical reactions.
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 6: TEMPERATURE SCALES & HEAT ENGINE LIMITS -->
+        <section class="topic" id="engines-refrigerators" data-title="Heat Engines, Refrigerators, and Carnot Limits" data-keywords="heat engine refrigerator heat pump thermal efficiency COP Carnot Kelvin Clausius">
+          <div class="topicInner">
+            <div class="topicTitle">
+              <h3>Heat Engines, Refrigerators, and Carnot Limits</h3>
+              <div class="tagRow">
+                <span class="tag ok">Performance limits</span>
+                <span class="tag">Carnot</span>
+                <span class="tag warn">Uses absolute temperature</span>
+              </div>
+            </div>
+            <p class="explain">
+              The Second Law implies that converting heat fully into work is impossible in a cycle; maximum efficiency
+              is bounded by reversible (Carnot) performance between two reservoirs.
+            </p>
+            <div class="grid">
+              <div class="box">
+                <h4>Heat engine</h4>
+                <div class="eq">Thermal efficiency:
+η_th = W_net,out / Q_in = 1 − (Q_out / Q_in)
+
+Carnot (reversible, between T_H and T_C):
+η_Carnot = 1 − T_C/T_H</div>
+                <ul class="bullets">
+                  <li>T must be in absolute units (K or R).</li>
+                </ul>
+              </div>
+              <div class="box">
+                <h4>Refrigerator / heat pump</h4>
+                <div class="eq">COP_R = Q_C / W_net,in
+COP_HP = Q_H / W_net,in
+
+Carnot refrigerator:
+COP_R,Carnot = T_C/(T_H − T_C)
+
+Carnot heat pump:
+COP_HP,Carnot = T_H/(T_H − T_C)</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 7: ENTROPY PROPERTY RELATIONS -->
+        <section class="topic" id="tds-relations" data-title="T–ds Relations, Maxwell Relations, and Property Relations" data-keywords="Tds Maxwell relations Gibbs Helmholtz fundamental relation du dh">
+          <div class="topicInner">
+            <div class="topicTitle">
+              <h3>T–ds Relations, Maxwell Relations, and Property Relations</h3>
+              <div class="tagRow">
+                <span class="tag ok">Derivations</span>
+                <span class="tag">Property math</span>
+                <span class="tag warn">Partial derivatives</span>
+              </div>
+            </div>
+            <p class="explain">
+              A core mid-course goal is to connect measurable variables (P, T, v) to energy/entropy properties (u, h, s)
+              via exact differentials and potentials. These relations let you compute Δu, Δh, Δs for real substances using tables,
+              ideal-gas models, or departure functions (advanced).
+            </p>
+            <div class="grid">
+              <div class="box">
+                <h4>Fundamental relations</h4>
+                <div class="eq">From definitions:
+h = u + Pv
+
+Differentials (simple compressible system):
+du = T ds − P dv
+dh = T ds + v dP</div>
+              </div>
+              <div class="box">
+                <h4>Thermodynamic potentials</h4>
+                <div class="eq">Helmholtz:  a = u − Ts
+Gibbs:      g = h − Ts
+
+Differentials:
+da = −s dT − P dv
+dg = −s dT + v dP</div>
+              </div>
+            </div>
+            <div class="grid">
+              <div class="box">
+                <h4>Maxwell relations (common set)</h4>
+                <div class="eq">From da(T,v):   (∂s/∂v)_T = (∂P/∂T)_v
+From dg(T,P):   (∂s/∂P)_T = −(∂v/∂T)_P
+From du(s,v):   (∂T/∂v)_s = −(∂P/∂s)_v
+From dh(s,P):   (∂T/∂P)_s = (∂v/∂s)_P</div>
+              </div>
+              <div class="box">
+                <h4>Useful identities</h4>
+                <div class="eq">For any property φ:
+dφ = (∂φ/∂T)_P dT + (∂φ/∂P)_T dP
+(or in other variable pairs)
+
+Specific heats:
+c_v = (∂u/∂T)_v
+c_p = (∂h/∂T)_P</div>
+                <ul class="bullets">
+                  <li>These set up ideal-gas relations and real-fluid corrections.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 8: IDEAL GAS MODELS -->
+        <section class="topic" id="ideal-gas" data-title="Ideal Gas Thermodynamics (cₚ, cᵥ, Δu, Δh, Δs)" data-keywords="ideal gas specific heats cp cv gamma k isentropic relations entropy change">
+          <div class="topicInner">
+            <div class="topicTitle">
+              <h3>Ideal Gas Thermodynamics (c<sub>p</sub>, c<sub>v</sub>, Δu, Δh, Δs)</h3>
+              <div class="tagRow">
+                <span class="tag ok">Model</span>
+                <span class="tag">Common calculations</span>
+                <span class="tag warn">Check assumptions</span>
+              </div>
+            </div>
+            <p class="explain">
+              For many gases at moderate pressures and temperatures, the ideal-gas model gives accurate property changes:
+              u(T), h(T), and entropy changes from (T, P) or (T, v). Specific heats may be treated constant or variable with temperature.
+            </p>
+            <div class="grid">
+              <div class="box">
+                <h4>Core relations</h4>
+                <div class="eq">Pv = RT
+
+h = h(T) only, u = u(T) only (ideal gas)
+
+Δu = ∫(T1→T2) c_v(T) dT
+Δh = ∫(T1→T2) c_p(T) dT
+
+If c_p, c_v constant:
+Δu = c_v (T2 − T1)
+Δh = c_p (T2 − T1)
+
+Relation:
+c_p − c_v = R</div>
+              </div>
+              <div class="box">
+                <h4>Entropy change (ideal gas)</h4>
+                <div class="eq">General:
+Δs = ∫(T1→T2) [c_p(T)/T] dT − R ln(P2/P1)
+    = ∫(T1→T2) [c_v(T)/T] dT + R ln(v2/v1)
+
+Constant specific heats:
+Δs = c_p ln(T2/T1) − R ln(P2/P1)
+    = c_v ln(T2/T1) + R ln(v2/v1)</div>
+              </div>
+            </div>
+            <div class="note">
+              Ideal-gas isentropic relations (below) require additional assumptions: internally reversible + adiabatic
+              + (often) constant specific heats.
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 9: ISENTROPIC RELATIONS & COMPRESSIBLE FLOW BASICS -->
+        <section class="topic" id="isentropic" data-title="Isentropic Processes and Ideal-Gas Relations" data-keywords="isentropic adiabatic reversible gamma k T2/T1 P2/P1 v2/v1">
+          <div class="topicInner">
+            <div class="topicTitle">
+              <h3>Isentropic Processes and Ideal-Gas Relations</h3>
+              <div class="tagRow">
+                <span class="tag ok">Reversible adiabatic</span>
+                <span class="tag">Upper bounds</span>
+                <span class="tag warn">Often uses γ</span>
+              </div>
+            </div>
+            <p class="explain">
+              “Isentropic” usually means <strong>adiabatic and internally reversible</strong> (so Δs=0). These relations
+              are core to turbine/compressor analysis and to basic compressible-flow device models.
+            </p>
+            <div class="grid">
+              <div class="box">
+                <h4>Ideal gas, constant γ = cₚ/cᵥ</h4>
+                <div class="eq">PV^γ = constant   (or Pv^γ = constant)
+
+T2/T1 = (P2/P1)^((γ−1)/γ)
+T2/T1 = (v1/v2)^(γ−1)
+
+P2/P1 = (v1/v2)^γ</div>
+              </div>
+              <div class="box">
+                <h4>Isentropic efficiencies (devices)</h4>
+                <div class="eq">Turbine isentropic efficiency:
+η_t = (W_actual,out)/(W_isentropic,out)
+    = (h1 − h2)/(h1 − h2s)
+
+Compressor isentropic efficiency:
+η_c = (W_isentropic,in)/(W_actual,in)
+    = (h2s − h1)/(h2 − h1)</div>
+                <ul class="bullets">
+                  <li>“2s” denotes the outlet state if the process were isentropic to the same outlet pressure.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 10: REAL SUBSTANCES & COMPRESSIBILITY -->
+        <section class="topic" id="real-substances" data-title="Real Substances, Compressibility, and Generalized Charts" data-keywords="real gas compressibility factor corresponding states reduced pressure temperature generalized charts">
+          <div class="topicInner">
+            <div class="topicTitle">
+              <h3>Real Substances, Compressibility, and Generalized Charts</h3>
+              <div class="tagRow">
+                <span class="tag ok">Real-fluid behavior</span>
+                <span class="tag">Z</span>
+                <span class="tag warn">Chart/table dependence</span>
+              </div>
+            </div>
+            <p class="explain">
+              When ideal-gas assumptions break, courses introduce the compressibility factor, corresponding states,
+              and generalized charts (or modern EOS software). This bridges toward real-gas property estimation.
+            </p>
+            <div class="grid">
+              <div class="box">
+                <h4>Compressibility and reduced variables</h4>
+                <div class="eq">Z = Pv/(RT)
+
+Reduced temperature:  T_r = T / T_c
+Reduced pressure:     P_r = P / P_c
+
+Principle of corresponding states:
+Z ≈ Z(T_r, P_r)  (plus acentric factor ω for better accuracy)</div>
+              </div>
+              <div class="box">
+                <h4>Departure functions (advanced in some courses)</h4>
+                <div class="eq">Real property = ideal-gas property at same T
+                + departure (correction)
+
+Example concept:
+h(T,P) = h_ig(T) + h_dep(T,P)
+s(T,P) = s_ig(T,P) + s_dep(T,P)</div>
+                <ul class="bullets">
+                  <li>Often implemented via charts or EOS; detailed derivation may be optional.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 11: PHASE CHANGE & STEAM POWER PLANT ANALYSIS -->
+        <section class="topic" id="steam-cycles" data-title="Vapor Power Cycles (Rankine) and Steam Tables" data-keywords="Rankine cycle boiler condenser pump turbine superheat reheat regeneration feedwater heater">
+          <div class="topicInner">
+            <div class="topicTitle">
+              <h3>Vapor Power Cycles (Rankine) and Steam Tables</h3>
+              <div class="tagRow">
+                <span class="tag ok">Cycles</span>
+                <span class="tag">Water/steam</span>
+                <span class="tag">Power plants</span>
+              </div>
+            </div>
+            <p class="explain">
+              The Rankine cycle models steam power plants: pumping liquid water to high pressure, boiling/superheating,
+              expanding through a turbine, then condensing. Analysis uses steady-flow devices + tables for h and s.
+            </p>
+            <div class="grid">
+              <div class="box">
+                <h4>Basic Rankine metrics</h4>
+                <div class="eq">Thermal efficiency:
+η_th = W_net / Q_in
+
+Net work per unit mass:
+w_net = w_turbine − w_pump
+
+Heat input:
+q_in = h3 − h2  (boiler)  [state numbering varies]</div>
+                <ul class="bullets">
+                  <li>Typical device models: turbine/pump adiabatic; boiler/condenser no shaft work.</li>
+                  <li>Pump work (incompressible approx): w_p ≈ v (P2 − P1)</li>
+                </ul>
+              </div>
+              <div class="box">
+                <h4>Cycle improvements (conceptual)</h4>
+                <ul class="bullets">
+                  <li><strong>Superheating</strong>: increases average T of heat addition, reduces moisture at turbine exit</li>
+                  <li><strong>Reheat</strong>: reduces turbine exhaust quality issues, can improve efficiency</li>
+                  <li><strong>Regeneration</strong>: feedwater heaters raise feedwater temperature, improving efficiency</li>
+                  <li><strong>Reheat + regen</strong>: common in modern plants</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 12: GAS POWER CYCLES -->
+        <section class="topic" id="gas-cycles" data-title="Gas Power Cycles (Otto, Diesel, Brayton)" data-keywords="Otto Diesel Brayton gas turbine compressor combustor regenerator intercooler">
+          <div class="topicInner">
+            <div class="topicTitle">
+              <h3>Gas Power Cycles (Otto, Diesel, Brayton)</h3>
+              <div class="tagRow">
+                <span class="tag ok">Ideal cycles</span>
+                <span class="tag">Engines/turbines</span>
+                <span class="tag warn">Air-standard assumptions</span>
+              </div>
+            </div>
+            <p class="explain">
+              Idealized air-standard cycles approximate internal combustion engines (Otto/Diesel) and gas turbines (Brayton).
+              They use ideal-gas relations and isentropic compression/expansion to derive efficiency trends.
+            </p>
+            <div class="grid">
+              <div class="box">
+                <h4>Otto cycle (spark ignition, ideal)</h4>
+                <div class="eq">Compression ratio: r = v1/v2
+
+η_Otto = 1 − 1/(r^(γ−1))</div>
+                <ul class="bullets">
+                  <li>Heat addition at constant volume (idealization).</li>
+                </ul>
+              </div>
+              <div class="box">
+                <h4>Diesel cycle (compression ignition, ideal)</h4>
+                <div class="eq">Cutoff ratio: ρ = v3/v2
+
+η_Diesel = 1 − (1/r^(γ−1)) * [(ρ^γ − 1)/(γ(ρ − 1))]</div>
+                <ul class="bullets">
+                  <li>Heat addition at constant pressure (idealization).</li>
+                </ul>
+              </div>
+            </div>
+            <div class="grid">
+              <div class="box">
+                <h4>Brayton cycle (gas turbine, ideal)</h4>
+                <div class="eq">Pressure ratio: r_p = P2/P1
+
+For ideal Brayton (constant γ):
+η_Brayton = 1 − 1/(r_p^((γ−1)/γ))</div>
+                <ul class="bullets">
+                  <li>Efficiency increases with pressure ratio (within limits), but real components have losses.</li>
+                </ul>
+              </div>
+              <div class="box">
+                <h4>Brayton enhancements (conceptual)</h4>
+                <ul class="bullets">
+                  <li><strong>Regeneration</strong>: recover exhaust heat to preheat compressed air</li>
+                  <li><strong>Intercooling</strong>: reduce compressor work across stages</li>
+                  <li><strong>Reheat</strong>: increase turbine work across stages</li>
+                  <li>Tradeoffs: pressure drops, added complexity, diminishing returns</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 13: REFRIGERATION & HEAT PUMPS -->
+        <section class="topic" id="refrigeration" data-title="Refrigeration Cycles (Vapor Compression) and Psychrometrics" data-keywords="vapor compression refrigeration cycle evaporator condenser expansion valve compressor COP refrigerant psychrometrics">
+          <div class="topicInner">
+            <div class="topicTitle">
+              <h3>Refrigeration Cycles (Vapor Compression) and Psychrometrics</h3>
+              <div class="tagRow">
+                <span class="tag ok">Refrigeration</span>
+                <span class="tag">COP</span>
+                <span class="tag">Refrigerants</span>
+              </div>
+            </div>
+            <p class="explain">
+              Refrigeration reverses the “heat engine” purpose: it uses work to move heat from cold to hot.
+              The ideal vapor-compression cycle uses an evaporator, compressor, condenser, and expansion device.
+              Many courses also include basic moist-air (psychrometric) relationships for HVAC context.
+            </p>
+            <div class="grid">
+              <div class="box">
+                <h4>Vapor-compression cycle (key relations)</h4>
+                <div class="eq">COP_R = Q_L / W_in
+
+Per unit mass:
+q_L = h1 − h4   (evaporator)
+w_in = h2 − h1  (compressor)
+q_H = h2 − h3   (condenser)
+
+Throttling valve: h3 ≈ h4
+(States depend on diagram/numbering convention)</div>
+              </div>
+              <div class="box">
+                <h4>Psychrometrics (if included)</h4>
+                <div class="eq">Humidity ratio:  ω = m_vapor / m_dry-air
+
+Relative humidity: φ = p_v / p_sat(T)
+
+Moist air enthalpy (approx):
+h ≈ h_da + ω h_v</div>
+                <ul class="bullets">
+                  <li>Often uses psychrometric charts; detailed formulas vary by text.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 14: MIXTURES & PHASE EQUILIBRIUM -->
+        <section class="topic" id="mixtures" data-title="Mixtures, Phase Equilibrium, and Property Estimation" data-keywords="mixture ideal mixture partial pressure Dalton Amagat Raoult Gibbs phase rule">
+          <div class="topicInner">
+            <div class="topicTitle">
+              <h3>Mixtures, Phase Equilibrium, and Property Estimation</h3>
+              <div class="tagRow">
+                <span class="tag ok">Mixtures</span>
+                <span class="tag">Equilibrium</span>
+                <span class="tag warn">Model choices</span>
+              </div>
+            </div>
+            <p class="explain">
+              Depending on the course (engineering thermo vs physical chemistry emphasis), mixtures may include ideal-gas mixtures,
+              partial pressures, and simple phase equilibrium. Advanced treatments use chemical potential and fugacity.
+            </p>
+            <div class="grid">
+              <div class="box">
+                <h4>Ideal-gas mixture basics</h4>
+                <div class="eq">Mole fraction: y_i = n_i / n_total
+
+Dalton’s law (ideal gases):
+P = Σ p_i , with p_i = y_i P
+
+Mixture gas constant:
+R_mix = Σ (y_i R_i)  (or based on molecular weight)
+
+Mixture properties (ideal mixing, for some properties):
+h_mix ≈ Σ (y_i h_i(T))
+u_mix ≈ Σ (y_i u_i(T))</div>
+              </div>
+              <div class="box">
+                <h4>Phase equilibrium (typical exposure)</h4>
+                <ul class="bullets">
+                  <li><strong>Gibbs phase rule</strong> concept (degrees of freedom)</li>
+                  <li>Simple VLE ideas (Raoult’s law in ideal solutions) if covered</li>
+                  <li>Recognize when “ideal” assumptions are invalid (non-ideal solutions)</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 15: EXERGY -->
+        <section class="topic" id="exergy" data-title="Exergy (Availability) and Second-Law Efficiency" data-keywords="exergy availability dead state exergy destruction Gouy Stodola second law efficiency">
+          <div class="topicInner">
+            <div class="topicTitle">
+              <h3>Exergy (Availability) and Second-Law Efficiency</h3>
+              <div class="tagRow">
+                <span class="tag ok">Exergy</span>
+                <span class="tag bad">Destruction via irreversibility</span>
+                <span class="tag">Design insight</span>
+              </div>
+            </div>
+            <p class="explain">
+              Exergy quantifies the <strong>maximum useful work</strong> obtainable as a system comes to equilibrium with a reference environment
+              (the “dead state”). It links irreversibility to lost work and provides a sharper design diagnostic than energy alone.
+            </p>
+            <div class="grid">
+              <div class="box">
+                <h4>Key ideas &#038; equations (common form)</h4>
+                <div class="eq">Exergy destruction (lost work):
+X_destroyed = T0 S_gen
+
+Rate form:
+Ẋ_destroyed = T0 Ṡ_gen
+
+Second-law (exergetic) efficiency (concept):
+η_II = (useful exergy out) / (exergy in)</div>
+                <ul class="bullets">
+                  <li>T0 is the environment (dead-state) temperature.</li>
+                  <li>Exergy analysis highlights where “quality” of energy is degraded.</li>
+                </ul>
+              </div>
+              <div class="box">
+                <h4>Physical meaning</h4>
+                <ul class="bullets">
+                  <li>Energy is conserved; <strong>exergy is consumed</strong> by irreversibility.</li>
+                  <li>Minimize entropy generation to preserve work potential.</li>
+                  <li>Especially useful for heat exchangers, throttles, combustion, and power cycles.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 16: TRANSIENTS -->
+        <section class="topic" id="transients" data-title="Transient (Unsteady) Systems and Lumped Analysis" data-keywords="unsteady transient filling emptying tanks energy balance entropy balance">
+          <div class="topicInner">
+            <div class="topicTitle">
+              <h3>Transient (Unsteady) Systems and Lumped Analysis</h3>
+              <div class="tagRow">
+                <span class="tag ok">Unsteady</span>
+                <span class="tag">Tanks</span>
+                <span class="tag warn">Control-mass vs control-volume choice</span>
+              </div>
+            </div>
+            <p class="explain">
+              Many practical problems are unsteady: filling/emptying tanks, start-up/shut-down, charging vessels.
+              You’ll apply integral mass and energy balances over time, often with simplifying assumptions (uniform properties in a tank).
+            </p>
+            <div class="grid">
+              <div class="box">
+                <h4>General unsteady control volume (conceptual forms)</h4>
+                <div class="eq">Mass:
+d(m_cv)/dt = Σṁ_in − Σṁ_out
+
+Energy:
+d(E_cv)/dt = Q̇ − Ẇ + Σṁ_in e_in − Σṁ_out e_out
+
+Entropy:
+d(S_cv)/dt = Σ(Q̇_k/T_k) + Σṁ_in s_in − Σṁ_out s_out + Ṡ_gen</div>
+              </div>
+              <div class="box">
+                <h4>Typical modeling moves</h4>
+                <ul class="bullets">
+                  <li>Lumped property assumption in tanks: uniform T, P (approx).</li>
+                  <li>Neglect KE/PE except where flow speed/elevation matters.</li>
+                  <li>Choose control mass vs control volume for algebraic simplicity.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 17: HEAT TRANSFER TOPICS (often overlap course boundaries) -->
+        <section class="topic" id="heat-transfer" data-title="Heat Transfer Interfaces (as Used in Thermo)" data-keywords="conduction convection radiation heat exchanger LMTD effectiveness NTU">
+          <div class="topicInner">
+            <div class="topicTitle">
+              <h3>Heat Transfer Interfaces (as Used in Thermo)</h3>
+              <div class="tagRow">
+                <span class="tag ok">Interface tools</span>
+                <span class="tag warn">Often a separate course</span>
+                <span class="tag">Heat exchangers</span>
+              </div>
+            </div>
+            <p class="explain">
+              Many thermo courses include “just enough” heat-transfer modeling to analyze reservoirs and heat exchangers.
+              Full derivations usually belong to a dedicated heat transfer course, but the following show up often.
+            </p>
+            <div class="grid">
+              <div class="box">
+                <h4>Basic modes (common engineering forms)</h4>
+                <div class="eq">Conduction (1-D, steady):
+Q̇ = k A (T_hot − T_cold)/L
+
+Convection:
+Q̇ = h A (T_s − T_∞)
+
+Radiation (to large surroundings):
+Q̇ = ε σ A (T_s^4 − T_sur^4)</div>
+                <ul class="bullets">
+                  <li>Use consistent absolute temperatures for radiation.</li>
+                </ul>
+              </div>
+              <div class="box">
+                <h4>Heat exchanger analysis (if included)</h4>
+                <div class="eq">LMTD method:
+Q̇ = U A ΔT_lm
+
+Effectiveness–NTU method:
+ε = Q̇ / Q̇_max
+NTU = (U A) / C_min</div>
+                <ul class="bullets">
+                  <li>Thermo typically uses results; heat transfer derives them.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 18: THERMODYNAMIC CYCLES SUMMARY -->
+        <section class="topic" id="cycle-summary" data-title="Cycle Analysis Pattern (A Repeatable Method)" data-keywords="cycle analysis steps states property tables assumptions balances efficiency">
+          <div class="topicInner">
+            <div class="topicTitle">
+              <h3>Cycle Analysis Pattern (A Repeatable Method)</h3>
+              <div class="tagRow">
+                <span class="tag ok">Workflow</span>
+                <span class="tag">Problem-solving</span>
+              </div>
+            </div>
+            <p class="explain">
+              Across Rankine, Brayton, Otto/Diesel, and refrigeration, analysis is mostly the same: define states, apply device models,
+              compute properties, then compute work/heat and performance metrics. The difference is the working fluid and which tables/models you use.
+            </p>
+            <div class="grid">
+              <div class="box">
+                <h4>Standard workflow</h4>
+                <ul class="bullets">
+                  <li>Sketch the cycle on P–v and/or T–s</li>
+                  <li>Label states; identify known property pairs (e.g., P &amp; T)</li>
+                  <li>State assumptions per device (adiabatic, isentropic efficiency, negligible KE/PE)</li>
+                  <li>Use tables/EOS/ideal-gas relations to compute unknown properties</li>
+                  <li>Apply mass &amp; energy balances (SFEE) to each device</li>
+                  <li>Compute performance (η, COP, specific work, heat rates)</li>
+                  <li>Use Second Law / exergy to diagnose losses (optional but powerful)</li>
+                </ul>
+              </div>
+              <div class="box">
+                <h4>Common pitfalls</h4>
+                <ul class="bullets">
+                  <li>Mixing units (kPa vs Pa; kJ/kg vs J/kg)</li>
+                  <li>Confusing “adiabatic” with “isentropic” (needs reversibility)</li>
+                  <li>Using quality relations outside the two-phase region</li>
+                  <li>Forgetting pump/compressor efficiency definitions are inverted</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 19: MATHEMATICAL TOOLS & NOTATION -->
+        <section class="topic" id="math-notation" data-title="Thermo Math Tools &#038; Notation" data-keywords="exact differential inexact delta d partial derivative state function path function">
+          <div class="topicInner">
+            <div class="topicTitle">
+              <h3>Thermo Math Tools &#038; Notation</h3>
+              <div class="tagRow">
+                <span class="tag ok">Notation</span>
+                <span class="tag warn">Differentials</span>
+                <span class="tag">Partial derivatives</span>
+              </div>
+            </div>
+            <p class="explain">
+              Thermodynamics relies on careful calculus notation: exact vs inexact differentials, and the meaning of
+              partial derivatives with held variables. Getting notation right prevents conceptual errors (especially around Q and W).
+            </p>
+            <div class="grid">
+              <div class="box">
+                <h4>Exact vs inexact</h4>
+                <div class="eq">State functions (properties):
+dU, dH, dS, dP, dT, dv &#8230;   (exact differentials)
+
+Path functions:
+δQ, δW   (inexact differentials; depend on path)</div>
+              </div>
+              <div class="box">
+                <h4>Common derivative shorthand</h4>
+                <div class="eq">(∂u/∂T)_v   means: change u with T, holding v constant
+(∂h/∂P)_T   means: change h with P, holding T constant</div>
+                <ul class="bullets">
+                  <li>Maxwell relations connect mixed partial derivatives via potentials.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 20: PROPERTY/CONSTANTS CHEAT SHEET -->
+        <section class="topic" id="symbols" data-title="Common Symbols and What They Mean" data-keywords="symbols u h s v P T R cp cv gamma enthalpy entropy">
+          <div class="topicInner">
+            <div class="topicTitle">
+              <h3>Common Symbols and What They Mean</h3>
+              <div class="tagRow">
+                <span class="tag ok">Reference</span>
+                <span class="tag">Units</span>
+              </div>
+            </div>
+            <p class="explain">
+              A consistent symbol map avoids confusion when switching between closed-system and control-volume forms.
+            </p>
+            <div class="grid">
+              <div class="box">
+                <h4>State variables / properties</h4>
+                <div class="eq">P : pressure (Pa, kPa, bar)
+T : temperature (K)
+v : specific volume (m^3/kg)
+ρ : density (kg/m^3),  ρ = 1/v
+u : specific internal energy (kJ/kg)
+h : specific enthalpy (kJ/kg)
+s : specific entropy (kJ/(kg·K))
+g : Gibbs free energy (kJ/kg)
+a : Helmholtz free energy (kJ/kg)
+x : quality (two-phase), 0→1</div>
+              </div>
+              <div class="box">
+                <h4>Transfers and rates</h4>
+                <div class="eq">Q : heat transfer (kJ)     Q̇ : heat transfer rate (kW)
+W : work (kJ)              Ẇ : power (kW)
+ṁ : mass flow rate (kg/s)
+V : velocity magnitude (m/s)
+z : elevation (m)
+c_p, c_v : specific heats (kJ/(kg·K))
+R : gas constant (kJ/(kg·K))
+γ : ratio of specific heats, γ=c_p/c_v</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div><!-- /content card -->
+    </div><!-- /layout -->
+  </main>
+
+  <footer>
+    <div class="card" style="padding:16px; background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.10);">
+      <div style="display:flex; gap:14px; flex-wrap:wrap; align-items:flex-start; justify-content:space-between;">
+        <div style="min-width: 280px; flex: 1;">
+          <strong style="color: rgba(255,255,255,0.85);">How to use this page</strong>
+          <div style="margin-top:8px;">
+            <ul class="bullets">
+              <li>Start with <em>Foundations</em> → <em>Properties</em> → <em>1st/2nd Law</em>.</li>
+              <li>For device problems, go to <em>Control Volumes &#038; SFEE</em> and then the relevant <em>cycle</em>.</li>
+              <li>If you want, you can print to PDF (browser print dialog) and keep this as a course “map”.</li>
+            </ul>
+          </div>
+        </div>
+        <div style="min-width: 280px; flex: 1;">
+          <strong style="color: rgba(255,255,255,0.85);">Scope note</strong>
+          <div style="margin-top:8px; color: rgba(255,255,255,0.66); line-height: 1.55;">
+            College thermodynamics courses vary by department (mechanical engineering vs chemical engineering vs physics).
+            This page focuses on the widely shared core and flags areas that may be expanded or moved to adjacent courses
+            (heat transfer, physical chemistry).
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Build TOC from sections
+    const sections = Array.from(document.querySelectorAll("section.topic"));
+    const tocList = document.getElementById("tocList");
+
+    function buildTOC(items){
+      tocList.innerHTML = "";
+      items.forEach(sec => {
+        const id = sec.id;
+        const title = sec.getAttribute("data-title") || sec.querySelector("h3")?.textContent || id;
+        const explain = sec.querySelector(".explain")?.textContent?.trim() || "";
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+        a.href = "#" + id;
+        a.innerHTML = `<strong>${title}</strong><small>${explain.slice(0, 110)}${explain.length > 110 ? "…" : ""}</small>`;
+        li.appendChild(a);
+        tocList.appendChild(li);
+      });
+    }
+
+    buildTOC(sections);
+
+    // Filtering
+    const q = document.getElementById("q");
+    const clearBtn = document.getElementById("clearBtn");
+
+    function normalize(s){
+      return (s || "").toLowerCase().replace(/\s+/g, " ").trim();
+    }
+
+    function applyFilter(){
+      const query = normalize(q.value);
+      const visible = [];
+      sections.forEach(sec => {
+        const hay = normalize(
+          (sec.getAttribute("data-title") || "") + " " +
+          (sec.getAttribute("data-keywords") || "") + " " +
+          (sec.textContent || "")
+        );
+        const match = !query || hay.includes(query);
+        sec.classList.toggle("hidden", !match);
+        if(match) visible.push(sec);
+      });
+      buildTOC(visible);
+    }
+
+    q.addEventListener("input", applyFilter);
+    clearBtn.addEventListener("click", () => {
+      q.value = "";
+      applyFilter();
+      q.focus();
+    });
+
+    // Smooth scrolling for in-page navigation
+    document.addEventListener("click", (e) => {
+      const a = e.target.closest("a[href^='#']");
+      if(!a) return;
+      const id = a.getAttribute("href").slice(1);
+      const target = document.getElementById(id);
+      if(!target) return;
+      e.preventDefault();
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      history.replaceState(null, "", "#" + id);
+    });
+  </script>
+<atw-footer></atw-footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Digital Transformation Services | Stargazer Consulting</title>
+  <meta name="description" content="Practical, audit-ready digital transformation for SMBs. Strategy, roadmap, security, AI governance, and cross‑shore delivery for US–India teams." />
+  <meta name="author" content="Stargazer Consulting" />
+  <meta property="og:title" content="Digital Transformation Services | Stargazer Consulting" />
+  <meta property="og:description" content="Practical, audit-ready digital transformation for SMBs. Strategy, roadmap, security, AI governance, and cross‑shore delivery for US–India teams." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/assets/stargazer-social.png" />
+  <link rel="icon" href="/wp-content/uploads/2025/11/cropped-0_3-25456-no-background.png" />
+  <style>
+    :root {
+      /* Adjust these to match your established brand palette */
+      --bg: #0b1020;           /* deep night */
+      --bg-soft: #121a34;      /* space blue */
+      --primary: #7cc0ff;      /* starlight blue */
+      --accent: #a78bfa;       /* lilac accent */
+      --text: #e6ecff;         /* near-white */
+      --muted: #aab3d6;        /* soft text */
+      --cta: #22c55e;          /* green CTA */
+      --warning: #f59e0b;
+      --card: #0f162d;
+      --border: #223059;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 16px;
+      --radius-soft: 12px;
+      --max: 1200px;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin:0; padding:0; background:var(--bg); color:var(--text); font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, "Noto Sans", sans-serif; line-height:1.6; }
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .container { max-width: var(--max); margin: 0 auto; padding: 24px; }
+    header {
+      position: sticky; top:0; z-index:1000; backdrop-filter: blur(6px);
+      background: linear-gradient(180deg, rgba(11,16,32,.9), rgba(11,16,32,.6));
+      border-bottom: 1px solid var(--border);
+    }
+    .nav { display:flex; align-items:center; justify-content:space-between; gap:16px; }
+    .brand { display:flex; align-items:center; gap:12px; font-weight:700; letter-spacing:.3px; }
+    .logo { width:14px; height:14px; border-radius:50%; background: radial-gradient(circle at 30% 30%, #fff, var(--primary), transparent 60%); box-shadow: 0 0 18px var(--primary); }
+    .nav a { padding:10px 12px; border-radius:10px; }
+    .nav a.active, .nav a:hover { background: rgba(124, 192, 255, .12); text-decoration:none; }
+
+    .hero {
+      background:
+        radial-gradient(1200px 600px at 80% -10%, rgba(124,192,255,.12), transparent 60%),
+        radial-gradient(900px 500px at -10% 20%, rgba(167,139,250,.12), transparent 60%),
+        linear-gradient(180deg, rgba(18,26,52,.6), transparent 60%);
+      padding: 72px 24px 36px;
+    }
+    .hero-inner { max-width: var(--max); margin: 0 auto; display:grid; grid-template-columns: 1.2fr .8fr; gap:32px; align-items:center; }
+    @media (max-width: 900px){ .hero-inner { grid-template-columns: 1fr; } }
+    .eyebrow { color: var(--muted); text-transform: uppercase; font-size: 12px; letter-spacing: .16em; }
+    h1 { font-size: clamp(28px, 4vw, 42px); line-height:1.2; margin: 10px 0 18px; }
+    .lead { font-size: clamp(16px, 2.3vw, 20px); color: var(--muted); margin-bottom: 24px; }
+    .hero-cta { display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
+    .btn { display:inline-flex; align-items:center; justify-content:center; gap:10px; padding:12px 18px; border-radius: 999px; font-weight:600; border:1px solid var(--border); background: #0d1a34; box-shadow: var(--shadow); }
+    .btn.primary { background: linear-gradient(135deg, var(--cta), #16a34a); border-color: rgba(255,255,255,.12); color:#00160a; }
+    .btn.secondary { background: linear-gradient(135deg, rgba(124,192,255,.2), rgba(167,139,250,.18)); }
+
+    .card { background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01)); border:1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+    section { padding: 54px 24px; }
+    h2 { font-size: clamp(22px, 3.5vw, 32px); margin: 0 0 12px; }
+    h3 { font-size: 20px; margin: 10px 0; }
+    p { margin: 8px 0 12px; }
+
+    .grid { display:grid; gap:18px; }
+    .cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    @media (max-width: 900px){ .cols-3, .cols-2 { grid-template-columns: 1fr; } }
+
+    .definition { background: radial-gradient(500px 220px at 10% 10%, rgba(124,192,255,.07), transparent 60%); }
+    .definition .card { padding:22px; }
+    .badge { display:inline-block; padding:6px 10px; font-size:12px; border:1px solid var(--border); border-radius:999px; color: var(--muted); }
+
+    .services .item { padding:20px; border-radius: var(--radius-soft); border:1px solid var(--border); background: var(--card); }
+    .services .item h3 { color: var(--primary); }
+
+    .approach .step { display:flex; gap:14px; padding:18px; border:1px dashed var(--border); border-radius: var(--radius-soft); background: rgba(17,26,52,.5); }
+    .num { flex:0 0 34px; height:34px; display:flex; align-items:center; justify-content:center; border-radius:9px; background: linear-gradient(135deg, rgba(124,192,255,.18), rgba(167,139,250,.16)); border:1px solid var(--border); font-weight:700; color: var(--primary); }
+
+    .outcomes .kpi { text-align:center; padding:22px; border:1px solid var(--border); border-radius: var(--radius-soft); background: var(--card); }
+    .kpi .big { font-size: 32px; font-weight: 800; }
+
+    .faq details { border:1px solid var(--border); border-radius: var(--radius-soft); padding:16px 18px; background: var(--card); }
+    .faq details + details { margin-top: 12px; }
+    .faq summary { cursor: pointer; font-weight:600; }
+
+    footer { padding: 42px 24px; background: #0a0f1f; border-top: 1px solid var(--border); color: var(--muted); }
+    .footer-grid { display:grid; grid-template-columns: 2fr 1fr 1fr; gap:18px; }
+    @media (max-width: 900px){ .footer-grid { grid-template-columns: 1fr; } }
+    .small { font-size: 13px; color: var(--muted); }
+    .note { color: var(--warning); }
+    .tick { color: #86efac; }
+    .muted { color: var(--muted); }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 13px; }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Stargazer Consulting",
+    "url": "https://your-domain.example/",
+    "description": "Digital transformation strategy, roadmap, and audit-ready execution for SMBs, including AI governance and ISO/NIST alignment.",
+    "areaServed": ["US", "India"],
+    "serviceType": "Digital Transformation Consulting",
+    "knowsAbout": ["Digital transformation", "Change management", "ISO 27001", "NIST CSF", "AI governance", "eDiscovery modernization", "Cloud migration"],
+    "brand": {"@type": "Brand", "name": "Stargazer"}
+  }
+  </script>
+<link rel="icon" href="/wp-content/uploads/2025/11/cropped-0_3-25456-no-background.png">
+<script src="/assets/site.js" defer></script>
+</head>
+<body>
+<div class="wp-site-blocks">
+<atw-header></atw-header>
+<section class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="eyebrow">Advisory • Execution • Assurance</div>
+        <h1>Digital Transformation that Actually Ships — and Sticks</h1>
+        <p class="lead">We help small and mid‑sized businesses modernize systems, workflows, and culture—without losing operational control. From assessment to audited outcomes, Stargazer makes transformation measurable, secure, and adoption‑ready across US–India teams.</p>
+        <div class="hero-cta">
+          <a class="btn primary" href="#contact">Book a 20‑Minute Readiness Call</a>
+          <a class="btn secondary" href="#definition">What we mean by “Digital Transformation” →</a>
+        </div>
+      </div>
+      <aside class="card" style="padding:22px;">
+        <h3 style="margin-top:0;">At‑a‑Glance</h3>
+        <p class="small">Audit‑ready by design. We align your roadmap with <span class="mono">ISO 27001</span>, <span class="mono">NIST CSF 2.0</span>, and emerging <span class="mono">AI Governance</span> expectations—so change is defensible to customers, boards, and regulators.</p>
+        <ul class="small" style="margin:0 0 0 18px; padding:0;">
+          <li>Readiness in weeks, not quarters</li>
+          <li>Cross‑shore delivery model (US–India)</li>
+          <li>Change adoption built on ORIC (commitment × efficacy)</li>
+          <li>Leadership practices tuned to cultural context</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section id="definition" class="definition">
+    <div class="container grid cols-2">
+      <div class="card">
+        <span class="badge">Working Definition</span>
+        <h2>What is Digital Transformation?</h2>
+        <p><strong>Digital transformation</strong> is the deliberate integration of digital technologies with new ways of working to <em>reshape your operating model, value delivery, and culture</em>. It goes beyond tools: it aligns strategy, processes, data, and people so that improvements are <em>repeatable, secure, and adopted</em>.</p>
+        <p>In plain terms: DT is how an organization modernizes how it creates value—standardizing and automating core processes, unlocking data for decisions, strengthening security and compliance, and enabling teams to work effectively across geographies.</p>
+        <p class="muted small">Our perspective is grounded in current research and practice: adoption succeeds when leaders establish psychological readiness for change (commitment + efficacy), and when leadership styles fit team cultural expectations—especially for US–India delivery models.</p>
+      </div>
+      <div class="card">
+        <span class="badge">Why it matters</span>
+        <h2>What outcomes should you expect?</h2>
+        <p>We partner with you to define outcomes you can measure and defend:</p>
+        <ul>
+          <li>Cycle time reductions across case, client, or ticket workflows</li>
+          <li>Higher right‑first‑time rates via standardization and controls</li>
+          <li>Security posture lift aligned to ISO/NIST and customer audits</li>
+          <li>Reliable cross‑shore handoffs and knowledge capture</li>
+          <li>Executive and team adoption evidenced in training and KPIs</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="services">
+    <div class="container">
+      <h2>Consulting Services</h2>
+      <p>Choose a start point or ask for an end‑to‑end program. Every engagement is scoped for evidence, not theater.</p>
+      <div class="grid cols-3" style="margin-top:16px;">
+        <div class="item">
+          <h3>Readiness Assessment</h3>
+          <p>Rapid diagnostic across strategy, processes, data, technology, security, and people. Includes a capability heatmap and prioritized backlog.</p>
+        </div>
+        <div class="item">
+          <h3>Strategy &#038; Roadmap</h3>
+          <p>North‑star outcomes, value streams, and a sequenced roadmap that balances modernization with risk and budget realities.</p>
+        </div>
+        <div class="item">
+          <h3>Operating Model &#038; Process</h3>
+          <p>Standardize, automate, and instrument critical workflows. Embed controls and quality checks that scale.</p>
+        </div>
+        <div class="item">
+          <h3>Change &#038; Adoption (ORIC)</h3>
+          <p>Build commitment and efficacy with role‑based enablement, leadership coaching, and adoption metrics. Tailored to US–India cultural dynamics.</p>
+        </div>
+        <div class="item">
+          <h3>Security &#038; Compliance</h3>
+          <p>Align with ISO 27001 and NIST CSF while modernizing. Policies, risk, controls, logging, and audit‑ready evidence packs.</p>
+        </div>
+        <div class="item">
+          <h3>AI &#038; Data Enablement</h3>
+          <p>Data foundations, analytics, and AI readiness using our Governance &#038; Risk Maturity Model (GRMM). Practical, safe AI use in operations.</p>
+        </div>
+        <div class="item">
+          <h3>Cloud &#038; Platform Modernization</h3>
+          <p>Migrate and refactor with cost, reliability, and security in balance. Landing zones, access, observability, and automation.</p>
+        </div>
+        <div class="item">
+          <h3>eDiscovery &#038; Legal‑Tech Modernization</h3>
+          <p>Workflow tuning, defensibility, and global delivery for litigation support teams. Improve throughput without sacrificing quality.</p>
+        </div>
+        <div class="item">
+          <h3>Fractional Leadership</h3>
+          <p>Fractional CISO/CTO and PMO services to run transformation with discipline while you scale internal capability.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="approach">
+    <div class="container">
+      <h2>Our Approach</h2>
+      <div class="grid">
+        <div class="step"><div class="num">1</div><div><strong>Discover</strong><br />Stakeholder interviews, data &#038; system mapping, baseline KPIs, and risk posture.</div></div>
+        <div class="step"><div class="num">2</div><div><strong>Define</strong><br />Target business outcomes, governance model, and prioritized transformation backlog.</div></div>
+        <div class="step"><div class="num">3</div><div><strong>Design</strong><br />Process blueprints, control points, data flows, and technology guardrails.</div></div>
+        <div class="step"><div class="num">4</div><div><strong>Deliver</strong><br />Agile implementation with cross‑shore squads, change enablement, and weekly demos.</div></div>
+        <div class="step"><div class="num">5</div><div><strong>Demonstrate</strong><br />Evidence packs for audits, KPI movement, and leadership readouts.</div></div>
+        <div class="step"><div class="num">6</div><div><strong>Durability</strong><br />Skills transfer, runbooks, and continuous‑improvement cadences that last.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="outcomes">
+    <div class="container">
+      <h2>Proof You Can Show</h2>
+      <div class="grid cols-3" style="margin-top:16px;">
+        <div class="kpi"><div class="big">30–60%</div><div>cycle‑time reductions in targeted workflows</div></div>
+        <div class="kpi"><div class="big">↑</div><div>audit‑readiness across ISO/NIST control families</div></div>
+        <div class="kpi"><div class="big">24/7</div><div>cross‑shore coverage with clean handoffs</div></div>
+      </div>
+      <p class="small muted" style="margin-top:10px;">Illustrative ranges based on similar programs; your baseline determines targets.</p>
+    </div>
+  </section>
+
+  <section class="faq">
+    <div class="container">
+      <h2>Common Questions</h2>
+      <details>
+        <summary>How is this different from “just installing new software”?</summary>
+        <p>Software is the means, not the outcome. We redesign the work so that teams actually adopt it, controls are embedded, and value shows up in KPIs and audits.</p>
+      </details>
+      <details>
+        <summary>What frameworks do you align to?</summary>
+        <p>We align to ISO 27001 and NIST CSF for security; ORIC for change readiness; and our GRMM for AI governance. We tailor leadership and training to cultural context for US–India teams.</p>
+      </details>
+      <details>
+        <summary>Can you work with our existing tools and vendors?</summary>
+        <p>Yes. We operate vendor‑neutral and integrate with your stack while setting standards for quality, observability, and security.</p>
+      </details>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container card" style="padding:22px;">
+      <h2>Let’s Map Your First 90 Days</h2>
+      <p>Tell us where you are today and the outcomes you need. We’ll outline a practical, budget‑sane path to get there—and what to measure on the way.</p>
+      <form action="https://formspree.io/f/your-id" method="POST" class="grid cols-2" style="margin-top:10px;">
+        <div>
+          <label for="name">Name</label><br />
+          <input id="name" name="name" required placeholder="Your name" style="width:100%; padding:12px; border-radius:10px; border:1px solid var(--border); background: #0b1329; color:var(--text);" />
+        </div>
+        <div>
+          <label for="email">Email</label><br />
+          <input id="email" name="email" type="email" required placeholder="you@company.com" style="width:100%; padding:12px; border-radius:10px; border:1px solid var(--border); background: #0b1329; color:var(--text);" />
+        </div>
+        <div class="cols-2" style="grid-column: 1 / -1;">
+          <label for="message">What are you trying to transform?</label><br />
+          <textarea id="message" name="message" rows="5" placeholder="Briefly describe your goals, systems, and constraints" style="width:100%; padding:12px; border-radius:10px; border:1px solid var(--border); background: #0b1329; color:var(--text);"></textarea>
+        </div>
+        <div>
+          <label for="budget">Indicative Budget</label><br />
+          <select id="budget" name="budget" style="width:100%; padding:12px; border-radius:10px; border:1px solid var(--border); background: #0b1329; color:var(--text);">
+            <option value="">Select…</option>
+            <option>Under $25k</option>
+            <option>$25k–$75k</option>
+            <option>$75k–$150k</option>
+            <option>$150k+</option>
+          </select>
+        </div>
+        <div>
+          <label for="timeline">Desired Timeline</label><br />
+          <select id="timeline" name="timeline" style="width:100%; padding:12px; border-radius:10px; border:1px solid var(--border); background: #0b1329; color:var(--text);">
+            <option value="">Select…</option>
+            <option>0–90 days</option>
+            <option>90–180 days</option>
+            <option>6–12 months</option>
+          </select>
+        </div>
+        <div style="grid-column: 1 / -1; display:flex; gap:12px; align-items:center;">
+          <button class="btn primary" type="submit">Request Readiness Call</button>
+          <span class="small">Or email us at <a href="mailto:hello@stargazer.consulting">hello@stargazer.consulting</a></span>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <div class="brand" style="margin-bottom:8px;"><span class="logo" aria-hidden="true"></span><span>Stargazer Consulting</span></div>
+        <div class="small">Practical, audit‑ready digital transformation and security for SMBs.</div>
+      </div>
+      <div>
+        <div class="small"><a href="/privacy/">Privacy</a> · <a href="/terms/">Terms</a></div>
+        <div class="small">© <span id="year"></span> Stargazer Consulting</div>
+      </div>
+      <div class="small">
+        <div>Related Pages</div>
+        <div><a href="/compliance/">Cyber Risk Scorecard</a></div>
+        <div><a href="/hippa/">HIPAA Compliance Kit</a></div>
+        <div><a href="/iso-27001/">ISO 27001</a></div>
+      </div>
+    </div>
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  </footer>
+<atw-footer></atw-footer>
+</div>
+</body>
+</html>

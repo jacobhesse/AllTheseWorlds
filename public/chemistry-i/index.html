@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chemistry I Course Topics | University-Level Overview</title>
+  <meta name="description" content="A university-level HTML page describing the major topics typically taught in a Chemistry I course, including atomic structure, bonding, stoichiometry, thermochemistry, gases, and more." />
+  <meta name="keywords" content="Chemistry 1, General Chemistry, University Chemistry, Stoichiometry, Atomic Structure, Chemical Bonding, Thermochemistry, Gases, Chemistry HTML Page" />
+  <meta name="author" content="OpenAI" />
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #121933;
+      --panel-2: #182244;
+      --text: #e9eefc;
+      --muted: #b8c3e0;
+      --accent: #6ec1ff;
+      --accent-2: #8ef0c9;
+      --border: rgba(255,255,255,0.08);
+      --shadow: 0 12px 30px rgba(0,0,0,0.25);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.65;
+      color: var(--text);
+      background:
+        radial-gradient(900px 500px at 10% -10%, rgba(110,193,255,0.18), transparent 50%),
+        radial-gradient(700px 400px at 100% 0%, rgba(142,240,201,0.12), transparent 50%),
+        linear-gradient(180deg, #0b1020 0%, #0d1430 45%, #0b1020 100%);
+    }
+
+    header {
+      padding: 70px 20px 40px;
+      text-align: center;
+    }
+
+    .container {
+      width: min(1150px, 92%);
+      margin: 0 auto 60px;
+    }
+
+    .hero {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+
+    .hero p {
+      font-size: 1.08rem;
+      color: var(--muted);
+      margin: 0 auto;
+      max-width: 820px;
+    }
+
+    .intro-box {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px;
+      margin: 28px 0 40px;
+      box-shadow: var(--shadow);
+    }
+
+    .toc {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .toc a {
+      display: block;
+      text-decoration: none;
+      color: var(--text);
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.03));
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .toc a:hover {
+      transform: translateY(-2px);
+      border-color: rgba(110,193,255,0.45);
+      background: rgba(110,193,255,0.08);
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 22px;
+    }
+
+    .card {
+      background: linear-gradient(180deg, var(--panel), var(--panel-2));
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.35rem;
+      color: var(--accent);
+    }
+
+    .card p {
+      margin-bottom: 12px;
+      color: var(--muted);
+    }
+
+    .card ul {
+      padding-left: 20px;
+      margin: 0;
+    }
+
+    .card li {
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .highlight {
+      color: var(--accent-2);
+      font-weight: bold;
+    }
+
+    .course-structure,
+    .lab-note,
+    .references {
+      margin-top: 38px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .course-structure h2,
+    .lab-note h2,
+    .references h2 {
+      margin-top: 0;
+      color: var(--accent);
+    }
+
+    .references ul,
+    .course-structure ul,
+    .lab-note ul {
+      padding-left: 20px;
+    }
+
+    .references a {
+      color: var(--accent-2);
+      text-decoration: none;
+    }
+
+    .references a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px 20px 50px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 640px) {
+      header {
+        padding-top: 50px;
+      }
+
+      .card {
+        padding: 20px;
+      }
+    }
+  </style>
+<link rel="icon" href="/wp-content/uploads/2025/11/cropped-0_3-25456-no-background.png">
+<script src="/assets/site.js" defer></script>
+</head>
+<body>
+<div class="wp-site-blocks">
+<atw-header></atw-header>
+<header>
+    <div class="container hero">
+      <h1>Chemistry I Course Topics</h1>
+      <p>
+        Chemistry I, often called <span class="highlight">General Chemistry I</span>,
+        introduces the foundational concepts needed to understand matter, chemical
+        reactions, quantitative problem-solving, and the principles that govern atomic
+        and molecular behavior. This page outlines the topics commonly taught in a
+        first-semester university chemistry course.
+      </p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="intro-box">
+      <h2>What Is Chemistry I?</h2>
+      <p>
+        A typical university Chemistry I course is designed for science, engineering,
+        health, and related majors. It emphasizes conceptual understanding, mathematical
+        reasoning, and laboratory skills. Students usually learn how to interpret
+        chemical behavior at both the microscopic level of atoms and molecules and the
+        macroscopic level of observable substances and reactions.
+      </p>
+
+      <div class="toc">
+        <a href="#matter">Matter and Measurement</a>
+        <a href="#atoms">Atomic Structure</a>
+        <a href="#periodic">Periodic Table and Trends</a>
+        <a href="#bonding">Chemical Bonding</a>
+        <a href="#nomenclature">Nomenclature and Formulas</a>
+        <a href="#stoichiometry">Stoichiometry</a>
+        <a href="#reactions">Chemical Reactions</a>
+        <a href="#solutions">Solutions and Concentration</a>
+        <a href="#thermochemistry">Thermochemistry</a>
+        <a href="#gases">Gases</a>
+        <a href="#electronic">Electronic Structure</a>
+        <a href="#lab">Laboratory Skills</a>
+      </div>
+    </section>
+
+    <section class="section-grid">
+      <article class="card" id="matter">
+        <h2>1. Matter and Measurement</h2>
+        <p>
+          Chemistry begins with the classification of matter and the measurement systems
+          used to describe it quantitatively.
+        </p>
+        <ul>
+          <li>States of matter: solid, liquid, gas</li>
+          <li>Physical vs. chemical properties</li>
+          <li>Physical vs. chemical changes</li>
+          <li>Elements, compounds, and mixtures</li>
+          <li>Units, dimensional analysis, and significant figures</li>
+          <li>Density and temperature scales</li>
+        </ul>
+      </article>
+
+      <article class="card" id="atoms">
+        <h2>2. Atomic Structure</h2>
+        <p>
+          Students learn how modern chemistry is built on the atomic theory of matter and
+          how subatomic particles determine chemical identity and behavior.
+        </p>
+        <ul>
+          <li>Historical development of atomic theory</li>
+          <li>Protons, neutrons, and electrons</li>
+          <li>Atomic number and mass number</li>
+          <li>Isotopes and average atomic mass</li>
+          <li>Structure of the nucleus</li>
+        </ul>
+      </article>
+
+      <article class="card" id="periodic">
+        <h2>3. The Periodic Table and Periodic Trends</h2>
+        <p>
+          The periodic table organizes elements according to recurring patterns in their
+          properties and electron arrangements.
+        </p>
+        <ul>
+          <li>Groups, periods, metals, nonmetals, metalloids</li>
+          <li>Valence electrons</li>
+          <li>Atomic radius</li>
+          <li>Ionization energy</li>
+          <li>Electron affinity</li>
+          <li>Electronegativity</li>
+          <li>Predicting chemical reactivity from position in the table</li>
+        </ul>
+      </article>
+
+      <article class="card" id="electronic">
+        <h2>4. Electronic Structure of Atoms</h2>
+        <p>
+          Chemistry I usually includes the quantum-based model of the atom and how
+          electrons occupy orbitals.
+        </p>
+        <ul>
+          <li>Electromagnetic radiation and light</li>
+          <li>Bohr model and line spectra</li>
+          <li>Wave-particle duality</li>
+          <li>Quantum numbers</li>
+          <li>Atomic orbitals: s, p, d, f</li>
+          <li>Electron configurations and orbital diagrams</li>
+        </ul>
+      </article>
+
+      <article class="card" id="bonding">
+        <h2>5. Chemical Bonding</h2>
+        <p>
+          Bonding explains how atoms combine to form stable substances and why compounds
+          have specific structures and properties.
+        </p>
+        <ul>
+          <li>Ionic bonding</li>
+          <li>Covalent bonding</li>
+          <li>Metallic bonding</li>
+          <li>Lewis structures</li>
+          <li>Octet rule and common exceptions</li>
+          <li>Bond polarity</li>
+          <li>Introduction to molecular geometry and VSEPR theory</li>
+        </ul>
+      </article>
+
+      <article class="card" id="nomenclature">
+        <h2>6. Chemical Nomenclature and Formulas</h2>
+        <p>
+          Students learn the rules for naming chemical compounds and writing correct
+          formulas from names or ion charges.
+        </p>
+        <ul>
+          <li>Naming ionic compounds</li>
+          <li>Naming molecular compounds</li>
+          <li>Polyatomic ions</li>
+          <li>Acids and their naming conventions</li>
+          <li>Writing empirical and molecular formulas</li>
+        </ul>
+      </article>
+
+      <article class="card" id="stoichiometry">
+        <h2>7. Stoichiometry</h2>
+        <p>
+          Stoichiometry is the mathematical framework used to quantify chemical reactions.
+          It is one of the core quantitative topics in Chemistry I.
+        </p>
+        <ul>
+          <li>The mole concept</li>
+          <li>Avogadro’s number</li>
+          <li>Molar mass calculations</li>
+          <li>Converting between grams, moles, and particles</li>
+          <li>Balancing chemical equations</li>
+          <li>Limiting reactants and excess reactants</li>
+          <li>Theoretical yield, actual yield, and percent yield</li>
+        </ul>
+      </article>
+
+      <article class="card" id="reactions">
+        <h2>8. Chemical Reactions</h2>
+        <p>
+          Chemistry I typically surveys common reaction types and teaches students how to
+          predict products and interpret reaction behavior.
+        </p>
+        <ul>
+          <li>Synthesis reactions</li>
+          <li>Decomposition reactions</li>
+          <li>Single-replacement reactions</li>
+          <li>Double-replacement reactions</li>
+          <li>Combustion reactions</li>
+          <li>Precipitation reactions</li>
+          <li>Acid-base neutralization</li>
+          <li>Oxidation-reduction introduction</li>
+        </ul>
+      </article>
+
+      <article class="card" id="solutions">
+        <h2>9. Solutions and Concentration</h2>
+        <p>
+          Many Chemistry I courses introduce solutions as homogeneous mixtures and cover
+          ways to quantify dissolved substances.
+        </p>
+        <ul>
+          <li>Solute and solvent</li>
+          <li>Electrolytes vs. nonelectrolytes</li>
+          <li>Molarity</li>
+          <li>Dilution calculations</li>
+          <li>Solution preparation</li>
+          <li>Solubility basics</li>
+        </ul>
+      </article>
+
+      <article class="card" id="thermochemistry">
+        <h2>10. Thermochemistry</h2>
+        <p>
+          Thermochemistry examines energy changes that accompany physical and chemical
+          processes.
+        </p>
+        <ul>
+          <li>System and surroundings</li>
+          <li>Heat and temperature</li>
+          <li>Endothermic and exothermic processes</li>
+          <li>Specific heat and calorimetry</li>
+          <li>Enthalpy changes</li>
+          <li>Heating and cooling calculations</li>
+        </ul>
+      </article>
+
+      <article class="card" id="gases">
+        <h2>11. Gases and Gas Laws</h2>
+        <p>
+          Gas behavior provides one of the clearest examples of the relationship between
+          microscopic particle motion and macroscopic physical behavior.
+        </p>
+        <ul>
+          <li>Pressure and its measurement</li>
+          <li>Boyle’s law</li>
+          <li>Charles’s law</li>
+          <li>Gay-Lussac’s law</li>
+          <li>Combined gas law</li>
+          <li>Ideal gas law</li>
+          <li>Gas stoichiometry basics</li>
+          <li>Kinetic molecular theory</li>
+        </ul>
+      </article>
+
+      <article class="card" id="lab">
+        <h2>12. Laboratory Skills and Scientific Practice</h2>
+        <p>
+          University Chemistry I usually includes a laboratory component that develops
+          hands-on skills, data interpretation, and scientific communication.
+        </p>
+        <ul>
+          <li>Laboratory safety procedures</li>
+          <li>Proper use of balances, glassware, and volumetric tools</li>
+          <li>Data collection and uncertainty</li>
+          <li>Graphing and interpreting results</li>
+          <li>Writing lab reports</li>
+          <li>Observing reactions and identifying evidence of change</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="course-structure">
+      <h2>How These Topics Fit Together</h2>
+      <p>
+        A well-designed Chemistry I course usually progresses from
+        <strong>basic description of matter</strong> to
+        <strong>atomic and molecular explanation</strong>, and then to
+        <strong>quantitative prediction</strong>. The sequence often looks like this:
+      </p>
+      <ul>
+        <li>Learn what matter is and how chemists measure it</li>
+        <li>Understand atoms, elements, and the periodic table</li>
+        <li>Study how atoms bond and form compounds</li>
+        <li>Use formulas and equations to describe reactions</li>
+        <li>Apply mathematics through stoichiometry and gas law problems</li>
+        <li>Connect chemistry to energy changes and laboratory evidence</li>
+      </ul>
+    </section>
+
+    <section class="lab-note">
+      <h2>Typical Learning Outcomes</h2>
+      <p>By the end of Chemistry I, students are commonly expected to be able to:</p>
+      <ul>
+        <li>Classify matter and interpret measurements correctly</li>
+        <li>Explain atomic structure and periodic behavior</li>
+        <li>Name compounds and write chemical formulas</li>
+        <li>Balance equations and solve stoichiometric problems</li>
+        <li>Describe basic bonding and molecular structure</li>
+        <li>Calculate energy or gas-law relationships in chemical systems</li>
+        <li>Apply safe and accurate laboratory methods</li>
+      </ul>
+    </section>
+
+    <section class="references">
+      <h2>Suggested Reference Sources</h2>
+      <p>
+        These are useful open educational resources and academic support materials for
+        university-level general chemistry:
+      </p>
+      <ul>
+        <li>
+          <a href="https://openstax.org/details/books/chemistry-2e" target="_blank" rel="noopener noreferrer">
+            OpenStax Chemistry 2e
+          </a>
+        </li>
+        <li>
+          <a href="https://chem.libretexts.org/" target="_blank" rel="noopener noreferrer">
+            Chemistry LibreTexts
+          </a>
+        </li>
+        <li>
+          <a href="https://phet.colorado.edu/" target="_blank" rel="noopener noreferrer">
+            PhET Interactive Simulations
+          </a>
+        </li>
+        <li>
+          <a href="https://iupac.org/" target="_blank" rel="noopener noreferrer">
+            IUPAC
+          </a>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Chemistry I Topic Overview. Designed as a university-level instructional HTML page.</p>
+  </footer>
+<atw-footer></atw-footer>
+</div>
+</body>
+</html>

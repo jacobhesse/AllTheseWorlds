@@ -1,0 +1,741 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>vCISO Services Packages | Stargazer Consulting</title>
+  <meta name="description" content="Fractional vCISO services for SMB and mid-market teams: security leadership, risk governance, audit readiness (SOC 2 / ISO 27001 / HIPAA), and incident preparedness—without security theater." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://stargazerconsulting.example/vciso" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="vCISO Services Packages | Stargazer Consulting" />
+  <meta property="og:description" content="Fractional security leadership to reduce risk, enable growth, and withstand customer scrutiny." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://stargazerconsulting.example/vciso" />
+
+  <!-- JSON-LD (Service + Organization) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Stargazer Consulting",
+    "url": "https://stargazerconsulting.example",
+    "serviceType": "Virtual CISO (vCISO) Services",
+    "areaServed": "US",
+    "description": "Fractional vCISO services for SMB and mid-market organizations: security posture, risk governance, audit readiness, and incident preparedness.",
+    "founder": {
+      "@type": "Person",
+      "name": "Jacob K. Hesse"
+    },
+    "offers": [
+      { "@type": "Offer", "name": "vCISO Foundations", "category": "Monthly Retainer" },
+      { "@type": "Offer", "name": "vCISO Core", "category": "Monthly Retainer" },
+      { "@type": "Offer", "name": "vCISO Partner", "category": "Monthly Retainer" }
+    ]
+  }
+  </script>
+
+  <style>
+    /* ===== Stargazer-style Theme Tokens ===== */
+    :root{
+      --bg:#0b1324;          /* deep navy */
+      --card:#0f1a33;        /* card navy */
+      --card2:#0c1730;
+      --ink:#e8eefc;         /* near-white */
+      --muted:#9bb0cf;       /* muted blue */
+      --line:rgba(148,163,184,.25);
+      --accent:#6fd3c7;      /* teal/cyan */
+      --accent2:#7aa7ff;     /* optional cool blue */
+      --shadow: 0 16px 40px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 22px;
+      --max: 1120px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:radial-gradient(1200px 800px at 20% 0%, rgba(111,211,199,.14), transparent 60%),
+                               radial-gradient(900px 600px at 90% 10%, rgba(122,167,255,.10), transparent 55%),
+                               linear-gradient(180deg, #070c18 0%, var(--bg) 40%, #070c18 100%);
+              color:var(--ink); font-family:var(--sans);}
+
+    a{color:inherit;text-decoration:none}
+    a:hover{color:var(--accent)}
+    .wrap{max-width:var(--max);margin:0 auto;padding:0 1.25rem}
+    .section{padding:4.25rem 0}
+    .grid{display:grid;gap:1rem}
+
+    /* Background image slot (optional): set --hero-img */
+    .hero{
+      position:relative;
+      padding:4.5rem 0 3.25rem;
+      border-bottom:1px solid var(--line);
+      overflow:hidden;
+    }
+    .hero::before{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        linear-gradient(180deg, rgba(7,12,24,.85), rgba(11,19,36,.92)),
+        var(--hero-img, none);
+      background-size:cover;
+      background-position:center;
+      filter:saturate(.9) contrast(1.05);
+      opacity:1;
+      pointer-events:none;
+    }
+    .hero > .wrap{position:relative}
+
+    .topbar{
+      display:flex; align-items:center; justify-content:space-between; gap:1rem;
+      padding:1rem 0 0;
+    }
+    .brand{
+      display:flex; align-items:center; gap:.75rem;
+      letter-spacing:.10em; text-transform:uppercase; font-weight:800;
+      font-size:.92rem;
+    }
+    .brand-badge{
+      width:36px;height:36px;border-radius:12px;
+      background:linear-gradient(135deg, rgba(111,211,199,.35), rgba(122,167,255,.18));
+      border:1px solid rgba(111,211,199,.35);
+      box-shadow: 0 10px 24px rgba(0,0,0,.25);
+      display:grid; place-items:center;
+      font-family:var(--mono);
+      color:var(--ink);
+    }
+    .navlinks{display:flex; gap:1rem; flex-wrap:wrap; justify-content:flex-end}
+    .navlinks a{opacity:.9; font-weight:600}
+    .navlinks a:hover{opacity:1}
+
+    .hero-main{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:1.25rem;
+      align-items:stretch;
+      padding:2.25rem 0 0;
+    }
+    @media (max-width: 900px){
+      .hero-main{grid-template-columns:1fr}
+    }
+    .h1{
+      font-size: clamp(2.0rem, 3.2vw, 3.05rem);
+      line-height:1.08;
+      margin:.25rem 0 1rem;
+      letter-spacing:-.02em;
+    }
+    .lede{color:var(--muted); font-size:1.08rem; line-height:1.55; max-width:62ch}
+    .pillrow{display:flex; gap:.5rem; flex-wrap:wrap; margin:1.25rem 0 0}
+    .pill{
+      font-size:.84rem;
+      padding:.45rem .65rem;
+      border-radius:999px;
+      border:1px solid rgba(111,211,199,.28);
+      background:rgba(15,26,51,.55);
+      color:rgba(232,238,252,.92);
+      backdrop-filter: blur(6px);
+    }
+
+    .card{
+      background:linear-gradient(180deg, rgba(15,26,51,.95), rgba(12,23,48,.92));
+      border:1px solid var(--line);
+      border-radius:var(--radius2);
+      box-shadow:var(--shadow);
+      padding:1.25rem;
+    }
+    .mini{
+      background:rgba(15,26,51,.55);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:1rem;
+    }
+    .card h3{margin:.2rem 0 .35rem; font-size:1.12rem}
+    .card p{margin:.35rem 0; color:var(--muted); line-height:1.55}
+
+    .ctaRow{display:flex; gap:.75rem; flex-wrap:wrap; margin-top:1.25rem}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
+      padding:.82rem 1.05rem;
+      border-radius:14px;
+      font-weight:800;
+      letter-spacing:.01em;
+      border:1px solid rgba(111,211,199,.35);
+      background: rgba(111,211,199,.12);
+      color:var(--ink);
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      cursor:pointer;
+    }
+    .btn:hover{transform: translateY(-1px); background: rgba(111,211,199,.16); border-color: rgba(111,211,199,.55)}
+    .btn.primary{
+      background:linear-gradient(135deg, rgba(111,211,199,.22), rgba(122,167,255,.14));
+      border-color: rgba(111,211,199,.55);
+    }
+    .btn.ghost{
+      background:transparent;
+      border-color: rgba(148,163,184,.30);
+      color:rgba(232,238,252,.92);
+    }
+    .btn.ghost:hover{border-color: rgba(111,211,199,.45)}
+    .note{font-size:.9rem; color:var(--muted); line-height:1.45}
+
+    .kpis{display:grid; grid-template-columns:repeat(3, 1fr); gap:.75rem; margin-top:.75rem}
+    @media (max-width: 900px){ .kpis{grid-template-columns:1fr} }
+    .kpi{
+      border:1px solid var(--line);
+      background:rgba(15,26,51,.55);
+      border-radius:16px;
+      padding:.95rem;
+    }
+    .kpi .big{font-size:1.15rem; font-weight:900}
+    .kpi .small{color:var(--muted); font-size:.9rem; margin-top:.15rem}
+
+    .section-title{
+      font-size:1.6rem;
+      margin:0 0 .5rem;
+      letter-spacing:-.01em;
+    }
+    .section-sub{margin:0 0 1.25rem; color:var(--muted); line-height:1.55; max-width:85ch}
+
+    .packages{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:1rem;
+      align-items:stretch;
+    }
+    @media (max-width: 980px){ .packages{grid-template-columns:1fr} }
+
+    .pkg{
+      position:relative;
+      padding:1.25rem;
+      border-radius:var(--radius2);
+      border:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(15,26,51,.92), rgba(12,23,48,.92));
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .pkg::before{
+      content:"";
+      position:absolute; inset:-40% -30% auto auto;
+      width:360px; height:360px;
+      background:radial-gradient(circle at 30% 30%, rgba(111,211,199,.22), transparent 55%);
+      transform: rotate(12deg);
+      pointer-events:none;
+    }
+    .pkg .head{position:relative}
+    .pkg .tag{
+      display:inline-flex; align-items:center; gap:.4rem;
+      font-size:.78rem; font-weight:900;
+      letter-spacing:.08em; text-transform:uppercase;
+      padding:.35rem .6rem; border-radius:999px;
+      border:1px solid rgba(111,211,199,.38);
+      background: rgba(111,211,199,.10);
+    }
+    .pkg h3{margin:.6rem 0 .35rem; font-size:1.22rem}
+    .pkg .who{color:var(--muted); line-height:1.5; margin:0 0 .75rem}
+    .pkg .price{
+      font-size:1.55rem;
+      font-weight:900;
+      margin:.25rem 0 .65rem;
+      letter-spacing:-.01em;
+    }
+    .pkg .price span{font-size:.92rem; color:var(--muted); font-weight:700}
+    .list{
+      margin:0; padding-left:1.05rem;
+      color:rgba(232,238,252,.92);
+    }
+    .list li{margin:.5rem 0; color:rgba(232,238,252,.90); line-height:1.45}
+    .list li small{display:block; color:var(--muted); margin-top:.15rem}
+    .divider{height:1px; background:var(--line); margin:1rem 0}
+
+    .two{
+      display:grid; grid-template-columns: 1fr 1fr; gap:1rem;
+    }
+    @media (max-width: 900px){ .two{grid-template-columns:1fr} }
+
+    details{
+      border:1px solid var(--line);
+      border-radius:16px;
+      background:rgba(15,26,51,.55);
+      padding:1rem 1rem;
+    }
+    details + details{margin-top:.75rem}
+    summary{
+      cursor:pointer;
+      list-style:none;
+      font-weight:800;
+      letter-spacing:-.01em;
+    }
+    summary::-webkit-details-marker{display:none}
+    details p{margin:.65rem 0 0; color:var(--muted); line-height:1.55}
+
+    .form{
+      display:grid; gap:.75rem;
+    }
+    label{font-weight:800; font-size:.92rem}
+    input, textarea, select{
+      width:100%;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(148,163,184,.30);
+      background:rgba(7,12,24,.35);
+      color:var(--ink);
+      outline:none;
+    }
+    input:focus, textarea:focus, select:focus{
+      border-color: rgba(111,211,199,.55);
+      box-shadow: 0 0 0 4px rgba(111,211,199,.10);
+    }
+
+    footer{
+      padding:2.25rem 0;
+      border-top:1px solid var(--line);
+      color:var(--muted);
+    }
+    .footgrid{display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap}
+    .legal{max-width:85ch; line-height:1.5}
+    .mono{font-family:var(--mono); font-size:.92rem}
+  </style>
+<link rel="icon" href="/wp-content/uploads/2025/11/cropped-0_3-25456-no-background.png">
+<script src="/assets/site.js" defer></script>
+</head>
+<body>
+<div class="wp-site-blocks">
+<atw-header></atw-header>
+<!-- HERO -->
+  <header class="hero" id="top"
+    style="
+      /* OPTIONAL: Drop in a background image URL below. Keep it muted via the overlay in .hero::before */
+      /* Example:
+      --hero-img: url('https://yoursite.com/path/background.jpg');
+      */
+    "
+  >
+    <div class="wrap">
+      <div class="topbar">
+        <div class="brand" aria-label="Stargazer Consulting">
+          <div class="brand-badge">SG</div>
+          <div>
+            Stargazer Consulting<br/>
+            <span style="font-weight:700;opacity:.8;letter-spacing:.06em">vCISO Services</span>
+          </div>
+        </div>
+        <nav class="navlinks" aria-label="Page navigation">
+          <a href="#packages">Packages</a>
+          <a href="#how">How it works</a>
+          <a href="#deliverables">Deliverables</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+
+      <div class="hero-main">
+        <div class="card">
+          <div class="tag" style="display:inline-flex">Fractional Security Leadership</div>
+          <h1 class="h1">vCISO services that reduce risk and enable growth—without security theater.</h1>
+          <p class="lede">
+            I help founders and executive teams build a defensible security posture, audit-ready governance, and incident preparedness
+            that stands up to customer scrutiny. The goal is not “more controls.” The goal is a security program that your business can
+            actually operate—reliably.
+          </p>
+
+          <div class="pillrow" aria-label="Service highlights">
+            <span class="pill">Risk governance</span>
+            <span class="pill">SOC 2 / ISO 27001 / HIPAA readiness</span>
+            <span class="pill">Security enablement for sales</span>
+            <span class="pill">Incident readiness</span>
+            <span class="pill">Pragmatic operating model</span>
+          </div>
+
+          <div class="ctaRow">
+            <a class="btn primary" href="#contact">Request a 30-minute fit call</a>
+            <a class="btn ghost" href="#packages">View packages</a>
+          </div>
+
+          <p class="note" style="margin-top:.8rem">
+            Typical engagements run on a monthly retainer with a clear scope, operating cadence, and measurable outcomes.
+          </p>
+        </div>
+
+        <aside class="card">
+          <h3>What you get (in plain terms)</h3>
+          <p>
+            A senior security leader who can clarify tradeoffs, establish decision rights, and build a credible security program that
+            enables enterprise deals, withstands audits, and improves your ability to respond under pressure.
+          </p>
+
+          <div class="kpis" role="list">
+            <div class="kpi" role="listitem">
+              <div class="big">Security posture clarity</div>
+              <div class="small">What matters, what doesn’t, and why</div>
+            </div>
+            <div class="kpi" role="listitem">
+              <div class="big">Audit readiness</div>
+              <div class="small">Evidence + ownership, not binders</div>
+            </div>
+            <div class="kpi" role="listitem">
+              <div class="big">Decision quality</div>
+              <div class="small">Risk acceptance you can defend</div>
+            </div>
+          </div>
+
+          <div class="divider"></div>
+          <p class="note">
+            Common trigger events: enterprise customer security reviews, SOC 2/ISO pressure, rising vendor risk,
+            post-incident stabilization, or scaling data hosting.
+          </p>
+        </aside>
+      </div>
+    </div>
+  </header>
+
+  <!-- PACKAGES -->
+  <section class="section" id="packages">
+    <div class="wrap">
+      <h2 class="section-title">vCISO packages</h2>
+      <p class="section-sub">
+        Choose the engagement model that matches your current maturity and pressure profile. Each package includes a defined cadence,
+        documented outcomes, and executive-ready reporting. Pricing ranges are shown to help qualification; final scope depends on
+        complexity and compliance targets.
+      </p>
+
+      <div class="packages">
+        <!-- Package 1 -->
+        <div class="pkg">
+          <div class="head">
+            <div class="tag">Foundations</div>
+            <h3>vCISO Foundations</h3>
+            <p class="who">Best for early maturity teams that need a credible baseline and a practical roadmap.</p>
+            <div class="price">$2,500 <span>/ month</span></div>
+          </div>
+
+          <ul class="list">
+            <li><strong>Security posture baseline</strong><small>Rapid current-state assessment + prioritized risks</small></li>
+            <li><strong>90-day security roadmap</strong><small>Actions, owners, sequencing, and “definition of done”</small></li>
+            <li><strong>Core governance set</strong><small>Minimum viable policies, decision rights, and exception process</small></li>
+            <li><strong>Vendor / SaaS risk triage</strong><small>Top vendor risks and mitigation plan</small></li>
+            <li><strong>Monthly executive memo</strong><small>One-page leadership update + decisions required</small></li>
+          </ul>
+
+          <div class="divider"></div>
+          <p class="note"><strong>Cadence:</strong> 2–4 hours/week async + one monthly executive meeting.</p>
+          <div class="ctaRow">
+            <a class="btn primary" href="#contact">Ask about Foundations</a>
+            <a class="btn ghost" href="#deliverables">See deliverables</a>
+          </div>
+        </div>
+
+        <!-- Package 2 -->
+        <div class="pkg" style="border-color: rgba(111,211,199,.45)">
+          <div class="head">
+            <div class="tag">Core</div>
+            <h3>vCISO Core</h3>
+            <p class="who">Best for teams approaching enterprise scrutiny, SOC 2/ISO timelines, or meaningful platform scale.</p>
+            <div class="price">$5,000 <span>/ month</span></div>
+          </div>
+
+          <ul class="list">
+            <li><strong>Risk register + governance</strong><small>Prioritization, owners, deadlines, and tracking</small></li>
+            <li><strong>Audit readiness oversight</strong><small>SOC 2 / ISO 27001 / HIPAA planning + evidence model</small></li>
+            <li><strong>Security operating cadence</strong><small>Weekly working session + monthly exec review</small></li>
+            <li><strong>Incident readiness package</strong><small>Playbooks, escalation path, and tabletop exercise</small></li>
+            <li><strong>Sales enablement</strong><small>Security narrative + questionnaire response bank strategy</small></li>
+            <li><strong>Security-by-design reviews</strong><small>Change review gates that reduce risk without blocking delivery</small></li>
+          </ul>
+
+          <div class="divider"></div>
+          <p class="note"><strong>Cadence:</strong> 4–8 hours/week blended (async + live) with defined deliverables.</p>
+          <div class="ctaRow">
+            <a class="btn primary" href="#contact">Ask about Core</a>
+            <a class="btn ghost" href="#how">How it works</a>
+          </div>
+        </div>
+
+        <!-- Package 3 -->
+        <div class="pkg">
+          <div class="head">
+            <div class="tag">Partner</div>
+            <h3>vCISO Partner</h3>
+            <p class="who">Best for higher-risk environments that need sustained security leadership and executive presence.</p>
+            <div class="price">$9,000 <span>/ month</span></div>
+          </div>
+
+          <ul class="list">
+            <li><strong>Security program ownership</strong><small>Operating model, accountability structure, and execution oversight</small></li>
+            <li><strong>Board / investor communications</strong><small>Quarterly security briefing deck + risk decisions</small></li>
+            <li><strong>Security leadership across functions</strong><small>Engineering, Ops, Legal, GTM alignment on standards</small></li>
+            <li><strong>Continuous audit posture</strong><small>Evidence lifecycle + control ownership maturity</small></li>
+            <li><strong>Vendor + data residency strategy</strong><small>Third-party risk management + high-sensitivity data controls</small></li>
+            <li><strong>Incident leadership</strong><small>On-call advisory for high-severity events, escalation, and recovery planning</small></li>
+          </ul>
+
+          <div class="divider"></div>
+          <p class="note"><strong>Cadence:</strong> 8–12+ hours/week with a standing leadership rhythm and execution support.</p>
+          <div class="ctaRow">
+            <a class="btn primary" href="#contact">Ask about Partner</a>
+            <a class="btn ghost" href="#faq">FAQ</a>
+          </div>
+        </div>
+      </div>
+
+      <p class="note" style="margin-top:1rem">
+        One-time accelerators are available (e.g., “SOC 2 launch”, “ISO 27001 sprint”, “post-incident stabilization”).
+        Ask for a scoped statement of work.
+      </p>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS + WHAT’S INCLUDED -->
+  <section class="section" id="how" style="border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+    <div class="wrap">
+      <h2 class="section-title">How it works</h2>
+      <p class="section-sub">
+        The work is organized around outcomes, not meetings. You get a predictable operating cadence, written artifacts, and a clear
+        decision pipeline so security doesn’t devolve into “best effort.”
+      </p>
+
+      <div class="two">
+        <div class="card">
+          <h3>1) Diagnose what matters</h3>
+          <p>
+            Establish a clear baseline: current controls, real operational behaviors, customer expectations, compliance targets,
+            and where the business is taking risk without realizing it.
+          </p>
+          <div class="divider"></div>
+          <h3>2) Build the operating model</h3>
+          <p>
+            Define decision rights, risk acceptance, exception handling, control ownership, and the cadence for ongoing posture management.
+          </p>
+          <div class="divider"></div>
+          <h3>3) Execute with governance</h3>
+          <p>
+            Drive a prioritized roadmap with evidence and accountability. Avoid “checkbox security” and focus on controls you can sustain.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Engagement rhythm (typical)</h3>
+          <p><strong>Weekly Working Session</strong><br/><span class="note">Tactical progress, unblock, assign owners.</span></p>
+          <p><strong>Monthly Executive Review</strong><br/><span class="note">Risk posture, decisions needed, and progress vs roadmap.</span></p>
+          <p><strong>Async Execution Support</strong><br/><span class="note">Evidence review, policy/control drafting, vendor &#038; customer responses.</span></p>
+          <div class="divider"></div>
+          <p class="note">
+            You will always know: what changed, what risk moved, what decisions are pending, and what the next month’s objectives are.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DELIVERABLES -->
+  <section class="section" id="deliverables">
+    <div class="wrap">
+      <h2 class="section-title">Deliverables you can expect</h2>
+      <p class="section-sub">
+        Deliverables vary by package, but the intent is consistent: produce artifacts that improve posture and stand up to scrutiny.
+      </p>
+
+      <div class="two">
+        <div class="mini">
+          <h3 style="margin:.2rem 0 .5rem">Governance &#038; posture</h3>
+          <ul class="list">
+            <li>Risk register with priorities, owners, and timelines</li>
+            <li>Risk acceptance and exception workflow (defensible decisions)</li>
+            <li>Security roadmap (30/60/90 day + quarterly maturity goals)</li>
+            <li>Security KPI model (signal, not theater)</li>
+          </ul>
+        </div>
+        <div class="mini">
+          <h3 style="margin:.2rem 0 .5rem">Audit &#038; customer scrutiny</h3>
+          <ul class="list">
+            <li>SOC 2 / ISO 27001 readiness plan and control ownership mapping</li>
+            <li>Evidence model (what to collect, who owns it, and how it stays current)</li>
+            <li>Customer security narrative + questionnaire response strategy</li>
+            <li>Security review readiness: what to say, show, and avoid</li>
+          </ul>
+        </div>
+        <div class="mini">
+          <h3 style="margin:.2rem 0 .5rem">Incident readiness</h3>
+          <ul class="list">
+            <li>Incident response playbooks and escalation paths</li>
+            <li>Tabletop exercise facilitation + after-action improvements</li>
+            <li>Third-party incident comms approach (customer + vendor)</li>
+            <li>Post-incident stabilization and governance improvements</li>
+          </ul>
+        </div>
+        <div class="mini">
+          <h3 style="margin:.2rem 0 .5rem">Operational security</h3>
+          <ul class="list">
+            <li>Change control gates aligned to delivery velocity</li>
+            <li>Vendor and SaaS risk triage</li>
+            <li>Access and data handling policy/practice alignment</li>
+            <li>Security-by-design review template for new initiatives</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq" style="border-top:1px solid var(--line);">
+    <div class="wrap">
+      <h2 class="section-title">FAQ</h2>
+      <p class="section-sub">
+        If you are evaluating vCISO support, these are the questions that usually determine fit.
+      </p>
+
+      <details>
+        <summary>Do you replace a full-time CISO?</summary>
+        <p>
+          For many SMB and mid-market teams, yes—especially when the immediate need is executive risk governance, audit readiness,
+          incident preparedness, and a working security program. If you have a complex environment requiring daily operational security
+          management, we can structure this engagement to build the program while you recruit.
+        </p>
+      </details>
+
+      <details>
+        <summary>Will you “run tools” for us (SIEM, EDR, IAM platforms)?</summary>
+        <p>
+          Typically no. The role is fractional security leadership: posture, governance, priorities, and accountability.
+          I will coordinate with your IT/engineering teams and vendors, define requirements, and validate outcomes.
+          If you need hands-on engineering support, I can help you scope and manage it.
+        </p>
+      </details>
+
+      <details>
+        <summary>What compliance standards do you support?</summary>
+        <p>
+          Common scopes include SOC 2, ISO 27001, HIPAA-adjacent programs, and customer due diligence requirements. The emphasis is on
+          “controls you can sustain,” with evidence and ownership that does not degrade after the audit.
+        </p>
+      </details>
+
+      <details>
+        <summary>How quickly can we be ready for enterprise customer security reviews?</summary>
+        <p>
+          Often within 30–60 days you can materially improve readiness by clarifying posture, hardening the narrative, establishing an
+          evidence model, and fixing high-impact gaps. Timing depends on your current state and the review’s rigor.
+        </p>
+      </details>
+
+      <details>
+        <summary>How do we measure success?</summary>
+        <p>
+          Reduced unmanaged risk, increased audit readiness, improved decision clarity, shorter customer security review cycles, and a
+          security program that continues to function month-over-month. You should be able to explain your posture in one page, defend
+          your risk acceptances, and show continuous improvement without fire drills.
+        </p>
+      </details>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="wrap">
+      <h2 class="section-title">Request a fit call</h2>
+      <p class="section-sub">
+        Share a brief description of your environment and what is driving the vCISO need (audit timeline, enterprise customer pressure,
+        incident concerns, vendor risk, scaling data hosting, etc.). I’ll respond with next steps and a recommended package.
+      </p>
+
+      <div class="two">
+        <div class="card">
+          <!-- Replace the action URL with your Formspree endpoint or your preferred handler -->
+          <form class="form" action="https://formspree.io/f/mgoowykd" method="POST">
+            <div>
+              <label for="name">Name</label><br/>
+              <input id="name" name="name" type="text" required />
+            </div>
+
+            <div>
+              <label for="email">Email</label><br/>
+              <input id="email" name="email" type="email" required />
+            </div>
+
+            <div>
+              <label for="company">Company / Website</label><br/>
+              <input id="company" name="company" type="text" />
+            </div>
+
+            <div>
+              <label for="need">Primary need</label><br/>
+              <select id="need" name="primary_need">
+                <option value="enterprise-reviews">Enterprise customer security reviews</option>
+                <option value="soc2">SOC 2 readiness</option>
+                <option value="iso27001">ISO 27001 readiness</option>
+                <option value="incident">Incident preparedness / response</option>
+                <option value="vendor-risk">Vendor / third-party risk</option>
+                <option value="general">General security posture &#038; governance</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="message">What are you trying to achieve in the next 60–90 days?</label><br/>
+              <textarea id="message" name="message" rows="6" placeholder="Example: Prepare for SOC 2 Type I, reduce customer questionnaire friction, and formalize incident escalation."></textarea>
+            </div>
+
+            <button class="btn primary" type="submit">Send inquiry</button>
+            <div class="note">By submitting, you agree to be contacted about this inquiry.</div>
+          </form>
+        </div>
+
+        <div class="card">
+          <h3>What happens next</h3>
+          <p>
+            I’ll review your note and reply with (1) a recommended package, (2) a short list of diagnostic questions, and (3) a proposed
+            first-month plan focused on risk reduction and audit/customer readiness.
+          </p>
+
+          <div class="divider"></div>
+
+          <h3>Prefer email?</h3>
+          <p class="note mono">jacob.hesse@kemperastronautics.com</p>
+
+          <div class="divider"></div>
+
+          <h3>Typical first-month outcomes</h3>
+          <ul class="list">
+            <li>Clear risk priorities and owners</li>
+            <li>Security roadmap that matches your business stage</li>
+            <li>Evidence model for audits and customer due diligence</li>
+            <li>Executive-ready memo and decision pipeline</li>
+          </ul>
+
+          <div class="ctaRow">
+            <a class="btn ghost" href="#top">Back to top</a>
+            <a class="btn" href="#packages">Compare packages</a>
+          </div>
+        </div>
+      </div>
+
+      <p class="note" style="margin-top:1rem">
+        Note: If you already have a pending audit date or an enterprise security review deadline, include the date in your message.
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="footgrid">
+        <div class="legal">
+          <div class="mono" style="color:rgba(232,238,252,.88);font-weight:900;letter-spacing:.08em;text-transform:uppercase;">
+            Stargazer Consulting
+          </div>
+          <p class="note" style="margin:.5rem 0 0">
+            Fractional vCISO services for organizations that need real security posture and governance—without performative overhead.
+            This page is for informational purposes and does not constitute legal advice.
+          </p>
+        </div>
+        <div class="mono">
+          <div>Contact:</div>
+          <div style="margin-top:.35rem"><a href="mailto:jacob.hesse@kemperastronautics.com">jacob.hesse@kemperastronautics.com</a></div>
+          <div style="margin-top:.35rem"><a href="tel:+18166946943">816.694.6943</a></div>
+        </div>
+      </div>
+    </div>
+  </footer>
+<atw-footer></atw-footer>
+</div>
+</body>
+</html>

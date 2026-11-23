@@ -1,0 +1,834 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Introduction to Astrophysics – College Course Outline</title>
+  <meta name="description" content="A college-level Introduction to Astrophysics course outline covering stars, galaxies, cosmology, exoplanets, relativity, and observational methods." />
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg-alt: #111830;
+      --panel: #151f3d;
+      --text: #eaf0ff;
+      --muted: #b8c4e6;
+      --accent: #78a6ff;
+      --accent-2: #68e0cf;
+      --border: rgba(255,255,255,0.10);
+      --shadow: 0 10px 30px rgba(0,0,0,0.28);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(120,166,255,0.18), transparent 30%),
+        radial-gradient(circle at top right, rgba(104,224,207,0.12), transparent 25%),
+        linear-gradient(180deg, var(--bg), #070b16 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .container {
+      width: min(1100px, 92%);
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 64px 0 36px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.4fr 0.9fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .hero h1 {
+      font-size: 2.7rem;
+      margin: 0 0 14px;
+      line-height: 1.15;
+      letter-spacing: 0.2px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin: 0 0 18px;
+      max-width: 760px;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .badge {
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.04);
+      border-radius: 999px;
+      color: var(--text);
+      font-size: 0.92rem;
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card h2 {
+      margin-top: 0;
+      font-size: 1.2rem;
+      color: var(--accent-2);
+    }
+
+    .hero-card ul {
+      padding-left: 18px;
+      margin: 0;
+    }
+
+    .hero-card li {
+      margin-bottom: 8px;
+      color: var(--muted);
+    }
+
+    section {
+      padding: 42px 0;
+    }
+
+    h2.section-title {
+      font-size: 2rem;
+      margin: 0 0 18px;
+    }
+
+    .intro-grid,
+    .assessment-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      font-size: 1.2rem;
+      color: var(--accent);
+    }
+
+    .card p,
+    .card li {
+      color: var(--muted);
+    }
+
+    .card ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .module {
+      background: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.01));
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 26px;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .module-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .module h3 {
+      margin: 0;
+      font-size: 1.3rem;
+      color: var(--accent-2);
+    }
+
+    .week-tag {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(120,166,255,0.12);
+      border: 1px solid rgba(120,166,255,0.25);
+      color: var(--text);
+      font-size: 0.9rem;
+      white-space: nowrap;
+    }
+
+    .module p {
+      color: var(--muted);
+      margin: 8px 0 14px;
+    }
+
+    .module-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 12px;
+    }
+
+    .module-box {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+    }
+
+    .module-box h4 {
+      margin: 0 0 8px;
+      color: var(--text);
+      font-size: 1rem;
+    }
+
+    .module-box ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .module-box li {
+      color: var(--muted);
+      margin-bottom: 6px;
+      font-size: 0.96rem;
+    }
+
+    .schedule-table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 16px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    .schedule-table th,
+    .schedule-table td {
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .schedule-table th {
+      background: rgba(120,166,255,0.12);
+      color: var(--text);
+      font-size: 0.98rem;
+    }
+
+    .schedule-table td {
+      color: var(--muted);
+    }
+
+    footer {
+      padding: 32px 0 56px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      margin-top: 24px;
+    }
+
+    @media (max-width: 900px) {
+      .hero,
+      .intro-grid,
+      .assessment-grid,
+      .module-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+    }
+  </style>
+<link rel="icon" href="/wp-content/uploads/2025/11/cropped-0_3-25456-no-background.png">
+<script src="/assets/site.js" defer></script>
+</head>
+<body>
+<div class="wp-site-blocks">
+<atw-header></atw-header>
+<header>
+    <div class="container hero">
+      <div>
+        <h1>Introduction to Astrophysics</h1>
+        <p>
+          This course introduces college-level students to the physical principles that govern
+          the universe, from radiation and gravity to stellar evolution, galaxies, black holes,
+          exoplanets, and cosmology. The course is designed to balance conceptual understanding,
+          quantitative reasoning, and scientific interpretation of astronomical observations.
+        </p>
+        <div class="badge-row">
+          <div class="badge">Course Level: Undergraduate</div>
+          <div class="badge">Format: 15 Weeks</div>
+          <div class="badge">Credits: 3</div>
+          <div class="badge">Discipline: Physics / Astronomy</div>
+        </div>
+      </div>
+
+      <aside class="hero-card">
+        <h2>Course Snapshot</h2>
+        <ul>
+          <li>Target audience: first- or second-year college students</li>
+          <li>Recommended background: algebra, trigonometry, and basic physics</li>
+          <li>Emphasis on astrophysical reasoning, not memorization alone</li>
+          <li>Includes interpretation of spectra, light curves, images, and simple models</li>
+          <li>Suitable for majors or strong non-majors with STEM interest</li>
+        </ul>
+      </aside>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <div class="container">
+        <h2 class="section-title">Course Description</h2>
+        <div class="card">
+          <p>
+            Introduction to Astrophysics surveys the structure, origin, and evolution of the
+            universe through the lens of modern physics. Students examine how astronomers
+            determine the properties of celestial objects using light, motion, gravity, and
+            mathematical models. Major topics include radiation, telescopes, stellar structure,
+            stellar evolution, compact objects, galaxies, dark matter, exoplanets, and the
+            large-scale evolution of the universe.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2 class="section-title">Learning Outcomes</h2>
+        <div class="intro-grid">
+          <div class="card">
+            <h3>By the end of the course, students will be able to:</h3>
+            <ul>
+              <li>Explain the physical foundations of astrophysics, including gravity, radiation, and orbital motion.</li>
+              <li>Interpret astronomical observations such as spectra, luminosity, redshift, and imaging data.</li>
+              <li>Describe the life cycles of stars and the mechanisms behind stellar remnants.</li>
+              <li>Distinguish among major classes of galaxies, active galactic nuclei, and large-scale cosmic structures.</li>
+              <li>Summarize the current scientific understanding of exoplanets, dark matter, and cosmology.</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Students will also develop the ability to:</h3>
+            <ul>
+              <li>Apply quantitative reasoning to simple astrophysical problems.</li>
+              <li>Use proportional reasoning, scaling laws, and scientific notation effectively.</li>
+              <li>Communicate astrophysical concepts clearly in written and oral form.</li>
+              <li>Evaluate scientific claims using evidence from peer-reviewed astronomy and physics.</li>
+              <li>Connect observational evidence to theoretical models of the universe.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2 class="section-title">Prerequisites</h2>
+        <div class="card">
+          <ul>
+            <li>College algebra or equivalent mathematical preparation</li>
+            <li>Prior or concurrent introductory physics recommended</li>
+            <li>Comfort with graphs, equations, exponents, and unit conversions</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2 class="section-title">Course Modules</h2>
+
+        <article class="module">
+          <div class="module-header">
+            <h3>Module 1: Foundations of Astrophysics</h3>
+            <span class="week-tag">Weeks 1–2</span>
+          </div>
+          <p>
+            Establishes the conceptual and mathematical groundwork for the course, including
+            scale, units, scientific notation, and the role of physics in astronomy.
+          </p>
+          <div class="module-grid">
+            <div class="module-box">
+              <h4>Key Topics</h4>
+              <ul>
+                <li>Scales of the universe</li>
+                <li>Units: AU, light-year, parsec</li>
+                <li>Scientific notation and orders of magnitude</li>
+                <li>The electromagnetic spectrum</li>
+              </ul>
+            </div>
+            <div class="module-box">
+              <h4>Core Concepts</h4>
+              <ul>
+                <li>Why light is central to astrophysics</li>
+                <li>Observation vs. inference</li>
+                <li>Basic laws of motion and gravitation</li>
+              </ul>
+            </div>
+            <div class="module-box">
+              <h4>Suggested Activities</h4>
+              <ul>
+                <li>Scale model of the solar system</li>
+                <li>EM spectrum classification exercise</li>
+                <li>Introductory quantitative problem set</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="module">
+          <div class="module-header">
+            <h3>Module 2: Radiation, Spectra, and Telescopes</h3>
+            <span class="week-tag">Weeks 3–4</span>
+          </div>
+          <p>
+            Focuses on how astronomical information is extracted from light and how
+            instruments extend human observation across wavelengths.
+          </p>
+          <div class="module-grid">
+            <div class="module-box">
+              <h4>Key Topics</h4>
+              <ul>
+                <li>Blackbody radiation</li>
+                <li>Wien’s law and Stefan-Boltzmann law</li>
+                <li>Atomic spectra and spectral lines</li>
+                <li>Optical, radio, infrared, and space telescopes</li>
+              </ul>
+            </div>
+            <div class="module-box">
+              <h4>Core Concepts</h4>
+              <ul>
+                <li>Temperature from peak wavelength</li>
+                <li>Chemical composition from spectra</li>
+                <li>Resolution, collecting area, and detectors</li>
+              </ul>
+            </div>
+            <div class="module-box">
+              <h4>Suggested Activities</h4>
+              <ul>
+                <li>Spectral analysis lab</li>
+                <li>Telescope comparison chart</li>
+                <li>Homework using blackbody curves</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="module">
+          <div class="module-header">
+            <h3>Module 3: Orbital Motion, Gravity, and Planetary Systems</h3>
+            <span class="week-tag">Weeks 5–6</span>
+          </div>
+          <p>
+            Examines gravitational dynamics and how astrophysicists infer masses, distances,
+            and planetary architectures.
+          </p>
+          <div class="module-grid">
+            <div class="module-box">
+              <h4>Key Topics</h4>
+              <ul>
+                <li>Newton’s law of gravitation</li>
+                <li>Kepler’s laws</li>
+                <li>Circular and elliptical orbits</li>
+                <li>Exoplanet detection methods</li>
+              </ul>
+            </div>
+            <div class="module-box">
+              <h4>Core Concepts</h4>
+              <ul>
+                <li>Mass determination from orbital motion</li>
+                <li>Transit and radial velocity methods</li>
+                <li>Habitable zones and observational limits</li>
+              </ul>
+            </div>
+            <div class="module-box">
+              <h4>Suggested Activities</h4>
+              <ul>
+                <li>Orbit simulation exercise</li>
+                <li>Exoplanet light-curve interpretation</li>
+                <li>Kepler’s law problem set</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="module">
+          <div class="module-header">
+            <h3>Module 4: The Sun and Stellar Structure</h3>
+            <span class="week-tag">Weeks 7–8</span>
+          </div>
+          <p>
+            Introduces the internal physics of stars and the mechanisms that allow stars
+            to remain stable over long timescales.
+          </p>
+          <div class="module-grid">
+            <div class="module-box">
+              <h4>Key Topics</h4>
+              <ul>
+                <li>Hydrostatic equilibrium</li>
+                <li>Nuclear fusion in stellar cores</li>
+                <li>Energy transport: radiation and convection</li>
+                <li>The structure of the Sun</li>
+              </ul>
+            </div>
+            <div class="module-box">
+              <h4>Core Concepts</h4>
+              <ul>
+                <li>Balance between gravity and pressure</li>
+                <li>Mass-luminosity relationship</li>
+                <li>Solar activity and magnetic phenomena</li>
+              </ul>
+            </div>
+            <div class="module-box">
+              <h4>Suggested Activities</h4>
+              <ul>
+                <li>Solar structure diagram assignment</li>
+                <li>Stellar equilibrium discussion</li>
+                <li>Fusion chain summary exercise</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="module">
+          <div class="module-header">
+            <h3>Module 5: Stellar Evolution and Compact Objects</h3>
+            <span class="week-tag">Weeks 9–10</span>
+          </div>
+          <p>
+            Traces stellar life cycles from birth in molecular clouds to white dwarfs,
+            neutron stars, and black holes.
+          </p>
+          <div class="module-grid">
+            <div class="module-box">
+              <h4>Key Topics</h4>
+              <ul>
+                <li>Star formation</li>
+                <li>Hertzsprung-Russell diagram</li>
+                <li>Red giants and supergiants</li>
+                <li>Supernovae, white dwarfs, neutron stars, black holes</li>
+              </ul>
+            </div>
+            <div class="module-box">
+              <h4>Core Concepts</h4>
+              <ul>
+                <li>Mass as the main driver of stellar evolution</li>
+                <li>Degeneracy pressure</li>
+                <li>Event horizons and relativistic effects</li>
+              </ul>
+            </div>
+            <div class="module-box">
+              <h4>Suggested Activities</h4>
+              <ul>
+                <li>H-R diagram interpretation lab</li>
+                <li>Stellar evolution timeline assignment</li>
+                <li>Compact object comparison worksheet</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="module">
+          <div class="module-header">
+            <h3>Module 6: Galaxies, Dark Matter, and Large-Scale Structure</h3>
+            <span class="week-tag">Weeks 11–12</span>
+          </div>
+          <p>
+            Expands the scale from stars to galaxies and the web-like structure of the
+            universe, while introducing dark matter as a central modern problem.
+          </p>
+          <div class="module-grid">
+            <div class="module-box">
+              <h4>Key Topics</h4>
+              <ul>
+                <li>Galaxy classification</li>
+                <li>Spiral, elliptical, and irregular galaxies</li>
+                <li>Galaxy rotation curves</li>
+                <li>Clusters, superclusters, and cosmic structure</li>
+              </ul>
+            </div>
+            <div class="module-box">
+              <h4>Core Concepts</h4>
+              <ul>
+                <li>Evidence for dark matter</li>
+                <li>Interstellar and intergalactic media</li>
+                <li>Active galactic nuclei and quasars</li>
+              </ul>
+            </div>
+            <div class="module-box">
+              <h4>Suggested Activities</h4>
+              <ul>
+                <li>Galaxy image classification</li>
+                <li>Dark matter evidence discussion</li>
+                <li>Rotation curve interpretation exercise</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="module">
+          <div class="module-header">
+            <h3>Module 7: Cosmology and the Evolution of the Universe</h3>
+            <span class="week-tag">Weeks 13–14</span>
+          </div>
+          <p>
+            Introduces the scientific framework for understanding the origin, expansion,
+            and future of the universe.
+          </p>
+          <div class="module-grid">
+            <div class="module-box">
+              <h4>Key Topics</h4>
+              <ul>
+                <li>Hubble’s law and cosmic expansion</li>
+                <li>Big Bang cosmology</li>
+                <li>Cosmic microwave background</li>
+                <li>Dark energy and the fate of the universe</li>
+              </ul>
+            </div>
+            <div class="module-box">
+              <h4>Core Concepts</h4>
+              <ul>
+                <li>Redshift as evidence of expansion</li>
+                <li>Early universe conditions</li>
+                <li>Age, geometry, and composition of the universe</li>
+              </ul>
+            </div>
+            <div class="module-box">
+              <h4>Suggested Activities</h4>
+              <ul>
+                <li>Expansion model demonstration</li>
+                <li>Cosmology concept map</li>
+                <li>Short reflection on unanswered questions</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <article class="module">
+          <div class="module-header">
+            <h3>Module 8: Frontiers in Astrophysics</h3>
+            <span class="week-tag">Week 15</span>
+          </div>
+          <p>
+            Concludes with current research themes and the ways modern astrophysics continues
+            to reshape scientific understanding.
+          </p>
+          <div class="module-grid">
+            <div class="module-box">
+              <h4>Key Topics</h4>
+              <ul>
+                <li>Gravitational waves</li>
+                <li>Black hole imaging</li>
+                <li>Exoplanet atmospheres</li>
+                <li>Open questions in modern astrophysics</li>
+              </ul>
+            </div>
+            <div class="module-box">
+              <h4>Core Concepts</h4>
+              <ul>
+                <li>Multi-messenger astronomy</li>
+                <li>Limits of current instruments</li>
+                <li>How scientific paradigms evolve</li>
+              </ul>
+            </div>
+            <div class="module-box">
+              <h4>Suggested Activities</h4>
+              <ul>
+                <li>Student presentations</li>
+                <li>Research article summary</li>
+                <li>Final integrative discussion</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2 class="section-title">Assessment Structure</h2>
+        <div class="assessment-grid">
+          <div class="card">
+            <h3>Recommended Assessment Mix</h3>
+            <ul>
+              <li>Homework / problem sets: 20%</li>
+              <li>Labs or observational exercises: 15%</li>
+              <li>Midterm exam: 20%</li>
+              <li>Short paper or article critique: 10%</li>
+              <li>Presentation or research briefing: 10%</li>
+              <li>Final exam or final project: 25%</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Assessment Philosophy</h3>
+            <p>
+              The course should reward conceptual understanding, evidence-based scientific
+              interpretation, and the ability to connect observations to physical models.
+              A balanced design prevents the course from becoming either purely descriptive
+              astronomy or purely abstract physics.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2 class="section-title">Sample 15-Week Schedule</h2>
+        <table class="schedule-table">
+          <thead>
+            <tr>
+              <th>Week</th>
+              <th>Topic</th>
+              <th>Focus</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Introduction to Astrophysics</td>
+              <td>Scale, units, and the scientific scope of the field</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Light and the Electromagnetic Spectrum</td>
+              <td>Radiation as the primary source of astrophysical evidence</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Blackbody Radiation and Spectroscopy</td>
+              <td>Temperature, composition, and motion from light</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>Telescopes and Detection Systems</td>
+              <td>How instruments shape what can be known</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>Gravity and Orbital Motion</td>
+              <td>Newton, Kepler, and dynamical systems</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>Exoplanets and Planetary Systems</td>
+              <td>Detection, habitability, and comparative systems</td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>The Sun as a Star</td>
+              <td>Internal structure, fusion, and solar activity</td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td>Stellar Structure and the H-R Diagram</td>
+              <td>How stars are classified and compared</td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td>Stellar Evolution</td>
+              <td>Birth, maturity, and death of stars</td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td>Compact Objects</td>
+              <td>White dwarfs, neutron stars, and black holes</td>
+            </tr>
+            <tr>
+              <td>11</td>
+              <td>Galaxies</td>
+              <td>Types, structures, and galactic dynamics</td>
+            </tr>
+            <tr>
+              <td>12</td>
+              <td>Dark Matter and Large-Scale Structure</td>
+              <td>Evidence and cosmic organization</td>
+            </tr>
+            <tr>
+              <td>13</td>
+              <td>Cosmic Expansion</td>
+              <td>Redshift, Hubble’s law, and the evolving universe</td>
+            </tr>
+            <tr>
+              <td>14</td>
+              <td>Big Bang Cosmology</td>
+              <td>CMB, early universe, dark energy, and cosmological models</td>
+            </tr>
+            <tr>
+              <td>15</td>
+              <td>Current Frontiers</td>
+              <td>Gravitational waves, black hole imaging, and open questions</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2 class="section-title">Suggested Texts and Resources</h2>
+        <div class="card">
+          <ul>
+            <li><strong>Primary Text:</strong> An introductory astronomy or astrophysics textbook appropriate for undergraduate instruction</li>
+            <li><strong>Supplementary Material:</strong> Open data from NASA, ESA, and major observatories</li>
+            <li><strong>Software Tools:</strong> Planetarium tools, spectrum simulators, light-curve viewers, and simple orbital modeling software</li>
+            <li><strong>Reading Type:</strong> Mix of textbook chapters, short peer-reviewed summaries, and current astronomy news interpreted scientifically</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2 class="section-title">Instructional Design Notes</h2>
+        <div class="card">
+          <p>
+            For a college-level audience, the most important design decision is balance.
+            An effective introductory astrophysics course should be rigorous enough to teach
+            authentic physical reasoning, but not so mathematically overloaded that students
+            lose the conceptual arc of the subject. The course works best when each major
+            idea is tied to a visible observational question: How do we know a star’s
+            temperature? How do we infer the presence of dark matter? What does redshift
+            actually tell us? Organizing the course around those questions keeps the subject
+            coherent and intellectually compelling.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>
+        Introduction to Astrophysics course outline – designed for adaptation into a syllabus,
+        course webpage, catalog description, or learning management system.
+      </p>
+    </div>
+  </footer>
+<atw-footer></atw-footer>
+</div>
+</body>
+</html>

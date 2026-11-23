@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How Long Will They Keep My Emails? – All These Worlds</title>
+<link rel="stylesheet" href="/assets/base.css">
+<link rel="icon" href="/wp-content/uploads/2025/11/cropped-0_3-25456-no-background.png">
+<script src="/assets/site.js" defer></script>
+</head>
+<body>
+<atw-header></atw-header>
+<main class="atw-content wide">
+<!-- Stargazer Consulting | WordPress-ready HTML page -->
+<div class="stargazer-page">
+  <style>
+    .stargazer-page{
+      --bg0:#070A12;
+      --bg1:#0B1220;
+      --card:#0F1B2D;
+      --text:#EAF0FF;
+      --muted:rgba(234,240,255,.78);
+      --soft:rgba(234,240,255,.12);
+      --line:rgba(234,240,255,.18);
+      --accent:#7C5CFF;
+      --accent2:#29D3FF;
+      --warn:#FFCF5A;
+      --ok:#35E6A5;
+      --danger:#FF5C7A;
+      --shadow: 0 14px 38px rgba(0,0,0,.38);
+      color:var(--text);
+      background: radial-gradient(1100px 700px at 15% 0%, rgba(124,92,255,.18), transparent 55%),
+                  radial-gradient(900px 600px at 85% 20%, rgba(41,211,255,.14), transparent 50%),
+                  linear-gradient(180deg, var(--bg0), var(--bg1));
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding: clamp(18px, 2.6vw, 34px);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Helvetica Neue", sans-serif;
+      box-shadow: var(--shadow);
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .sg-header{
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 22px;
+    }
+    .sg-kicker{
+      display:inline-block;
+      padding: 6px 10px;
+      border:1px solid var(--soft);
+      border-radius: 999px;
+      background: rgba(234,240,255,.06);
+      color: var(--muted);
+      font-size: 12.5px;
+      letter-spacing:.2px;
+    }
+    .sg-title{
+      margin: 12px 0 8px;
+      line-height:1.1;
+      font-size: clamp(30px, 3.2vw, 44px);
+      letter-spacing: -0.6px;
+    }
+    .sg-subtitle{
+      margin: 0;
+      color: var(--muted);
+      max-width: 76ch;
+      font-size: 16.5px;
+      line-height:1.55;
+    }
+    .sg-grid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 18px;
+      align-items:start;
+    }
+    @media (max-width: 920px){
+      .sg-grid{ grid-template-columns: 1fr; }
+    }
+    .sg-card{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px;
+    }
+    .sg-card h2, .sg-card h3{
+      margin: 0 0 10px;
+      letter-spacing: -0.3px;
+    }
+    .sg-card h2{ font-size: 20px; }
+    .sg-card h3{ font-size: 16px; color: var(--text); }
+    .sg-card p{
+      margin: 0 0 12px;
+      color: var(--muted);
+      line-height: 1.62;
+      font-size: 15.5px;
+    }
+    .sg-card p:last-child{ margin-bottom:0; }
+    .sg-highlight{
+      border-left: 3px solid var(--accent2);
+      padding: 10px 12px;
+      background: rgba(41,211,255,.06);
+      border-radius: 12px;
+      margin-top: 12px;
+    }
+    .sg-callout{
+      display:flex;
+      gap: 12px;
+      align-items:flex-start;
+      padding: 14px 14px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(124,92,255,.07);
+    }
+    .sg-dot{
+      width: 10px; height: 10px;
+      border-radius: 999px;
+      margin-top: 6px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 0 4px rgba(124,92,255,.12);
+      flex: 0 0 auto;
+    }
+    .sg-cta{
+      margin-top: 14px;
+      display:flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items:center;
+    }
+    .sg-btn{
+      display:inline-block;
+      text-decoration:none;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      color: var(--text);
+      background: rgba(234,240,255,.07);
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      font-weight: 600;
+      letter-spacing: .2px;
+      font-size: 14px;
+    }
+    .sg-btn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(234,240,255,.35);
+      background: rgba(234,240,255,.10);
+    }
+    .sg-btn.primary{
+      background: linear-gradient(135deg, rgba(124,92,255,.95), rgba(41,211,255,.92));
+      border: 0;
+      color: #08101C;
+    }
+    .sg-mini{
+      font-size: 12.5px;
+      color: var(--muted);
+    }
+    .sg-table{
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      overflow:hidden;
+      border:1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255,255,255,.03);
+      margin-top: 10px;
+    }
+    .sg-table th, .sg-table td{
+      text-align:left;
+      vertical-align: top;
+      padding: 12px 12px;
+      border-bottom:1px solid var(--line);
+      color: var(--muted);
+      font-size: 14.5px;
+      line-height:1.5;
+    }
+    .sg-table th{
+      color: var(--text);
+      font-size: 13px;
+      letter-spacing:.25px;
+      text-transform: uppercase;
+      background: rgba(255,255,255,.04);
+    }
+    .sg-table tr:last-child td{ border-bottom:0; }
+    .sg-badge{
+      display:inline-block;
+      padding: 4px 9px;
+      border-radius: 999px;
+      font-size: 12.5px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.05);
+      color: var(--text);
+      white-space: nowrap;
+    }
+    .sg-badge.warn{ border-color: rgba(255,207,90,.35); background: rgba(255,207,90,.08); }
+    .sg-badge.ok{ border-color: rgba(53,230,165,.35); background: rgba(53,230,165,.08); }
+    .sg-badge.danger{ border-color: rgba(255,92,122,.35); background: rgba(255,92,122,.10); }
+    .sg-list{ margin: 10px 0 0; padding-left: 18px; color: var(--muted); }
+    .sg-list li{ margin: 8px 0; line-height: 1.55; }
+    .sg-hr{ height: 1px; background: var(--line); margin: 16px 0; }
+    .sg-note{
+      border:1px dashed rgba(234,240,255,.26);
+      background: rgba(234,240,255,.05);
+      border-radius: 14px;
+      padding: 12px 12px;
+      margin-top: 12px;
+    }
+    .sg-note strong{ color: var(--text); }
+  </style>
+
+  <header class="sg-header">
+    <span class="sg-kicker">Stargazer Consulting • Data governance, privacy, and defensible retention</span>
+    <h1 class="sg-title">How Long Do Companies Keep Your Emails?</h1>
+    <p class="sg-subtitle">
+      The uncomfortable truth: there is no universal timer. Email retention is driven by a mix of law, contracts,
+      industry regulation, and (often) pure operational convenience. Some emails are deleted quickly. Others can live for years—even decades—
+      especially if they end up in backups, archives, or legal hold.
+    </p>
+  </header>
+
+  <div class="sg-grid">
+    <main class="sg-card">
+      <h2>The short answer</h2>
+      <p>
+        Most organizations aim for a retention policy that keeps emails only as long as needed for business and compliance—but
+        what actually happens depends on whether the company has modern information governance, whether employees use email as a filing cabinet,
+        and whether the organization has ever faced litigation or regulatory scrutiny.
+      </p>
+
+      <div class="sg-highlight">
+        <p>
+          A useful rule of thumb: <strong>active mailboxes</strong> often keep messages for months to years, while <strong>archives, backups, and eDiscovery repositories</strong>
+          can keep copies much longer—sometimes long after a user “deletes” a message.
+        </p>
+      </div>
+
+      <div class="sg-hr"></div>
+
+      <h2>What determines retention in the real world</h2>
+      <p>
+        Email retention is usually determined by a few forces that often compete with each other:
+      </p>
+      <ul class="sg-list">
+        <li><strong>Legal and regulatory requirements</strong> (finance, healthcare, government contractors, education, etc.).</li>
+        <li><strong>Contractual obligations</strong> (customer agreements, DPAs, security addenda, audit rights).</li>
+        <li><strong>Litigation risk</strong> (the moment litigation is anticipated, deletion may stop due to legal hold).</li>
+        <li><strong>Security and incident response</strong> (email is evidence; logs and messages become part of investigations).</li>
+        <li><strong>Cost and tooling</strong> (storage is cheaper than process; many companies retain longer simply because they can).</li>
+      </ul>
+
+      <div class="sg-hr"></div>
+
+      <h2>Typical retention ranges you’ll see</h2>
+      <p>
+        These are not guarantees, but they reflect common patterns across many organizations:
+      </p>
+
+      <table class="sg-table" role="table" aria-label="Common email retention ranges">
+        <thead>
+          <tr>
+            <th>Where the email exists</th>
+            <th>Common retention range</th>
+            <th>Why it sticks around</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Inbox / mailbox (active account)</td>
+            <td><span class="sg-badge ok">6 months to 7+ years</span></td>
+            <td>Business continuity, user habits, and weak enforcement of deletion policies.</td>
+          </tr>
+          <tr>
+            <td>Company email archive (e.g., “journaled” messages)</td>
+            <td><span class="sg-badge ok">1 to 10+ years</span></td>
+            <td>Designed for compliance, investigations, and rapid retrieval.</td>
+          </tr>
+          <tr>
+            <td>Backups / disaster recovery copies</td>
+            <td><span class="sg-badge warn">Weeks to years</span></td>
+            <td>Backups are about recovery, not governance; deletion is often indirect and slow.</td>
+          </tr>
+          <tr>
+            <td>eDiscovery collections / legal matter workspaces</td>
+            <td><span class="sg-badge warn">Years to “until case closes” (plus)</span></td>
+            <td>Preservation duty and defensive practice; holds can extend timelines.</td>
+          </tr>
+          <tr>
+            <td>Legal hold (preservation)</td>
+            <td><span class="sg-badge danger">Indefinite</span></td>
+            <td>Deletion pauses to prevent spoliation once litigation is reasonably anticipated.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="sg-note">
+        <p style="margin:0;">
+          <strong>Important:</strong> “Delete” usually means “no longer visible to the user.” It does not automatically mean
+          “erased everywhere.” Copies can remain in archives, backups, or downstream systems depending on how the environment is designed.
+        </p>
+      </div>
+
+      <div class="sg-hr"></div>
+
+      <h2>What you can infer from a company’s behavior</h2>
+      <p>
+        If a company is mature, you’ll often see clear retention statements in policy, consistent mailbox size limits,
+        and predictable response when you ask what they retain. If they are immature, retention tends to be accidental:
+        long-lived mailboxes, messy shared accounts, and “we keep everything just in case.”
+      </p>
+
+      <div class="sg-callout" style="margin-top:14px;">
+        <div class="sg-dot" aria-hidden="true"></div>
+        <div>
+          <h3 style="margin:0 0 6px;">The simplest way to answer this for a specific company</h3>
+          <p style="margin:0;">
+            Ask for their retention policy (or data retention schedule) and whether your email data is subject to archiving,
+            journaling, or legal hold. The presence of those three terms usually tells you everything.
+          </p>
+        </div>
+      </div>
+    </main>
+
+    <aside class="sg-card">
+      <h2>Why this matters</h2>
+      <p>
+        Retention is not just a privacy issue—it is a risk issue. Keeping everything forever increases breach exposure,
+        discovery costs, and the probability that old communications become new liabilities.
+      </p>
+
+      <div class="sg-hr"></div>
+
+      <h2>If you’re a business owner</h2>
+      <p>
+        A defensible retention program balances three outcomes: compliance, operational needs, and minimizing risk surface area.
+        The goal is not “delete aggressively” or “keep forever.” The goal is “keep what you need, delete what you don’t, and be able to prove it.”
+      </p>
+
+      <div class="sg-cta">
+        <a class="sg-btn primary" href="/contact/">Talk retention strategy</a>
+        <a class="sg-btn" href="/iso-270012022/">ISO 27001 governance</a>
+        <a class="sg-btn" href="/vciso/">Virtual CISO</a>
+      </div>
+
+      <p class="sg-mini" style="margin-top:10px;">
+        Common deliverable: a retention schedule + legal hold process + mailbox/archive configuration guidance aligned to your risk profile.
+      </p>
+
+      <div class="sg-hr"></div>
+
+      <h2>FAQ</h2>
+      <p><strong>Can a company keep my emails even after I leave?</strong><br>
+        Yes. Departing employee mailboxes are often converted, archived, or preserved for a defined period—sometimes longer for investigations or litigation.
+      </p>
+      <p><strong>Do companies read my emails?</strong><br>
+        Typically not routinely, but many environments allow access for security, compliance, HR investigations, or legal response—subject to policy and law.
+      </p>
+      <p><strong>Can I force deletion?</strong><br>
+        Sometimes you can request deletion of personal data depending on jurisdiction, but legal obligations and legal holds can override deletion requests.
+      </p>
+    </aside>
+  </div>
+
+  <footer style="margin-top:20px; padding-top:14px; border-top:1px solid var(--line);">
+    <p class="sg-mini" style="margin:0;">
+      Disclaimer: This page provides general information and is not legal advice. Retention requirements vary by jurisdiction, industry, contracts, and litigation status.
+    </p>
+  </footer>
+</div>
+</main>
+<atw-footer></atw-footer>
+</body>
+</html>

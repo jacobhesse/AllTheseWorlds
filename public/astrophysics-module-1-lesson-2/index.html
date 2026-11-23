@@ -1,0 +1,653 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Astrophysics Lesson: The Electromagnetic Spectrum</title>
+  <meta name="description" content="A college-level astrophysics lesson on the electromagnetic spectrum, including wavelength, frequency, energy, astronomical observations, and external references." />
+  <style>
+    :root{
+      --bg:#0a1022;
+      --bg2:#111933;
+      --panel:#161f40;
+      --panel2:#1b2650;
+      --text:#eaf0ff;
+      --muted:#bcc8ec;
+      --accent:#7fb3ff;
+      --accent2:#6ee7d8;
+      --border:rgba(255,255,255,0.10);
+      --shadow:0 10px 30px rgba(0,0,0,0.25);
+    }
+
+    *{box-sizing:border-box;}
+
+    html{scroll-behavior:smooth;}
+
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      line-height:1.65;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(127,179,255,0.18), transparent 45%),
+        radial-gradient(900px 500px at 100% 0%, rgba(110,231,216,0.12), transparent 40%),
+        linear-gradient(180deg, var(--bg), #080d1d 100%);
+    }
+
+    .container{
+      width:min(1100px, 92%);
+      margin:0 auto;
+    }
+
+    header{
+      padding:64px 0 36px;
+      border-bottom:1px solid var(--border);
+    }
+
+    .hero{
+      display:grid;
+      grid-template-columns:1.4fr 0.8fr;
+      gap:28px;
+      align-items:start;
+    }
+
+    h1{
+      font-size:2.6rem;
+      line-height:1.15;
+      margin:0 0 14px;
+      letter-spacing:0.2px;
+    }
+
+    h2{
+      font-size:1.85rem;
+      margin:0 0 16px;
+      color:var(--accent);
+    }
+
+    h3{
+      font-size:1.15rem;
+      margin-top:0;
+      color:var(--accent2);
+    }
+
+    p{
+      margin:0 0 14px;
+      color:var(--muted);
+    }
+
+    .lead{
+      font-size:1.06rem;
+      max-width:780px;
+    }
+
+    .badge-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:20px;
+    }
+
+    .badge{
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.05);
+      border:1px solid var(--border);
+      color:var(--text);
+      font-size:0.92rem;
+    }
+
+    .panel{
+      background:linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:24px;
+      box-shadow:var(--shadow);
+    }
+
+    section{
+      padding:40px 0;
+    }
+
+    .grid-2{
+      display:grid;
+      grid-template-columns:repeat(2, 1fr);
+      gap:22px;
+    }
+
+    .grid-3{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:18px;
+    }
+
+    .card{
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:22px;
+      box-shadow:var(--shadow);
+    }
+
+    ul{
+      margin:0;
+      padding-left:20px;
+      color:var(--muted);
+    }
+
+    li{margin-bottom:8px;}
+
+    .equation{
+      display:block;
+      margin:14px 0;
+      padding:12px 14px;
+      border-radius:12px;
+      background:#0c1431;
+      border:1px solid rgba(255,255,255,0.08);
+      color:#f4f7ff;
+      font-family:"Courier New", monospace;
+      overflow-x:auto;
+    }
+
+    .note{
+      background:rgba(110,231,216,0.08);
+      border-left:4px solid var(--accent2);
+      padding:16px 18px;
+      border-radius:10px;
+      color:var(--text);
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:16px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+    }
+
+    th, td{
+      padding:14px 16px;
+      text-align:left;
+      vertical-align:top;
+      border:1px solid var(--border);
+    }
+
+    th{
+      background:rgba(127,179,255,0.12);
+      color:var(--text);
+    }
+
+    td{
+      color:var(--muted);
+    }
+
+    .band{
+      background:linear-gradient(90deg,
+        #9c4dff 0%,
+        #3d6eff 15%,
+        #2fd2ff 30%,
+        #35ff96 45%,
+        #f5ff54 60%,
+        #ff9e36 75%,
+        #ff4a4a 100%);
+      height:22px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.18);
+      margin-top:10px;
+    }
+
+    .spectrum-list article{
+      margin-bottom:18px;
+      padding-bottom:18px;
+      border-bottom:1px solid var(--border);
+    }
+
+    .spectrum-list article:last-child{
+      margin-bottom:0;
+      padding-bottom:0;
+      border-bottom:none;
+    }
+
+    a{
+      color:#9fd0ff;
+      text-decoration:none;
+    }
+
+    a:hover{
+      text-decoration:underline;
+    }
+
+    .references a{
+      word-break:break-word;
+    }
+
+    footer{
+      padding:30px 0 50px;
+      border-top:1px solid var(--border);
+      color:var(--muted);
+    }
+
+    @media (max-width: 900px){
+      .hero,
+      .grid-2,
+      .grid-3{
+        grid-template-columns:1fr;
+      }
+
+      h1{
+        font-size:2.1rem;
+      }
+    }
+  </style>
+<link rel="icon" href="/wp-content/uploads/2025/11/cropped-0_3-25456-no-background.png">
+<script src="/assets/site.js" defer></script>
+</head>
+<body>
+<div class="wp-site-blocks">
+<atw-header></atw-header>
+<header>
+    <div class="container hero">
+      <div>
+        <h1>Astrophysics Lesson: The Electromagnetic Spectrum</h1>
+        <p class="lead">
+          In astrophysics, nearly everything known about the universe comes from radiation.
+          Stars, nebulae, galaxies, black holes, and the early universe reveal themselves through
+          different parts of the electromagnetic spectrum. This lesson explains what the spectrum is,
+          how wavelength, frequency, and energy are related, and why astronomers must observe the sky
+          in far more than visible light.
+        </p>
+        <div class="badge-row">
+          <div class="badge">College-Level Lesson</div>
+          <div class="badge">Astrophysics Focus</div>
+          <div class="badge">With External References</div>
+        </div>
+      </div>
+
+      <aside class="panel">
+        <h3>Lesson Snapshot</h3>
+        <ul>
+          <li>Topic: Electromagnetic radiation in astrophysics</li>
+          <li>Audience: College students and advanced general learners</li>
+          <li>Focus: Physical meaning, astronomical use, and interpretation</li>
+          <li>Includes formulas, examples, and reference links</li>
+        </ul>
+      </aside>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <div class="container">
+        <div class="grid-2">
+          <div class="card">
+            <h2>Learning Objectives</h2>
+            <ul>
+              <li>Define the electromagnetic spectrum in physical terms.</li>
+              <li>Explain the relationships among wavelength, frequency, and photon energy.</li>
+              <li>Describe the major regions of the spectrum from radio waves to gamma rays.</li>
+              <li>Connect each region of the spectrum to astrophysical sources and processes.</li>
+              <li>Explain why multiwavelength astronomy is essential to modern astrophysics.</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h2>Why This Matters in Astrophysics</h2>
+            <p>
+              Human eyes detect only a narrow slice of the full spectrum. The universe, however,
+              emits across an enormous range of wavelengths. Cold molecular clouds glow in radio and
+              infrared. Hot stars emit strongly in visible and ultraviolet. Supernova remnants, neutron
+              stars, and black hole environments can produce X-rays and gamma rays. A complete picture
+              of the cosmos requires observing all of these.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="card">
+          <h2>1. What Is the Electromagnetic Spectrum?</h2>
+          <p>
+            The electromagnetic spectrum is the full range of electromagnetic radiation. All of these
+            forms of radiation are the same phenomenon in a physical sense: oscillating electric and
+            magnetic fields that propagate through space at the speed of light.
+          </p>
+          <p>
+            What changes from one region of the spectrum to another is primarily wavelength, frequency,
+            and therefore energy. Long wavelengths correspond to low frequencies and lower-energy photons.
+            Short wavelengths correspond to high frequencies and higher-energy photons.
+          </p>
+          <div class="note">
+            In astrophysics, “light” often means all electromagnetic radiation, not just visible light.
+          </div>
+          <div class="band" aria-label="Stylized visible-spectrum-inspired color band"></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="grid-2">
+          <div class="card">
+            <h2>2. Core Physical Relationships</h2>
+            <p>
+              The spectrum is usually described using wavelength, frequency, and photon energy.
+              These quantities are tightly linked.
+            </p>
+
+            <span class="equation">c = λf</span>
+            <span class="equation">E = hf</span>
+
+            <p>
+              Where:
+            </p>
+            <ul>
+              <li><strong>c</strong> = speed of light = 3.00 × 10<sup>8</sup> m/s</li>
+              <li><strong>λ</strong> = wavelength</li>
+              <li><strong>f</strong> = frequency</li>
+              <li><strong>E</strong> = photon energy</li>
+              <li><strong>h</strong> = Planck’s constant = 6.626 × 10<sup>-34</sup> J·s</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h2>3. Interpreting the Equations</h2>
+            <p>
+              The first equation shows that if wavelength becomes shorter, frequency must increase.
+              The second equation shows that if frequency increases, photon energy increases.
+            </p>
+            <p>
+              That is why gamma rays are the most energetic part of the spectrum and radio waves are
+              the least energetic. This matters physically because different astrophysical processes
+              generate different energies of radiation.
+            </p>
+            <p>
+              A cool dust cloud, for example, does not emit the same kind of radiation as gas spiraling
+              into a black hole.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2>4. The Major Regions of the Spectrum</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Region</th>
+              <th>Relative Wavelength</th>
+              <th>Relative Energy</th>
+              <th>Common Astrophysical Uses</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Radio</td>
+              <td>Longest</td>
+              <td>Lowest</td>
+              <td>Neutral hydrogen, pulsars, molecular clouds, cosmic microwave background</td>
+            </tr>
+            <tr>
+              <td>Microwave</td>
+              <td>Very long</td>
+              <td>Very low</td>
+              <td>Cosmic microwave background, cold interstellar matter</td>
+            </tr>
+            <tr>
+              <td>Infrared</td>
+              <td>Longer than visible</td>
+              <td>Low</td>
+              <td>Cool stars, dust clouds, protostars, obscured galaxies</td>
+            </tr>
+            <tr>
+              <td>Visible</td>
+              <td>Middle range</td>
+              <td>Moderate</td>
+              <td>Stars, galaxies, nebulae, planetary surfaces</td>
+            </tr>
+            <tr>
+              <td>Ultraviolet</td>
+              <td>Shorter than visible</td>
+              <td>High</td>
+              <td>Hot stars, ionized gas, energetic stellar environments</td>
+            </tr>
+            <tr>
+              <td>X-ray</td>
+              <td>Very short</td>
+              <td>Very high</td>
+              <td>Black holes, neutron stars, supernova remnants, galaxy clusters</td>
+            </tr>
+            <tr>
+              <td>Gamma ray</td>
+              <td>Shortest</td>
+              <td>Highest</td>
+              <td>Extreme cosmic explosions, relativistic jets, nuclear processes</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <div class="container grid-2">
+        <div class="card spectrum-list">
+          <h2>5. What Each Region Reveals</h2>
+
+          <article>
+            <h3>Radio and Microwaves</h3>
+            <p>
+              These long wavelengths are indispensable for studying cold gas, large-scale cosmic structure,
+              pulsars, and the cosmic microwave background. Radio astronomy can detect hydrogen gas that is
+              otherwise invisible in ordinary optical images.
+            </p>
+          </article>
+
+          <article>
+            <h3>Infrared</h3>
+            <p>
+              Infrared light penetrates dust more effectively than visible light, making it ideal for
+              observing star-forming regions, galactic centers, and cool objects. Infrared astronomy is
+              crucial for studying protostars and heavily obscured systems.
+            </p>
+          </article>
+
+          <article>
+            <h3>Visible</h3>
+            <p>
+              Visible light is the narrow band detected by human vision. It remains central to astronomy
+              because many stars emit strongly here, and because optical telescopes can produce detailed
+              structural images of galaxies, nebulae, and star clusters.
+            </p>
+          </article>
+        </div>
+
+        <div class="card spectrum-list">
+          <h2>6. The High-Energy Universe</h2>
+
+          <article>
+            <h3>Ultraviolet</h3>
+            <p>
+              Ultraviolet observations are useful for tracing hot stars, accretion activity, and highly
+              ionized gas. Much ultraviolet radiation is blocked by Earth’s atmosphere, so many UV
+              observations must be made from space.
+            </p>
+          </article>
+
+          <article>
+            <h3>X-rays</h3>
+            <p>
+              X-rays reveal environments with extremely high temperatures and violent gravitational
+              processes. Matter heated near black holes, neutron stars, and shock fronts in supernova
+              remnants can radiate strongly in X-rays.
+            </p>
+          </article>
+
+          <article>
+            <h3>Gamma Rays</h3>
+            <p>
+              Gamma rays are associated with the most energetic processes in the universe, including
+              gamma-ray bursts, radioactive decay, particle interactions, and relativistic jets from
+              compact objects.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="card">
+          <h2>7. Multiwavelength Astronomy</h2>
+          <p>
+            A single astronomical object often looks radically different depending on the wavelength at
+            which it is observed. A galaxy viewed in visible light may emphasize stars, while the same
+            galaxy in infrared may reveal dust and hidden star formation. In X-rays, only the hottest
+            and most energetic regions may stand out.
+          </p>
+          <p>
+            This is why modern astrophysics is fundamentally multiwavelength. Different parts of the
+            spectrum do not merely provide prettier pictures; they encode different physical information
+            about temperature, composition, motion, density, magnetic fields, and energetic processes.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container grid-2">
+        <div class="card">
+          <h2>8. Atmospheric Windows</h2>
+          <p>
+            Earth’s atmosphere does not transmit all wavelengths equally. Visible light and parts of the
+            radio spectrum reach the ground relatively well, which is one reason early astronomy developed
+            around optical and radio observations. Much ultraviolet, X-ray, and gamma-ray radiation is
+            absorbed by the atmosphere, which protects life but limits ground-based observation.
+          </p>
+          <p>
+            Because of this, many observatories are placed in space so they can detect wavelengths blocked
+            at Earth’s surface.
+          </p>
+        </div>
+
+        <div class="card">
+          <h2>9. Worked Example</h2>
+          <p>
+            Suppose a photon has frequency 6.0 × 10<sup>14</sup> Hz. What is its wavelength?
+          </p>
+          <span class="equation">λ = c / f</span>
+          <span class="equation">λ = (3.00 × 10^8 m/s) / (6.0 × 10^14 s^-1)</span>
+          <span class="equation">λ = 5.0 × 10^-7 m</span>
+          <p>
+            This is 500 nanometers, which falls in the visible part of the spectrum.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container grid-3">
+        <div class="card">
+          <h2>10. Key Terms</h2>
+          <ul>
+            <li>Electromagnetic radiation</li>
+            <li>Wavelength</li>
+            <li>Frequency</li>
+            <li>Photon</li>
+            <li>Photon energy</li>
+            <li>Spectrum</li>
+            <li>Multiwavelength astronomy</li>
+            <li>Atmospheric window</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h2>11. Discussion Questions</h2>
+          <ul>
+            <li>Why is visible light only a small part of astrophysical observation?</li>
+            <li>Why do hotter environments often emit shorter-wavelength radiation?</li>
+            <li>What information might be lost if astronomers observed only in visible light?</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h2>12. Short Practice</h2>
+          <ul>
+            <li>Rank radio, infrared, visible, and X-rays from lowest to highest energy.</li>
+            <li>Explain why dust clouds are often studied in infrared rather than visible light.</li>
+            <li>Name one astrophysical source strongly associated with X-rays.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="card references">
+          <h2>13. External References and Further Reading</h2>
+          <p>
+            These external resources expand on the electromagnetic spectrum and its role in astronomy and astrophysics:
+          </p>
+          <ul>
+            <li>
+              NASA – Imagine the Universe: Electromagnetic Spectrum<br>
+              <a href="https://imagine.gsfc.nasa.gov/science/toolbox/emspectrum1.html" target="_blank" rel="noopener noreferrer">
+                https://imagine.gsfc.nasa.gov/science/toolbox/emspectrum1.html
+              </a>
+            </li>
+            <li>
+              NASA Science – The Electromagnetic Spectrum resource hub<br>
+              <a href="https://science.nasa.gov/ems/" target="_blank" rel="noopener noreferrer">
+                https://science.nasa.gov/ems/
+              </a>
+            </li>
+            <li>
+              NASA Hubble – Wavelengths<br>
+              <a href="https://science.nasa.gov/mission/hubble/science/science-behind-the-discoveries/wavelengths/" target="_blank" rel="noopener noreferrer">
+                <blockquote class="wp-embedded-content" data-secret="CFD1fE7hSW"><a href="https://science.nasa.gov/mission/hubble/science/science-behind-the-discoveries/wavelengths/">Wavelengths</a></blockquote><iframe loading="lazy" class="wp-embedded-content" sandbox="allow-scripts" security="restricted" style="position: absolute; visibility: hidden;" title="&#8220;Wavelengths&#8221; &#8212; NASA Science" src="https://science.nasa.gov/mission/hubble/science/science-behind-the-discoveries/wavelengths/embed/#?secret=kXIyvwInSk#?secret=CFD1fE7hSW" data-secret="CFD1fE7hSW" width="500" height="282" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
+              </a>
+            </li>
+            <li>
+              ESA – The electromagnetic spectrum<br>
+              <a href="https://www.esa.int/Science_Exploration/Space_Science/Integral/The_electromagnetic_spectrum" target="_blank" rel="noopener noreferrer">
+                https://www.esa.int/Science_Exploration/Space_Science/Integral/The_electromagnetic_spectrum
+              </a>
+            </li>
+            <li>
+              NASA – Observatories Across the Electromagnetic Spectrum<br>
+              <a href="https://imagine.gsfc.nasa.gov/science/toolbox/emspectrum_observatories1.html" target="_blank" rel="noopener noreferrer">
+                https://imagine.gsfc.nasa.gov/science/toolbox/emspectrum_observatories1.html
+              </a>
+            </li>
+            <li>
+              ESA – Observing the Universe in X-ray light<br>
+              <a href="https://www.esa.int/Science_Exploration/Space_Science/Observing_the_Universe_in_X-ray_light" target="_blank" rel="noopener noreferrer">
+                https://www.esa.int/Science_Exploration/Space_Science/Observing_the_Universe_in_X-ray_light
+              </a>
+            </li>
+            <li>
+              ESA – Cosmic Microwave Background radiation<br>
+              <a href="https://www.esa.int/Science_Exploration/Space_Science/Cosmic_Microwave_Background_CMB_radiation" target="_blank" rel="noopener noreferrer">
+                https://www.esa.int/Science_Exploration/Space_Science/Cosmic_Microwave_Background_CMB_radiation
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>
+        College-level astrophysics lesson page: The Electromagnetic Spectrum
+      </p>
+    </div>
+  </footer>
+<atw-footer></atw-footer>
+</div>
+</body>
+</html>

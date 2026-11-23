@@ -1,0 +1,691 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SOC 2 Kickstart Sprint | Stargazer Consulting</title>
+  <meta name="description" content="Launch your SOC 2 journey with a structured, fixed-fee Kickstart Sprint from Stargazer Consulting. Clarify scope, identify gaps, assign ownership, and leave with a practical roadmap." />
+  <style>
+    :root{
+      --bg:#0b1020;
+      --bg2:#111831;
+      --panel:rgba(255,255,255,0.06);
+      --panel-strong:rgba(255,255,255,0.09);
+      --text:#eef4ff;
+      --muted:#b5c3e0;
+      --line:rgba(255,255,255,0.12);
+      --blue:#62b0ff;
+      --green:#4de2b1;
+      --gold:#ffd166;
+      --danger:#ff8d8d;
+      --shadow:0 18px 45px rgba(0,0,0,.28);
+      --radius:22px;
+      --radius-sm:14px;
+      --max:1200px;
+    }
+
+    *{box-sizing:border-box}
+
+    html,body{
+      margin:0;
+      padding:0;
+      background:
+        radial-gradient(1200px 700px at 10% -10%, rgba(58,160,255,.18), transparent 50%),
+        radial-gradient(1000px 600px at 120% 10%, rgba(29,209,161,.14), transparent 50%),
+        linear-gradient(180deg, #0f1533, #0b0f25 45%, #0a0d1f 100%);
+      color:var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Helvetica, Arial, sans-serif;
+      line-height:1.6;
+    }
+
+    a{
+      color:var(--blue);
+      text-decoration:none;
+    }
+
+    a:hover{
+      text-decoration:underline;
+    }
+
+    .container{
+      width:min(100% - 32px, var(--max));
+      margin:0 auto;
+    }
+
+    .section{
+      padding:72px 0;
+    }
+
+    .eyebrow{
+      display:inline-block;
+      font-size:.82rem;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:var(--green);
+      margin-bottom:14px;
+      font-weight:700;
+    }
+
+    h1,h2,h3{
+      line-height:1.15;
+      margin:0 0 16px;
+    }
+
+    h1{
+      font-size:clamp(2.2rem, 4.8vw, 4.4rem);
+      max-width:900px;
+    }
+
+    h2{
+      font-size:clamp(1.6rem, 2.8vw, 2.5rem);
+    }
+
+    h3{
+      font-size:1.15rem;
+    }
+
+    p{
+      margin:0 0 18px;
+      color:var(--muted);
+      font-size:1rem;
+    }
+
+    .hero{
+      padding:88px 0 60px;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:28px;
+      align-items:center;
+    }
+
+    .hero-card,
+    .card,
+    .price-card,
+    .mini-card,
+    .faq-item{
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-card{
+      padding:28px;
+    }
+
+    .hero p.lead{
+      font-size:1.08rem;
+      max-width:760px;
+    }
+
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-top:28px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:14px 20px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      font-weight:700;
+      transition:.2s ease;
+    }
+
+    .btn-primary{
+      background:linear-gradient(135deg, var(--blue), #7dc4ff);
+      color:#061120;
+      border:none;
+    }
+
+    .btn-primary:hover{
+      transform:translateY(-1px);
+      text-decoration:none;
+    }
+
+    .btn-secondary{
+      background:rgba(255,255,255,0.04);
+      color:var(--text);
+    }
+
+    .stats{
+      display:grid;
+      gap:14px;
+    }
+
+    .mini-card{
+      padding:18px 18px 16px;
+    }
+
+    .mini-card strong{
+      display:block;
+      font-size:1.3rem;
+      color:var(--text);
+      margin-bottom:4px;
+    }
+
+    .grid-3{
+      display:grid;
+      grid-template-columns:repeat(3, 1fr);
+      gap:22px;
+    }
+
+    .grid-2{
+      display:grid;
+      grid-template-columns:repeat(2, 1fr);
+      gap:22px;
+    }
+
+    .card{
+      padding:24px;
+    }
+
+    ul{
+      margin:0;
+      padding-left:18px;
+      color:var(--muted);
+    }
+
+    li{
+      margin:0 0 10px;
+    }
+
+    .checklist{
+      list-style:none;
+      padding:0;
+      margin:0;
+    }
+
+    .checklist li{
+      padding-left:28px;
+      position:relative;
+      margin-bottom:12px;
+    }
+
+    .checklist li::before{
+      content:"✓";
+      position:absolute;
+      left:0;
+      top:0;
+      color:var(--green);
+      font-weight:800;
+    }
+
+    .pricing{
+      align-items:stretch;
+    }
+
+    .price-card{
+      padding:28px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .price-card.featured{
+      border-color:rgba(98,176,255,.45);
+      background:linear-gradient(180deg, rgba(98,176,255,.12), rgba(255,255,255,.06));
+      transform:translateY(-4px);
+    }
+
+    .badge{
+      position:absolute;
+      top:18px;
+      right:18px;
+      background:rgba(77,226,177,.14);
+      color:var(--green);
+      border:1px solid rgba(77,226,177,.3);
+      border-radius:999px;
+      padding:6px 10px;
+      font-size:.78rem;
+      font-weight:800;
+      letter-spacing:.04em;
+      text-transform:uppercase;
+    }
+
+    .price{
+      font-size:2.4rem;
+      font-weight:800;
+      color:var(--text);
+      margin:8px 0 4px;
+    }
+
+    .price-sub{
+      color:var(--muted);
+      font-size:.95rem;
+      margin-bottom:20px;
+    }
+
+    .price-note{
+      margin-top:18px;
+      padding-top:18px;
+      border-top:1px solid var(--line);
+      font-size:.94rem;
+      color:var(--muted);
+    }
+
+    .timeline{
+      border-left:2px solid rgba(98,176,255,.25);
+      margin-left:8px;
+      padding-left:24px;
+    }
+
+    .timeline-step{
+      position:relative;
+      margin-bottom:26px;
+    }
+
+    .timeline-step::before{
+      content:"";
+      position:absolute;
+      left:-31px;
+      top:7px;
+      width:12px;
+      height:12px;
+      border-radius:50%;
+      background:var(--blue);
+      box-shadow:0 0 0 6px rgba(98,176,255,.12);
+    }
+
+    .deliverables{
+      display:grid;
+      grid-template-columns:repeat(2, 1fr);
+      gap:22px;
+    }
+
+    .deliverable-title{
+      color:var(--text);
+      font-weight:700;
+      margin-bottom:8px;
+    }
+
+    .faq{
+      display:grid;
+      gap:16px;
+    }
+
+    .faq-item{
+      padding:22px;
+    }
+
+    .cta{
+      padding:30px;
+      background:
+        linear-gradient(135deg, rgba(98,176,255,.18), rgba(77,226,177,.12)),
+        rgba(255,255,255,.05);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
+
+    .small{
+      font-size:.92rem;
+      color:var(--muted);
+    }
+
+    .muted-strong{
+      color:#dbe8ff;
+    }
+
+    footer{
+      padding:30px 0 70px;
+    }
+
+    @media (max-width: 980px){
+      .hero-grid,
+      .grid-3,
+      .grid-2,
+      .deliverables{
+        grid-template-columns:1fr;
+      }
+
+      .price-card.featured{
+        transform:none;
+      }
+    }
+  </style>
+<link rel="icon" href="/wp-content/uploads/2025/11/cropped-0_3-25456-no-background.png">
+<script src="/assets/site.js" defer></script>
+</head>
+<body>
+<div class="wp-site-blocks">
+<atw-header></atw-header>
+<header class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">Stargazer Consulting</span>
+        <h1>SOC 2 Kickstart Sprint</h1>
+        <p class="lead">
+          A fixed-fee, high-clarity sprint for SMBs that need to start SOC 2 the right way. 
+          We define scope, identify critical gaps, assign ownership, and leave you with a practical roadmap 
+          instead of a vague pile of compliance tasks.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#pricing">View Pricing</a>
+          <a class="btn btn-secondary" href="#deliverables">See Deliverables</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <h3>What this solves</h3>
+        <ul class="checklist">
+          <li>Unclear SOC 2 scope and system boundaries</li>
+          <li>No defined owner for the compliance effort</li>
+          <li>Uncertainty about Type I vs. Type II</li>
+          <li>Missing policy and control baselines</li>
+          <li>Too much vendor noise and not enough structure</li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid-3 stats">
+        <div class="mini-card">
+          <strong>2 weeks</strong>
+          <p>Structured sprint designed to create early momentum without dragging the client into a long advisory engagement on day one.</p>
+        </div>
+        <div class="mini-card">
+          <strong>Fixed fee</strong>
+          <p>Easy for SMB buyers to understand, approve, and compare to the cost of a delayed or poorly scoped compliance effort.</p>
+        </div>
+        <div class="mini-card">
+          <strong>Actionable outputs</strong>
+          <p>Clients leave with decisions, artifacts, next steps, and a roadmap they can execute internally or with Stargazer.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="included">
+    <div class="container">
+      <span class="eyebrow">Offer Structure</span>
+      <h2>What the Kickstart Sprint Includes</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Strategy &#038; Scoping</h3>
+          <ul>
+            <li>Business driver assessment: customer demand, pipeline pressure, board/investor requirements, or security maturity goals</li>
+            <li>Initial Trust Services Criteria recommendation</li>
+            <li>System boundary definition for the in-scope environment</li>
+            <li>Type I vs. Type II path recommendation</li>
+            <li>High-level timeline and sequencing plan</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Readiness &#038; Gap Review</h3>
+          <ul>
+            <li>Rapid review of existing policies, controls, and operational practices</li>
+            <li>Gap assessment across access control, logging, incident response, change management, vendor management, and evidence readiness</li>
+            <li>Priority ranking of missing or weak controls</li>
+            <li>Ownership mapping for implementation</li>
+            <li>Executive summary of key risks and likely blockers</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Documentation &#038; Roadmap</h3>
+          <ul>
+            <li>SOC 2 Kickstart summary deck or memo</li>
+            <li>Readiness heatmap</li>
+            <li>90-day remediation roadmap</li>
+            <li>Suggested evidence model for audit preparation</li>
+            <li>Recommended next-phase engagement options</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Working Sessions</h3>
+          <ul>
+            <li>Kickoff session with leadership and operational stakeholders</li>
+            <li>Working session for scope and architecture review</li>
+            <li>Findings review and roadmap session</li>
+            <li>Stakeholder Q&amp;A on next steps</li>
+            <li>Optional handoff session for internal teams or auditor coordination</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="pricing">
+    <div class="container">
+      <span class="eyebrow">Pricing &#038; Packaging</span>
+      <h2>Choose the right starting point</h2>
+      <p>
+        The sprint is intentionally packaged as a fixed-fee offer. That makes it easier for SMBs to buy, and easier for Stargazer Consulting to deliver with consistency.
+      </p>
+
+      <div class="grid-3 pricing">
+        <div class="price-card">
+          <h3>Essential</h3>
+          <div class="price">$4,900</div>
+          <div class="price-sub">For early-stage SMBs that need clarity before committing to a larger compliance effort.</div>
+
+          <ul class="checklist">
+            <li>1 kickoff session</li>
+            <li>Document request and review</li>
+            <li>High-level scope definition</li>
+            <li>Rapid readiness assessment</li>
+            <li>Priority gap summary</li>
+            <li>30-day action plan</li>
+          </ul>
+
+          <p class="price-note">
+            Best for companies that need direction, buyer confidence, and a credible first step without a heavier advisory engagement.
+          </p>
+        </div>
+
+        <div class="price-card featured">
+          <span class="badge">Recommended</span>
+          <h3>Growth</h3>
+          <div class="price">$7,500</div>
+          <div class="price-sub">For SaaS and service businesses actively preparing for enterprise customer review or near-term SOC 2 work.</div>
+
+          <ul class="checklist">
+            <li>Everything in Essential</li>
+            <li>Up to 3 live working sessions</li>
+            <li>RACI-style ownership matrix</li>
+            <li>Trust Services Criteria recommendation</li>
+            <li>Type I vs. Type II strategy</li>
+            <li>90-day roadmap with priorities</li>
+            <li>Evidence model starter pack</li>
+            <li>Executive findings readout</li>
+          </ul>
+
+          <p class="price-note">
+            This is the core Stargazer offer: enough depth to make real decisions, while still staying lean and fast.
+          </p>
+        </div>
+
+        <div class="price-card">
+          <h3>Executive</h3>
+          <div class="price">$11,900</div>
+          <div class="price-sub">For more complex SMB environments with multiple systems, external customer pressure, or leadership teams that want a stronger operating plan.</div>
+
+          <ul class="checklist">
+            <li>Everything in Growth</li>
+            <li>Expanded control-domain review</li>
+            <li>Vendor / subservice boundary review</li>
+            <li>Leadership briefing for board or investor use</li>
+            <li>Draft remediation sequencing by workstream</li>
+            <li>Auditor readiness discussion points</li>
+            <li>Follow-up advisory session post-delivery</li>
+          </ul>
+
+          <p class="price-note">
+            Best for companies that want more than a diagnostic and need a clearer bridge into implementation and audit readiness.
+          </p>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:22px;">
+        <h3>Suggested add-ons</h3>
+        <div class="grid-3">
+          <div>
+            <p class="muted-strong"><strong>Policy Pack Setup — $2,500</strong></p>
+            <p>Baseline set of core SOC 2-aligned policy templates reviewed and tailored for the client environment.</p>
+          </div>
+          <div>
+            <p class="muted-strong"><strong>Evidence Tracker Buildout — $1,500</strong></p>
+            <p>Simple spreadsheet or workspace structure for evidence ownership, collection cadence, and audit preparation.</p>
+          </div>
+          <div>
+            <p class="muted-strong"><strong>Fractional Compliance Lead — starting at $3,500/month</strong></p>
+            <p>Ongoing implementation support after the sprint for clients that need help converting the roadmap into execution.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="deliverables">
+    <div class="container">
+      <span class="eyebrow">Client Outcomes</span>
+      <h2>What the client receives</h2>
+
+      <div class="deliverables">
+        <div class="card">
+          <div class="deliverable-title">1. Scope Definition Summary</div>
+          <p>A concise description of the in-scope service, systems, vendors, and likely audit boundary.</p>
+        </div>
+
+        <div class="card">
+          <div class="deliverable-title">2. Readiness Heatmap</div>
+          <p>A practical view of what already exists, what is partial, and what is missing across core control areas.</p>
+        </div>
+
+        <div class="card">
+          <div class="deliverable-title">3. Ownership Matrix</div>
+          <p>A role-based view of who should own policy, implementation, monitoring, and evidence collection.</p>
+        </div>
+
+        <div class="card">
+          <div class="deliverable-title">4. Type I / Type II Recommendation</div>
+          <p>A clear recommendation based on customer expectations, maturity, urgency, and operating reality.</p>
+        </div>
+
+        <div class="card">
+          <div class="deliverable-title">5. 30-Day or 90-Day Roadmap</div>
+          <p>A phased plan that turns SOC 2 from a vague aspiration into a sequence of executable workstreams.</p>
+        </div>
+
+        <div class="card">
+          <div class="deliverable-title">6. Next-Phase Options</div>
+          <p>A structured path into implementation support, policy work, evidence management, or fractional leadership.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container grid-2">
+      <div>
+        <span class="eyebrow">Delivery Model</span>
+        <h2>How the sprint works</h2>
+        <div class="timeline">
+          <div class="timeline-step">
+            <h3>Step 1: Kickoff &#038; intake</h3>
+            <p>Align on business drivers, scope assumptions, timeline pressure, and stakeholder roles.</p>
+          </div>
+          <div class="timeline-step">
+            <h3>Step 2: Review &#038; analysis</h3>
+            <p>Assess current documentation, infrastructure summary, policy baseline, and operational practices.</p>
+          </div>
+          <div class="timeline-step">
+            <h3>Step 3: Working session</h3>
+            <p>Clarify system boundaries, control assumptions, and ownership realities with the client team.</p>
+          </div>
+          <div class="timeline-step">
+            <h3>Step 4: Findings &#038; roadmap</h3>
+            <p>Present gaps, priorities, recommended path, and concrete next actions.</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <span class="eyebrow">Ideal Client</span>
+        <h2>Who this is for</h2>
+        <div class="card">
+          <ul class="checklist">
+            <li>SMBs selling into larger customers that are starting to ask for SOC 2</li>
+            <li>SaaS, managed services, legal tech, data services, and B2B technology firms</li>
+            <li>Leadership teams that want speed, clarity, and a manageable first step</li>
+            <li>Organizations that are not ready for a full compliance platform rollout but need a real plan</li>
+            <li>Companies that want to avoid over-buying tools before they understand scope and readiness</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">Frequently Asked Questions</span>
+      <h2>Common questions</h2>
+
+      <div class="faq">
+        <div class="faq-item">
+          <h3>Does this include the actual SOC 2 audit?</h3>
+          <p>No. The Kickstart Sprint is a readiness and planning engagement. It helps the client define scope, identify gaps, assign ownership, and choose the right path before formal audit work begins.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Can you help after the sprint?</h3>
+          <p>Yes. Stargazer Consulting can continue with implementation planning, policy support, control buildout, evidence readiness, and ongoing advisory support.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>Is this only for SaaS companies?</h3>
+          <p>No. It is strongest for B2B SaaS and technology-enabled service providers, but it can also fit other SMBs handling sensitive customer data in a structured environment.</p>
+        </div>
+
+        <div class="faq-item">
+          <h3>What if we are not ready for SOC 2 yet?</h3>
+          <p>That is exactly why this sprint exists. Sometimes the right answer is to sequence foundational security work first, reduce scope, or delay formal audit until the environment is mature enough.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="cta">
+        <span class="eyebrow">Next Step</span>
+        <h2>Start with clarity, not confusion</h2>
+        <p>
+          SOC 2 becomes expensive when companies begin too late, buy the wrong tools, or never define scope correctly. 
+          The Kickstart Sprint gives SMB teams a structured beginning and a credible path forward.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://calendly.com/jacob-hesse-kemperastronautics/30min">Book a discovery call</a>
+          <a class="btn btn-secondary" href="mailto:jacob.hesse@kemperastronautics.com">Email Stargazer Consulting</a>
+        </div>
+        <p class="small" style="margin-top:16px;">
+          
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p class="small">
+        Stargazer Consulting helps SMBs build practical, business-aligned security and compliance foundations.
+      </p>
+    </div>
+  </footer>
+<atw-footer></atw-footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,573 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HIPAA Compliance Starter Kit (DIY + Implementation Support) | Stargazer Consulting</title>
+  <meta name="description" content="Download a practical HIPAA Compliance Starter Kit: essential policies, procedures, templates, and checklists. Built for SMBs and growing teams. Optional implementation consulting to operationalize the program fast." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://YOURDOMAIN.example/hipaa-starter-kit" />
+  <meta property="og:title" content="HIPAA Compliance Starter Kit | Policies, Procedures, Checklists (DIY + Implementation Support)" />
+  <meta property="og:description" content="Download a practical HIPAA Compliance Starter Kit: essential policies, procedures, templates, and checklists. Optional implementation consulting to operationalize the program fast." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://YOURDOMAIN.example/hipaa-starter-kit" />
+  <meta property="og:image" content="https://YOURDOMAIN.example/assets/hipaa-kit-og.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <style>
+    :root{
+      --bg:#0b1324;           /* deep navy */
+      --panel:#0f1a33;        /* card */
+      --panel2:#0c1730;       /* darker card */
+      --ink:#e8eefc;          /* text */
+      --muted:#9bb0cf;        /* muted text */
+      --line:#1f2c4d;         /* border */
+      --accent:#6fd3c7;       /* teal */
+      --accent2:#7aa7ff;      /* soft blue */
+      --warn:#ffd479;         /* warm highlight */
+      --shadow:0 10px 30px rgba(0,0,0,.35);
+      --radius:18px;
+      --radius2:28px;
+      --max:1100px;
+    }
+
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--ink);
+      background:
+        radial-gradient(1100px 500px at 10% -10%, rgba(111,211,199,.20), transparent 60%),
+        radial-gradient(900px 500px at 90% 0%, rgba(122,167,255,.18), transparent 55%),
+        radial-gradient(900px 600px at 20% 110%, rgba(122,167,255,.10), transparent 60%),
+        linear-gradient(180deg, #081024 0%, var(--bg) 60%, #071023 100%);
+      line-height:1.45;
+    }
+
+    a{color:inherit}
+    .wrap{max-width:var(--max); margin:0 auto; padding:28px 18px 64px;}
+    .topbar{
+      display:flex; align-items:center; justify-content:space-between; gap:14px;
+      padding:16px 18px; border:1px solid rgba(148,163,184,.25);
+      background:rgba(2,6,23,.55); backdrop-filter: blur(8px);
+      border-radius:16px; position:sticky; top:10px; z-index:50;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px; text-decoration:none;
+    }
+    .mark{
+      width:34px; height:34px; border-radius:12px;
+      background:linear-gradient(135deg, rgba(111,211,199,.95), rgba(122,167,255,.85));
+      box-shadow:0 8px 20px rgba(111,211,199,.18);
+    }
+    .brand b{letter-spacing:.12em; text-transform:uppercase; font-size:.92rem}
+    .brand span{display:block; color:var(--muted); font-size:.85rem; margin-top:2px}
+    .navbtns{display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:10px 14px; border-radius:999px;
+      border:1px solid rgba(148,163,184,.25);
+      background:rgba(15,26,51,.60);
+      text-decoration:none; font-weight:600; font-size:.92rem;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      white-space:nowrap;
+    }
+    .btn:hover{transform: translateY(-1px); border-color: rgba(111,211,199,.55)}
+    .btn.primary{
+      background:linear-gradient(135deg, rgba(111,211,199,.95), rgba(122,167,255,.85));
+      color:#081024; border:0;
+    }
+    .btn.primary:hover{transform: translateY(-1px) scale(1.01)}
+    .btn.ghost{background:transparent}
+    .hero{
+      margin-top:22px;
+      padding:34px 22px;
+      border-radius:var(--radius2);
+      border:1px solid rgba(148,163,184,.18);
+      background:linear-gradient(180deg, rgba(15,26,51,.70), rgba(15,26,51,.35));
+      box-shadow: var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .hero:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(600px 220px at 25% 0%, rgba(111,211,199,.18), transparent 60%),
+        radial-gradient(560px 240px at 80% 20%, rgba(122,167,255,.18), transparent 60%);
+      pointer-events:none;
+    }
+    .hero > *{position:relative}
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:7px 12px; border-radius:999px;
+      border:1px solid rgba(111,211,199,.35);
+      background:rgba(111,211,199,.08);
+      color:var(--muted);
+      font-weight:600; font-size:.88rem;
+    }
+    h1{
+      margin:14px 0 10px;
+      font-size: clamp(2.0rem, 3.2vw, 3.0rem);
+      line-height:1.08;
+      letter-spacing:-0.02em;
+    }
+    .lede{
+      margin: 0 0 18px;
+      color:var(--muted);
+      font-size:1.08rem;
+      max-width: 80ch;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:16px;
+      align-items:start;
+      margin-top:18px;
+    }
+    @media (max-width: 900px){
+      .grid{grid-template-columns: 1fr; }
+      .topbar{position:relative; top:auto}
+    }
+
+    .card{
+      border-radius:var(--radius);
+      border:1px solid rgba(148,163,184,.18);
+      background:linear-gradient(180deg, rgba(15,26,51,.70), rgba(12,23,48,.55));
+      padding:18px 18px;
+      box-shadow: 0 10px 26px rgba(0,0,0,.28);
+    }
+    .card h2{margin:2px 0 10px; font-size:1.2rem}
+    .card p{margin:0 0 10px; color:var(--muted)}
+    .bullets{margin:10px 0 0; padding-left: 18px; color:var(--muted)}
+    .bullets li{margin:8px 0}
+    .pillrow{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
+    .pill{
+      display:inline-flex; align-items:center;
+      padding:7px 10px; border-radius:999px;
+      border:1px solid rgba(148,163,184,.22);
+      background:rgba(2,6,23,.25);
+      color:var(--muted); font-size:.88rem; font-weight:600;
+    }
+    .split{
+      display:grid; grid-template-columns: 1fr 1fr; gap:14px;
+      margin-top:14px;
+    }
+    @media (max-width: 700px){ .split{grid-template-columns:1fr} }
+
+    .callout{
+      border:1px solid rgba(255,212,121,.28);
+      background:linear-gradient(180deg, rgba(255,212,121,.08), rgba(15,26,51,.55));
+      border-radius: var(--radius);
+      padding:14px 14px;
+      color:var(--muted);
+    }
+    .callout b{color:var(--ink)}
+    .divider{height:1px; background:rgba(148,163,184,.14); margin:18px 0}
+
+    .form label{display:block; font-weight:700; margin:10px 0 6px; color:var(--ink)}
+    .form input,.form textarea{
+      width:100%;
+      padding:12px 12px;
+      border-radius:12px;
+      border:1px solid rgba(148,163,184,.22);
+      background:rgba(2,6,23,.25);
+      color:var(--ink);
+      outline:none;
+    }
+    .form input:focus,.form textarea:focus{border-color: rgba(111,211,199,.6)}
+    .note{color:var(--muted); font-size:.88rem; margin-top:10px}
+    .fineprint{color:var(--muted); font-size:.88rem}
+    .section{margin-top:18px}
+    .section h3{margin:0 0 10px; font-size:1.05rem}
+    .twoCol{
+      display:grid; grid-template-columns: 1fr 1fr; gap:14px;
+    }
+    @media (max-width: 850px){ .twoCol{grid-template-columns:1fr} }
+
+    .faq details{
+      border:1px solid rgba(148,163,184,.18);
+      background:rgba(2,6,23,.18);
+      padding:12px 14px;
+      border-radius:14px;
+      margin:10px 0;
+    }
+    .faq summary{cursor:pointer; font-weight:700}
+    .faq p{margin:10px 0 0; color:var(--muted)}
+
+    footer{
+      margin-top:26px;
+      padding:18px 0 0;
+      color:var(--muted);
+      font-size:.9rem;
+    }
+  </style>
+
+  <!-- Structured data (JSON-LD) for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "HIPAA Compliance Starter Kit",
+    "description": "A practical downloadable HIPAA Compliance Starter Kit: essential policies, procedures, templates, and checklists for small and mid-sized organizations, with optional implementation consulting.",
+    "brand": {"@type":"Brand","name":"Stargazer Consulting"},
+    "offers": {
+      "@type": "Offer",
+      "url": "https://YOURDOMAIN.example/hipaa-starter-kit",
+      "availability": "https://schema.org/InStock"
+    }
+  }
+  </script>
+<link rel="icon" href="/wp-content/uploads/2025/11/cropped-0_3-25456-no-background.png">
+<script src="/assets/site.js" defer></script>
+</head>
+<body>
+<div class="wp-site-blocks">
+<atw-header></atw-header>
+<div class="wrap">
+
+    <!-- Top bar -->
+    <div class="topbar" role="navigation" aria-label="Top Navigation">
+      <a class="brand" href="https://YOURDOMAIN.example/">
+        <span class="mark" aria-hidden="true"></span>
+        <div>
+          <b>Stargazer Consulting</b>
+          <span>Security + compliance that runs in the real world</span>
+        </div>
+      </a>
+
+      <div class="navbtns">
+        <a class="btn ghost" href="#whats-inside">What’s inside</a>
+        <a class="btn ghost" href="#how-it-works">How it works</a>
+        <a class="btn ghost" href="#implementation">Implementation support</a>
+        <a class="btn primary" href="#download">Download the kit</a>
+      </div>
+    </div>
+
+    <!-- Hero -->
+    <header class="hero">
+      <div class="kicker">HIPAA Compliance Starter Kit • DIY-ready templates + optional implementation help</div>
+      <h1>Get a real HIPAA program off the ground—without starting from a blank page.</h1>
+      <p class="lede">
+        This kit is designed for small to mid-sized organizations that handle protected health information (PHI) and need
+        a credible, operational HIPAA compliance baseline. You’ll get the core documents, checklists, and reporting
+        artifacts needed to begin implementation—and a clear path to expert support when you want it.
+      </p>
+
+      <div class="grid">
+        <div class="card">
+          <h2>Who this is for</h2>
+          <p>
+            Teams that need HIPAA fundamentals fast, but still want the program to be practical: leadership, operations,
+            IT/security, compliance, and practice managers who need documentation and a plan that survives real audits,
+            incidents, and turnover.
+          </p>
+          <div class="pillrow" aria-label="Audience tags">
+            <span class="pill">Healthcare SMBs</span>
+            <span class="pill">Business associates</span>
+            <span class="pill">Growing teams</span>
+            <span class="pill">Lean IT/Security</span>
+            <span class="pill">Operational reality</span>
+          </div>
+
+          <div class="divider"></div>
+
+          <h2>What you’ll accomplish</h2>
+          <ul class="bullets">
+            <li>Establish a coherent HIPAA documentation baseline (policies + procedures + templates).</li>
+            <li>Reduce “unknown unknowns” with a clear readiness and implementation sequence.</li>
+            <li>Create management-visible reporting so HIPAA is governed—not merely filed away.</li>
+            <li>Know when you can DIY and when expert guidance saves time, cost, and risk.</li>
+          </ul>
+        </div>
+
+        <aside class="card" id="download">
+          <h2>Download the kit</h2>
+          <p>
+            Enter your email and I’ll send the download link. You’ll also receive a short implementation guide and
+            optional next-step offers (you can unsubscribe anytime).
+          </p>
+
+          <!-- Replace the action URL with your Formspree (or other) endpoint -->
+          <form class="form" action="https://formspree.io/f/xpqqabrk" method="POST">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" required placeholder="Your name" />
+
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required placeholder="you@company.com" />
+
+            <label for="org">Organization</label>
+            <input id="org" name="organization" type="text" placeholder="Company / practice name" />
+
+            <label for="context">What best describes you?</label>
+            <textarea id="context" name="context" rows="3" placeholder="e.g., clinic owner, IT lead, operations manager, BA vendor…"></textarea>
+
+            <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+              <button class="btn primary" type="submit">Send me the kit</button>
+              <a class="btn" href="#implementation">See implementation support</a>
+            </div>
+
+            <div class="note">
+              By submitting, you agree to be contacted about this kit and related services. No spam; practical follow-up only.
+            </div>
+          </form>
+
+          <div class="divider"></div>
+
+          
+        </aside>
+      </div>
+    </header>
+
+    <!-- What’s inside -->
+    <section id="whats-inside" class="section">
+      <div class="card">
+        <h2>What’s inside the HIPAA Compliance Starter Kit</h2>
+        <p>
+          This kit focuses on the operational backbone: policies and procedures you can actually run, plus templates that
+          convert intent into repeatable execution.
+        </p>
+
+        <div class="twoCol">
+          <div class="card" style="background:rgba(2,6,23,.20); box-shadow:none;">
+            <h3>Core policies and procedures</h3>
+            <ul class="bullets">
+              <li><b>Business Associate Inventory &#038; Oversight Procedure</b> (onboarding, due diligence, ongoing monitoring)</li>
+              <li><b>User Access Management Policy</b> (identity, access provisioning, reviews, termination)</li>
+              <li><b>HIPAA Complaint Handling Procedure</b> (intake, triage, investigation, resolution, documentation)</li>
+              <li><b>Training Program Outline</b> (role-based training approach, cadence, tracking expectations)</li>
+              <li><b>Incident Response alignment guidance</b> (how to connect security incidents to HIPAA reporting workflows)</li>
+            </ul>
+          </div>
+
+          <div class="card" style="background:rgba(2,6,23,.20); box-shadow:none;">
+            <h3>Program management artifacts</h3>
+            <ul class="bullets">
+              <li><b>HIPAA Readiness Assessment</b> (baseline scoring + gap list you can action)</li>
+              <li><b>Management Review &#038; Executive Reporting Template</b> (what leadership should see, monthly/quarterly)</li>
+              <li><b>Implementation checklists</b> (sequence that reduces rework)</li>
+              <li><b>Evidence and record-keeping prompts</b> (what to retain, where teams usually fail)</li>
+              <li><b>Optional: knowledge checks</b> (short scenario-based checks you can use after training)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="split">
+          <div class="callout">
+            <b>What this kit is</b><br/>
+            A pragmatic “starting system” for HIPAA: documentation + workflow scaffolding + governance artifacts.
+            It’s meant to help you implement quickly and credibly.
+          </div>
+          <div class="callout" style="border-color: rgba(148,163,184,.22);">
+            <b>What this kit is not</b><br/>
+            A guarantee of compliance on its own. HIPAA requires operational adoption, evidence, and ongoing oversight.
+            This kit accelerates that work; it does not replace it.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section id="how-it-works" class="section">
+      <div class="card">
+        <h2>How to use the kit (recommended sequence)</h2>
+        <p>
+          Most teams fail by “publishing documents” rather than implementing a system. Use this sequence to convert the kit into an operating program.
+        </p>
+
+        <ol class="bullets" style="padding-left:22px;">
+          <li><b>Baseline:</b> Run the Readiness Assessment and name your top 10 gaps (not 50).</li>
+          <li><b>Scope and owners:</b> Assign owners for access management, BA oversight, training, and complaints—HIPAA fails when ownership is vague.</li>
+          <li><b>Implement access controls:</b> Tighten identity, roles, and recurring access reviews (this creates immediate risk reduction).</li>
+          <li><b>Operationalize BA oversight:</b> Inventory vendors, categorize risk, standardize onboarding and ongoing monitoring.</li>
+          <li><b>Run training:</b> Start role-based training and tracking; use short knowledge checks to validate comprehension.</li>
+          <li><b>Establish governance:</b> Use the Management Review template to turn HIPAA into a recurring leadership routine.</li>
+        </ol>
+
+        <div class="divider"></div>
+
+        <div class="callout">
+          <b>Reality check:</b> If you do nothing else, implement access management and BA oversight first. Those two areas
+          prevent a disproportionate number of high-severity outcomes.
+        </div>
+      </div>
+    </section>
+
+    <!-- Implementation Support -->
+    <section id="implementation" class="section">
+      <div class="card">
+        <h2>When you should hire me for implementation (and why it’s worth it)</h2>
+        <p>
+          A kit gets you the structure. Implementation gets you outcomes: reduced risk, defensible evidence, and a program that
+          can withstand incidents and scrutiny. If you want to move quickly and avoid expensive missteps, implementation support
+          is the force multiplier.
+        </p>
+
+        <div class="twoCol">
+          <div class="card" style="background:rgba(2,6,23,.20); box-shadow:none;">
+            <h3>Common failure modes I help you avoid</h3>
+            <ul class="bullets">
+              <li><b>Paper compliance:</b> documents exist, but no one follows them and no evidence is produced.</li>
+              <li><b>Undefined scope:</b> teams don’t know what systems/processes are “in” or “out,” so work stalls.</li>
+              <li><b>Vendor blind spots:</b> BA relationships aren’t tracked, updated, or monitored—one of the highest-risk areas.</li>
+              <li><b>Access drift:</b> access isn’t reviewed; terminations don’t fully remove privileges; shared accounts persist.</li>
+              <li><b>No management cadence:</b> leadership doesn’t see HIPAA status until a problem happens.</li>
+            </ul>
+          </div>
+
+          <div class="card" style="background:rgba(2,6,23,.20); box-shadow:none;">
+            <h3>Implementation options (choose your intensity)</h3>
+            <ul class="bullets">
+              <li><b>DIY + Office Hours:</b> You implement; I review, answer questions, and remove blockers.</li>
+              <li><b>Guided Implementation Sprint (recommended):</b> 2–4 weeks to operationalize the top controls and governance rhythm.</li>
+              <li><b>Fractional Security/Compliance Leadership:</b> Ongoing oversight, reporting, vendor risk, training cadence, and continuous improvement.</li>
+            </ul>
+
+            <div class="divider"></div>
+
+            <div class="callout" style="border-color: rgba(111,211,199,.35);">
+              <b>Fast path:</b> If you want, I can run a short “implementation mapping” session to convert your kit into a
+              prioritized plan, owners, and a 30/60/90-day execution roadmap.
+            </div>
+
+            <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+              <a class="btn primary" href="#download">Download first</a>
+              <a class="btn" href="mailto:YOU@YOURDOMAIN.example?subject=HIPAA%20Kit%20Implementation%20Help">Request implementation help</a>
+            </div>
+
+            <p class="fineprint" style="margin-top:10px;">
+              
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Proof / credibility -->
+    <section class="section">
+      <div class="card">
+        <h2>Why this kit is different</h2>
+        <div class="twoCol">
+          <div>
+            <ul class="bullets">
+              <li><b>Designed for operations:</b> policies and procedures map to real workflows, not generic textbook language.</li>
+              <li><b>Governance built in:</b> management review and executive reporting turn compliance into a routine.</li>
+              <li><b>Evidence-aware:</b> prompts help you generate and retain proof—because undocumented compliance is indistinguishable from non-compliance.</li>
+              <li><b>Implementation path:</b> the kit is paired with an optional consulting motion for teams that want speed and confidence.</li>
+            </ul>
+          </div>
+          <div class="callout">
+            <b>Optional section: add credibility signals</b><br/>
+            Add short statements here, such as: years in security/compliance leadership, regulated SaaS experience, incident
+            response background, or HIPAA implementation outcomes (avoid client names unless permitted).
+            <div class="divider"></div>
+            <div class="pillrow">
+              <span class="pill">Implementation-first</span>
+              <span class="pill">Audit-ready habits</span>
+              <span class="pill">Vendor risk discipline</span>
+              <span class="pill">Access control rigor</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section faq">
+      <div class="card">
+        <h2>FAQ</h2>
+
+        <details>
+          <summary>Is this enough to be “HIPAA compliant”?</summary>
+          <p>
+            The kit gives you the foundation: policies, procedures, and governance artifacts. Compliance requires implementation,
+            training, evidence, and ongoing oversight. Use the kit to accelerate implementation; consider consulting support if you
+            want to reduce rework and shorten time-to-baseline.
+          </p>
+        </details>
+
+        <details>
+          <summary>How long does implementation take?</summary>
+          <p>
+            Teams that focus on a narrow baseline (access management + BA oversight + training cadence + management reporting)
+            can establish a credible first version quickly. If you want speed and accountability, use a guided implementation sprint.
+          </p>
+        </details>
+
+        <details>
+          <summary>What if we’re a business associate, not a provider?</summary>
+          <p>
+            The kit is designed to work for both. Business associates often carry significant risk via vendor/subprocessor relationships
+            and access pathways, so the BA oversight and access management elements are especially relevant.
+          </p>
+        </details>
+
+        <details>
+          <summary>Do you provide a one-time assessment?</summary>
+          <p>
+            Yes. A readiness assessment plus a prioritized remediation plan is a clean starting point if you’re unsure where to begin,
+            or if leadership needs a clear picture of risk and resourcing.
+          </p>
+        </details>
+
+        <details>
+          <summary>What do you need from us to help implement?</summary>
+          <p>
+            Typically: (1) a systems/app inventory that touches PHI, (2) a list of vendors/partners handling PHI, (3) current access and
+            onboarding/offboarding practices, and (4) who will own each process. I can help you gather these efficiently.
+          </p>
+        </details>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="section">
+      <div class="card">
+        <h2>Download the kit now—and choose your path</h2>
+        <p>
+          Start with the DIY materials. If you want to move faster, avoid blind spots, and operationalize a program that leadership can govern,
+          I can help you implement it with a focused sprint or ongoing fractional support.
+        </p>
+
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
+          <a class="btn primary" href="#download">Get the kit</a>
+          <a class="btn" href="mailto:YOU@YOURDOMAIN.example?subject=HIPAA%20Implementation%20Sprint">Ask about an implementation sprint</a>
+          <a class="btn ghost" href="#whats-inside">Review contents</a>
+        </div>
+
+        <div class="divider"></div>
+
+        <p class="fineprint">
+          Disclaimer: This kit is informational and provides practical templates and guidance. It does not constitute legal advice.
+          You are responsible for ensuring your compliance program is appropriate for your organization, risk profile, and applicable law.
+        </p>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Stargazer Consulting. All rights reserved.
+    </footer>
+
+  </div>
+
+  <script>
+    // Small UX helpers
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Smooth scrolling for in-page links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener("click", (e) => {
+        const id = a.getAttribute("href");
+        const el = document.querySelector(id);
+        if (!el) return;
+        e.preventDefault();
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+  </script>
+<atw-footer></atw-footer>
+</div>
+</body>
+</html>

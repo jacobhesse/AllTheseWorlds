@@ -1,0 +1,603 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Project Management Formulas by Domain</title>
+  <meta name="description" content="A structured HTML reference page listing and describing common project management formulas, grouped by domain." />
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #121936;
+      --panel-2: #182247;
+      --text: #ecf2ff;
+      --muted: #a8b4d6;
+      --accent: #7cc7ff;
+      --accent-2: #89f0c4;
+      --border: rgba(255,255,255,0.10);
+      --shadow: 0 12px 32px rgba(0,0,0,0.28);
+      --radius: 18px;
+      --max: 1200px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1000px 700px at 0% 0%, rgba(124,199,255,0.14), transparent 50%),
+        radial-gradient(900px 600px at 100% 0%, rgba(137,240,196,0.10), transparent 45%),
+        linear-gradient(180deg, #0a1022 0%, #0b1020 100%);
+      line-height: 1.6;
+    }
+
+    a { color: var(--accent); }
+
+    .wrap {
+      width: min(calc(100% - 2rem), var(--max));
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 3.5rem 0 2rem;
+    }
+
+    .hero {
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(124,199,255,0.12);
+      border: 1px solid rgba(124,199,255,0.18);
+      color: var(--accent);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    h1, h2, h3 {
+      line-height: 1.2;
+      margin-top: 0;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      margin-bottom: 0.8rem;
+    }
+
+    .lead {
+      font-size: 1.08rem;
+      color: var(--muted);
+      max-width: 850px;
+      margin-bottom: 1.25rem;
+    }
+
+    .quick-notes {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .note {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(10px);
+      background: rgba(10, 16, 34, 0.76);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      width: min(calc(100% - 2rem), var(--max));
+      margin: 0 auto;
+      display: flex;
+      gap: 0.75rem;
+      overflow-x: auto;
+      padding: 0.9rem 0;
+      scrollbar-width: thin;
+    }
+
+    .nav-inner a {
+      text-decoration: none;
+      white-space: nowrap;
+      color: var(--text);
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      padding: 0.6rem 0.9rem;
+      border-radius: 999px;
+      transition: transform 0.2s ease, background 0.2s ease;
+      font-size: 0.95rem;
+    }
+
+    .nav-inner a:hover {
+      transform: translateY(-1px);
+      background: rgba(124,199,255,0.12);
+    }
+
+    main {
+      padding: 2rem 0 4rem;
+    }
+
+    section.domain {
+      margin-bottom: 2rem;
+    }
+
+    .domain-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.025));
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 1.4rem;
+      box-shadow: var(--shadow);
+    }
+
+    .domain-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: end;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .domain-header p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 760px;
+    }
+
+    .formula-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .formula {
+      background: linear-gradient(180deg, var(--panel), var(--panel-2));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem;
+    }
+
+    .formula h3 {
+      margin-bottom: 0.55rem;
+      font-size: 1.05rem;
+    }
+
+    .equation {
+      display: block;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 0.95rem;
+      background: rgba(0,0,0,0.22);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 0.8rem;
+      border-radius: 12px;
+      margin: 0.7rem 0;
+      overflow-x: auto;
+      color: #d8f5ff;
+    }
+
+    .formula p {
+      margin: 0.45rem 0;
+      color: var(--muted);
+    }
+
+    .formula strong {
+      color: var(--text);
+    }
+
+    .legend {
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: 16px;
+      background: rgba(137,240,196,0.08);
+      border: 1px solid rgba(137,240,196,0.16);
+    }
+
+    .legend h3 {
+      margin-bottom: 0.5rem;
+    }
+
+    footer {
+      padding: 1rem 0 3rem;
+      color: var(--muted);
+    }
+
+    .small {
+      font-size: 0.94rem;
+    }
+
+    @media (max-width: 680px) {
+      .hero, .domain-card { padding: 1.1rem; }
+      h1 { font-size: 2rem; }
+      .lead { font-size: 1rem; }
+    }
+  </style>
+<link rel="icon" href="/wp-content/uploads/2025/11/cropped-0_3-25456-no-background.png">
+<script src="/assets/site.js" defer></script>
+</head>
+<body>
+<div class="wp-site-blocks">
+<atw-header></atw-header>
+<header class="wrap">
+    <div class="hero">
+      <div class="eyebrow">Project Management Reference</div>
+      <h1>Most Common Project Management Formulas, Grouped by Domain</h1>
+      <p class="lead">
+        This page organizes widely used project management formulas into practical domains such as schedule, cost, earned value, forecasting, quality, communication, procurement, and risk. It is designed as a quick reference for students, project managers, PMO staff, and anyone preparing for project planning or certification work.
+      </p>
+      <div class="quick-notes">
+        <div class="note">
+          <strong>How to use this page</strong>
+          <p>Start with the domain you are working in, then use the formula cards to interpret performance, estimate outcomes, or quantify tradeoffs.</p>
+        </div>
+        <div class="note">
+          <strong>Important caveat</strong>
+          <p>Not every project uses every formula. Agile, hybrid, and operational environments may rely on only a subset of these metrics.</p>
+        </div>
+        <div class="note">
+          <strong>Best-known family</strong>
+          <p>Earned Value Management formulas are the most standardized and are especially common in formal project controls.</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="#integration">Integration &#038; Forecasting</a>
+      <a href="#schedule">Schedule</a>
+      <a href="#cost">Cost</a>
+      <a href="#evm">Earned Value</a>
+      <a href="#resource">Resource</a>
+      <a href="#quality">Quality</a>
+      <a href="#communications">Communications</a>
+      <a href="#procurement">Procurement</a>
+      <a href="#risk">Risk</a>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <section id="integration" class="domain">
+      <div class="domain-card">
+        <div class="domain-header">
+          <div>
+            <h2>Integration &#038; Forecasting</h2>
+            <p>These formulas support high-level estimation, planning consolidation, and predictive thinking across the project.</p>
+          </div>
+        </div>
+        <div class="formula-grid">
+          <article class="formula">
+            <h3>Three-Point Estimate</h3>
+            <span class="equation">Expected Duration or Cost = (O + 4M + P) / 6</span>
+            <p><strong>Meaning:</strong> Uses optimistic (O), most likely (M), and pessimistic (P) estimates to reduce the risk of relying on a single-point estimate.</p>
+            <p><strong>Use:</strong> Early planning, uncertainty modeling, and more realistic task or cost estimating.</p>
+          </article>
+          <article class="formula">
+            <h3>Standard Deviation (PERT)</h3>
+            <span class="equation">SD = (P &#8211; O) / 6</span>
+            <p><strong>Meaning:</strong> Measures uncertainty around a three-point estimate.</p>
+            <p><strong>Use:</strong> Helps assess how much variability may exist in a task estimate.</p>
+          </article>
+          <article class="formula">
+            <h3>Variance (PERT)</h3>
+            <span class="equation">Variance = ((P &#8211; O) / 6)<sup>2</sup></span>
+            <p><strong>Meaning:</strong> Quantifies the spread of possible outcomes around an expected estimate.</p>
+            <p><strong>Use:</strong> Useful for schedule probability analysis and uncertainty modeling.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="schedule" class="domain">
+      <div class="domain-card">
+        <div class="domain-header">
+          <div>
+            <h2>Schedule Management</h2>
+            <p>These formulas help determine task timing, sequencing impact, and schedule performance.</p>
+          </div>
+        </div>
+        <div class="formula-grid">
+          <article class="formula">
+            <h3>Total Float</h3>
+            <span class="equation">Total Float = LS &#8211; ES  or  LF &#8211; EF</span>
+            <p><strong>Meaning:</strong> The amount of time an activity can be delayed without delaying the project finish date.</p>
+            <p><strong>Use:</strong> Critical path analysis and identifying schedule flexibility.</p>
+          </article>
+          <article class="formula">
+            <h3>Free Float</h3>
+            <span class="equation">Free Float = ES of Successor &#8211; EF of Activity</span>
+            <p><strong>Meaning:</strong> The amount of time an activity can slip without delaying the early start of the next activity.</p>
+            <p><strong>Use:</strong> Evaluating local schedule slack between linked tasks.</p>
+          </article>
+          <article class="formula">
+            <h3>Schedule Variance (SV)</h3>
+            <span class="equation">SV = EV &#8211; PV</span>
+            <p><strong>Meaning:</strong> Shows whether work is ahead of or behind the approved schedule baseline in value terms.</p>
+            <p><strong>Use:</strong> A positive result indicates ahead of schedule; negative indicates behind.</p>
+          </article>
+          <article class="formula">
+            <h3>Schedule Performance Index (SPI)</h3>
+            <span class="equation">SPI = EV / PV</span>
+            <p><strong>Meaning:</strong> Measures schedule efficiency.</p>
+            <p><strong>Use:</strong> An SPI above 1.0 is favorable; below 1.0 means the project is progressing more slowly than planned.</p>
+          </article>
+          <article class="formula">
+            <h3>Critical Path Duration</h3>
+            <span class="equation">Project Duration = Sum of Durations on the Critical Path</span>
+            <p><strong>Meaning:</strong> The shortest possible completion time for the project given current logic and durations.</p>
+            <p><strong>Use:</strong> Core scheduling and compression analysis.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="cost" class="domain">
+      <div class="domain-card">
+        <div class="domain-header">
+          <div>
+            <h2>Cost Management</h2>
+            <p>These formulas support budgeting, financial tracking, and cost efficiency assessment.</p>
+          </div>
+        </div>
+        <div class="formula-grid">
+          <article class="formula">
+            <h3>Cost Variance (CV)</h3>
+            <span class="equation">CV = EV &#8211; AC</span>
+            <p><strong>Meaning:</strong> Shows whether the project is under or over budget.</p>
+            <p><strong>Use:</strong> Positive means under budget; negative means over budget.</p>
+          </article>
+          <article class="formula">
+            <h3>Cost Performance Index (CPI)</h3>
+            <span class="equation">CPI = EV / AC</span>
+            <p><strong>Meaning:</strong> Measures cost efficiency for the work completed.</p>
+            <p><strong>Use:</strong> CPI above 1.0 is favorable; below 1.0 indicates poor cost performance.</p>
+          </article>
+          <article class="formula">
+            <h3>Cost Baseline</h3>
+            <span class="equation">Cost Baseline = Project Budget &#8211; Management Reserve</span>
+            <p><strong>Meaning:</strong> The approved time-phased budget used for performance measurement.</p>
+            <p><strong>Use:</strong> Tracks controlled project spending against an approved baseline.</p>
+          </article>
+          <article class="formula">
+            <h3>Budget at Completion (BAC)</h3>
+            <span class="equation">BAC = Total Planned Budget for the Project</span>
+            <p><strong>Meaning:</strong> The total authorized budget for the full scope of work.</p>
+            <p><strong>Use:</strong> Reference point for forecasting final project cost.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="evm" class="domain">
+      <div class="domain-card">
+        <div class="domain-header">
+          <div>
+            <h2>Earned Value Management (EVM)</h2>
+            <p>EVM integrates scope, schedule, and cost into one performance control system. These are among the most important project control formulas.</p>
+          </div>
+        </div>
+        <div class="formula-grid">
+          <article class="formula">
+            <h3>Planned Value (PV)</h3>
+            <span class="equation">PV = Authorized Budget Assigned to Scheduled Work</span>
+            <p><strong>Meaning:</strong> The value of work that should have been completed by a point in time.</p>
+            <p><strong>Use:</strong> Baseline reference for schedule and cost analysis.</p>
+          </article>
+          <article class="formula">
+            <h3>Earned Value (EV)</h3>
+            <span class="equation">EV = % Complete × BAC</span>
+            <p><strong>Meaning:</strong> The budgeted value of the work actually completed.</p>
+            <p><strong>Use:</strong> Central metric for comparing actual progress with plan.</p>
+          </article>
+          <article class="formula">
+            <h3>Actual Cost (AC)</h3>
+            <span class="equation">AC = Real Cost Incurred for Completed Work</span>
+            <p><strong>Meaning:</strong> The amount actually spent for the work performed.</p>
+            <p><strong>Use:</strong> Combined with EV and PV to assess performance.</p>
+          </article>
+          <article class="formula">
+            <h3>Estimate at Completion (EAC) — Typical</h3>
+            <span class="equation">EAC = BAC / CPI</span>
+            <p><strong>Meaning:</strong> Forecasts total project cost if current cost efficiency continues.</p>
+            <p><strong>Use:</strong> Common when present performance is expected to persist.</p>
+          </article>
+          <article class="formula">
+            <h3>Estimate at Completion (EAC) — Re-estimate</h3>
+            <span class="equation">EAC = AC + Bottom-Up ETC</span>
+            <p><strong>Meaning:</strong> Forecasts total cost based on actuals so far plus a new estimate for remaining work.</p>
+            <p><strong>Use:</strong> Best when the original assumptions are no longer valid.</p>
+          </article>
+          <article class="formula">
+            <h3>Estimate to Complete (ETC)</h3>
+            <span class="equation">ETC = EAC &#8211; AC</span>
+            <p><strong>Meaning:</strong> Expected additional cost needed to finish the project.</p>
+            <p><strong>Use:</strong> Helps determine remaining funding requirement.</p>
+          </article>
+          <article class="formula">
+            <h3>Variance at Completion (VAC)</h3>
+            <span class="equation">VAC = BAC &#8211; EAC</span>
+            <p><strong>Meaning:</strong> Forecasts expected budget surplus or deficit at project completion.</p>
+            <p><strong>Use:</strong> Positive is favorable; negative suggests an overrun.</p>
+          </article>
+          <article class="formula">
+            <h3>To-Complete Performance Index (TCPI)</h3>
+            <span class="equation">TCPI = (BAC &#8211; EV) / (BAC &#8211; AC)</span>
+            <p><strong>Meaning:</strong> Indicates the cost performance needed on the remaining work to meet the original budget.</p>
+            <p><strong>Use:</strong> A value significantly above 1.0 may indicate the target budget is unrealistic.</p>
+          </article>
+        </div>
+        <div class="legend small">
+          <h3>EVM Interpretation Guide</h3>
+          <p><strong>CPI &gt; 1:</strong> spending efficiently. <strong>CPI &lt; 1:</strong> spending inefficiently. <strong>SPI &gt; 1:</strong> progressing faster than planned. <strong>SPI &lt; 1:</strong> progressing slower than planned.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="resource" class="domain">
+      <div class="domain-card">
+        <div class="domain-header">
+          <div>
+            <h2>Resource Management</h2>
+            <p>These formulas help estimate staffing effort, duration, and utilization.</p>
+          </div>
+        </div>
+        <div class="formula-grid">
+          <article class="formula">
+            <h3>Productivity Rate</h3>
+            <span class="equation">Productivity = Output / Input</span>
+            <p><strong>Meaning:</strong> Measures how much deliverable output is produced per unit of effort or time.</p>
+            <p><strong>Use:</strong> Resource planning, benchmarking, and operational improvement.</p>
+          </article>
+          <article class="formula">
+            <h3>Planned Resource Utilization</h3>
+            <span class="equation">Utilization % = (Actual Time Used / Available Time) × 100</span>
+            <p><strong>Meaning:</strong> Indicates how fully a resource is being used.</p>
+            <p><strong>Use:</strong> Capacity planning and workload balancing.</p>
+          </article>
+          <article class="formula">
+            <h3>Effort-Based Duration Estimate</h3>
+            <span class="equation">Duration = Total Effort / Number of Resources</span>
+            <p><strong>Meaning:</strong> Estimates task duration based on required work and available staffing.</p>
+            <p><strong>Use:</strong> Quick planning approximation, assuming work can be divided efficiently.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="quality" class="domain">
+      <div class="domain-card">
+        <div class="domain-header">
+          <div>
+            <h2>Quality Management</h2>
+            <p>These formulas support defect tracking, process capability, and the economics of quality.</p>
+          </div>
+        </div>
+        <div class="formula-grid">
+          <article class="formula">
+            <h3>Cost of Quality (CoQ)</h3>
+            <span class="equation">CoQ = Cost of Conformance + Cost of Nonconformance</span>
+            <p><strong>Meaning:</strong> Represents the total cost of preventing, detecting, and correcting poor quality.</p>
+            <p><strong>Use:</strong> Balancing prevention investment against failure costs.</p>
+          </article>
+          <article class="formula">
+            <h3>Defect Density</h3>
+            <span class="equation">Defect Density = Number of Defects / Size of Deliverable</span>
+            <p><strong>Meaning:</strong> Measures defects relative to the size of what was produced.</p>
+            <p><strong>Use:</strong> Software, engineering, and quality benchmarking contexts.</p>
+          </article>
+          <article class="formula">
+            <h3>Process Yield</h3>
+            <span class="equation">Yield % = (Good Units / Total Units) × 100</span>
+            <p><strong>Meaning:</strong> Shows the percentage of outputs that meet requirements.</p>
+            <p><strong>Use:</strong> Evaluating process consistency and quality performance.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="communications" class="domain">
+      <div class="domain-card">
+        <div class="domain-header">
+          <div>
+            <h2>Communications Management</h2>
+            <p>The classic project communications formula estimates possible communication channels among stakeholders or team members.</p>
+          </div>
+        </div>
+        <div class="formula-grid">
+          <article class="formula">
+            <h3>Communication Channels</h3>
+            <span class="equation">Channels = n(n &#8211; 1) / 2</span>
+            <p><strong>Meaning:</strong> Calculates the number of possible one-to-one communication paths in a group of size <strong>n</strong>.</p>
+            <p><strong>Use:</strong> Shows how communication complexity increases as teams grow.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="procurement" class="domain">
+      <div class="domain-card">
+        <div class="domain-header">
+          <div>
+            <h2>Procurement Management</h2>
+            <p>These formulas are commonly used in buy-versus-build and contract-related analysis.</p>
+          </div>
+        </div>
+        <div class="formula-grid">
+          <article class="formula">
+            <h3>Point of Total Assumption (PTA)</h3>
+            <span class="equation">PTA = ((Ceiling Price &#8211; Target Price) / Buyer&#8217;s Share Ratio) + Target Cost</span>
+            <p><strong>Meaning:</strong> In certain incentive contracts, this identifies the cost point where the seller begins assuming all additional costs.</p>
+            <p><strong>Use:</strong> Contract risk analysis in procurement-heavy environments.</p>
+          </article>
+          <article class="formula">
+            <h3>Make-or-Buy Comparison</h3>
+            <span class="equation">Choose the Option with the Lower Total Relevant Cost</span>
+            <p><strong>Meaning:</strong> Compares internal production cost with external procurement cost.</p>
+            <p><strong>Use:</strong> Vendor decision-making and sourcing strategy.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="risk" class="domain">
+      <div class="domain-card">
+        <div class="domain-header">
+          <div>
+            <h2>Risk Management</h2>
+            <p>These formulas help quantify uncertainty and support contingency thinking.</p>
+          </div>
+        </div>
+        <div class="formula-grid">
+          <article class="formula">
+            <h3>Expected Monetary Value (EMV)</h3>
+            <span class="equation">EMV = Probability × Impact</span>
+            <p><strong>Meaning:</strong> Calculates the average expected financial effect of a risk event.</p>
+            <p><strong>Use:</strong> Risk prioritization, contingency reserves, and decision tree analysis.</p>
+          </article>
+          <article class="formula">
+            <h3>Risk Exposure</h3>
+            <span class="equation">Risk Exposure = Probability × Loss</span>
+            <p><strong>Meaning:</strong> Similar to EMV, often used more generally to express the size of a threat.</p>
+            <p><strong>Use:</strong> Ranking risks by severity and estimating financial significance.</p>
+          </article>
+          <article class="formula">
+            <h3>Decision Tree Expected Value</h3>
+            <span class="equation">Expected Value = Σ (Outcome Value × Outcome Probability)</span>
+            <p><strong>Meaning:</strong> Aggregates weighted outcomes across decision branches.</p>
+            <p><strong>Use:</strong> Structured decision analysis under uncertainty.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap small">
+    <p>This reference page focuses on the formulas most commonly encountered in project management training, planning, and control work. In practice, organizations often adapt or supplement these with internal metrics, agile flow measures, service delivery KPIs, and portfolio-level financial models.</p>
+  </footer>
+<atw-footer></atw-footer>
+</div>
+</body>
+</html>

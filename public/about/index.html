@@ -1,0 +1,668 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About | All These Worlds</title>
+  <meta
+    name="description"
+    content="Learn about Jacob, the purpose of All These Worlds, and the interests behind the site: digital transformation, technology, science, space, leadership, and systems thinking."
+  />
+  <meta
+    name="keywords"
+    content="about Jacob, All These Worlds, digital transformation, systems thinking, project management, cybersecurity, astrophysics, leadership, technology"
+  />
+  <meta name="author" content="Jacob" />
+  <link rel="canonical" href="/about/" />
+
+  <style>
+    :root {
+      --bg: #0a0d1f;
+      --bg-deep: #070a16;
+      --panel: rgba(17, 22, 58, 0.72);
+      --panel-border: rgba(155, 183, 255, 0.18);
+      --text: #e8ecff;
+      --muted: #b8c2f2;
+      --heading: #dbe4ff;
+      --accent: #7db4ff;
+      --accent-2: #6ef2d0;
+      --shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+      --maxw: 1120px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 700px at 10% -10%, rgba(58, 160, 255, 0.20), transparent 50%),
+        radial-gradient(1000px 600px at 120% 10%, rgba(29, 209, 161, 0.14), transparent 50%),
+        radial-gradient(900px 500px at 50% 120%, rgba(155, 120, 255, 0.12), transparent 45%),
+        linear-gradient(180deg, #0f1533, #0b0f25 45%, #0a0d1f 100%);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::before {
+      background-image:
+        radial-gradient(2px 2px at 10% 20%, rgba(255,255,255,.7), transparent 55%),
+        radial-gradient(1.5px 1.5px at 25% 80%, rgba(255,255,255,.55), transparent 55%),
+        radial-gradient(2px 2px at 40% 35%, rgba(255,255,255,.45), transparent 55%),
+        radial-gradient(1.5px 1.5px at 55% 70%, rgba(255,255,255,.6), transparent 55%),
+        radial-gradient(2px 2px at 70% 15%, rgba(255,255,255,.5), transparent 55%),
+        radial-gradient(1.5px 1.5px at 82% 45%, rgba(255,255,255,.55), transparent 55%),
+        radial-gradient(2px 2px at 92% 78%, rgba(255,255,255,.45), transparent 55%);
+      opacity: 0.55;
+      animation: drift 18s linear infinite alternate;
+    }
+
+    body::after {
+      background:
+        radial-gradient(circle at center, rgba(125, 180, 255, 0.06), transparent 35%);
+      filter: blur(18px);
+      animation: pulse 10s ease-in-out infinite;
+    }
+
+    @keyframes drift {
+      from { transform: translateY(0px); }
+      to   { transform: translateY(-14px); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.5; transform: scale(1); }
+      50%      { opacity: 0.85; transform: scale(1.04); }
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #a8cdff;
+      text-decoration: underline;
+    }
+
+    .site-wrap {
+      position: relative;
+      z-index: 1;
+    }
+
+    .container {
+      width: min(var(--maxw), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(14px);
+      background: rgba(8, 12, 28, 0.58);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .topbar-inner {
+      width: min(var(--maxw), calc(100% - 32px));
+      margin: 0 auto;
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--heading);
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      font-size: 0.96rem;
+    }
+
+    .nav a {
+      color: var(--muted);
+    }
+
+    .nav a:hover {
+      color: var(--heading);
+      text-decoration: none;
+    }
+
+    .hero {
+      min-height: 78vh;
+      display: flex;
+      align-items: center;
+      padding: 72px 0 48px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 16px;
+      padding: 7px 12px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #d9faff;
+      background: rgba(110, 242, 208, 0.10);
+      border: 1px solid rgba(110, 242, 208, 0.22);
+      border-radius: 999px;
+    }
+
+    h1 {
+      margin: 0 0 18px;
+      font-size: clamp(2.5rem, 5vw, 4.9rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--heading);
+    }
+
+    .hero p {
+      margin: 0 0 24px;
+      font-size: 1.08rem;
+      color: var(--muted);
+      max-width: 720px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 18px;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+      text-decoration: none;
+    }
+
+    .button-primary {
+      color: #081126;
+      background: linear-gradient(135deg, #92c2ff, #6ef2d0);
+      box-shadow: 0 10px 30px rgba(74, 173, 255, 0.24);
+    }
+
+    .button-secondary {
+      color: var(--heading);
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .orbital-panel {
+      position: relative;
+      min-height: 380px;
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at center, rgba(125,180,255,0.15), rgba(125,180,255,0.02) 45%, transparent 56%),
+        linear-gradient(180deg, rgba(16, 22, 55, 0.8), rgba(10, 14, 34, 0.7));
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+    }
+
+    .orbit,
+    .orbit::before,
+    .orbit::after {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(166, 198, 255, 0.12);
+      content: "";
+    }
+
+    .orbit.one {
+      inset: 58px;
+      animation: spin 24s linear infinite;
+    }
+
+    .orbit.two {
+      inset: 102px;
+      animation: spin 16s linear infinite reverse;
+    }
+
+    .orbit.three {
+      inset: 146px;
+      animation: spin 12s linear infinite;
+    }
+
+    .orbit::before {
+      width: 10px;
+      height: 10px;
+      background: #9dd0ff;
+      top: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 0 20px rgba(157, 208, 255, 0.8);
+      border: none;
+    }
+
+    .core {
+      position: absolute;
+      inset: 50%;
+      width: 120px;
+      height: 120px;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 30% 30%, #dff4ff, #7db4ff 32%, #2c4f99 68%, #15244f 100%);
+      box-shadow:
+        0 0 40px rgba(125, 180, 255, 0.45),
+        0 0 90px rgba(110, 242, 208, 0.12);
+    }
+
+    .core-label {
+      position: absolute;
+      left: 50%;
+      bottom: 26px;
+      transform: translateX(-50%);
+      width: calc(100% - 40px);
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    section {
+      padding: 22px 0;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--panel-border);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: clamp(1.55rem, 3vw, 2.2rem);
+      line-height: 1.15;
+      color: var(--heading);
+    }
+
+    h3 {
+      margin: 0 0 10px;
+      font-size: 1.15rem;
+      color: var(--heading);
+    }
+
+    p {
+      margin: 0 0 14px;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .interests {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 12px;
+    }
+
+    .interest-card {
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .interest-card p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 0.97rem;
+    }
+
+    .quote-block {
+      padding: 30px;
+      border-radius: 28px;
+      background:
+        linear-gradient(135deg, rgba(125,180,255,0.10), rgba(110,242,208,0.08)),
+        rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .quote-block p {
+      margin: 0;
+      font-size: clamp(1.15rem, 2.3vw, 1.6rem);
+      color: var(--heading);
+    }
+
+    .footer {
+      padding: 40px 0 60px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.95rem;
+    }
+
+    .footer a {
+      color: #a8cdff;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .grid-2,
+      .interests {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 52px;
+      }
+
+      .orbital-panel {
+        min-height: 320px;
+      }
+
+      .topbar-inner {
+        padding: 10px 0;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .panel {
+        padding: 22px;
+        border-radius: 20px;
+      }
+
+      .nav {
+        gap: 12px;
+        font-size: 0.9rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "About | All These Worlds",
+    "url": "/about/",
+    "description": "An about page for All These Worlds describing Jacob, the site, and its core interests in technology, science, systems, and the future."
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Jacob",
+    "url": "",
+    "jobTitle": "Technology Executive, Researcher, and Writer",
+    "description": "Jacob explores digital transformation, leadership, cybersecurity, systems thinking, space, science, and the future of organizations and civilization."
+  }
+  </script>
+<link rel="icon" href="/wp-content/uploads/2025/11/cropped-0_3-25456-no-background.png">
+<script src="/assets/site.js" defer></script>
+</head>
+<body>
+<div class="wp-site-blocks">
+<atw-header></atw-header>
+<div class="site-wrap">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="brand">All These Worlds</div>
+        <nav class="nav" aria-label="Section navigation">
+          <a href="#about-me">About Me</a>
+          <a href="#about-site">About the Site</a>
+          <a href="#interests">Interests</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div>
+            <span class="eyebrow">Technology • Systems • Science • The Future</span>
+            <h1>About All These Worlds</h1>
+            <p>
+              This site is a place to explore ideas that matter: how organizations change,
+              how technology reshapes work and society, how complex systems behave, and how
+              science expands the boundaries of what humanity can become.
+            </p>
+            <p>
+              It brings together professional insight, intellectual curiosity, and a long-term
+              interest in the structures that shape companies, civilizations, and the future.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#about-me">Read More</a>
+              <a class="button button-secondary" href="/contact/">Contact</a>
+            </div>
+          </div>
+
+          <div class="orbital-panel" aria-hidden="true">
+            <div class="orbit one"></div>
+            <div class="orbit two"></div>
+            <div class="orbit three"></div>
+            <div class="core"></div>
+            <div class="core-label">A site about connected worlds: organizations, ideas, systems, and space.</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about-me">
+        <div class="container">
+          <div class="grid-2">
+            <div class="panel">
+              <h2>About Me</h2>
+              <p>
+                My name is Jacob. I work at the intersection of leadership, technology,
+                digital transformation, and complex execution. Much of my professional life
+                has centered on helping organizations navigate change, improve operations,
+                deliver client outcomes, and think more clearly about risk, scale, and strategy.
+              </p>
+              <p>
+                I am especially interested in the way people, systems, and incentives interact.
+                That includes how organizations adapt to digital change, how leaders influence
+                readiness and performance, and how cultures shape the success or failure of
+                transformation efforts.
+              </p>
+              <p class="muted">
+                Beyond work, I am drawn to the larger questions: science, space, human progress,
+                organizational coherence, and the future of civilization.
+              </p>
+            </div>
+
+            <div class="panel">
+              <h2>What Drives My Thinking</h2>
+              <p>
+                I am less interested in surface explanations than in underlying structure.
+                Why do some systems become coherent while others fragment? Why do some organizations
+                execute while others stall? Why does technology create leverage in one context and
+                chaos in another?
+              </p>
+              <p>
+                Those questions sit behind much of what I write here. This site is not only a
+                collection of topics. It is an attempt to connect them: leadership, science,
+                digital transformation, project management, cybersecurity, and the broader future
+                of human systems.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about-site">
+        <div class="container">
+          <div class="panel">
+            <h2>About the Site</h2>
+            <p>
+              <strong>All These Worlds</strong> is a place for ideas, tools, and exploration.
+              Some pages are practical and focused on execution: project management, digital
+              transformation, cybersecurity, and business systems. Other pages are more expansive:
+              astrophysics, spaceflight, science, and the long arc of humanity’s future.
+            </p>
+            <p>
+              The unifying theme is that all of these domains are connected. Organizations are
+              systems. Economies are systems. Technologies are systems. Civilizations are systems.
+              Even the physical universe presents itself through structure, scale, emergence,
+              and constraint. This site exists to think seriously about those connections.
+            </p>
+            <p class="muted">
+              In practical terms, this means the site may include articles, essays, frameworks,
+              educational pages, reference material, and experiments in thinking across multiple domains.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="interests">
+        <div class="container">
+          <div class="panel">
+            <h2>Core Interests</h2>
+            <div class="interests">
+              <div class="interest-card">
+                <h3>Digital Transformation</h3>
+                <p>
+                  How organizations respond to change, adopt technology, and build the operational
+                  capacity to execute in a shifting environment.
+                </p>
+              </div>
+
+              <div class="interest-card">
+                <h3>Leadership and Organizations</h3>
+                <p>
+                  The role of leadership behavior, culture, structure, and incentives in shaping
+                  readiness, trust, performance, and long-term coherence.
+                </p>
+              </div>
+
+              <div class="interest-card">
+                <h3>Cybersecurity and Risk</h3>
+                <p>
+                  How modern institutions protect information, manage uncertainty, and create systems
+                  resilient enough to endure stress and failure.
+                </p>
+              </div>
+
+              <div class="interest-card">
+                <h3>Project Management and Execution</h3>
+                <p>
+                  Turning ideas into coordinated action through planning, decision-making,
+                  accountability, prioritization, and disciplined delivery.
+                </p>
+              </div>
+
+              <div class="interest-card">
+                <h3>Astrophysics and Space</h3>
+                <p>
+                  The scale of the universe, the structure of reality, and the technological pathways
+                  that may eventually move humanity beyond Earth.
+                </p>
+              </div>
+
+              <div class="interest-card">
+                <h3>Systems Thinking</h3>
+                <p>
+                  Understanding how large, interdependent systems behave, evolve, break down,
+                  and sometimes produce outcomes nobody intended.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="container">
+          <div class="quote-block">
+            <p>
+              There are many worlds worth exploring: professional, intellectual, scientific, and human.
+              This site is an attempt to connect them.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="container">
+          <div class="panel">
+            <h2>Contact</h2>
+            <p>
+              If you are interested in digital transformation, strategy, technology, organizational
+              systems, science, or collaboration, feel free to connect through the contact page or
+              any linked professional profile on this site.
+            </p>
+            <p class="muted">
+              https://www.linkedin.com/in/jacob-hesse/
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      &copy; 2026 All These Worlds. All rights reserved.
+    </footer>
+  </div>
+<atw-footer></atw-footer>
+</div>
+</body>
+</html>

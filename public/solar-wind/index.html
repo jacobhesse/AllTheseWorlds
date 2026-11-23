@@ -1,0 +1,710 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Solar Wind: What It Is, How We Measure It, and Why It Matters</title>
+  <style>
+    :root{
+      --bg0:#070A12;
+      --bg1:#0B1630;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.08);
+      --stroke: rgba(255,255,255,.12);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.72);
+      --faint: rgba(255,255,255,.58);
+      --accent:#7EE7FF;
+      --accent2:#A7F3D0;
+      --warn:#FBBF24;
+      --danger:#FB7185;
+      --ok:#34D399;
+      --shadow: 0 18px 55px rgba(0,0,0,.45);
+      --radius: 18px;
+      --radius2: 26px;
+      --max: 1100px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(1000px 600px at 20% 10%, rgba(126,231,255,.18), transparent 60%),
+        radial-gradient(900px 700px at 85% 20%, rgba(167,243,208,.14), transparent 60%),
+        radial-gradient(900px 700px at 35% 90%, rgba(251,191,36,.08), transparent 60%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
+      line-height: 1.55;
+    }
+    a{color:var(--accent); text-decoration:none}
+    a:hover{text-decoration:underline}
+    header{
+      padding: 54px 22px 26px;
+    }
+    .wrap{max-width: var(--max); margin: 0 auto;}
+    .hero{
+      border: 1px solid var(--stroke);
+      background: linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      padding: 28px 26px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:
+        radial-gradient(500px 220px at 15% 15%, rgba(126,231,255,.18), transparent 70%),
+        radial-gradient(520px 240px at 88% 40%, rgba(167,243,208,.14), transparent 70%);
+      pointer-events:none;
+      opacity:.9;
+    }
+    .hero > *{position:relative; z-index:1;}
+    h1{
+      margin:0 0 10px;
+      font-size: clamp(28px, 4vw, 44px);
+      letter-spacing: -0.02em;
+    }
+    .sub{
+      margin:0;
+      color: var(--muted);
+      font-size: clamp(15px, 1.7vw, 18px);
+      max-width: 78ch;
+    }
+    .pillrow{display:flex; flex-wrap:wrap; gap:10px; margin-top:16px;}
+    .pill{
+      border: 1px solid var(--stroke);
+      background: rgba(0,0,0,.18);
+      padding: 8px 10px;
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    main{padding: 18px 22px 70px;}
+    .grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 16px;
+      align-items: start;
+      margin-top: 16px;
+    }
+    @media (max-width: 900px){
+      .grid{grid-template-columns:1fr}
+    }
+    section{
+      border: 1px solid var(--stroke);
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 18px 18px 16px;
+    }
+    section h2{
+      margin: 0 0 10px;
+      font-size: 18px;
+      letter-spacing: .01em;
+    }
+    .kpi{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 10px;
+    }
+    @media (max-width: 700px){
+      .kpi{grid-template-columns:1fr}
+    }
+    .k{
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.05);
+      border-radius: 14px;
+      padding: 12px 12px 10px;
+    }
+    .k .label{color: var(--faint); font-size: 12px;}
+    .k .value{font-family: var(--mono); font-size: 15px; margin-top:6px;}
+    .k .note{color: var(--muted); font-size: 12.5px; margin-top:6px;}
+    .cards{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 10px;
+    }
+    @media (max-width: 700px){ .cards{grid-template-columns:1fr} }
+    .card{
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.05);
+      border-radius: 16px;
+      padding: 14px;
+    }
+    .card h3{
+      margin:0 0 6px;
+      font-size: 14px;
+      letter-spacing: .02em;
+    }
+    .card p{margin:0; color: var(--muted); font-size: 13.5px;}
+    .tagrow{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;}
+    .tag{
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--muted);
+      border: 1px solid var(--stroke);
+      background: rgba(0,0,0,.15);
+      padding: 6px 8px;
+      border-radius: 999px;
+    }
+    .timeline{
+      margin-top: 10px;
+      display:grid;
+      gap: 10px;
+    }
+    .titem{
+      display:grid;
+      grid-template-columns: 140px 1fr;
+      gap: 12px;
+      padding: 12px;
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      border-radius: 16px;
+    }
+    @media (max-width: 700px){
+      .titem{grid-template-columns:1fr}
+    }
+    .when{
+      font-family: var(--mono);
+      color: var(--accent2);
+      font-size: 12.5px;
+    }
+    .what{color: var(--muted); font-size: 13.5px;}
+    .tablewrap{
+      overflow:auto;
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.03);
+      border-radius: 16px;
+      margin-top: 10px;
+    }
+    table{
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 840px;
+    }
+    th, td{
+      padding: 12px 12px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      vertical-align: top;
+      font-size: 13.5px;
+      color: var(--muted);
+    }
+    th{
+      text-align:left;
+      color: rgba(255,255,255,.86);
+      font-size: 12px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      background: rgba(0,0,0,.16);
+    }
+    .badge{
+      display:inline-block;
+      font-family: var(--mono);
+      font-size: 12px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--stroke);
+      background: rgba(0,0,0,.14);
+      color: rgba(255,255,255,.82);
+      margin-right: 8px;
+      margin-bottom: 6px;
+      white-space:nowrap;
+    }
+    details{
+      margin-top: 10px;
+      border: 1px solid var(--stroke);
+      border-radius: 16px;
+      background: rgba(255,255,255,.04);
+      overflow:hidden;
+    }
+    summary{
+      cursor:pointer;
+      padding: 12px 14px;
+      list-style:none;
+      font-size: 13.5px;
+      color: rgba(255,255,255,.86);
+    }
+    summary::-webkit-details-marker{display:none}
+    details .content{padding: 0 14px 14px; color: var(--muted); font-size: 13.5px;}
+    footer{
+      padding: 0 22px 50px;
+      color: var(--muted);
+    }
+    .refs{
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.04);
+      border-radius: var(--radius);
+      padding: 16px 18px;
+    }
+    .refs h2{margin:0 0 10px; font-size: 16px;}
+    .refs ul{margin:0; padding-left: 18px;}
+    .refs li{margin: 8px 0;}
+  </style>
+<link rel="icon" href="/wp-content/uploads/2025/11/cropped-0_3-25456-no-background.png">
+<script src="/assets/site.js" defer></script>
+</head>
+<body>
+<div class="wp-site-blocks">
+<atw-header></atw-header>
+<header>
+    <div class="wrap">
+      <div class="hero">
+        <h1>Solar Wind</h1>
+        <p class="sub">
+          A continuous outflow of charged particles and magnetic field from the Sun that shapes the heliosphere,
+          drives space weather, and sets the baseline environment every spacecraft must survive.
+        </p>
+        <div class="pillrow">
+          <span class="pill">Plasma + magnetic field</span>
+          <span class="pill">Measured in situ (L1, heliocentric orbits)</span>
+          <span class="pill">Varies: minutes → solar cycle → stellar evolution</span>
+          <span class="pill">Impacts: spacecraft charging • radiation • geomagnetic storms</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+
+      <!-- What it is -->
+      <div class="grid">
+        <section>
+          <h2>1) What the solar wind is</h2>
+          <p>
+            The solar wind is a <strong>collisionless plasma</strong> (mostly protons and electrons, with a smaller fraction
+            of alpha particles and heavier ions) that escapes the Sun’s hot corona and streams outward, carrying with it
+            the Sun’s magnetic field (the interplanetary magnetic field, IMF).
+          </p>
+
+          <div class="kpi">
+            <div class="k">
+              <div class="label">Typical speed at ~1 AU</div>
+              <div class="value">~400 km/s (slow) • ~500–800 km/s (fast streams)</div>
+              <div class="note">Fast wind often emerges from coronal holes.</div>
+            </div>
+            <div class="k">
+              <div class="label">Typical number density at ~1 AU</div>
+              <div class="value">~3–10 particles/cm³</div>
+              <div class="note">Highly variable during transient events.</div>
+            </div>
+            <div class="k">
+              <div class="label">IMF significance</div>
+              <div class="value">Bz (southward) → stronger coupling to Earth</div>
+              <div class="note">Southward IMF enables magnetic reconnection.</div>
+            </div>
+          </div>
+
+          <details>
+            <summary>Key idea: “Wind” is not just particles</summary>
+            <div class="content">
+              <p>
+                Space weather is usually controlled by the <strong>combination</strong> of solar wind speed, density, temperature,
+                and especially the IMF orientation. Two solar wind streams with identical particle speeds can produce very different
+                Earth impacts if the IMF differs (particularly the Bz component).
+              </p>
+            </div>
+          </details>
+        </section>
+
+        <section>
+          <h2>Baseline numbers (near Earth)</h2>
+          <p>
+            Operational and educational references commonly describe near-Earth solar wind as slow wind around
+            <span class="badge">~400 km/s</span> with densities on the order of
+            <span class="badge">~3–10 cm⁻³</span>, and faster wind associated with coronal holes
+            <span class="badge">~500–800 km/s</span>.
+          </p>
+          <div class="tagrow">
+            <span class="tag">speed</span>
+            <span class="tag">density</span>
+            <span class="tag">temperature</span>
+            <span class="tag">IMF (Bx, By, Bz)</span>
+            <span class="tag">composition</span>
+          </div>
+
+          <details>
+            <summary>Where it comes from on the Sun</summary>
+            <div class="content">
+              <p>
+                The slow wind is often associated with complex magnetic topology and the heliospheric current sheet,
+                while the fast wind is more strongly linked to open-field regions such as coronal holes. The details of how
+                the corona is heated and how particles are accelerated remain active research areas.
+              </p>
+            </div>
+          </details>
+        </section>
+      </div>
+
+      <!-- How measured -->
+      <section style="margin-top:16px;">
+        <h2>2) How it is measured</h2>
+        <p>
+          Solar wind measurement is mostly <strong>in situ</strong>: put instruments in the flow and directly sample particles and fields.
+          The workhorse quantities are particle velocity distributions (to derive bulk speed, density, temperature, composition) and
+          magnetic field vectors (to derive IMF strength and orientation).
+        </p>
+
+        <div class="cards">
+          <div class="card">
+            <h3>Particle instruments (plasma)</h3>
+            <p>
+              Faraday cups and electrostatic analyzers measure charged particle flux and energy/angle distributions to infer
+              density, velocity, temperature, and sometimes composition (ions, electrons).
+            </p>
+            <div class="tagrow">
+              <span class="tag">Faraday cup</span>
+              <span class="tag">ion/electron analyzers</span>
+              <span class="tag">VDFs</span>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Magnetometers (fields)</h3>
+            <p>
+              Fluxgate magnetometers measure the vector IMF. For Earth impacts, the Bz component is especially diagnostic
+              because southward Bz enhances coupling into the magnetosphere.
+            </p>
+            <div class="tagrow">
+              <span class="tag">Bx</span><span class="tag">By</span><span class="tag">Bz</span><span class="tag">Bt</span>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Where we measure it (L1 monitors)</h3>
+            <p>
+              Space weather operations commonly use spacecraft near the Sun–Earth L1 point (e.g., DSCOVR, ACE) to provide
+              upstream solar wind and IMF observations before the flow reaches Earth.
+            </p>
+            <div class="tagrow">
+              <span class="tag">L1</span><span class="tag">~40–60 min lead time</span><span class="tag">real-time ops</span>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Close-in probes &#038; heliophysics missions</h3>
+            <p>
+              Missions such as Solar Orbiter (SWA suite) measure the 3D distributions of ions and electrons and track how
+              solar wind properties evolve with distance and solar latitude.
+            </p>
+            <div class="tagrow">
+              <span class="tag">0.28–1.4 AU</span><span class="tag">composition</span><span class="tag">3D VDFs</span>
+            </div>
+          </div>
+        </div>
+
+        <details>
+          <summary>Operational data: what “real-time solar wind” usually plots</summary>
+          <div class="content">
+            <p>
+              Space weather centers typically provide time series for solar wind speed, density, temperature, and IMF components
+              (Bt and Bz). These are the parameters that best predict geomagnetic activity (e.g., Kp) when combined with context
+              about solar eruptions and stream interactions.
+            </p>
+          </div>
+        </details>
+      </section>
+
+      <!-- How it changes -->
+      <section style="margin-top:16px;">
+        <h2>3) How it changes over time</h2>
+        <p>
+          Solar wind variability is multi-scale: some changes are driven by rotating solar structure, others by transient eruptions,
+          and others by the Sun’s long-term magnetic evolution.
+        </p>
+
+        <div class="timeline">
+          <div class="titem">
+            <div class="when">Minutes → hours</div>
+            <div class="what">
+              Turbulence and discontinuities in the plasma and IMF; abrupt changes in Bz can rapidly change Earth coupling.
+            </div>
+          </div>
+          <div class="titem">
+            <div class="when">Days</div>
+            <div class="what">
+              Co-rotating interaction regions (CIRs) and recurrent high-speed streams from coronal holes can return every
+              ~27 days as the Sun rotates.
+            </div>
+          </div>
+          <div class="titem">
+            <div class="when">Hours → days (transients)</div>
+            <div class="what">
+              Coronal mass ejections (CMEs) and interplanetary shocks can dramatically raise speed, density, and magnetic field strength,
+              elevating storm potential—especially when Bz turns strongly southward.
+            </div>
+          </div>
+          <div class="titem">
+            <div class="when">~11-year solar cycle</div>
+            <div class="what">
+              The Sun’s global magnetic field and coronal structure evolve, changing how much fast wind is present and how often major eruptions occur.
+            </div>
+          </div>
+          <div class="titem">
+            <div class="when">Millions–billions of years</div>
+            <div class="what">
+              Solar-like stellar winds evolve with stellar rotation and magnetic activity; the young Sun likely drove a stronger, more variable wind.
+            </div>
+          </div>
+        </div>
+
+        <details>
+          <summary>Two practical “regimes”: ambient wind vs. disturbed wind</summary>
+          <div class="content">
+            <p>
+              For engineering and operations, it’s often useful to separate (1) <strong>ambient</strong> wind (slow/fast streams, CIRs)
+              from (2) <strong>disturbed</strong> wind (CME-driven shocks and magnetic clouds). Both matter, but the biggest hazards
+              often come from disturbed intervals where magnetic fields intensify and Bz becomes strongly southward.
+            </p>
+          </div>
+        </details>
+      </section>
+
+      <!-- Impacts -->
+      <div class="grid" style="margin-top:16px;">
+        <section>
+          <h2>4) How it impacts spacecraft</h2>
+          <p>
+            Spacecraft don’t “feel wind” like an airplane. The dominant effects are electromagnetic and radiative:
+            plasma charging, radiation dose enhancements, single-event effects, surface erosion, and operational disruptions
+            tied to storms and shocks.
+          </p>
+
+          <div class="cards">
+            <div class="card">
+              <h3>Surface &#038; internal charging</h3>
+              <p>
+                Changing plasma conditions and energetic particle environments can create differential charging on surfaces and
+                internal dielectrics, increasing the risk of electrostatic discharge (ESD).
+              </p>
+            </div>
+            <div class="card">
+              <h3>Radiation environment shifts</h3>
+              <p>
+                Solar energetic particle events and geomagnetic changes can increase dose rates, disrupt sensors, and drive
+                safe-mode events or payload shutdowns.
+              </p>
+            </div>
+            <div class="card">
+              <h3>Drag changes in LEO</h3>
+              <p>
+                Storm-time heating of the upper atmosphere increases density, raising drag and changing orbit prediction errors.
+              </p>
+            </div>
+            <div class="card">
+              <h3>Communications &#038; navigation impacts</h3>
+              <p>
+                Ionospheric disturbances can degrade GNSS accuracy and radio propagation (especially at high latitudes).
+              </p>
+            </div>
+          </div>
+
+          <details>
+            <summary>Engineering translation: what teams watch</summary>
+            <div class="content">
+              <p>
+                For operations, teams typically map solar wind drivers (speed, density, IMF Bz) to “watch items” such as
+                increased anomaly probability, drag forecasting uncertainty, and communication degradations—then decide
+                whether to delay maneuvers, alter attitude profiles, or modify payload timelines.
+              </p>
+            </div>
+          </details>
+        </section>
+
+        <section>
+          <h2>5) How it impacts Earth</h2>
+          <p>
+            Earth is protected by its magnetosphere, but solar wind energy can couple into it. When coupling is strong,
+            geomagnetic storms intensify currents in near-Earth space and in the ground.
+          </p>
+
+          <div class="cards">
+            <div class="card">
+              <h3>Aurora</h3>
+              <p>
+                Particle precipitation into the upper atmosphere produces auroral displays, typically enhanced during storms.
+              </p>
+            </div>
+            <div class="card">
+              <h3>Geomagnetically induced currents (GICs)</h3>
+              <p>
+                Rapid magnetic field changes can drive currents in long conductors, affecting power grids and pipelines.
+              </p>
+            </div>
+            <div class="card">
+              <h3>Space weather indices</h3>
+              <p>
+                Indices such as Kp summarize geomagnetic disturbance; they correlate with upstream solar wind and IMF conditions.
+              </p>
+            </div>
+            <div class="card">
+              <h3>Atmospheric expansion</h3>
+              <p>
+                Storm-time energy deposition heats and expands the thermosphere, changing satellite drag and reentry timelines.
+              </p>
+            </div>
+          </div>
+
+          <details>
+            <summary>What “makes a storm” in one sentence</summary>
+            <div class="content">
+              <p>
+                Strong storms typically require a combination of enhanced solar wind energy input and magnetic connectivity—often
+                associated with fast flows and/or shocks plus a sustained southward IMF Bz that enables reconnection.
+              </p>
+            </div>
+          </details>
+        </section>
+      </div>
+
+      <!-- Comparison to other stars -->
+      <section style="margin-top:16px;">
+        <h2>6) Solar wind vs. “solar wind” from other stars (stellar winds)</h2>
+        <p>
+          For solar-like stars, we expect analogous outflows: magnetized plasma winds that form <strong>astrospheres</strong> (the stellar equivalent
+          of the heliosphere). Direct detection is hard because these winds are tenuous, so many constraints are indirect
+          (e.g., via astrospheric Lyman-α absorption) and via stellar-activity-based models.
+        </p>
+
+        <div class="tablewrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Star type / context</th>
+                <th>Expected wind character</th>
+                <th>Why it differs from the Sun</th>
+                <th>Implications for planets &#038; spacecraft</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Solar analogs (Sun-like, mature)</strong></td>
+                <td>
+                  “Solar-like” magnetized plasma winds; mass-loss rates inferred indirectly from astrospheres.
+                </td>
+                <td>
+                  Similar dynamo physics; differences tied to rotation rate and magnetic field structure.
+                </td>
+                <td>
+                  Comparable baseline space-weather environment; impacts scale with wind strength and IMF variability.
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Young solar-like stars</strong></td>
+                <td>
+                  Likely stronger, more variable winds, with more frequent eruptive events.
+                </td>
+                <td>
+                  Faster rotation and higher magnetic activity in youth can drive stronger wind and stronger high-energy output.
+                </td>
+                <td>
+                  Greater atmospheric erosion pressure on planets; harsher charging/radiation regimes for any spacecraft.
+                </td>
+              </tr>
+              <tr>
+                <td><strong>M dwarfs (active)</strong></td>
+                <td>
+                  Potentially intense wind + magnetic environments; uncertainty is high and active behavior can dominate.
+                </td>
+                <td>
+                  Strong magnetic fields, frequent flaring for many M dwarfs; close-in habitable zones expose planets to harsher conditions.
+                </td>
+                <td>
+                  “Space weather” may be a primary habitability constraint; spacecraft would need robust shielding and fault tolerance.
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Hot, massive stars (O/B)</strong></td>
+                <td>
+                  Radiatively driven winds can be extremely strong compared to the Sun.
+                </td>
+                <td>
+                  Different driving mechanism (radiation pressure in lines) rather than solar-like coronal processes.
+                </td>
+                <td>
+                  Planets and spacecraft environments dominated by strong particle and UV fields; astrospheres can be very large.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <details>
+          <summary>How we know anything about stellar winds if we can’t “taste” them like the solar wind</summary>
+          <div class="content">
+            <p>
+              A key technique for solar-like stars uses <strong>astrospheric Lyα absorption</strong>, which is an indirect signature of a wind interacting
+              with the surrounding interstellar medium; the absorption strength can be used to estimate wind mass-loss rates.
+              Complementary approaches model wind strength based on stellar rotation, magnetism, and activity evolution.
+            </p>
+          </div>
+        </details>
+
+        <details>
+          <summary>Rule of thumb: “stellar wind strength” tends to track magnetic activity over stellar evolution</summary>
+          <div class="content">
+            <p>
+              Across solar-like stars, wind properties are linked to rotation and magnetic activity, which generally decline as stars age and spin down.
+              That means a “Sun at 500 million years” plausibly produced a more aggressive wind environment than today—useful context for both exoplanet
+              atmospheres and the early Earth.
+            </p>
+          </div>
+        </details>
+      </section>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="refs">
+        <h2>References (open web sources)</h2>
+        <ul>
+          <li>
+            NOAA SWPC — Solar wind overview and typical speeds (slow wind ~400 km/s; fast wind 500–800 km/s):
+            <a href="https://www.swpc.noaa.gov/phenomena/solar-wind" target="_blank" rel="noopener">swpc.noaa.gov/phenomena/solar-wind</a>
+          </li>
+          <li>
+            NOAA SWPC — Real-time solar wind plots (speed, density, temperature, IMF components):
+            <a href="https://www.swpc.noaa.gov/products/real-time-solar-wind" target="_blank" rel="noopener">swpc.noaa.gov/products/real-time-solar-wind</a>
+          </li>
+          <li>
+            NOAA SWPC — DSCOVR real-time solar wind description (Faraday cup + magnetometer):
+            <a href="https://www.swpc.noaa.gov/news/real-time-solar-wind-and-noaas-dscovr-satellite" target="_blank" rel="noopener">swpc.noaa.gov/news/…dscovr-satellite</a>
+          </li>
+          <li>
+            NASA Marshall Solar Physics — Solar wind variations and coronal origin:
+            <a href="https://solarscience.msfc.nasa.gov/SolarWind.shtml" target="_blank" rel="noopener">solarscience.msfc.nasa.gov/SolarWind.shtml</a>
+          </li>
+          <li>
+            ESA Science — Solar Orbiter instruments; SWA measures density, velocity, temperature, composition:
+            <a href="https://sci.esa.int/web/solar-orbiter/-/51217-instruments" target="_blank" rel="noopener">sci.esa.int/web/solar-orbiter/…</a>
+          </li>
+          <li>
+            Owen et al. (2020), <em>Astronomy &#038; Astrophysics</em> — Solar Orbiter Solar Wind Analyser (SWA) suite (instrument paper):
+            <a href="https://www.aanda.org/articles/aa/full_html/2020/10/aa37259-19/aa37259-19.html" target="_blank" rel="noopener">aanda.org/articles/aa/…</a>
+          </li>
+          <li>
+            Wood (2004), “Astrospheres and Solar-like Stellar Winds” (open access via PMC):
+            <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4841182/" target="_blank" rel="noopener">pmc.ncbi.nlm.nih.gov/articles/PMC4841182/</a>
+          </li>
+          <li>
+            Vidotto (2021), <em>Living Reviews in Solar Physics</em> — Long-term evolution of the solar wind:
+            <a href="https://link.springer.com/article/10.1007/s41116-021-00029-w" target="_blank" rel="noopener">springer.com/article/10.1007/…</a>
+          </li>
+          <li>
+            Saikia et al. (2020), <em>Astronomy &#038; Astrophysics</em> — Solar wind from a stellar perspective / wind properties across stars:
+            <a href="https://www.aanda.org/articles/aa/full_html/2020/03/aa37107-19/aa37107-19.html" target="_blank" rel="noopener">aanda.org/articles/aa/…</a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </footer>
+<atw-footer></atw-footer>
+</div>
+</body>
+</html>

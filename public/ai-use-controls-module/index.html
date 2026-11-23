@@ -1,0 +1,796 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Use Controls Module | Practical AI Policy &#038; Controls Kit for Small Organizations</title>
+  <meta name="description" content="Give employees clear AI use rules in one week or less. Editable AI policy, approved/restricted/prohibited use matrix, tool approval form, output review procedure, use case register, rollout materials, and response checklist." />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="Employees Are Already Using AI. Give Them Rules Before It Becomes a Problem." />
+  <meta property="og:description" content="A practical AI policy and controls kit for small organizations that need clear AI rules without creating a heavy governance program." />
+  <meta property="og:type" content="product" />
+  <meta property="og:image" content="/wp-content/uploads/2026/05/01_sales_page_hero_1600x900.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <style>
+    :root {
+      --bg-0: #070b1d;
+      --bg-1: #0b1028;
+      --bg-2: #0f1533;
+      --card: rgba(255,255,255,.075);
+      --card-strong: rgba(255,255,255,.115);
+      --line: rgba(255,255,255,.16);
+      --line-strong: rgba(255,255,255,.24);
+      --text: #f6f8ff;
+      --muted: #bac4dc;
+      --muted-2: #8f9bb8;
+      --blue: #3aa0ff;
+      --blue-2: #6bb8ff;
+      --green: #1dd1a1;
+      --green-2: #75ffd7;
+      --amber: #ffd166;
+      --red: #ff6b6b;
+      --shadow: 0 24px 80px rgba(0,0,0,.38);
+      --radius: 26px;
+      --radius-sm: 16px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      line-height: 1.55;
+      background:
+        radial-gradient(1200px 700px at 10% -10%, rgba(58,160,255,.22), transparent 52%),
+        radial-gradient(1000px 600px at 110% 0%, rgba(29,209,161,.16), transparent 48%),
+        linear-gradient(180deg, var(--bg-2), var(--bg-1) 48%, var(--bg-0) 100%);
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; height: auto; display: block; }
+    .site-shell { width: min(var(--max), calc(100% - 40px)); margin-inline: auto; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(18px);
+      background: rgba(7,11,29,.72);
+      border-bottom: 1px solid rgba(255,255,255,.10);
+    }
+    .topbar-inner {
+      min-height: 74px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: -.02em;
+    }
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--blue), var(--green));
+      box-shadow: 0 10px 30px rgba(58,160,255,.35);
+      display: grid;
+      place-items: center;
+      color: #061124;
+      font-weight: 900;
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .nav a:hover { color: #fff; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 48px;
+      padding: 13px 20px;
+      border-radius: 999px;
+      border: 1px solid var(--line-strong);
+      background: rgba(255,255,255,.08);
+      color: #fff;
+      font-weight: 750;
+      box-shadow: 0 12px 32px rgba(0,0,0,.18);
+      transition: transform .18s ease, background .18s ease, border-color .18s ease;
+    }
+    .btn:hover { transform: translateY(-2px); background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.34); }
+    .btn.primary {
+      color: #071225;
+      background: linear-gradient(135deg, var(--green), var(--blue-2));
+      border-color: transparent;
+      box-shadow: 0 18px 42px rgba(29,209,161,.22), 0 18px 48px rgba(58,160,255,.20);
+    }
+    .btn.primary:hover { background: linear-gradient(135deg, var(--green-2), var(--blue-2)); }
+
+    .hero {
+      padding: 74px 0 40px;
+      position: relative;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.02fr .98fr;
+      gap: 46px;
+      align-items: center;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(29,209,161,.11);
+      border: 1px solid rgba(29,209,161,.30);
+      color: #aaffea;
+      font-weight: 760;
+      font-size: 13px;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--green);
+      box-shadow: 0 0 18px var(--green);
+    }
+    h1, h2, h3 { margin: 0; line-height: 1.06; letter-spacing: -.045em; }
+    h1 {
+      margin-top: 22px;
+      font-size: clamp(44px, 6.2vw, 76px);
+      max-width: 900px;
+    }
+    .lead {
+      margin: 24px 0 0;
+      color: var(--muted);
+      font-size: clamp(18px, 2vw, 22px);
+      max-width: 700px;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+      margin-top: 32px;
+    }
+    .microcopy {
+      color: var(--muted-2);
+      font-size: 14px;
+      margin-top: 14px;
+    }
+    .hero-card {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.14);
+      box-shadow: var(--shadow);
+    }
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(180deg, transparent, rgba(7,11,29,.45));
+    }
+    .hero-card img { width: 100%; }
+    .hero-badge {
+      position: absolute;
+      left: 22px;
+      bottom: 22px;
+      z-index: 2;
+      display: grid;
+      gap: 4px;
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: rgba(7,11,29,.78);
+      border: 1px solid rgba(255,255,255,.16);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 14px 40px rgba(0,0,0,.28);
+    }
+    .hero-badge strong { font-size: 28px; line-height: 1; }
+    .hero-badge span { color: var(--muted); font-size: 13px; }
+
+    .trust-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 34px;
+    }
+    .trust-item {
+      padding: 14px 16px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      background: rgba(255,255,255,.055);
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .trust-item strong { display: block; color: #fff; font-size: 16px; margin-bottom: 2px; }
+
+    section { padding: 74px 0; }
+    .section-head {
+      max-width: 790px;
+      margin-bottom: 30px;
+    }
+    .section-kicker {
+      color: var(--green-2);
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+    h2 { font-size: clamp(34px, 4.2vw, 54px); }
+    .section-copy {
+      margin: 16px 0 0;
+      color: var(--muted);
+      font-size: 18px;
+      max-width: 820px;
+    }
+
+    .problem-panel {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      align-items: stretch;
+    }
+    .glass {
+      border: 1px solid rgba(255,255,255,.14);
+      background: linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.045));
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+      padding: 28px;
+    }
+    .glass.soft { box-shadow: none; background: rgba(255,255,255,.055); }
+    .warning-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #fff;
+      margin-bottom: 12px;
+      font-size: 22px;
+      font-weight: 830;
+      letter-spacing: -.02em;
+    }
+    .icon-dot {
+      width: 42px;
+      height: 42px;
+      flex: 0 0 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: rgba(255,209,102,.13);
+      border: 1px solid rgba(255,209,102,.28);
+      color: var(--amber);
+    }
+    .risk-list, .clean-list { list-style: none; padding: 0; margin: 18px 0 0; display: grid; gap: 12px; }
+    .risk-list li, .clean-list li {
+      display: grid;
+      grid-template-columns: 24px 1fr;
+      gap: 10px;
+      color: var(--muted);
+    }
+    .risk-list li::before {
+      content: "!";
+      width: 22px;
+      height: 22px;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+      background: rgba(255,107,107,.14);
+      color: #ffb4b4;
+      font-weight: 900;
+      font-size: 12px;
+      margin-top: 2px;
+    }
+    .clean-list li::before {
+      content: "✓";
+      width: 22px;
+      height: 22px;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+      background: rgba(29,209,161,.14);
+      color: var(--green-2);
+      font-weight: 900;
+      font-size: 12px;
+      margin-top: 2px;
+    }
+
+    .outcomes-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 28px;
+    }
+    .outcome-card {
+      padding: 22px;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,.13);
+      background: rgba(255,255,255,.055);
+    }
+    .outcome-card strong { display: block; margin-bottom: 8px; font-size: 18px; color: #fff; letter-spacing: -.02em; }
+    .outcome-card p { margin: 0; color: var(--muted); font-size: 15px; }
+
+    .kit-preview {
+      display: grid;
+      grid-template-columns: .95fr 1.05fr;
+      gap: 34px;
+      align-items: center;
+    }
+    .mockup-frame {
+      padding: 14px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      box-shadow: var(--shadow);
+    }
+    .mockup-frame img { border-radius: 18px; }
+    .component-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .component-item {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: 14px;
+      padding: 15px 16px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 18px;
+      background: rgba(255,255,255,.055);
+    }
+    .num {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      color: #071225;
+      background: linear-gradient(135deg, var(--green), var(--blue-2));
+      font-weight: 900;
+    }
+    .component-item strong { display: block; margin-bottom: 3px; letter-spacing: -.01em; }
+    .component-item span { color: var(--muted); font-size: 14px; }
+
+    .audience-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .audience-card {
+      padding: 22px;
+      border-radius: 22px;
+      background: rgba(255,255,255,.055);
+      border: 1px solid rgba(255,255,255,.12);
+    }
+    .audience-card h3 { font-size: 21px; margin-bottom: 9px; }
+    .audience-card p { color: var(--muted); margin: 0; font-size: 15px; }
+
+    .implementation {
+      display: grid;
+      grid-template-columns: 1fr .95fr;
+      gap: 32px;
+      align-items: center;
+    }
+    .timeline {
+      display: grid;
+      gap: 12px;
+    }
+    .day {
+      display: grid;
+      grid-template-columns: 84px 1fr;
+      gap: 14px;
+      padding: 15px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.055);
+      border: 1px solid rgba(255,255,255,.12);
+    }
+    .day-label {
+      color: var(--green-2);
+      font-weight: 850;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: .08em;
+      padding-top: 3px;
+    }
+    .day strong { display: block; margin-bottom: 2px; }
+    .day span { color: var(--muted); font-size: 14px; }
+
+    .feature-strip {
+      overflow: hidden;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.055);
+      box-shadow: var(--shadow);
+      margin-top: 34px;
+    }
+
+    .pricing-wrap {
+      display: grid;
+      grid-template-columns: .95fr 1.05fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+    .price-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 30px;
+      padding: 34px;
+      border: 1px solid rgba(29,209,161,.30);
+      background:
+        radial-gradient(700px 300px at 90% 0%, rgba(29,209,161,.22), transparent 52%),
+        linear-gradient(180deg, rgba(255,255,255,.11), rgba(255,255,255,.06));
+      box-shadow: var(--shadow);
+    }
+    .price { font-size: 66px; line-height: .9; letter-spacing: -.06em; font-weight: 900; margin: 18px 0 6px; }
+    .price small { font-size: 18px; color: var(--muted); letter-spacing: 0; font-weight: 650; }
+    .price-sub { color: var(--muted); margin: 0 0 24px; }
+    .buy-box {
+      border-radius: 22px;
+      padding: 22px;
+      background: rgba(7,11,29,.72);
+      border: 1px dashed rgba(255,255,255,.28);
+      color: var(--muted);
+    }
+    .buy-box code {
+      display: block;
+      margin-top: 10px;
+      color: #c9f9ff;
+      white-space: normal;
+      word-break: break-word;
+    }
+    .guarantee {
+      display: grid;
+      gap: 16px;
+    }
+    .mini-card {
+      padding: 20px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.055);
+      border: 1px solid rgba(255,255,255,.12);
+    }
+    .mini-card strong { display: block; margin-bottom: 8px; }
+    .mini-card p { margin: 0; color: var(--muted); }
+
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    details {
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.055);
+      padding: 18px 20px;
+    }
+    summary {
+      cursor: pointer;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -.01em;
+    }
+    details p { color: var(--muted); margin: 12px 0 0; }
+
+    .final-cta {
+      padding: 56px 0 86px;
+    }
+    .cta-panel {
+      text-align: center;
+      padding: 48px 28px;
+      border-radius: 34px;
+      border: 1px solid rgba(255,255,255,.15);
+      background:
+        radial-gradient(800px 400px at 50% 0%, rgba(58,160,255,.20), transparent 58%),
+        linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.05));
+      box-shadow: var(--shadow);
+    }
+    .cta-panel h2 { max-width: 860px; margin-inline: auto; }
+    .cta-panel p { max-width: 720px; margin: 16px auto 26px; color: var(--muted); font-size: 18px; }
+
+    .footer {
+      border-top: 1px solid rgba(255,255,255,.10);
+      padding: 28px 0 40px;
+      color: var(--muted-2);
+      font-size: 14px;
+    }
+    .footer-grid {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .disclaimer {
+      max-width: 780px;
+    }
+
+    @media (max-width: 980px) {
+      .nav { display: none; }
+      .hero-grid, .problem-panel, .kit-preview, .implementation, .pricing-wrap { grid-template-columns: 1fr; }
+      .trust-row, .outcomes-grid { grid-template-columns: repeat(2, 1fr); }
+      .audience-grid, .faq-grid { grid-template-columns: 1fr; }
+      .hero { padding-top: 46px; }
+    }
+    @media (max-width: 600px) {
+      .site-shell { width: min(var(--max), calc(100% - 28px)); }
+      .trust-row, .outcomes-grid { grid-template-columns: 1fr; }
+      .hero-actions .btn { width: 100%; }
+      .day { grid-template-columns: 1fr; }
+      .glass, .price-card { padding: 24px; }
+      h1 { font-size: 42px; }
+      .price { font-size: 56px; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "AI Use Controls Module",
+    "description": "A practical downloadable AI policy and controls kit for small organizations that need clear rules for employee use of generative AI tools.",
+    "brand": { "@type": "Brand", "name": "Stargazer Consulting" },
+    "offers": {
+      "@type": "Offer",
+      "price": "79.00",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock",
+      "url": "YOUR_CHECKOUT_URL_HERE"
+    }
+  }
+  </script>
+<link rel="icon" href="/wp-content/uploads/2025/11/cropped-0_3-25456-no-background.png">
+<script src="/assets/site.js" defer></script>
+</head>
+<body>
+<div class="wp-site-blocks">
+<atw-header></atw-header>
+<!--
+    WordPress note:
+    1. Upload the images in the /assets folder to your Media Library or host this entire folder as a static page.
+    2. Replace relative image paths such as assets/01_sales_page_hero_1600x900.png with the Media Library URLs if pasting into a WordPress page builder.
+    3. Replace YOUR_CHECKOUT_URL_HERE or the #buy anchor with your payment/checkout link.
+  -->
+
+  <header class="topbar">
+    <div class="site-shell topbar-inner">
+      <a class="brand" href="#top" aria-label="AI Use Controls Module home">
+        <span class="brand-mark">AI</span>
+        <span>AI Use Controls Module</span>
+      </a>
+      <nav class="nav" aria-label="Page navigation">
+        <a href="#problem">Problem</a>
+        <a href="#inside">What’s Inside</a>
+        <a href="#who">Who It Helps</a>
+        <a href="#rollout">Rollout</a>
+        <a href="#faq">FAQ</a>
+        <a class="btn primary" href="#buy">Get the Kit</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="site-shell hero-grid">
+        <div>
+          <span class="eyebrow">Practical AI policy &#038; controls kit</span>
+          <h1>Employees are already using AI. Give them rules before it becomes a problem.</h1>
+          <p class="lead">The AI Use Controls Module gives small organizations editable policies, use rules, approval forms, employee guidance, and review procedures so teams can use AI productively without turning client data, confidential information, or business decisions into uncontrolled experiments.</p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#buy">Get the downloadable kit</a>
+            <a class="btn" href="#inside">See what’s included</a>
+          </div>
+          <p class="microcopy">Built for owners, operations leaders, managing partners, HR, IT, compliance, nonprofits, agencies, professional services firms, and consultants serving SMB clients.</p>
+          <div class="trust-row" aria-label="Product highlights">
+            <div class="trust-item"><strong>One-week rollout</strong>Clear implementation path</div>
+            <div class="trust-item"><strong>Editable files</strong>Word + Excel templates</div>
+            <div class="trust-item"><strong>Plain English</strong>No 40-page legal document</div>
+            <div class="trust-item"><strong>Control system</strong>Policy, approval, review, response</div>
+          </div>
+        </div>
+        <div class="hero-card" aria-label="AI Use Controls Module preview graphic">
+          <img decoding="async" src="/wp-content/uploads/2026/05/01_sales_page_hero_1600x900.png" alt="AI Use Controls Module hero graphic showing workplace AI guardrails for small organizations" />
+          <div class="hero-badge"><strong>$79</strong><span>Suggested full-kit price</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="problem">
+      <div class="site-shell">
+        <div class="section-head">
+          <div class="section-kicker">The control gap</div>
+          <h2>Unmanaged AI use is not just an IT issue. It is an operating risk.</h2>
+          <p class="section-copy">Most small organizations do not need an enterprise AI governance program. They need clear operating rules: what employees may use AI for, what information must never be entered, which tools require approval, and how AI-generated outputs must be reviewed before use.</p>
+        </div>
+        <div class="problem-panel">
+          <div class="glass">
+            <div class="warning-title"><span class="icon-dot">!</span>What goes wrong without rules</div>
+            <ul class="risk-list">
+              <li>Employees paste client, customer, employee, legal, financial, health, or confidential business data into public AI tools.</li>
+              <li>AI-generated content is sent to clients, vendors, regulators, boards, donors, or the public without review.</li>
+              <li>Teams use unapproved AI browser extensions, meeting bots, document analyzers, image tools, or SaaS AI features without leadership visibility.</li>
+              <li>Managers are left guessing whether a use case is safe, restricted, prohibited, or requires approval.</li>
+            </ul>
+          </div>
+          <div class="glass">
+            <div class="warning-title"><span class="icon-dot" style="background:rgba(29,209,161,.13); border-color:rgba(29,209,161,.28); color:var(--green-2);">✓</span>What this kit helps put in place</div>
+            <ul class="clean-list">
+              <li>A written AI acceptable use policy employees can understand and follow.</li>
+              <li>A clear approved, restricted, and prohibited AI use matrix for everyday decisions.</li>
+              <li>A lightweight tool approval process that does not require a full governance department.</li>
+              <li>A human review procedure so AI assists work without becoming the final decision-maker.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="site-shell">
+        <div class="section-head">
+          <div class="section-kicker">After implementation</div>
+          <h2>Make AI use visible, manageable, and easier to explain.</h2>
+          <p class="section-copy">This kit turns AI from an informal employee habit into a simple business control system. The goal is not to ban AI. The goal is to let employees benefit from it while protecting confidential information, client trust, and business judgment.</p>
+        </div>
+        <div class="outcomes-grid">
+          <div class="outcome-card"><strong>Clear rules</strong><p>Employees know what AI may be used for, what is restricted, and what is prohibited.</p></div>
+          <div class="outcome-card"><strong>Data boundaries</strong><p>Staff have direct guidance on sensitive data that must not be entered into unapproved tools.</p></div>
+          <div class="outcome-card"><strong>Approval path</strong><p>Managers have a practical way to approve, restrict, or reject AI tools and use cases.</p></div>
+          <div class="outcome-card"><strong>Review discipline</strong><p>AI outputs are checked before they affect clients, employees, finances, legal matters, or public communications.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="inside">
+      <div class="site-shell kit-preview">
+        <div class="mockup-frame">
+          <img decoding="async" src="/wp-content/uploads/2026/05/02_product_bundle_mockup_1600x1000.png" alt="AI Use Controls Module product bundle mockup with editable documents, forms, checklists, and spreadsheets" />
+        </div>
+        <div>
+          <div class="section-kicker">What’s inside</div>
+          <h2>A complete lightweight AI use control system.</h2>
+          <p class="section-copy">Each component works on its own, but together they give the buyer an operating model: policy, rules, tool approval, output review, employee guidance, tracking, rollout, and response.</p>
+          <div class="component-list">
+            <div class="component-item"><span class="num">1</span><div><strong>Start Here Implementation Guide</strong><span>One-week implementation path, roles, rollout options, and customization guidance.</span></div></div>
+            <div class="component-item"><span class="num">2</span><div><strong>AI Acceptable Use Policy</strong><span>Core employee policy covering scope, allowed uses, prohibited uses, accountability, and acknowledgements.</span></div></div>
+            <div class="component-item"><span class="num">3</span><div><strong>Approved, Restricted, and Prohibited AI Use Matrix</strong><span>A practical decision tool for common AI use cases.</span></div></div>
+            <div class="component-item"><span class="num">4</span><div><strong>Sensitive Data and AI Decision Tree</strong><span>Employee-facing guidance for deciding whether information can be entered into AI.</span></div></div>
+            <div class="component-item"><span class="num">5</span><div><strong>AI Tool Approval Form</strong><span>Simple intake, risk review, approval decision, conditions, and renewal date.</span></div></div>
+            <div class="component-item"><span class="num">6</span><div><strong>AI Output Review Procedure</strong><span>Human review requirements for facts, calculations, citations, external communications, and client deliverables.</span></div></div>
+            <div class="component-item"><span class="num">7</span><div><strong>Employee One-Page AI Quick Reference</strong><span>Five simple rules employees can use before they use AI at work.</span></div></div>
+            <div class="component-item"><span class="num">8</span><div><strong>AI Use Case Register</strong><span>Spreadsheet tracker for tools, use cases, owners, approval status, review frequency, and restrictions.</span></div></div>
+            <div class="component-item"><span class="num">9</span><div><strong>Leadership Announcement and Training Script</strong><span>Rollout email, staff meeting script, FAQ, talking points, and acknowledgement language.</span></div></div>
+            <div class="component-item"><span class="num">10</span><div><strong>AI Misuse or Data Exposure Response Checklist</strong><span>Containment, information collection, notification review, corrective actions, and lessons learned.</span></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="who">
+      <div class="site-shell">
+        <div class="section-head">
+          <div class="section-kicker">Who this is for</div>
+          <h2>Built for organizations that handle sensitive information but do not have a mature AI governance team.</h2>
+          <p class="section-copy">The kit is designed for practical business implementation. It gives smaller teams enough structure to reduce risk without forcing them into an enterprise compliance program.</p>
+        </div>
+        <div class="audience-grid">
+          <div class="audience-card"><h3>Professional services firms</h3><p>Law firms, accounting firms, consultants, agencies, eDiscovery providers, managed service providers, and financial advisory firms.</p></div>
+          <div class="audience-card"><h3>Operationally lean organizations</h3><p>Small businesses, nonprofits, municipal offices, public-sector contractors, SaaS startups, construction firms, and office/accounting teams.</p></div>
+          <div class="audience-card"><h3>Responsible internal leaders</h3><p>Owners, COOs, office managers, HR managers, IT leaders, managing partners, executive directors, compliance managers, and fractional advisors.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="rollout">
+      <div class="site-shell implementation">
+        <div>
+          <div class="section-kicker">One-week implementation</div>
+          <h2>Give your organization clear AI rules in one week or less.</h2>
+          <p class="section-copy">The kit is organized around a practical seven-day rollout. Use the full sequence for a stronger implementation, or use the minimum viable rollout when the priority is getting basic rules in place quickly.</p>
+          <div class="timeline" aria-label="One-week rollout timeline">
+            <div class="day"><div class="day-label">Day 1</div><div><strong>Decide your AI use position</strong><span>Choose conservative, balanced, or progressive. Most organizations should start with balanced.</span></div></div>
+            <div class="day"><div class="day-label">Day 2</div><div><strong>Customize the policy and use matrix</strong><span>Adapt the policy language and approved/restricted/prohibited categories.</span></div></div>
+            <div class="day"><div class="day-label">Day 3</div><div><strong>Identify current tools and use cases</strong><span>Ask managers what AI tools are already being used and record them in the register.</span></div></div>
+            <div class="day"><div class="day-label">Day 4</div><div><strong>Approve or restrict tools</strong><span>Use the approval form to define permitted use, restrictions, and review dates.</span></div></div>
+            <div class="day"><div class="day-label">Day 5</div><div><strong>Train employees</strong><span>Send the announcement, distribute quick guidance, and hold a short staff meeting.</span></div></div>
+            <div class="day"><div class="day-label">Day 6</div><div><strong>Collect acknowledgements</strong><span>Keep a record that employees received and understood the rules.</span></div></div>
+            <div class="day"><div class="day-label">Day 7</div><div><strong>Review and improve</strong><span>Update open items and schedule a quarterly AI use review.</span></div></div>
+          </div>
+        </div>
+        <div class="mockup-frame">
+          <img decoding="async" src="/wp-content/uploads/2026/05/06_one_week_rollout_timeline.png" alt="One-week rollout timeline for implementing AI use controls" />
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="site-shell">
+        <div class="section-head">
+          <div class="section-kicker">Why this is different</div>
+          <h2>More than a policy template. Less than a heavy governance program.</h2>
+          <p class="section-copy">A policy alone does not tell employees what to do tomorrow. This kit combines the policy with practical decision support, approval workflow, review expectations, training language, tracking, and response guidance.</p>
+        </div>
+        <div class="feature-strip">
+          <img decoding="async" src="/wp-content/uploads/2026/05/04_sales_feature_strip_1600x600.png" alt="AI Use Controls Module feature strip showing policy, approval, review, and response tools" />
+        </div>
+      </div>
+    </section>
+
+    <section id="buy">
+      <div class="site-shell pricing-wrap">
+        <div class="price-card">
+          <span class="eyebrow">Full downloadable kit</span>
+          <div class="price">$79 <small>USD</small></div>
+          <p class="price-sub">Suggested price for the full editable version with Word documents, Excel registers, staff rollout materials, and implementation graphics.</p>
+          <ul class="clean-list">
+            <li>Editable policy and procedure documents</li>
+            <li>Practical approval and review forms</li>
+            <li>Use case tracking workbook</li>
+            <li>Leadership rollout and training language</li>
+            <li>Employee-facing quick guidance and internal graphics</li>
+          </ul>
+          <div class="hero-actions">
+            <a class="btn primary" href="YOUR_CHECKOUT_URL_HERE">Buy the AI Use Controls Module</a>
+          </div>
+          <p class="microcopy">Replace the button URL with your Stripe, Gumroad, WooCommerce, ThriveCart, Lemon Squeezy, or other checkout link.</p>
+        </div>
+        <div class="guarantee">
+          <div class="mini-card"><strong>Immediate business value</strong><p>The buyer gets something they can actually roll out: rules, forms, tracking, announcement language, and response steps.</p></div>
+          <div class="mini-card"><strong>Credible boundaries</strong><p>The kit makes clear that it is not legal advice, not a certification, and not a substitute for professional review when regulated or high-risk issues apply.</p></div>
+          <div class="mini-card"><strong>Consulting-friendly</strong><p>MSPs, vCIOs, fractional CISOs, compliance consultants, and operations advisors can use it as a structured starter module with clients.</p></div>
+          <div class="buy-box"><strong>Checkout embed location</strong><p>Use this block for a payment button, guarantee language, or short testimonial once available.</p><code>BUY_BUTTON_EMBED_GOES_HERE</code></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="site-shell">
+        <div class="section-head">
+          <div class="section-kicker">FAQ</div>
+          <h2>Common buyer questions</h2>
+        </div>
+        <div class="faq-grid">
+          <details open><summary>Is this meant to ban AI at work?</summary><p>No. The kit is designed to help organizations allow productive AI use while setting boundaries for sensitive data, tool approval, human review, and higher-risk use cases.</p></details>
+          <details><summary>Is this a complete AI governance program?</summary><p>No. It is a practical starter control system for small organizations. It does not replace legal, privacy, security, HR, or compliance review where those issues apply.</p></details>
+          <details><summary>What kinds of AI tools does it cover?</summary><p>It is written broadly for generative AI tools, including ChatGPT, Copilot, Gemini, Claude, Perplexity, embedded AI features in SaaS products, transcription tools, document analyzers, browser extensions, image generators, and similar tools.</p></details>
+          <details><summary>Can the documents be edited?</summary><p>Yes. The kit is intended to be delivered as editable Word documents and Excel-compatible trackers, with optional PDF versions for distribution.</p></details>
+          <details><summary>Who should implement it?</summary><p>Owners, operations leaders, office managers, HR, IT, compliance, managing partners, executive directors, or consultants can implement the kit. Very small organizations can use the minimum viable rollout path.</p></details>
+          <details><summary>What is the fastest version to roll out?</summary><p>Customize the AI Acceptable Use Policy, adopt the use matrix, send the leadership announcement, distribute the employee quick reference, and start tracking AI tools in the use case register.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <div class="site-shell cta-panel">
+        <h2>Stop treating employee AI use as an informal experiment.</h2>
+        <p>Give your team clear AI rules, a simple approval path, and a review process that protects client data, confidential information, employees, and business decisions.</p>
+        <a class="btn primary" href="YOUR_CHECKOUT_URL_HERE">Get the AI Use Controls Module</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="site-shell footer-grid">
+      <div><strong>AI Use Controls Module</strong><br />Practical AI use rules for small organizations.</div>
+      <div class="disclaimer">This kit is not legal advice, not a regulatory compliance certification, not a technical security review of AI vendors, and not a guarantee that all AI use is safe. Use professional legal, privacy, security, HR, or compliance review when required for your organization or industry.</div>
+    </div>
+  </footer>
+<atw-footer></atw-footer>
+</div>
+</body>
+</html>

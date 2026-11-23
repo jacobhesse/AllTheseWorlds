@@ -1,0 +1,892 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cybersecurity Roles and How AI Is Changing Them</title>
+  <meta name="description" content="A practical overview of common cybersecurity roles inside companies and how AI is reshaping day-to-day work, decision-making, and risk." />
+  <meta name="robots" content="index,follow" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Cybersecurity Roles and How AI Is Changing Them" />
+  <meta property="og:description" content="Common security roles and the real-world ways AI changes workflows, skills, and risk." />
+  <meta property="og:type" content="website" />
+
+  <!-- Lightweight structured data -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebPage",
+    "name":"Cybersecurity Roles and How AI Is Changing Them",
+    "description":"Overview of common cybersecurity roles and how AI is affecting responsibilities, tooling, and required skills."
+  }
+  </script>
+
+  <style>
+    :root{
+      --bg:#0b1324;
+      --card:#0f1a33;
+      --card2:#0e1730;
+      --ink:#e8eefc;
+      --muted:#9bb0cf;
+      --line:#1f2c4d;
+      --accent:#6fd3c7;
+      --accent2:#7aa7ff;
+      --warn:#ffd166;
+      --shadow: 0 18px 50px rgba(0,0,0,.35);
+      --radius: 18px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    }
+
+    body{
+      margin:0;
+      font-family: var(--sans);
+      background:
+        radial-gradient(1200px 600px at 10% -20%, rgba(122,167,255,.20), transparent 60%),
+        radial-gradient(900px 500px at 90% 0%, rgba(111,211,199,.18), transparent 55%),
+        linear-gradient(180deg, #070d1b 0%, var(--bg) 45%, #050a14 100%);
+      color: var(--ink);
+      line-height: 1.55;
+    }
+
+    a{ color: var(--accent); text-decoration: none; }
+    a:hover{ text-decoration: underline; }
+
+    .wrap{
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 48px 18px 72px;
+    }
+
+    header{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
+      align-items: start;
+      margin-bottom: 20px;
+    }
+    @media (max-width: 900px){
+      header{ grid-template-columns: 1fr; }
+    }
+
+    .hero{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: var(--radius);
+      padding: 22px 22px 18px;
+      box-shadow: var(--shadow);
+    }
+
+    h1{
+      margin: 0 0 10px;
+      font-size: clamp(26px, 4vw, 40px);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    .sub{
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 15px;
+      max-width: 70ch;
+    }
+
+    .chips{
+      display:flex; flex-wrap:wrap; gap:8px;
+      margin-top: 10px;
+    }
+    .chip{
+      font-size: 12px;
+      padding: 6px 10px;
+      border: 1px solid rgba(111,211,199,.28);
+      border-radius: 999px;
+      color: rgba(232,238,252,.92);
+      background: rgba(111,211,199,.08);
+    }
+
+    .panel{
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .panel h2{
+      margin: 0 0 10px;
+      font-size: 16px;
+      letter-spacing: .01em;
+      text-transform: uppercase;
+      color: rgba(232,238,252,.92);
+    }
+    .panel p{
+      margin: 0 0 10px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .controls{
+      display:flex;
+      gap: 10px;
+      align-items:center;
+      flex-wrap: wrap;
+      margin: 16px 0 10px;
+    }
+
+    input[type="search"]{
+      flex: 1 1 260px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(15,26,51,.65);
+      color: var(--ink);
+      outline: none;
+    }
+    input[type="search"]::placeholder{ color: rgba(155,176,207,.8); }
+
+    select{
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(15,26,51,.65);
+      color: var(--ink);
+      outline: none;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .card{
+      grid-column: span 6;
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    @media (max-width: 900px){
+      .card{ grid-column: span 12; }
+    }
+
+    .role-title{
+      display:flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .role-title h3{
+      margin: 0;
+      font-size: 18px;
+      letter-spacing: -0.01em;
+    }
+    .badge{
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(122,167,255,.35);
+      background: rgba(122,167,255,.10);
+      color: rgba(232,238,252,.95);
+      white-space: nowrap;
+    }
+
+    .k{
+      font-family: var(--mono);
+      font-size: 12px;
+      color: rgba(232,238,252,.85);
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 10px;
+      padding: 10px 12px;
+      margin: 10px 0 12px;
+    }
+
+    .section-title{
+      margin: 12px 0 6px;
+      font-size: 12px;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      color: rgba(232,238,252,.85);
+    }
+
+    ul{
+      margin: 6px 0 0 18px;
+      padding:0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    li{ margin: 6px 0; }
+
+    .ai-impact{
+      border-top: 1px solid rgba(255,255,255,.08);
+      margin-top: 14px;
+      padding-top: 12px;
+    }
+
+    .impact-row{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    @media (max-width: 600px){
+      .impact-row{ grid-template-columns: 1fr; }
+    }
+
+    .impact{
+      background: rgba(15,26,51,.55);
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 14px;
+      padding: 12px;
+    }
+    .impact h4{
+      margin: 0 0 6px;
+      font-size: 14px;
+      color: rgba(232,238,252,.95);
+    }
+    .impact p{
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .footer{
+      margin-top: 26px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,.08);
+      color: rgba(155,176,207,.9);
+      font-size: 13px;
+    }
+
+    .note{
+      margin-top: 10px;
+      color: rgba(155,176,207,.9);
+      font-size: 13px;
+    }
+
+    .pill{
+      display:inline-block;
+      font-size: 12px;
+      padding: 3px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,209,102,.25);
+      background: rgba(255,209,102,.08);
+      color: rgba(255,209,102,.95);
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+
+    .hidden{ display:none !important; }
+  </style>
+<link rel="icon" href="/wp-content/uploads/2025/11/cropped-0_3-25456-no-background.png">
+<script src="/assets/site.js" defer></script>
+</head>
+<body>
+<div class="wp-site-blocks">
+<atw-header></atw-header>
+<div class="wrap">
+    <header>
+      <div class="hero">
+        <h1>Common Cybersecurity Roles — and How AI Is Changing Them</h1>
+        <p class="sub">
+          AI is accelerating detection, automation, and analysis across security functions—but it is also increasing attack
+          velocity, expanding governance obligations, and shifting risk from “can we find it?” to “can we trust it?”
+          This page summarizes typical roles in a company security program and the practical impacts AI is having on each.
+        </p>
+
+        <div class="chips" aria-label="Key themes">
+          <span class="chip">Workflow automation</span>
+          <span class="chip">Signal vs noise</span>
+          <span class="chip">Model risk</span>
+          <span class="chip">Identity and access</span>
+          <span class="chip">Detection engineering</span>
+          <span class="chip">Compliance evidence</span>
+        </div>
+
+        <div class="controls" aria-label="Filters">
+          <input id="search" type="search" placeholder="Search roles (e.g., SOC, GRC, IAM, cloud, IR, pen test)..." aria-label="Search roles" />
+          <select id="filter" aria-label="Filter by domain">
+            <option value="all">All domains</option>
+            <option value="leadership">Leadership</option>
+            <option value="operations">Security Operations</option>
+            <option value="engineering">Security Engineering</option>
+            <option value="risk">Risk / GRC</option>
+            <option value="appsec">AppSec</option>
+            <option value="identity">Identity</option>
+            <option value="cloud">Cloud</option>
+          </select>
+          <select id="sort" aria-label="Sort roles">
+            <option value="common">Sort: Most common</option>
+            <option value="name">Sort: Name (A–Z)</option>
+            <option value="ai">Sort: AI impact (highest first)</option>
+          </select>
+        </div>
+
+        <div class="note">
+          Interpretation guide:
+          <span class="pill" title="AI Impact level indicates how much the day-to-day work changes because of AI.">AI Impact Level</span>
+          is directional, not absolute. It varies by company size, regulation level, and tool maturity.
+        </div>
+      </div>
+
+      <aside class="panel">
+        <h2>What “AI Impact” Usually Means</h2>
+        <p>
+          In most security programs, AI changes work through four mechanisms:
+        </p>
+        <ul>
+          <li><strong>Compression:</strong> faster triage, investigation, and writing (tickets, reports, playbooks).</li>
+          <li><strong>Expansion:</strong> new attack surface (AI systems, data pipelines, prompt interfaces, model supply chain).</li>
+          <li><strong>Reallocation:</strong> less time on rote analysis, more time on policy, tuning, validation, and decision quality.</li>
+          <li><strong>Accountability shift:</strong> proving why a decision was made becomes as important as making it quickly.</li>
+        </ul>
+        <p class="note">
+          High performers will treat AI as a <em>co-pilot</em> for throughput and a <em>risk domain</em> requiring controls.
+        </p>
+      </aside>
+    </header>
+
+    <main class="grid" id="roles">
+
+      <!-- 1) CISO / Head of Security -->
+      <article class="card role" data-domain="leadership" data-ai="5" data-common="1">
+        <div class="role-title">
+          <h3>CISO / Head of Security</h3>
+          <span class="badge">AI Impact: High (5/5)</span>
+        </div>
+        <div class="k">
+          Primary mission: set security strategy, manage risk tradeoffs, influence executives, and own security outcomes.
+        </div>
+
+        <div class="section-title">What they do</div>
+        <ul>
+          <li>Define the security operating model (priorities, budgets, tooling, staffing).</li>
+          <li>Translate technical risk into business risk and decision options.</li>
+          <li>Own incident accountability, crisis communications, and regulatory exposure.</li>
+          <li>Build governance: policies, standards, and third-party risk expectations.</li>
+        </ul>
+
+        <div class="ai-impact">
+          <div class="section-title">How AI changes the role</div>
+          <div class="impact-row">
+            <div class="impact">
+              <h4>Faster attackers; higher executive expectations</h4>
+              <p>
+                AI reduces attacker cost for phishing, social engineering, malware development, and recon. The CISO must raise
+                baseline resilience and shorten decision cycles without losing auditability.
+              </p>
+            </div>
+            <div class="impact">
+              <h4>AI governance becomes part of security governance</h4>
+              <p>
+                Security leaders inherit model risk questions: data exposure, access controls, vendor terms, logging, red-teaming,
+                and how “AI decisions” will be explained to auditors and regulators.
+              </p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 2) SOC Analyst -->
+      <article class="card role" data-domain="operations" data-ai="4" data-common="2">
+        <div class="role-title">
+          <h3>SOC Analyst (Tier 1–3)</h3>
+          <span class="badge">AI Impact: High (4/5)</span>
+        </div>
+        <div class="k">
+          Primary mission: monitor alerts, investigate suspicious activity, and escalate or respond quickly and accurately.
+        </div>
+
+        <div class="section-title">What they do</div>
+        <ul>
+          <li>Triage alerts from SIEM/EDR/email/web systems and separate signal from noise.</li>
+          <li>Investigate: gather logs, enrich indicators, validate scope and impact.</li>
+          <li>Escalate to IR, engineering, or IT; document findings and decisions.</li>
+          <li>Track metrics: MTTD/MTTR, false-positive rate, repeat offenders.</li>
+        </ul>
+
+        <div class="ai-impact">
+          <div class="section-title">How AI changes the role</div>
+          <div class="impact-row">
+            <div class="impact">
+              <h4>Automation of routine triage</h4>
+              <p>
+                AI-driven enrichment and summarization can compress “first look” workflows, but analysts must validate
+                correctness and avoid over-trusting generated narratives.
+              </p>
+            </div>
+            <div class="impact">
+              <h4>Adversaries generate better noise</h4>
+              <p>
+                Phishing and intrusion attempts become more realistic and targeted. Analysts increasingly focus on
+                behavioral detection and identity anomalies rather than static indicators.
+              </p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 3) Incident Responder / DFIR -->
+      <article class="card role" data-domain="operations" data-ai="4" data-common="3">
+        <div class="role-title">
+          <h3>Incident Responder / DFIR</h3>
+          <span class="badge">AI Impact: High (4/5)</span>
+        </div>
+        <div class="k">
+          Primary mission: contain incidents, preserve evidence, eradicate root cause, and restore operations safely.
+        </div>
+
+        <div class="section-title">What they do</div>
+        <ul>
+          <li>Lead containment/eradication and coordinate across IT, legal, comms, and leadership.</li>
+          <li>Perform forensics: timelines, root cause analysis, and evidence handling.</li>
+          <li>Refine playbooks, run tabletop exercises, and improve detection coverage.</li>
+          <li>Produce incident reports with defensible findings and actions.</li>
+        </ul>
+
+        <div class="ai-impact">
+          <div class="section-title">How AI changes the role</div>
+          <div class="impact-row">
+            <div class="impact">
+              <h4>Investigation acceleration (with validation duty)</h4>
+              <p>
+                AI can summarize logs, infer attack chains, and draft reports. IR teams must implement verification steps,
+                keep source-of-truth artifacts, and maintain chain-of-custody discipline.
+              </p>
+            </div>
+            <div class="impact">
+              <h4>AI as an incident vector</h4>
+              <p>
+                “Incidents” may include prompt injection, data leakage via assistants, unauthorized model access, or poisoned
+                training data—requiring new runbooks and stakeholders (data/ML owners).
+              </p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 4) Security Engineer (Detection/Platform) -->
+      <article class="card role" data-domain="engineering" data-ai="5" data-common="4">
+        <div class="role-title">
+          <h3>Security Engineer (Platform / Detection)</h3>
+          <span class="badge">AI Impact: High (5/5)</span>
+        </div>
+        <div class="k">
+          Primary mission: build and maintain security platforms—detections, telemetry, automation, and guardrails.
+        </div>
+
+        <div class="section-title">What they do</div>
+        <ul>
+          <li>Implement SIEM pipelines, EDR configurations, SOAR playbooks, and logging standards.</li>
+          <li>Create and tune detections; reduce false positives; measure coverage and gaps.</li>
+          <li>Automate response actions safely (isolation, blocking, ticketing, enrichment).</li>
+          <li>Integrate tools across identity, cloud, endpoint, and network layers.</li>
+        </ul>
+
+        <div class="ai-impact">
+          <div class="section-title">How AI changes the role</div>
+          <div class="impact-row">
+            <div class="impact">
+              <h4>Detection engineering becomes “model-assisted”</h4>
+              <p>
+                Engineers use AI to generate detection hypotheses, queries, and playbooks faster—then validate with
+                test data, purple-team exercises, and production feedback loops.
+              </p>
+            </div>
+            <div class="impact">
+              <h4>New telemetry + controls for AI systems</h4>
+              <p>
+                Logging and policy must expand to cover AI usage: prompts, tool calls, data sources, outputs, and access paths,
+                while balancing privacy, retention, and legal constraints.
+              </p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 5) GRC / Compliance -->
+      <article class="card role" data-domain="risk" data-ai="4" data-common="5">
+        <div class="role-title">
+          <h3>GRC Analyst / Compliance Manager</h3>
+          <span class="badge">AI Impact: High (4/5)</span>
+        </div>
+        <div class="k">
+          Primary mission: operationalize risk management, prove control effectiveness, and satisfy audit/regulatory requirements.
+        </div>
+
+        <div class="section-title">What they do</div>
+        <ul>
+          <li>Maintain policies/standards, control matrices, and evidence collection processes.</li>
+          <li>Run risk assessments, exceptions, and remediation tracking.</li>
+          <li>Support audits (SOC 2, ISO 27001, HIPAA, PCI, etc.) and customer security reviews.</li>
+          <li>Coordinate cross-functional owners and ensure ongoing control operation.</li>
+        </ul>
+
+        <div class="ai-impact">
+          <div class="section-title">How AI changes the role</div>
+          <div class="impact-row">
+            <div class="impact">
+              <h4>Evidence drafting gets easier; evidence truth gets harder</h4>
+              <p>
+                AI can draft narratives, policies, and audit responses quickly. The risk shifts to ensuring statements match
+                reality, and that evidence is traceable, current, and non-hallucinatory.
+              </p>
+            </div>
+            <div class="impact">
+              <h4>AI governance frameworks enter the control set</h4>
+              <p>
+                Many organizations add controls for model inventory, data classification for AI, access approvals,
+                vendor assessments, testing/red-teaming, and monitoring for drift and misuse.
+              </p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 6) IAM -->
+      <article class="card role" data-domain="identity" data-ai="5" data-common="6">
+        <div class="role-title">
+          <h3>Identity &amp; Access Management (IAM) Engineer</h3>
+          <span class="badge">AI Impact: High (5/5)</span>
+        </div>
+        <div class="k">
+          Primary mission: ensure the right identities have the right access for the right duration—with strong verification.
+        </div>
+
+        <div class="section-title">What they do</div>
+        <ul>
+          <li>Manage SSO/MFA, lifecycle provisioning, privileged access management (PAM).</li>
+          <li>Design access models: least privilege, role-based access, approval workflows.</li>
+          <li>Implement conditional access, device posture, and authentication policies.</li>
+          <li>Monitor and remediate access risk: stale accounts, privilege creep, anomalous sign-ins.</li>
+        </ul>
+
+        <div class="ai-impact">
+          <div class="section-title">How AI changes the role</div>
+          <div class="impact-row">
+            <div class="impact">
+              <h4>Identity becomes the primary control plane</h4>
+              <p>
+                AI-enabled attacks frequently target humans (phishing, deepfake voice) and tokens. IAM teams harden
+                authentication, session controls, and privileged workflows.
+              </p>
+            </div>
+            <div class="impact">
+              <h4>AI assistants create new access patterns</h4>
+              <p>
+                If employees use copilots/assistants, IAM must account for tool integrations, delegated permissions,
+                API scopes, and the audit trail of what the assistant accessed and produced.
+              </p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 7) Application Security -->
+      <article class="card role" data-domain="appsec" data-ai="4" data-common="7">
+        <div class="role-title">
+          <h3>Application Security (AppSec) Engineer</h3>
+          <span class="badge">AI Impact: High (4/5)</span>
+        </div>
+        <div class="k">
+          Primary mission: reduce software risk by embedding security into design, code, CI/CD, and release decisions.
+        </div>
+
+        <div class="section-title">What they do</div>
+        <ul>
+          <li>Run secure SDLC programs: threat modeling, secure design reviews, code scanning.</li>
+          <li>Operate SAST/DAST/SCA tooling; manage vulnerability remediation with engineering teams.</li>
+          <li>Define security patterns for APIs, auth, secrets, encryption, and logging.</li>
+          <li>Support product teams with secure architecture and risk tradeoffs.</li>
+        </ul>
+
+        <div class="ai-impact">
+          <div class="section-title">How AI changes the role</div>
+          <div class="impact-row">
+            <div class="impact">
+              <h4>Code generation increases throughput—and defect rate</h4>
+              <p>
+                AI-assisted coding can introduce insecure patterns faster. AppSec shifts toward guardrails:
+                secure templates, policy-as-code, and automated review gates.
+              </p>
+            </div>
+            <div class="impact">
+              <h4>LLM-specific threats become part of threat modeling</h4>
+              <p>
+                Prompt injection, data exfiltration via tool calls, insecure agent workflows, and model supply-chain issues
+                become practical concerns for product teams building AI features.
+              </p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 8) Cloud Security -->
+      <article class="card role" data-domain="cloud" data-ai="4" data-common="8">
+        <div class="role-title">
+          <h3>Cloud Security Engineer</h3>
+          <span class="badge">AI Impact: High (4/5)</span>
+        </div>
+        <div class="k">
+          Primary mission: secure cloud infrastructure, configurations, identities, and data flows across providers and services.
+        </div>
+
+        <div class="section-title">What they do</div>
+        <ul>
+          <li>Implement cloud guardrails: CSPM, IAM policies, network segmentation, encryption, key management.</li>
+          <li>Harden workloads: containers/Kubernetes, serverless, CI/CD secrets management.</li>
+          <li>Monitor cloud logs and manage incidents involving cloud resources.</li>
+          <li>Partner with platform teams on secure architecture and operational reliability.</li>
+        </ul>
+
+        <div class="ai-impact">
+          <div class="section-title">How AI changes the role</div>
+          <div class="impact-row">
+            <div class="impact">
+              <h4>AI workloads amplify data and permission risk</h4>
+              <p>
+                Model training/inference pipelines move large datasets and require broad access. Cloud security teams must
+                enforce data boundaries, least-privilege service roles, and strict egress controls.
+              </p>
+            </div>
+            <div class="impact">
+              <h4>AI-assisted config and IaC: faster changes, tighter controls</h4>
+              <p>
+                AI can generate Terraform/Kubernetes manifests quickly; teams respond with stronger policy-as-code,
+                automated drift detection, and pre-deployment validation.
+              </p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 9) Vulnerability Management -->
+      <article class="card role" data-domain="operations" data-ai="3" data-common="9">
+        <div class="role-title">
+          <h3>Vulnerability Management Lead</h3>
+          <span class="badge">AI Impact: Moderate (3/5)</span>
+        </div>
+        <div class="k">
+          Primary mission: find, prioritize, and drive remediation of vulnerabilities across endpoints, servers, apps, and cloud.
+        </div>
+
+        <div class="section-title">What they do</div>
+        <ul>
+          <li>Operate scanners and inventories; validate findings and reduce duplicates.</li>
+          <li>Prioritize remediation using exploitability, exposure, asset criticality, and compensating controls.</li>
+          <li>Coordinate patching with IT/engineering; track SLAs and exception processes.</li>
+          <li>Report risk posture trends to leadership and auditors.</li>
+        </ul>
+
+        <div class="ai-impact">
+          <div class="section-title">How AI changes the role</div>
+          <div class="impact-row">
+            <div class="impact">
+              <h4>Better prioritization support (if grounded)</h4>
+              <p>
+                AI can help correlate exploit chatter, asset context, and exposure. The job becomes validating
+                prioritization logic and preventing “confidence theater.”
+              </p>
+            </div>
+            <div class="impact">
+              <h4>More vulnerabilities at higher velocity</h4>
+              <p>
+                AI-assisted development can increase change frequency, which can increase misconfigurations and exposure.
+                Vulnerability management must integrate more tightly with CI/CD and IaC pipelines.
+              </p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 10) Security Architect -->
+      <article class="card role" data-domain="engineering" data-ai="4" data-common="10">
+        <div class="role-title">
+          <h3>Security Architect</h3>
+          <span class="badge">AI Impact: High (4/5)</span>
+        </div>
+        <div class="k">
+          Primary mission: design secure systems and guardrails that scale across teams, products, and infrastructure.
+        </div>
+
+        <div class="section-title">What they do</div>
+        <ul>
+          <li>Define reference architectures for identity, network, data, and application patterns.</li>
+          <li>Lead threat modeling and high-impact design reviews for critical initiatives.</li>
+          <li>Standardize security controls to reduce bespoke implementations.</li>
+          <li>Guide tradeoffs among cost, speed, performance, and risk.</li>
+        </ul>
+
+        <div class="ai-impact">
+          <div class="section-title">How AI changes the role</div>
+          <div class="impact-row">
+            <div class="impact">
+              <h4>AI systems require “security-by-design” specifics</h4>
+              <p>
+                Architects must incorporate model and data constraints: allowable data classes, retrieval boundaries,
+                red-team requirements, logging, and abuse-case testing.
+              </p>
+            </div>
+            <div class="impact">
+              <h4>Faster design iteration, higher burden of clarity</h4>
+              <p>
+                AI helps draft architectures and diagrams quickly. The role shifts toward ensuring assumptions, trust
+                boundaries, and failure modes are explicit and testable.
+              </p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 11) Penetration Tester / Red Team -->
+      <article class="card role" data-domain="operations" data-ai="4" data-common="11">
+        <div class="role-title">
+          <h3>Penetration Tester / Red Team</h3>
+          <span class="badge">AI Impact: High (4/5)</span>
+        </div>
+        <div class="k">
+          Primary mission: simulate attacker behavior to find weaknesses before real adversaries do.
+        </div>
+
+        <div class="section-title">What they do</div>
+        <ul>
+          <li>Test applications, networks, cloud environments, and identity controls.</li>
+          <li>Run social engineering and phishing simulations (where authorized).</li>
+          <li>Validate exploit paths and provide remediation guidance.</li>
+          <li>Support purple teaming to improve detection and response coverage.</li>
+        </ul>
+
+        <div class="ai-impact">
+          <div class="section-title">How AI changes the role</div>
+          <div class="impact-row">
+            <div class="impact">
+              <h4>Attack simulation becomes more scalable</h4>
+              <p>
+                AI can help generate payload variants, test cases, and recon summaries. Ethical boundaries and
+                authorization controls become even more important.
+              </p>
+            </div>
+            <div class="impact">
+              <h4>New target class: AI-enabled products and agents</h4>
+              <p>
+                Red teams increasingly test prompt injection, tool misuse, retrieval leakage, and model supply-chain
+                assumptions—treating AI workflows as systems with exploitable trust boundaries.
+              </p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 12) Security Awareness / Training -->
+      <article class="card role" data-domain="risk" data-ai="3" data-common="12">
+        <div class="role-title">
+          <h3>Security Awareness &amp; Training Lead</h3>
+          <span class="badge">AI Impact: Moderate (3/5)</span>
+        </div>
+        <div class="k">
+          Primary mission: reduce human-enabled risk through training, habit formation, and measurable behavior change.
+        </div>
+
+        <div class="section-title">What they do</div>
+        <ul>
+          <li>Develop training and run phishing simulations and targeted coaching.</li>
+          <li>Partner with HR/Legal/IT on policy adoption and reinforcement.</li>
+          <li>Measure behavior outcomes, not just completion rates.</li>
+          <li>Create role-based guidance for engineers, finance, executives, and support.</li>
+        </ul>
+
+        <div class="ai-impact">
+          <div class="section-title">How AI changes the role</div>
+          <div class="impact-row">
+            <div class="impact">
+              <h4>Phishing realism increases dramatically</h4>
+              <p>
+                AI-generated messaging is more fluent and tailored, requiring stronger training on verification habits,
+                reporting, and identity assurance—not just “spot bad grammar.”
+              </p>
+            </div>
+            <div class="impact">
+              <h4>Safe AI usage becomes a training domain</h4>
+              <p>
+                Programs add guidance for data handling with assistants, prompt hygiene, avoiding sensitive uploads,
+                and understanding what AI tools can retain or expose.
+              </p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </main>
+
+    <div class="footer">
+      <strong>Practical takeaway:</strong> AI rarely eliminates security roles. It changes where effort goes:
+      less manual assembly of information; more validation, tuning, governance, and decision quality.
+      Organizations that “buy AI” without upgrading these disciplines often get faster workflows and higher risk at the same time.
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const searchEl = document.getElementById('search');
+      const filterEl = document.getElementById('filter');
+      const sortEl = document.getElementById('sort');
+      const container = document.getElementById('roles');
+
+      function getCards(){
+        return Array.from(container.querySelectorAll('.role'));
+      }
+
+      function apply(){
+        const q = (searchEl.value || '').trim().toLowerCase();
+        const domain = filterEl.value;
+
+        let cards = getCards();
+
+        // Filter
+        cards.forEach(card => {
+          const text = card.innerText.toLowerCase();
+          const matchesQuery = q === '' || text.includes(q);
+          const matchesDomain = domain === 'all' || card.dataset.domain === domain;
+          card.classList.toggle('hidden', !(matchesQuery && matchesDomain));
+        });
+
+        // Sort (only visible cards in DOM order)
+        const visible = cards.filter(c => !c.classList.contains('hidden'));
+
+        visible.sort((a,b) => {
+          const by = sortEl.value;
+          if(by === 'name'){
+            const an = a.querySelector('h3')?.innerText || '';
+            const bn = b.querySelector('h3')?.innerText || '';
+            return an.localeCompare(bn);
+          }
+          if(by === 'ai'){
+            return (parseInt(b.dataset.ai,10) || 0) - (parseInt(a.dataset.ai,10) || 0);
+          }
+          // default: "most common" (lower number is more common)
+          return (parseInt(a.dataset.common,10) || 999) - (parseInt(b.dataset.common,10) || 999);
+        });
+
+        // Re-append in order (keeps hidden ones in place but we only reorder visible for clarity)
+        visible.forEach(card => container.appendChild(card));
+      }
+
+      searchEl.addEventListener('input', apply);
+      filterEl.addEventListener('change', apply);
+      sortEl.addEventListener('change', apply);
+
+      // Initial render
+      apply();
+    })();
+  </script>
+<atw-footer></atw-footer>
+</div>
+</body>
+</html>

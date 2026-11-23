@@ -1,0 +1,1427 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Customer Delivery CRM &#8211; Executive Dashboard Mockup</title>
+  <style>
+    :root {
+      --bg: #f6f8fb;
+      --surface: #ffffff;
+      --surface-soft: #f9fafc;
+      --surface-blue: #f7f9ff;
+      --border: #dfe5ee;
+      --border-strong: #c9d3e1;
+      --text: #172033;
+      --muted: #667085;
+      --muted-2: #8a95a8;
+      --brand: #2457d6;
+      --brand-soft: #eaf0ff;
+      --green: #14804a;
+      --green-bg: #e8f7ef;
+      --yellow: #9a6700;
+      --yellow-bg: #fff5d6;
+      --red: #b42318;
+      --red-bg: #ffe7e4;
+      --purple: #6941c6;
+      --purple-bg: #f0eafd;
+      --orange: #c2410c;
+      --orange-bg: #fff0e6;
+      --cyan: #026aa2;
+      --cyan-bg: #e5f5ff;
+      --slate: #344054;
+      --shadow: 0 10px 30px rgba(23, 32, 51, 0.08);
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.45;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; }
+
+    .app-shell {
+      display: grid;
+      grid-template-columns: 260px minmax(0, 1fr);
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      background: #101828;
+      color: #eaecf0;
+      padding: 24px 18px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #4776ff, #7f56d9);
+      font-weight: 800;
+      color: white;
+      box-shadow: 0 8px 22px rgba(71, 118, 255, 0.35);
+    }
+
+    .brand-copy strong {
+      display: block;
+      font-size: 14px;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-copy span {
+      display: block;
+      color: #98a2b3;
+      font-size: 12px;
+      margin-top: 2px;
+    }
+
+    .nav-group { margin-bottom: 26px; }
+
+    .nav-label {
+      font-size: 11px;
+      color: #98a2b3;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin: 0 10px 10px;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      color: #d0d5dd;
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .nav-item.active {
+      background: #1d2939;
+      color: #ffffff;
+      box-shadow: inset 3px 0 0 #4776ff;
+    }
+
+    .nav-count {
+      margin-left: auto;
+      min-width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      background: #344054;
+      display: grid;
+      place-items: center;
+      color: #d0d5dd;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .sidebar-callout {
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 14px;
+      margin-top: 28px;
+    }
+
+    .sidebar-callout strong {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 4px;
+    }
+
+    .sidebar-callout p {
+      margin: 0;
+      color: #98a2b3;
+      font-size: 12px;
+    }
+
+    .main {
+      padding: 28px 34px 48px;
+      min-width: 0;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .breadcrumb {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .page-title-mini {
+      font-size: 13px;
+      color: var(--muted-2);
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 420px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 10px 14px;
+      border-radius: 999px;
+      color: var(--muted-2);
+      font-size: 14px;
+    }
+
+    .dashboard-hero {
+      background: linear-gradient(135deg, #ffffff 0%, #f7f9ff 100%);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 22px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dashboard-hero:before {
+      content: "";
+      position: absolute;
+      top: -120px;
+      right: -120px;
+      width: 280px;
+      height: 280px;
+      border-radius: 999px;
+      background: rgba(36, 87, 214, 0.08);
+      pointer-events: none;
+    }
+
+    .hero-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: flex-start;
+      margin-bottom: 22px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-copy { max-width: 850px; }
+
+    h1 {
+      margin: 0;
+      font-size: 32px;
+      letter-spacing: -0.045em;
+      line-height: 1.1;
+    }
+
+    .hero-subtitle {
+      color: var(--muted);
+      margin-top: 8px;
+      font-size: 14px;
+      max-width: 780px;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 750;
+      border: 1px solid transparent;
+      white-space: nowrap;
+    }
+
+    .badge.blue { background: var(--brand-soft); color: var(--brand); border-color: #d7e2ff; }
+    .badge.green { background: var(--green-bg); color: var(--green); border-color: #c9ebd8; }
+    .badge.yellow { background: var(--yellow-bg); color: var(--yellow); border-color: #ffdf7a; }
+    .badge.red { background: var(--red-bg); color: var(--red); border-color: #ffc9c3; }
+    .badge.purple { background: var(--purple-bg); color: var(--purple); border-color: #d8c8fa; }
+    .badge.gray { background: #f2f4f7; color: #475467; border-color: #e4e7ec; }
+    .badge.orange { background: var(--orange-bg); color: var(--orange); border-color: #ffd7bd; }
+    .badge.cyan { background: var(--cyan-bg); color: var(--cyan); border-color: #b9e6fe; }
+
+    .hero-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn {
+      border: 1px solid var(--border-strong);
+      background: var(--surface);
+      color: var(--text);
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-weight: 750;
+      font-size: 13px;
+      cursor: default;
+      box-shadow: 0 2px 6px rgba(23, 32, 51, 0.04);
+    }
+
+    .btn.primary {
+      background: var(--brand);
+      color: white;
+      border-color: var(--brand);
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .metric-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px;
+      min-height: 104px;
+    }
+
+    .metric-label {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    .metric-value {
+      font-size: 24px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+    }
+
+    .metric-note {
+      font-size: 12px;
+      color: var(--muted-2);
+      margin-top: 6px;
+    }
+
+    .trend {
+      font-weight: 800;
+      font-size: 12px;
+    }
+
+    .trend.up { color: var(--green); }
+    .trend.down { color: var(--red); }
+    .trend.flat { color: var(--muted); }
+
+    .filter-strip {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 18px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 12px;
+      box-shadow: 0 3px 12px rgba(23, 32, 51, 0.04);
+    }
+
+    .filter-left,
+    .filter-right {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .filter-chip {
+      padding: 8px 11px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface-soft);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 750;
+    }
+
+    .filter-chip.active {
+      border-color: #c8d7ff;
+      background: var(--brand-soft);
+      color: var(--brand);
+    }
+
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(360px, 0.75fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 4px 16px rgba(23, 32, 51, 0.04);
+      margin-bottom: 18px;
+      overflow: hidden;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, #ffffff, #fbfcfe);
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .section-subtitle {
+      margin: 3px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .section-body { padding: 18px 20px 20px; }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .three-column {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .focus-card {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: linear-gradient(180deg, #ffffff, #fbfcfe);
+      padding: 14px;
+      min-height: 142px;
+    }
+
+    .focus-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .focus-card h3 {
+      margin: 0;
+      font-size: 15px;
+      letter-spacing: -0.02em;
+    }
+
+    .focus-card p {
+      margin: 8px 0 12px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .focus-meta {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+      font-size: 12px;
+      color: var(--muted-2);
+    }
+
+    .signal-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .signal-card {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--surface-soft);
+      padding: 12px;
+    }
+
+    .signal-card strong {
+      display: block;
+      font-size: 22px;
+      letter-spacing: -0.05em;
+      line-height: 1;
+    }
+
+    .signal-card span {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .table-wrap { overflow-x: auto; }
+
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      min-width: 760px;
+    }
+
+    .table.compact { min-width: 0; }
+
+    .table th,
+    .table td {
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      padding: 12px 8px;
+      vertical-align: top;
+    }
+
+    .table th {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      background: #fbfcfe;
+      white-space: nowrap;
+    }
+
+    .table tr:last-child td { border-bottom: none; }
+
+    .record-name {
+      font-weight: 850;
+      display: block;
+      color: var(--text);
+    }
+
+    .record-meta {
+      color: var(--muted);
+      font-size: 12px;
+      display: block;
+      margin-top: 3px;
+    }
+
+    .avatar-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      background: #111827;
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 850;
+      flex: 0 0 auto;
+    }
+
+    .bar {
+      height: 9px;
+      background: #e4e7ec;
+      border-radius: 999px;
+      overflow: hidden;
+      min-width: 92px;
+      margin-top: 6px;
+    }
+
+    .bar-fill {
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #2457d6, #7f56d9);
+    }
+
+    .bar-fill.green { background: linear-gradient(90deg, #17b26a, #66c98f); }
+    .bar-fill.yellow { background: linear-gradient(90deg, #f59e0b, #facc15); }
+    .bar-fill.red { background: linear-gradient(90deg, #ef4444, #fb7185); }
+    .bar-fill.purple { background: linear-gradient(90deg, #7f56d9, #a78bfa); }
+
+    .health-stack {
+      display: grid;
+      gap: 12px;
+    }
+
+    .health-card {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: var(--surface-soft);
+      padding: 14px;
+    }
+
+    .health-card.main-score {
+      background: linear-gradient(135deg, #f8fffb, #ffffff);
+      border-color: #c9ebd8;
+    }
+
+    .score-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .score-number {
+      font-size: 40px;
+      font-weight: 950;
+      letter-spacing: -0.06em;
+      color: var(--green);
+      line-height: 1;
+    }
+
+    .score-label {
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 750;
+    }
+
+    .driver-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .driver-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: center;
+      font-size: 13px;
+    }
+
+    .driver-item span:first-child { color: var(--slate); font-weight: 750; }
+    .driver-item span:last-child { color: var(--muted); font-size: 12px; }
+
+    .queue-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .queue-item {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--surface-soft);
+      padding: 12px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .queue-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .queue-item strong {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 2px;
+    }
+
+    .queue-item p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .action-card {
+      border: 1px solid #c8d7ff;
+      background: var(--brand-soft);
+      border-radius: 16px;
+      padding: 14px;
+    }
+
+    .action-card strong {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--brand);
+    }
+
+    .action-card p {
+      margin: 0 0 12px;
+      color: #344054;
+      font-size: 13px;
+    }
+
+    .mini-btn {
+      display: inline-flex;
+      background: var(--brand);
+      color: white;
+      border-radius: 9px;
+      padding: 8px 10px;
+      font-size: 12px;
+      font-weight: 850;
+    }
+
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 34px minmax(0, 1fr);
+      gap: 10px;
+    }
+
+    .timeline-dot {
+      width: 28px;
+      height: 28px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      background: var(--brand-soft);
+      color: var(--brand);
+      font-size: 13px;
+      font-weight: 850;
+      margin-top: 2px;
+    }
+
+    .timeline-dot.red { background: var(--red-bg); color: var(--red); }
+    .timeline-dot.yellow { background: var(--yellow-bg); color: var(--yellow); }
+    .timeline-dot.green { background: var(--green-bg); color: var(--green); }
+    .timeline-dot.purple { background: var(--purple-bg); color: var(--purple); }
+    .timeline-dot.orange { background: var(--orange-bg); color: var(--orange); }
+
+    .timeline-content {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+      background: var(--surface-soft);
+    }
+
+    .timeline-content strong {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 3px;
+    }
+
+    .timeline-content span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .mini-card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .mini-card {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px;
+      background: #ffffff;
+    }
+
+    .mini-card strong {
+      display: block;
+      font-size: 22px;
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+
+    .mini-card span {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 650;
+      display: block;
+      margin-top: 6px;
+    }
+
+    .customer-map {
+      display: grid;
+      gap: 10px;
+    }
+
+    .map-row {
+      display: grid;
+      grid-template-columns: 108px minmax(0, 1fr) 42px;
+      gap: 10px;
+      align-items: center;
+      font-size: 13px;
+    }
+
+    .map-row strong {
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .map-bar {
+      height: 12px;
+      border-radius: 999px;
+      background: #e4e7ec;
+      overflow: hidden;
+    }
+
+    .map-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #17b26a, #f59e0b, #ef4444);
+      border-radius: inherit;
+    }
+
+    .footer-note {
+      color: var(--muted);
+      font-size: 12px;
+      text-align: center;
+      margin-top: 28px;
+    }
+
+    @media (max-width: 1280px) {
+      .hero-metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .signal-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .dashboard-grid { grid-template-columns: 1fr; }
+      .right-rail {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+      }
+      .right-rail .section { margin-bottom: 0; }
+    }
+
+    @media (max-width: 920px) {
+      .app-shell { grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+      .main { padding: 20px; }
+      .topbar, .hero-top, .filter-strip { flex-direction: column; align-items: stretch; }
+      .hero-actions { justify-content: flex-start; }
+      .search-box { min-width: 0; }
+      .hero-metrics,
+      .two-column,
+      .three-column,
+      .signal-grid,
+      .right-rail,
+      .mini-card-grid { grid-template-columns: 1fr; }
+      .table.compact { min-width: 640px; }
+    }
+  </style>
+<link rel="icon" href="/wp-content/uploads/2025/11/cropped-0_3-25456-no-background.png">
+<script src="/assets/site.js" defer></script>
+</head>
+<body>
+<div class="wp-site-blocks">
+<atw-header></atw-header>
+<div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-mark">CD</div>
+        <div class="brand-copy">
+          <strong>Customer Delivery CRM</strong>
+          <span>SaaS account operations</span>
+        </div>
+      </div>
+
+      <div class="nav-group">
+        <p class="nav-label">Workspace</p>
+        <div class="nav-item active">◎ Dashboard</div>
+        <div class="nav-item">◉ Accounts <span class="nav-count">84</span></div>
+        <div class="nav-item">◇ Contacts</div>
+        <div class="nav-item">△ Handoffs <span class="nav-count">9</span></div>
+        <div class="nav-item">▣ Implementations <span class="nav-count">31</span></div>
+      </div>
+
+      <div class="nav-group">
+        <p class="nav-label">Customer Operations</p>
+        <div class="nav-item">◆ Commitments <span class="nav-count">128</span></div>
+        <div class="nav-item">⚠ Risks &#038; Blockers <span class="nav-count">23</span></div>
+        <div class="nav-item">☷ Support Impact <span class="nav-count">17</span></div>
+        <div class="nav-item">⬡ Health Signals</div>
+        <div class="nav-item">↻ Renewal Readiness</div>
+      </div>
+
+      <div class="nav-group">
+        <p class="nav-label">Leadership Views</p>
+        <div class="nav-item">▤ Executive Summary</div>
+        <div class="nav-item">◍ Team Workload</div>
+        <div class="nav-item">□ Revenue at Risk</div>
+      </div>
+
+      <div class="nav-group">
+        <p class="nav-label">Admin</p>
+        <div class="nav-item">⚙ Settings</div>
+        <div class="nav-item">⇄ Integrations</div>
+        <div class="nav-item">▥ Audit Log</div>
+      </div>
+
+      <div class="sidebar-callout">
+        <strong>Today’s operating question</strong>
+        <p>Which customers need action before delivery risk becomes renewal risk?</p>
+      </div>
+    </aside>
+
+    <main class="main">
+      <div class="topbar">
+        <div>
+          <div class="breadcrumb">Dashboard / Executive Command Center</div>
+          <div class="page-title-mini">Tenant: Acme SaaS Co. · Portfolio filtered to active customers</div>
+        </div>
+        <div class="search-box">⌕ Search accounts, commitments, projects, tickets, owners&#8230;</div>
+      </div>
+
+      <section class="dashboard-hero">
+        <div class="hero-top">
+          <div class="hero-copy">
+            <h1>Customer Delivery Command Center</h1>
+            <div class="hero-subtitle">A cross-functional operating dashboard showing what was promised, what is happening, what is at risk, who owns it, and what must happen next across post-sale delivery.</div>
+            <div class="badge-row">
+              <span class="badge blue">Portfolio: Active Customers</span>
+              <span class="badge purple">Role View: Delivery Executive</span>
+              <span class="badge green">Updated: Today 8:42 AM</span>
+              <span class="badge yellow">9 accounts need action</span>
+              <span class="badge gray">SOC 2 scoped access applied</span>
+            </div>
+          </div>
+
+          <div class="hero-actions">
+            <button class="btn">Export Summary</button>
+            <button class="btn">Create Status Brief</button>
+            <button class="btn primary">Review Critical Queue</button>
+          </div>
+        </div>
+
+        <div class="hero-metrics">
+          <div class="metric-card">
+            <div class="metric-label">Portfolio Health</div>
+            <div class="metric-value" style="color: var(--yellow);">74</div>
+            <div class="metric-note"><span class="trend down">▼ 4 pts</span> from support friction + slippage</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">Revenue at Risk</div>
+            <div class="metric-value" style="color: var(--red);">$842K</div>
+            <div class="metric-note">11 accounts · 4 executive escalations</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">Active Implementations</div>
+            <div class="metric-value">31</div>
+            <div class="metric-note">6 blocked · 8 at risk · 5 go-live ready</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">Open Commitments</div>
+            <div class="metric-value" style="color: var(--orange);">128</div>
+            <div class="metric-note">19 overdue · avg age 12.4 days</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">Renewal Readiness</div>
+            <div class="metric-value">68%</div>
+            <div class="metric-note">24 renewals inside 120 days</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">Support Impact</div>
+            <div class="metric-value" style="color: var(--red);">17</div>
+            <div class="metric-note">Material issues linked to health/risk</div>
+          </div>
+        </div>
+      </section>
+
+      <div class="filter-strip">
+        <div class="filter-left">
+          <span class="filter-chip active">All Active</span>
+          <span class="filter-chip">Implementation</span>
+          <span class="filter-chip">Live / Hypercare</span>
+          <span class="filter-chip">Renewal ≤ 120 Days</span>
+          <span class="filter-chip">Strategic Accounts</span>
+        </div>
+        <div class="filter-right">
+          <span class="filter-chip active">Health: All</span>
+          <span class="filter-chip">Red</span>
+          <span class="filter-chip">Yellow</span>
+          <span class="filter-chip">Blocked</span>
+        </div>
+      </div>
+
+      <div class="dashboard-grid">
+        <div class="content-column">
+          <section class="section">
+            <div class="section-header">
+              <div>
+                <h2 class="section-title">Executive Attention Queue</h2>
+                <p class="section-subtitle">Accounts where delivery execution, support friction, or missed commitments are threatening confidence, value, or renewal.</p>
+              </div>
+              <span class="badge red">9 require action</span>
+            </div>
+            <div class="section-body">
+              <div class="two-column">
+                <div class="focus-card">
+                  <div class="focus-top">
+                    <div>
+                      <h3>Northstar Analytics</h3>
+                      <div class="record-meta">$186K ARR · Renewal in 74 days · CSM: Daniel Brooks</div>
+                    </div>
+                    <span class="badge red">Escalated</span>
+                  </div>
+                  <p>Critical API support issue has produced an overdue RCA commitment and is now shaping the executive renewal conversation.</p>
+                  <div class="focus-meta">
+                    <span class="badge orange">1 overdue commitment</span>
+                    <span class="badge yellow">Support impact: High</span>
+                    <span class="badge blue">Next: Exec check-in May 6</span>
+                  </div>
+                </div>
+
+                <div class="focus-card">
+                  <div class="focus-top">
+                    <div>
+                      <h3>Atlas Legal Cloud</h3>
+                      <div class="record-meta">$312K ARR · Implementation · Owner: Priya Nair</div>
+                    </div>
+                    <span class="badge yellow">Go-live risk</span>
+                  </div>
+                  <p>Data migration dependency is late, customer validation has not started, and target go-live is inside 14 days.</p>
+                  <div class="focus-meta">
+                    <span class="badge red">2 blocked milestones</span>
+                    <span class="badge orange">Customer-owned dependency</span>
+                    <span class="badge gray">Readiness: 61%</span>
+                  </div>
+                </div>
+
+                <div class="focus-card">
+                  <div class="focus-top">
+                    <div>
+                      <h3>Meridian Health Systems</h3>
+                      <div class="record-meta">$274K ARR · Security review · Owner: Samir Patel</div>
+                    </div>
+                    <span class="badge purple">Decision needed</span>
+                  </div>
+                  <p>Security exception request is unresolved; legal and product owners disagree on acceptable workaround language.</p>
+                  <div class="focus-meta">
+                    <span class="badge yellow">1 open blocker</span>
+                    <span class="badge blue">Decision owner: COO</span>
+                    <span class="badge red">Renewal impact: Medium</span>
+                  </div>
+                </div>
+
+                <div class="focus-card">
+                  <div class="focus-top">
+                    <div>
+                      <h3>Summit Compliance</h3>
+                      <div class="record-meta">$96K ARR · Handoff review · Sales owner: Maya Chen</div>
+                    </div>
+                    <span class="badge orange">Clarification</span>
+                  </div>
+                  <p>Sales-to-delivery handoff was returned because success criteria and roadmap references are ambiguous.</p>
+                  <div class="focus-meta">
+                    <span class="badge orange">Needs clarification</span>
+                    <span class="badge gray">Aging: 4 days</span>
+                    <span class="badge blue">Next: Sales response</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section-header">
+              <div>
+                <h2 class="section-title">Implementation Portfolio</h2>
+                <p class="section-subtitle">Delivery status and health remain separate so leadership can see progress and risk at the same time.</p>
+              </div>
+              <span class="badge blue">31 active projects</span>
+            </div>
+            <div class="section-body">
+              <div class="signal-grid">
+                <div class="signal-card"><strong style="color: var(--green);">12</strong><span>On track</span></div>
+                <div class="signal-card"><strong style="color: var(--yellow);">8</strong><span>At risk</span></div>
+                <div class="signal-card"><strong style="color: var(--red);">6</strong><span>Blocked</span></div>
+                <div class="signal-card"><strong style="color: var(--brand);">5</strong><span>Go-live ready</span></div>
+              </div>
+              <div class="table-wrap" style="margin-top: 16px;">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Project</th>
+                      <th>Status</th>
+                      <th>Health</th>
+                      <th>Progress</th>
+                      <th>Next Milestone</th>
+                      <th>Go-Live</th>
+                      <th>Owner</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><span class="record-name">Atlas Legal Cloud &#8211; Migration</span><span class="record-meta">IMP-000221 · Complex / Migration-heavy</span></td>
+                      <td><span class="badge yellow">Customer Validation</span></td>
+                      <td><span class="badge red">Red</span></td>
+                      <td>64%<div class="bar"><div class="bar-fill red" style="width:64%"></div></div></td>
+                      <td>Migration validation blocked</td>
+                      <td>May 15</td>
+                      <td><div class="avatar-row"><div class="avatar">PN</div><span>Priya Nair</span></div></td>
+                    </tr>
+                    <tr>
+                      <td><span class="record-name">BrightPath Finance &#8211; New Customer</span><span class="record-meta">IMP-000226 · Standard</span></td>
+                      <td><span class="badge blue">In Implementation</span></td>
+                      <td><span class="badge green">Green</span></td>
+                      <td>72%<div class="bar"><div class="bar-fill green" style="width:72%"></div></div></td>
+                      <td>Training complete</td>
+                      <td>May 22</td>
+                      <td><div class="avatar-row"><div class="avatar">AL</div><span>Avery Liu</span></div></td>
+                    </tr>
+                    <tr>
+                      <td><span class="record-name">Meridian Health Systems &#8211; SSO</span><span class="record-meta">IMP-000217 · Security / Integration</span></td>
+                      <td><span class="badge red">Blocked</span></td>
+                      <td><span class="badge red">Blocked</span></td>
+                      <td>48%<div class="bar"><div class="bar-fill red" style="width:48%"></div></div></td>
+                      <td>Security exception decision</td>
+                      <td>May 28</td>
+                      <td><div class="avatar-row"><div class="avatar">SP</div><span>Samir Patel</span></div></td>
+                    </tr>
+                    <tr>
+                      <td><span class="record-name">BlueRidge Data &#8211; Expansion</span><span class="record-meta">IMP-000229 · Expansion</span></td>
+                      <td><span class="badge green">Go-Live Ready</span></td>
+                      <td><span class="badge green">Green</span></td>
+                      <td>91%<div class="bar"><div class="bar-fill green" style="width:91%"></div></div></td>
+                      <td>Go-live decision</td>
+                      <td>May 3</td>
+                      <td><div class="avatar-row"><div class="avatar">DB</div><span>Daniel Brooks</span></div></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section-header">
+              <div>
+                <h2 class="section-title">Commitments and Obligations</h2>
+                <p class="section-subtitle">Durable accountability records showing what the company owes customers and what customers owe the company.</p>
+              </div>
+              <span class="badge orange">19 overdue</span>
+            </div>
+            <div class="section-body">
+              <div class="three-column">
+                <div class="focus-card">
+                  <div class="focus-top">
+                    <h3>Vendor to Customer</h3>
+                    <span class="badge orange">74 open</span>
+                  </div>
+                  <p>RCA delivery, training, configuration work, roadmap clarifications, executive follow-through, and promised reports.</p>
+                  <div class="bar"><div class="bar-fill yellow" style="width:69%"></div></div>
+                  <div class="record-meta">14 overdue · 8 high/critical</div>
+                </div>
+                <div class="focus-card">
+                  <div class="focus-top">
+                    <h3>Customer to Vendor</h3>
+                    <span class="badge blue">38 open</span>
+                  </div>
+                  <p>Data files, test approvals, customer project owner decisions, technical credentials, and validation attendance.</p>
+                  <div class="bar"><div class="bar-fill" style="width:58%"></div></div>
+                  <div class="record-meta">4 overdue · 7 due this week</div>
+                </div>
+                <div class="focus-card">
+                  <div class="focus-top">
+                    <h3>Internal Follow-Through</h3>
+                    <span class="badge purple">16 open</span>
+                  </div>
+                  <p>Product escalation reviews, legal exceptions, support engineering work, and executive alignment actions.</p>
+                  <div class="bar"><div class="bar-fill purple" style="width:44%"></div></div>
+                  <div class="record-meta">1 overdue · 3 escalated</div>
+                </div>
+              </div>
+              <div class="table-wrap" style="margin-top: 16px;">
+                <table class="table compact">
+                  <thead>
+                    <tr>
+                      <th>Commitment</th>
+                      <th>Account</th>
+                      <th>Status</th>
+                      <th>Due</th>
+                      <th>Owner</th>
+                      <th>Impact</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><span class="record-name">Deliver API RCA and fix ETA</span><span class="record-meta">Source: Support-impact item</span></td>
+                      <td>Northstar Analytics</td>
+                      <td><span class="badge orange">At Risk</span></td>
+                      <td style="color: var(--red); font-weight: 850;">2 days overdue</td>
+                      <td>Samir Patel</td>
+                      <td><span class="badge red">High</span></td>
+                    </tr>
+                    <tr>
+                      <td><span class="record-name">Provide final migration export</span><span class="record-meta">Customer-owned dependency</span></td>
+                      <td>Atlas Legal Cloud</td>
+                      <td><span class="badge yellow">Waiting on Customer</span></td>
+                      <td>May 2</td>
+                      <td>Marcus Lee</td>
+                      <td><span class="badge red">Critical</span></td>
+                    </tr>
+                    <tr>
+                      <td><span class="record-name">Approve SSO exception language</span><span class="record-meta">Internal legal + security</span></td>
+                      <td>Meridian Health Systems</td>
+                      <td><span class="badge red">Blocked</span></td>
+                      <td>May 4</td>
+                      <td>Legal Ops</td>
+                      <td><span class="badge orange">Medium</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section-header">
+              <div>
+                <h2 class="section-title">Renewal Readiness and Value Realization</h2>
+                <p class="section-subtitle">Renewal confidence is grounded in delivered value, health signals, adoption, stakeholder engagement, and unresolved obligations.</p>
+              </div>
+              <span class="badge yellow">24 upcoming renewals</span>
+            </div>
+            <div class="section-body">
+              <div class="table-wrap">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Account</th>
+                      <th>Renewal Window</th>
+                      <th>Readiness</th>
+                      <th>Value Evidence</th>
+                      <th>Risk Drivers</th>
+                      <th>Next Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><span class="record-name">Northstar Analytics</span><span class="record-meta">$186K ARR · Strategic Tier 2</span></td>
+                      <td>74 days</td>
+                      <td>58%<div class="bar"><div class="bar-fill yellow" style="width:58%"></div></div></td>
+                      <td>Adoption 68%; first-value achieved</td>
+                      <td>Support escalation; overdue RCA</td>
+                      <td>Executive check-in prep</td>
+                    </tr>
+                    <tr>
+                      <td><span class="record-name">BlueRidge Data</span><span class="record-meta">$142K ARR · Expansion candidate</span></td>
+                      <td>96 days</td>
+                      <td>86%<div class="bar"><div class="bar-fill green" style="width:86%"></div></div></td>
+                      <td>3 success goals complete</td>
+                      <td>None material</td>
+                      <td>Qualify expansion</td>
+                    </tr>
+                    <tr>
+                      <td><span class="record-name">Meridian Health Systems</span><span class="record-meta">$274K ARR · Enterprise</span></td>
+                      <td>109 days</td>
+                      <td>47%<div class="bar"><div class="bar-fill red" style="width:47%"></div></div></td>
+                      <td>Usage pending SSO completion</td>
+                      <td>Security blocker; weak sponsor engagement</td>
+                      <td>Resolve exception path</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <aside class="right-rail">
+          <section class="section">
+            <div class="section-header">
+              <div>
+                <h2 class="section-title">Operational Health Model</h2>
+                <p class="section-subtitle">Composite signal, not a vanity score.</p>
+              </div>
+            </div>
+            <div class="section-body">
+              <div class="health-stack">
+                <div class="health-card main-score">
+                  <div class="score-row">
+                    <div>
+                      <div class="score-number">74</div>
+                      <div class="score-label">Portfolio Health</div>
+                    </div>
+                    <span class="badge yellow">Yellow</span>
+                  </div>
+                  <div class="bar" style="margin-top: 14px;"><div class="bar-fill yellow" style="width:74%"></div></div>
+                </div>
+                <div class="health-card">
+                  <strong>Health Drivers</strong>
+                  <div class="driver-list">
+                    <div class="driver-item"><span>Delivery execution</span><span>-7 pts</span></div>
+                    <div class="driver-item"><span>Support friction</span><span>-5 pts</span></div>
+                    <div class="driver-item"><span>Commitment aging</span><span>-4 pts</span></div>
+                    <div class="driver-item"><span>Adoption momentum</span><span>+6 pts</span></div>
+                    <div class="driver-item"><span>Executive engagement</span><span>+2 pts</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section-header">
+              <div>
+                <h2 class="section-title">Next Best Actions</h2>
+                <p class="section-subtitle">Leadership and owner actions generated from operational signals.</p>
+              </div>
+            </div>
+            <div class="section-body">
+              <div class="queue-list">
+                <div class="action-card">
+                  <strong>Prepare Northstar executive save plan</strong>
+                  <p>Pull support RCA, open commitments, sponsor sentiment, and renewal readiness into one executive brief.</p>
+                  <span class="mini-btn">Create Brief</span>
+                </div>
+                <div class="queue-item">
+                  <div class="queue-top">
+                    <div><strong>Assign owner to 3 critical dependencies</strong><p>Atlas Legal Cloud, Meridian Health, GlobalDocs.</p></div>
+                    <span class="badge red">Today</span>
+                  </div>
+                </div>
+                <div class="queue-item">
+                  <div class="queue-top">
+                    <div><strong>Review handoffs returned twice</strong><p>Two handoffs have repeated clarification cycles.</p></div>
+                    <span class="badge orange">4 days</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section-header">
+              <div>
+                <h2 class="section-title">Handoff Queue</h2>
+                <p class="section-subtitle">Closed-won context moving into delivery.</p>
+              </div>
+            </div>
+            <div class="section-body">
+              <div class="mini-card-grid">
+                <div class="mini-card"><strong>9</strong><span>Pending review</span></div>
+                <div class="mini-card"><strong>3</strong><span>Needs clarification</span></div>
+                <div class="mini-card"><strong>5</strong><span>Accepted, not ready</span></div>
+                <div class="mini-card"><strong>2</strong><span>Kickoff ready</span></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section-header">
+              <div>
+                <h2 class="section-title">Support Impact</h2>
+                <p class="section-subtitle">Support issues materially affecting health, delivery, or confidence.</p>
+              </div>
+            </div>
+            <div class="section-body">
+              <div class="queue-list">
+                <div class="queue-item">
+                  <div class="queue-top">
+                    <div><strong>API sync timeout</strong><p>Northstar Analytics · RCA overdue · renewal impact medium.</p></div>
+                    <span class="badge red">Critical</span>
+                  </div>
+                </div>
+                <div class="queue-item">
+                  <div class="queue-top">
+                    <div><strong>SSO metadata mismatch</strong><p>Meridian Health · blocked implementation milestone.</p></div>
+                    <span class="badge orange">High</span>
+                  </div>
+                </div>
+                <div class="queue-item">
+                  <div class="queue-top">
+                    <div><strong>Reporting export latency</strong><p>Summit Compliance · customer confidence trending down.</p></div>
+                    <span class="badge yellow">Medium</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section-header">
+              <div>
+                <h2 class="section-title">Risk Distribution</h2>
+                <p class="section-subtitle">Where current customer risk is concentrated.</p>
+              </div>
+            </div>
+            <div class="section-body">
+              <div class="customer-map">
+                <div class="map-row"><strong>Implementation</strong><div class="map-bar"><div class="map-fill" style="width:78%"></div></div><span>78%</span></div>
+                <div class="map-row"><strong>Support</strong><div class="map-bar"><div class="map-fill" style="width:54%"></div></div><span>54%</span></div>
+                <div class="map-row"><strong>Commitments</strong><div class="map-bar"><div class="map-fill" style="width:63%"></div></div><span>63%</span></div>
+                <div class="map-row"><strong>Adoption</strong><div class="map-bar"><div class="map-fill" style="width:41%"></div></div><span>41%</span></div>
+                <div class="map-row"><strong>Commercial</strong><div class="map-bar"><div class="map-fill" style="width:36%"></div></div><span>36%</span></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <div class="section-header">
+              <div>
+                <h2 class="section-title">Recent Operating Events</h2>
+                <p class="section-subtitle">Structured events that feed account timelines and executive views.</p>
+              </div>
+            </div>
+            <div class="section-body">
+              <div class="timeline">
+                <div class="timeline-item">
+                  <div class="timeline-dot red">!</div>
+                  <div class="timeline-content"><strong>Commitment moved to At Risk</strong><span>Northstar RCA due date missed · Samir Patel · 8:12 AM</span></div>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-dot yellow">↻</div>
+                  <div class="timeline-content"><strong>Handoff returned for clarification</strong><span>Summit Compliance · missing success criteria · Yesterday</span></div>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-dot green">✓</div>
+                  <div class="timeline-content"><strong>Go-live readiness completed</strong><span>BlueRidge Data · 11 of 11 required items complete</span></div>
+                </div>
+                <div class="timeline-item">
+                  <div class="timeline-dot purple">◆</div>
+                  <div class="timeline-content"><strong>Executive sponsor updated</strong><span>Meridian Health · new sponsor added to renewal path</span></div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </aside>
+      </div>
+
+      <div class="footer-note">Customer Delivery CRM prototype · Executive dashboard / post-sale command center · Static HTML mockup</div>
+    </main>
+  </div>
+<atw-footer></atw-footer>
+</div>
+</body>
+</html>

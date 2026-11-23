@@ -1,0 +1,666 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>Introduction to Flight: Core Concepts &#038; Formulas (Aerodynamics, Performance, Stability)</title>
+  <meta name="description" content="A structured, university-level Introduction to Flight reference: core aerodynamics, atmosphere, forces, performance, turns, stability, and the most-used flight formulas with definitions and links to authoritative references (FAA, NASA)." />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <meta name="theme-color" content="#0b1220" />
+
+  <!-- Canonical: replace with your real published URL -->
+  <link rel="canonical" href="/flight/" />
+
+  <!-- Basic SEO / discovery helpers -->
+  <meta name="author" content="All These Worlds Are Yours" />
+  <meta name="keywords" content="Introduction to Flight, aerodynamics, lift equation, drag equation, Bernoulli, Reynolds number, Mach number, ISA atmosphere, stall speed, load factor, turning flight, rate of climb, glide ratio, aircraft stability" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Introduction to Flight: Core Concepts &#038; Formulas" />
+  <meta property="og:description" content="Core aerodynamics, atmosphere, performance, and stability formulas—organized for quick study and practical reference (with FAA &#038; NASA links)." />
+  <meta property="og:url" content="/flight/" />
+  <meta property="og:image" content="https://example.com/assets/intro-to-flight-cover.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Introduction to Flight: Core Concepts &#038; Formulas" />
+  <meta name="twitter:description" content="University-level flight fundamentals: the key equations, definitions, and reference links." />
+  <meta name="twitter:image" content="https://example.com/assets/intro-to-flight-cover.png" />
+
+  <!-- Optional: if you host a sitemap -->
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+
+  <!-- Structured data (JSON-LD) for better indexing -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Introduction to Flight: Core Concepts & Formulas",
+    "description": "A structured reference of core concepts and formulas commonly taught in an Introduction to Flight university course (aerodynamics, atmosphere, performance, turns, stability).",
+    "author": { "@type": "Person", "name": "Jacob K Hesse" },
+    "publisher": { "@type": "Organization", "name": "Your Organization" },
+    "datePublished": "2026-02-25",
+    "dateModified": "2026-02-25",
+    "mainEntityOfPage": "/flight/",
+    "about": [
+      { "@type": "Thing", "name": "Aerodynamics" },
+      { "@type": "Thing", "name": "Flight mechanics" },
+      { "@type": "Thing", "name": "Aircraft performance" }
+    ]
+  }
+  </script>
+
+  <style>
+    :root{
+      --bg:#0b1220;
+      --card:#101a33;
+      --text:#e8eefc;
+      --muted:#b9c5ea;
+      --accent:#7aa2ff;
+      --border:rgba(255,255,255,.10);
+      --code:#0a1020;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(1200px 700px at 20% 0%, rgba(122,162,255,.25), transparent 55%),
+                  radial-gradient(900px 600px at 90% 10%, rgba(90,230,200,.10), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.55;
+    }
+    a{color:var(--accent); text-decoration:none}
+    a:hover{text-decoration:underline}
+    header{
+      padding: 56px 20px 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .badge{
+      display:inline-block;
+      padding:6px 10px;
+      border:1px solid var(--border);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 13px;
+      background: rgba(255,255,255,.04);
+    }
+    h1{
+      margin: 14px 0 10px;
+      font-size: clamp(28px, 3.2vw, 44px);
+      letter-spacing: -.02em;
+      line-height: 1.15;
+    }
+    .subtitle{
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 80ch;
+    }
+    main{
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px 70px;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    @media (min-width: 980px){
+      .grid{grid-template-columns: 340px 1fr;}
+      aside{position:sticky; top:18px; align-self:start;}
+    }
+    .card{
+      background: rgba(16,26,51,.82);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 16px;
+      box-shadow: 0 14px 40px rgba(0,0,0,.25);
+      backdrop-filter: blur(8px);
+    }
+    nav ul{list-style:none; padding:0; margin:10px 0 0;}
+    nav li{margin:8px 0}
+    .toc a{display:block; padding:8px 10px; border-radius: 12px;}
+    .toc a:hover{background: rgba(255,255,255,.06); text-decoration:none;}
+    section{scroll-margin-top: 18px;}
+    h2{
+      margin: 0 0 10px;
+      font-size: 24px;
+      letter-spacing: -.01em;
+    }
+    h3{
+      margin: 18px 0 8px;
+      font-size: 18px;
+    }
+    .muted{color:var(--muted)}
+    .formula{
+      background: rgba(10,16,32,.85);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 14px;
+      overflow:auto;
+      margin: 10px 0;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 14px;
+      line-height: 1.45;
+      color: #dbe6ff;
+    }
+    .kvs{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin: 10px 0 0;
+    }
+    @media (min-width: 720px){
+      .kvs{grid-template-columns: 1fr 1fr;}
+    }
+    .kv{
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px;
+      background: rgba(255,255,255,.03);
+    }
+    .kv strong{display:block; margin-bottom:6px}
+    table{
+      width:100%;
+      border-collapse: collapse;
+      margin: 10px 0 0;
+      font-size: 14px;
+    }
+    th, td{
+      border-bottom: 1px solid var(--border);
+      padding: 10px 8px;
+      vertical-align: top;
+    }
+    th{color: var(--muted); text-align:left; font-weight: 600;}
+    .note{
+      border-left: 4px solid var(--accent);
+      padding: 10px 12px;
+      margin: 12px 0 0;
+      background: rgba(122,162,255,.08);
+      border-radius: 12px;
+      color: var(--muted);
+    }
+    footer{
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .pill{
+      display:inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      margin: 6px 6px 0 0;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .sr-only{
+      position:absolute;
+      width:1px;height:1px;
+      padding:0;margin:-1px;
+      overflow:hidden;clip:rect(0,0,0,0);
+      white-space:nowrap;border:0;
+    }
+  </style>
+<link rel="icon" href="/wp-content/uploads/2025/11/cropped-0_3-25456-no-background.png">
+<script src="/assets/site.js" defer></script>
+</head>
+<body>
+<div class="wp-site-blocks">
+<atw-header></atw-header>
+<header>
+    <span class="badge">University • Introduction to Flight • Study + Reference</span>
+    <h1>Introduction to Flight: Core Concepts &amp; Formulas</h1>
+    <p class="subtitle">
+      This page consolidates the most-used <strong>concepts</strong> and <strong>equations</strong> in a typical university “Intro to Flight” course:
+      atmosphere, aerodynamics, performance, turning flight, and stability/control. It’s organized for fast navigation and includes
+      authoritative reference links (FAA + NASA).
+    </p>
+    <div class="pill">Aerodynamics</div>
+    <div class="pill">ISA Atmosphere</div>
+    <div class="pill">Performance</div>
+    <div class="pill">Turns</div>
+    <div class="pill">Stability</div>
+  </header>
+
+  <main class="grid">
+    <aside class="card toc" aria-label="Table of contents">
+      <h2>Contents</h2>
+      <nav>
+        <ul>
+          <li><a href="#foundations">1) Foundations &amp; Symbols</a></li>
+          <li><a href="#atmosphere">2) Standard Atmosphere &amp; Airspeed</a></li>
+          <li><a href="#aero">3) Aerodynamics: Lift, Drag, Moments</a></li>
+          <li><a href="#performance">4) Performance: Climb, Glide, Endurance/Range</a></li>
+          <li><a href="#turns">5) Turning Flight &amp; Load Factor</a></li>
+          <li><a href="#stability">6) Stability &amp; Control Basics</a></li>
+          <li><a href="#refs">7) References &amp; Free Learning Material</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </nav>
+
+      
+    </aside>
+
+    <article class="card">
+      <section id="foundations">
+        <h2>1) Foundations &amp; Symbols</h2>
+        <p class="muted">
+          Intro to Flight typically blends (a) physics of forces and energy, (b) aerodynamics (how air generates lift/drag), and
+          (c) performance/stability (what the airplane can do and why it behaves that way).
+        </p>
+
+        <h3>Core force picture</h3>
+        <p>
+          In the simplest steady, unaccelerated, straight-and-level model:
+          <strong>Lift</strong> opposes <strong>weight</strong>, and <strong>thrust</strong> opposes <strong>drag</strong>.
+          Real flight adds climb/descent angles, acceleration, turns, compressibility effects, and control-surface moments.
+        </p>
+
+        <div class="kvs">
+          <div class="kv">
+            <strong>Common symbols</strong>
+            <div class="formula">
+              L = lift (N)<br/>
+              D = drag (N)<br/>
+              T = thrust (N)<br/>
+              W = weight (N)<br/>
+              ρ = air density (kg/m³)<br/>
+              V = true airspeed (m/s)<br/>
+              S = wing reference area (m²)<br/>
+              q = dynamic pressure = ½ρV² (Pa)<br/>
+              CL, CD, CM = lift/drag/moment coefficients (dimensionless)
+            </div>
+          </div>
+          <div class="kv">
+            <strong>Angles</strong>
+            <div class="formula">
+              α = angle of attack (AoA)<br/>
+              γ = flight-path angle (climb/descent)<br/>
+              φ = bank angle (turning)<br/>
+              θ = pitch attitude (aircraft body angle)
+            </div>
+          </div>
+        </div>
+
+        <div class="note">
+          For most “Intro to Flight” derivations, the unifying idea is: <strong>non-dimensional coefficients</strong> (CL, CD, CM)
+          capture geometry/flow behavior, while <strong>qS</strong> sets the scale of aerodynamic forces.
+        </div>
+      </section>
+
+      <hr style="border:none;border-top:1px solid var(--border);margin:18px 0;" />
+
+      <section id="atmosphere">
+        <h2>2) Standard Atmosphere &amp; Airspeed</h2>
+
+        <h3>Ideal gas + density</h3>
+        <div class="formula">
+          p = ρ R T<br/>
+          ρ = p / (R T)
+        </div>
+        <p class="muted">
+          Air density matters because aerodynamic forces scale with <strong>½ρV²</strong>. “Density altitude” is the operational
+          way pilots feel this: high density altitude → reduced lift and reduced engine/prop performance.
+        </p>
+
+        <h3>Dynamic pressure</h3>
+        <div class="formula">
+          q = ½ ρ V²
+        </div>
+
+        <h3>Airspeed definitions (conceptual)</h3>
+        <table aria-label="Airspeed definitions">
+          <thead>
+            <tr><th>Speed</th><th>Meaning</th><th>Why it matters</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>IAS</strong></td>
+              <td>Indicated airspeed (what the pitot-static system reports)</td>
+              <td>Closely tracks aerodynamic “feel” at low speeds; used for V-speeds.</td>
+            </tr>
+            <tr>
+              <td><strong>TAS</strong></td>
+              <td>True airspeed (actual speed through the air mass)</td>
+              <td>Governs real aerodynamic forces with ρ; affects navigation and range.</td>
+            </tr>
+            <tr>
+              <td><strong>Mach</strong></td>
+              <td>Speed relative to speed of sound</td>
+              <td>Compressibility effects rise with Mach; changes CL/CD behavior.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Speed of sound + Mach number</h3>
+        <div class="formula">
+          a = √(γ R T)<br/>
+          M = V / a
+        </div>
+
+        <h3>Reynolds number (viscous similarity)</h3>
+        <div class="formula">
+          Re = (ρ V L) / μ
+        </div>
+        <p class="muted">
+          Re helps predict boundary-layer behavior (laminar vs turbulent), skin friction, and how wind-tunnel results scale to full size.
+        </p>
+      </section>
+
+      <hr style="border:none;border-top:1px solid var(--border);margin:18px 0;" />
+
+      <section id="aero">
+        <h2>3) Aerodynamics: Lift, Drag, Moments</h2>
+
+        <h3>Lift equation (core)</h3>
+        <div class="formula">
+          L = ½ ρ V² S CL = q S CL
+        </div>
+
+        <h3>Drag equation (core)</h3>
+        <div class="formula">
+          D = ½ ρ V² S CD = q S CD
+        </div>
+        <p class="muted">
+          NASA’s Glenn Research Center provides clear, beginner-to-intermediate derivations and definitions for lift and drag.
+          See the references section for direct links.
+        </p>
+
+        <h3>Pitching moment (about a reference point)</h3>
+        <div class="formula">
+          M = ½ ρ V² S c̄ CM = q S c̄ CM
+        </div>
+        <p class="muted">
+          Where <strong>c̄</strong> is mean aerodynamic chord. Moments are what the tail and control surfaces primarily manage.
+        </p>
+
+        <h3>Bernoulli + continuity (conceptual tools)</h3>
+        <div class="formula">
+          Continuity (incompressible): A₁V₁ = A₂V₂<br/><br/>
+          Bernoulli (steady, inviscid, along a streamline):<br/>
+          p + ½ρV² + ρgh = constant
+        </div>
+        <div class="note">
+          In real aerodynamics, lift is best understood via <strong>pressure distribution + momentum change</strong>.
+          Bernoulli is useful, but viscous effects and circulation matter.
+        </div>
+
+        <h3>Coefficient trends and small-angle lift slope (typical)</h3>
+        <div class="formula">
+          CL ≈ CL₀ + (dCL/dα) · α<br/>
+          (Thin airfoil theory ideal: dCL/dα ≈ 2π per rad)
+        </div>
+        <p class="muted">
+          In practice, finite wings have lower lift slope than ideal thin-airfoil theory; stall occurs when CL no longer increases with α.
+        </p>
+
+        <h3>Drag decomposition: parasite + induced</h3>
+        <div class="formula">
+          CD = CD₀ + CDi<br/>
+          CDi = (CL²) / (π e AR)
+        </div>
+        <p class="muted">
+          <strong>CD₀</strong> aggregates skin friction, form drag, and interference drag. Induced drag is the “lift penalty” from wingtip vortices.
+          <strong>AR</strong> is aspect ratio; <strong>e</strong> is Oswald efficiency factor.
+        </p>
+
+        <h3>Lift-to-drag ratio (efficiency)</h3>
+        <div class="formula">
+          L/D = CL / CD
+        </div>
+        <p class="muted">
+          Higher L/D means more aerodynamic efficiency (important for glide and range).
+        </p>
+
+        <h3>Stall speed (classic approximation)</h3>
+        <div class="formula">
+          At stall: L = W and CL = CLmax<br/>
+          Vs = √( (2W) / (ρ S CLmax) )
+        </div>
+        <div class="note">
+          This equation explains why stall speed increases with weight and decreases with denser air and higher CLmax (e.g., flaps).
+        </div>
+      </section>
+
+      <hr style="border:none;border-top:1px solid var(--border);margin:18px 0;" />
+
+      <section id="performance">
+        <h2>4) Performance: Climb, Glide, Endurance &amp; Range</h2>
+
+        <h3>Power and energy framing</h3>
+        <p class="muted">
+          Performance is often taught as a competition between what the airplane <strong>needs</strong> (drag/power required) and what it can
+          <strong>produce</strong> (thrust/power available). The gap determines climb capability.
+        </p>
+
+        <h3>Power required vs power available (fixed-wing)</h3>
+        <div class="formula">
+          Power required: PR = D · V<br/>
+          Power available: PA (engine/prop dependent, varies with altitude and throttle)
+        </div>
+
+        <h3>Rate of climb (ROC)</h3>
+        <div class="formula">
+          Excess power = PA − PR<br/>
+          ROC = (PA − PR) / W
+        </div>
+
+        <h3>Excess thrust model (alternate)</h3>
+        <div class="formula">
+          Excess thrust = T − D<br/>
+          For small climb angles: sin(γ) ≈ (T − D)/W
+        </div>
+
+        <h3>Glide performance (no thrust)</h3>
+        <div class="formula">
+          Best glide angle (max range in still air) occurs near max(L/D).<br/>
+          Glide ratio ≈ L/D (in steady glide)
+        </div>
+
+        <h3>Specific fuel consumption (SFC) concept</h3>
+        <p class="muted">
+          Endurance and range depend on propulsion efficiency and fuel burn. In many intro courses, you’ll see simplified relationships
+          that connect endurance/range to L/D and SFC (exact forms depend on whether you model thrust-specific or power-specific fuel consumption).
+        </p>
+
+        <h3>Takeoff/landing distance (high-level dependencies)</h3>
+        <p class="muted">
+          Intro courses often emphasize the variables rather than a single universal equation:
+          density altitude (ρ), headwind, runway slope, aircraft weight (W), CLmax configuration (flaps), thrust/power available,
+          and rolling friction/braking.
+        </p>
+      </section>
+
+      <hr style="border:none;border-top:1px solid var(--border);margin:18px 0;" />
+
+      <section id="turns">
+        <h2>5) Turning Flight &amp; Load Factor</h2>
+
+        <h3>Load factor</h3>
+        <div class="formula">
+          n = L / W
+        </div>
+
+        <h3>Level coordinated turn relationships</h3>
+        <div class="formula">
+          n = 1 / cos(φ)<br/>
+          L = W / cos(φ)
+        </div>
+
+        <h3>Turn rate and turn radius (coordinated, level)</h3>
+        <div class="formula">
+          Turn radius: R = V² / (g tan(φ))<br/>
+          Turn rate (rad/s): ω = g tan(φ) / V
+        </div>
+
+        <h3>Accelerated stall in turns</h3>
+        <div class="formula">
+          Stall speed in a load factor n:<br/>
+          Vs_turn = Vs · √n
+        </div>
+        <div class="note">
+          This is why steep turns raise stall speed: higher bank → higher load factor → higher required lift.
+        </div>
+      </section>
+
+      <hr style="border:none;border-top:1px solid var(--border);margin:18px 0;" />
+
+      <section id="stability">
+        <h2>6) Stability &amp; Control Basics</h2>
+
+        <h3>Static stability (concept)</h3>
+        <p class="muted">
+          Static stability asks: after a small disturbance, does the aircraft initially tend to return (stable), diverge (unstable),
+          or stay displaced (neutral)? Dynamic stability adds the time history (oscillation, damping).
+        </p>
+
+        <h3>Pitch static stability idea using moment slope</h3>
+        <div class="formula">
+          Static pitch stability (typical criterion): dCM/dα &lt; 0
+        </div>
+        <p class="muted">
+          Interpreted: if AoA increases, a restoring (nose-down) pitching moment should result.
+        </p>
+
+        <h3>Center of gravity (CG) &amp; trim</h3>
+        <p class="muted">
+          The wing-body produces lift and a pitching moment; the tail provides an additional force to satisfy moment equilibrium.
+          Changing CG location changes the tail force required for trim, which changes drag and stall margins.
+        </p>
+
+        <h3>Control surfaces (what they primarily influence)</h3>
+        <table aria-label="Control surfaces">
+          <thead>
+            <tr><th>Surface</th><th>Primary axis</th><th>Primary effect</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Elevator / stabilator</strong></td>
+              <td>Pitch</td>
+              <td>Changes pitching moment and AoA (thus CL).</td>
+            </tr>
+            <tr>
+              <td><strong>Ailerons</strong></td>
+              <td>Roll</td>
+              <td>Creates differential lift → roll moment.</td>
+            </tr>
+            <tr>
+              <td><strong>Rudder</strong></td>
+              <td>Yaw</td>
+              <td>Controls sideslip/yaw; supports coordination.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="note">
+          Many “Intro to Flight” classes stop short of full linearized stability derivatives, but the sign logic above (moment slopes and trim)
+          is foundational for later aircraft dynamics courses.
+        </div>
+      </section>
+
+      <hr style="border:none;border-top:1px solid var(--border);margin:18px 0;" />
+
+      <section id="refs">
+        <h2>7) References &amp; Free Learning Material</h2>
+        <p class="muted">
+          These are high-quality, authoritative, and (mostly) free references you can cite or study from.
+        </p>
+
+        <h3>FAA handbooks (free, official)</h3>
+        <ul>
+          <li>
+            <a href="https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/phak" rel="noopener" target="_blank">
+              Pilot’s Handbook of Aeronautical Knowledge (PHAK)
+            </a>
+            — especially “Principles of Flight” and “Aerodynamics of Flight.” (FAA) 
+          </li>
+          <li>
+            <a href="https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/airplane_handbook" rel="noopener" target="_blank">
+              Airplane Flying Handbook
+            </a>
+            — performance, maneuvers, and operational context. (FAA)
+          </li>
+          <li>
+            <a href="https://www.faa.gov/regulations_policies/handbooks_manuals/aviation" rel="noopener" target="_blank">
+              FAA Aviation Handbooks &amp; Manuals index
+            </a>
+            — master list of FAA learning publications. (FAA)
+          </li>
+        </ul>
+
+        <h3>NASA Glenn (clear aerodynamics explanations)</h3>
+        <ul>
+          <li>
+            <a href="https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/drag-equation/" rel="noopener" target="_blank">
+              Drag Equation (NASA Glenn)
+            </a>
+          </li>
+          <li>
+            <a href="https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/modern-drag-equation/" rel="noopener" target="_blank">
+              Modern Drag Equation (NASA Glenn)
+            </a>
+          </li>
+          <li>
+            <a href="https://www1.grc.nasa.gov/beginners-guide-to-aeronautics/lift-to-drag-ratio/" rel="noopener" target="_blank">
+              Lift-to-Drag Ratio (NASA Glenn)
+            </a>
+          </li>
+        </ul>
+
+        <h3>NASA Technical Reports Server (open research archive)</h3>
+        <ul>
+          <li>
+            <a href="https://ntrs.nasa.gov/" rel="noopener" target="_blank">
+              NASA NTRS (searchable technical reports)
+            </a>
+            — useful for historical NACA/NASA reports and deeper aerodynamic topics.
+          </li>
+        </ul>
+
+        
+      </section>
+
+      <hr style="border:none;border-top:1px solid var(--border);margin:18px 0;" />
+
+      <section id="faq">
+        <h2>FAQ</h2>
+
+        <h3>What are the most important formulas in an Introduction to Flight course?</h3>
+        <p class="muted">
+          The most central equations are the lift equation (L = ½ρV²SCL), drag equation (D = ½ρV²SCD), dynamic pressure (q = ½ρV²),
+          stall speed estimate (Vs = √(2W/(ρSCLmax))), Mach (M = V/a), Reynolds number (Re = ρVL/μ), and turn relationships
+          (R = V²/(g tanφ), n = 1/cosφ).
+        </p>
+
+        <h3>Why do pilots care about density altitude?</h3>
+        <p class="muted">
+          Density altitude is a practical way to describe reduced air density. Lower density reduces aerodynamic forces for a given
+          indicated speed and reduces engine/propeller performance, increasing takeoff distance and reducing climb.
+        </p>
+
+        <h3>What does “L/D” tell you?</h3>
+        <p class="muted">
+          L/D is aerodynamic efficiency. Higher L/D improves glide range and typically improves cruise range for a given fuel burn model.
+        </p>
+      </section>
+    </article>
+  </main>
+
+  <footer>
+    <p>
+      <strong>Disclaimer:</strong> Educational reference only. Always use approved flight manuals, POH/AFM, and official training resources for real-world operations.
+    </p>
+  
+  </footer>
+<atw-footer></atw-footer>
+</div>
+</body>
+</html>

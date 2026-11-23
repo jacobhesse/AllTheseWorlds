@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Layers of the Sun — Core to Corona</title>
+  <meta name="description" content="A fact-only reference describing each layer/zone of the Sun, with temperature, depth, composition/ionization notes, and key physical processes, based on NASA and other authoritative sources." />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Article",
+    "headline":"Layers of the Sun — Core to Corona",
+    "dateModified":"2025-12-19",
+    "about":[{"@type":"Thing","name":"Sun"},{"@type":"Thing","name":"Solar physics"},{"@type":"Thing","name":"Heliophysics"}],
+    "isBasedOn":[
+      "https://science.nasa.gov/sun/facts/",
+      "https://www.nasa.gov/image-article/layers-of-sun/",
+      "https://solarscience.msfc.nasa.gov/interior.shtml"
+    ]
+  }
+  </script>
+
+  <style>
+    :root{
+      --bg:#0b1220;
+      --card:#0f1b33;
+      --ink:#eaf2ff;
+      --muted:#a8bddc;
+      --line:#22385f;
+      --accent:#6fd3c7;
+      --warn:#ffd59a;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+    }
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      background: radial-gradient(1200px 700px at 20% -10%, rgba(111,211,199,.18), transparent 55%),
+                  radial-gradient(1200px 700px at 110% 0%, rgba(124,92,255,.12), transparent 55%),
+                  var(--bg);
+      color:var(--ink);
+      line-height:1.6;
+    }
+    a{color:var(--accent); text-decoration:none}
+    a:hover{text-decoration:underline}
+    header{
+      max-width:1100px;
+      margin:0 auto;
+      padding:3rem 1.25rem 1.25rem;
+    }
+    h1{
+      margin:0 0 .55rem 0;
+      font-weight:850;
+      letter-spacing:.01em;
+      font-size:clamp(1.8rem, 2.7vw, 2.55rem);
+    }
+    .sub{
+      margin:0;
+      color:var(--muted);
+      max-width:90ch;
+    }
+    main{
+      max-width:1100px;
+      margin:0 auto;
+      padding:0 1.25rem 3rem;
+      display:grid;
+      gap:1rem;
+    }
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .hd{
+      padding:1.1rem 1.25rem .75rem;
+      border-bottom:1px solid rgba(34,56,95,.8);
+      display:flex;
+      justify-content:space-between;
+      align-items:baseline;
+      gap:1rem;
+      flex-wrap:wrap;
+    }
+    .hd h2{
+      margin:0;
+      font-size:1.25rem;
+      letter-spacing:.01em;
+    }
+    .meta{color:var(--muted); font-size:.95rem}
+    .bd{padding:1rem 1.25rem 1.25rem}
+    .note{
+      border-left:4px solid var(--accent);
+      padding:.9rem 1rem;
+      background: rgba(111,211,199,.08);
+      border-radius:12px;
+      color:var(--muted);
+      margin:.2rem 0 1rem;
+    }
+    .note.warn{
+      border-left-color: var(--warn);
+      background: rgba(255,213,154,.08);
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap:.9rem;
+      margin-top:.9rem;
+    }
+    .box{
+      grid-column: span 6;
+      border:1px solid rgba(34,56,95,.85);
+      background: rgba(15,27,51,.55);
+      border-radius:16px;
+      padding:.9rem 1rem;
+      min-width:240px;
+    }
+    .box h3{margin:0 0 .5rem 0; font-size:1rem}
+    dl{margin:0}
+    dt{color:var(--muted); font-size:.9rem; margin-top:.65rem}
+    dd{margin:.15rem 0 0 0}
+    table{
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0;
+      overflow:hidden;
+      border-radius:14px;
+      border:1px solid rgba(34,56,95,.85);
+      background: rgba(15,27,51,.45);
+    }
+    th,td{
+      text-align:left;
+      padding:.7rem .8rem;
+      border-bottom:1px solid rgba(34,56,95,.55);
+      vertical-align:top;
+    }
+    th{
+      color:var(--ink);
+      font-size:.92rem;
+      letter-spacing:.02em;
+      background: rgba(255,255,255,.03);
+    }
+    tr:last-child td{border-bottom:none}
+    .small{color:var(--muted); font-size:.92rem}
+    footer{
+      max-width:1100px;
+      margin:0 auto;
+      padding:0 1.25rem 3rem;
+      color:var(--muted);
+    }
+    @media (max-width: 900px){
+      .box{grid-column: span 12;}
+    }
+  </style>
+<link rel="icon" href="/wp-content/uploads/2025/11/cropped-0_3-25456-no-background.png">
+<script src="/assets/site.js" defer></script>
+</head>
+<body>
+<div class="wp-site-blocks">
+<atw-header></atw-header>
+<header>
+    <h1>Layers of the Sun — Core to Corona</h1>
+    <p class="sub">
+      This page describes each major zone of the Sun using published, source-backed parameters: temperatures, approximate depths/heights, and composition/ionization notes.
+      Where a source provides values in different units (°C/°F/K), the page preserves the physical meaning and uses Kelvin where practical.
+    </p>
+  </header>
+
+<div style="text-align:center; margin: 2rem 0;">
+  <img decoding="async" 
+    src="/wp-content/uploads/2026/04/Inside-the-heart-of-the-Sun.png" 
+    alt="Full moon in space" 
+    style="max-width:65%; height:auto; border-radius:12px;"
+  >
+</div>
+
+  <main>
+    <section class="card" aria-label="Reference frame and composition">
+      <div class="hd">
+        <h2>Reference frame used on this page</h2>
+        <div class="meta">Depths are measured as either “below the visible surface” or “above the photosphere,” depending on the layer</div>
+      </div>
+      <div class="bd">
+        <div class="note warn">
+          Thickness and boundary values are approximate because the Sun is a plasma with gradients, not a stack of rigid shells. Outer-atmosphere boundaries in particular vary by definition and by solar activity.
+        </div>
+
+        <div class="grid">
+          <div class="box">
+            <h3>Solar size constant used</h3>
+            <dl>
+              <dt>Nominal solar radius</dt>
+              <dd>695,700 km (a standard nominal conversion constant used in astronomy)</dd>
+            </dl>
+            <p class="small">
+              Source: Nominal constants reference derived from IAU 2015 Resolution B3. </p>
+          </div>
+
+          <div class="box">
+            <h3>Overall composition (photosphere)</h3>
+            <dl>
+              <dt>By mass (“by weight”)</dt>
+              <dd>Hydrogen ≈ 73.46%, Helium ≈ 24.85% (with the remainder as heavier elements at much smaller fractions)</dd>
+              <dt>By number of atoms (common educational shorthand)</dt>
+              <dd>Often stated as ~92% hydrogen and ~8% helium, reflecting number fractions rather than mass fractions</dd>
+            </dl>
+          </div>
+        </div>
+
+        <p class="small">
+          Sources: nominal radius reference (IAU-derived) and photospheric composition tables; NASA also publishes a number-fraction style summary. :contentReference[oaicite:0]{index=0}
+        </p>
+      </div>
+    </section>
+
+    <section class="card" aria-label="At-a-glance table">
+      <div class="hd">
+        <h2>At-a-glance: zones, temperatures, and where they sit</h2>
+        <div class="meta">Numbers below are sourced (see citations after the table)</div>
+      </div>
+      <div class="bd">
+        <table aria-label="Sun layer summary">
+          <thead>
+            <tr>
+              <th style="width:16rem">Layer / Zone</th>
+              <th>Where it is</th>
+              <th>Temperature (reported ranges)</th>
+              <th>Composition / state (fact-limited)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Core</strong></td>
+              <td>Central region; reported thickness ~138,000 km</td>
+              <td>~15 million °C (core temperature)</td>
+              <td>Plasma dominated by H/He; hydrogen fusion to helium powers the Sun</td>
+            </tr>
+            <tr>
+              <td><strong>Radiative zone</strong></td>
+              <td>Between core and convection zone; extends to ~0.7 solar radius (fractional boundary)</td>
+              <td>Not a single value; energy transported outward primarily by radiation (photon diffusion)</td>
+              <td>Highly ionized plasma; photons repeatedly absorbed and re-emitted</td>
+            </tr>
+            <tr>
+              <td><strong>Convection zone</strong></td>
+              <td>Outermost interior; extends from ~200,000 km below the surface to the photosphere</td>
+              <td>~2,000,000 °C at the base; cooler upward toward the surface</td>
+              <td>At its base, temperatures are “cool” enough that heavier ions can hold onto some electrons, increasing opacity</td>
+            </tr>
+            <tr>
+              <td><strong>Photosphere</strong></td>
+              <td>Visible “surface”; ~400 km (250 miles) thick above the visible disk center</td>
+              <td>~6500 K (bottom) down to ~4000 K (top); commonly described as ~5,500 °C overall</td>
+              <td>Plasma where most visible light escapes; granulation is observed here</td>
+            </tr>
+            <tr>
+              <td><strong>Chromosphere</strong></td>
+              <td>~400 km to ~2100 km above the photosphere</td>
+              <td>~4000 K (bottom) to ~8000 K (top); other NASA communications describe rises to ~20,000 °C in parts</td>
+              <td>Ionization increases with height; dynamic region above the photosphere</td>
+            </tr>
+            <tr>
+              <td><strong>Transition region</strong></td>
+              <td>Very thin boundary between chromosphere and corona; ~100 km thick (one cited value)</td>
+              <td>Rapid rise from ~8000 K to ~500,000 K</td>
+              <td>Strong gradients in temperature and ionization</td>
+            </tr>
+            <tr>
+              <td><strong>Corona</strong></td>
+              <td>Outermost atmosphere; starts around ~2100 km above the photosphere (per one NASA definition)</td>
+              <td>≥ 500,000 K, up to a few million K; NASA also describes ~2 million °C / ~3.5 million °F values</td>
+              <td>Extremely hot, very low-density plasma; source region for solar wind</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p class="small">
+          Sources: NASA Sun facts; NASA “Layers of the Sun” image article; NASA/MSFC solar interior; NASA “Layers of the Sun” blog post for terminology. :contentReference[oaicite:1]{index=1}
+        </p>
+      </div>
+    </section>
+
+    <section class="card" aria-label="Core">
+      <div class="hd">
+        <h2>Core</h2>
+        <div class="meta">Energy generation region</div>
+      </div>
+      <div class="bd">
+        <p class="small">
+          NASA describes the core as the hottest part of the Sun, where hydrogen is fused into helium. It reports a core temperature of about 27 million °F (15 million °C) and a core thickness of about 86,000 miles (138,000 km). :contentReference[oaicite:2]{index=2}
+        </p>
+
+        <div class="grid">
+          <div class="box">
+            <h3>Temperature and scale (reported)</h3>
+            <dl>
+              <dt>Temperature</dt>
+              <dd>~15 million °C (reported core temperature)</dd>
+              <dt>Thickness</dt>
+              <dd>~138,000 km</dd>
+            </dl>
+          </div>
+          <div class="box">
+            <h3>Chemical makeup and state (fact-limited)</h3>
+            <dl>
+              <dt>What it is made of</dt>
+              <dd>Plasma dominated by hydrogen and helium; “hydrogen fused into helium” is the stated energy source</dd>
+              <dt>What changes with time</dt>
+              <dd>Helium is produced in the core by fusion (a compositional change in the core relative to the outer layers)</dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" aria-label="Radiative Zone">
+      <div class="hd">
+        <h2>Radiative zone</h2>
+        <div class="meta">Energy transport primarily by radiation (photon diffusion)</div>
+      </div>
+      <div class="bd">
+        <p class="small">
+          NASA describes energy moving outward from the core by radiation, with photons “bouncing around” in the radiative zone and taking about 170,000 years to reach the top of the convection zone. :contentReference[oaicite:3]{index=3}
+        </p>
+        <p class="small">
+          A NASA heliophysics instructional PDF describes the radiative transport continuing until about 0.7 of the solar radius. :contentReference[oaicite:4]{index=4}
+        </p>
+
+        <div class="grid">
+          <div class="box">
+            <h3>Where it sits (reported)</h3>
+            <dl>
+              <dt>Position</dt>
+              <dd>Between the core and the convection zone; radiative transport continues until ~0.7 solar radius</dd>
+            </dl>
+          </div>
+          <div class="box">
+            <h3>Composition and physical state (what can be stated cleanly)</h3>
+            <dl>
+              <dt>State</dt>
+              <dd>Hot, dense plasma; photons repeatedly interact with charged particles</dd>
+              <dt>Bulk chemistry</dt>
+              <dd>Still dominated by hydrogen and helium overall; heavy elements exist in trace fractions compared to H/He (photosphere composition provides the standard reference point)</dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" aria-label="Convection Zone">
+      <div class="hd">
+        <h2>Convection zone</h2>
+        <div class="meta">Energy transport primarily by bulk motion of plasma</div>
+      </div>
+      <div class="bd">
+        <p class="small">
+          NASA describes the convection zone as the outermost layer of the solar interior and states it extends from a depth of about 200,000 km up to the visible surface. :contentReference[oaicite:5]{index=5}
+        </p>
+
+        <div class="grid">
+          <div class="box">
+            <h3>Temperature and depth (reported)</h3>
+            <dl>
+              <dt>Depth range</dt>
+              <dd>From ~200,000 km below the surface to the photosphere</dd>
+              <dt>Base temperature</dt>
+              <dd>~2,000,000 °C at the base of the convection zone (reported)</dd>
+            </dl>
+          </div>
+
+          <div class="box">
+            <h3>Chemistry / ionization note (reported)</h3>
+            <dl>
+              <dt>Opacity-relevant detail</dt>
+              <dd>At the base of the convection zone, heavier ions (e.g., C, N, O, Ca, Fe) can retain some electrons, increasing opacity and making radiation transport less effective</dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" aria-label="Photosphere">
+      <div class="hd">
+        <h2>Photosphere</h2>
+        <div class="meta">Visible surface (lowest layer of the atmosphere)</div>
+      </div>
+      <div class="bd">
+        <p class="small">
+          NASA describes the photosphere as the deepest layer we can observe directly and reports it extends from the visible surface to about 250 miles (400 km) above that, with temperatures from about 6500 K (bottom) to about 4000 K (top). :contentReference[oaicite:6]{index=6}
+        </p>
+
+        <div class="grid">
+          <div class="box">
+            <h3>Thickness and temperature (reported)</h3>
+            <dl>
+              <dt>Thickness</dt>
+              <dd>~400 km above the visible surface reference point (one cited definition)</dd>
+              <dt>Temperature range</dt>
+              <dd>~6500 K (bottom) to ~4000 K (top)</dd>
+            </dl>
+          </div>
+          <div class="box">
+            <h3>Chemical makeup (best grounded statement)</h3>
+            <dl>
+              <dt>Bulk composition</dt>
+              <dd>Dominated by hydrogen and helium; published photospheric mass fractions are ~73.46% H and ~24.85% He by weight</dd>
+              <dt>What we can say without overreach</dt>
+              <dd>This is a plasma layer where most visible light escapes; fine structure includes granulation (convection patterns seen from above)</dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" aria-label="Chromosphere">
+      <div class="hd">
+        <h2>Chromosphere</h2>
+        <div class="meta">Atmospheric layer above the photosphere</div>
+      </div>
+      <div class="bd">
+        <p class="small">
+          NASA reports the chromosphere spans from about 250 miles (400 km) to about 1300 miles (2100 km) above the photosphere, with temperatures from about 4000 K near the bottom to about 8000 K near the top. :contentReference[oaicite:7]{index=7}
+        </p>
+        <p class="small">
+          NASA also describes the chromosphere more broadly as a region where temperature rises and can reach much higher values in some descriptions of the solar atmosphere. :contentReference[oaicite:8]{index=8}
+        </p>
+
+        <div class="grid">
+          <div class="box">
+            <h3>Height and temperature (reported)</h3>
+            <dl>
+              <dt>Height range</dt>
+              <dd>~400 km to ~2100 km above the photosphere</dd>
+              <dt>Temperature range</dt>
+              <dd>~4000 K (bottom) to ~8000 K (top)</dd>
+            </dl>
+          </div>
+          <div class="box">
+            <h3>Chemistry / state (fact-limited)</h3>
+            <dl>
+              <dt>State</dt>
+              <dd>Hot, partially ionized plasma with ionization increasing with height</dd>
+              <dt>Bulk chemistry</dt>
+              <dd>Still hydrogen/helium dominated; spectral diagnostics (e.g., hydrogen lines) are central for observation, but this page avoids interpretive claims beyond the cited temperature/extent values</dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" aria-label="Transition Region">
+      <div class="hd">
+        <h2>Transition region</h2>
+        <div class="meta">Thin boundary where temperature rises rapidly toward coronal values</div>
+      </div>
+      <div class="bd">
+        <p class="small">
+          NASA describes the transition region as very narrow (about 60 miles / 100 km) and reports a temperature rise from about 8000 K to about 500,000 K across it. :contentReference[oaicite:9]{index=9}
+        </p>
+
+        <div class="grid">
+          <div class="box">
+            <h3>Thickness and temperature jump (reported)</h3>
+            <dl>
+              <dt>Thickness</dt>
+              <dd>~100 km (one cited value)</dd>
+              <dt>Temperature change</dt>
+              <dd>~8000 K → ~500,000 K (abrupt rise)</dd>
+            </dl>
+          </div>
+          <div class="box">
+            <h3>What “transition” means physically (fact-limited)</h3>
+            <dl>
+              <dt>State change</dt>
+              <dd>A rapid change in temperature and ionization state over a small height range</dd>
+              <dt>Boundary role</dt>
+              <dd>Separates the chromosphere from the corona in one commonly used layered description</dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" aria-label="Corona and solar wind">
+      <div class="hd">
+        <h2>Corona</h2>
+        <div class="meta">Upper atmosphere; source region for solar wind</div>
+      </div>
+      <div class="bd">
+        <p class="small">
+          NASA defines the corona as the outermost layer, starting about 1300 miles (2100 km) above the photosphere, and reports coronal temperatures of 500,000 K or more, up to a few million K. NASA’s Sun facts page also notes the corona can reach about 3.5 million °F (~2 million °C), emphasizing that it is hotter than the photosphere. :contentReference[oaicite:10]{index=10}
+        </p>
+
+        <div class="grid">
+          <div class="box">
+            <h3>Height and temperature (reported)</h3>
+            <dl>
+              <dt>Where it begins (one NASA definition)</dt>
+              <dd>~2100 km above the photosphere</dd>
+              <dt>Temperature range</dt>
+              <dd>≥ 500,000 K; up to a few million K (NASA wording), with examples around ~2 million °C in NASA fact summaries</dd>
+            </dl>
+          </div>
+          <div class="box">
+            <h3>Composition and outflow (reported)</h3>
+            <dl>
+              <dt>State</dt>
+              <dd>Extremely hot, very low-density plasma</dd>
+              <dt>Solar wind link</dt>
+              <dd>NASA describes that once material leaves the corona at supersonic speeds, it becomes the solar wind, forming the heliosphere</dd>
+            </dl>
+          </div>
+        </div>
+
+        <p class="small">
+          Source for corona-to-solar-wind relationship: NASA Sun facts. :contentReference[oaicite:11]{index=11}
+        </p>
+      </div>
+    </section>
+
+    <section class="card" aria-label="Sources">
+      <div class="hd">
+        <h2>Primary sources used</h2>
+        <div class="meta">Direct links for verification</div>
+      </div>
+      <div class="bd">
+        <p class="small">
+          NASA “Our Sun: Facts” (core temperature, core thickness, photosphere temperature summary, corona temperature summary, structure order, and solar-wind statement). :contentReference[oaicite:12]{index=12}
+        </p>
+        <p class="small">
+          NASA “Layers of the Sun” image article (photosphere/chromosphere/transition region/corona heights and temperatures, including the 100 km transition-region thickness). :contentReference[oaicite:13]{index=13}
+        </p>
+        <p class="small">
+          NASA/MSFC SolarScience “The Solar Interior” (convection zone depth ~200,000 km, base temperature ~2,000,000 °C, and ion/electron opacity note). :contentReference[oaicite:14]{index=14}
+        </p>
+        <p class="small">
+          NASA “Layers of the Sun” blog post (layer naming/terminology reinforcement). :contentReference[oaicite:15]{index=15}
+        </p>
+        <p class="small">
+          Stanford Solar Center “Vital Statistics” (photospheric composition by weight: H 73.46%, He 24.85%). :contentReference[oaicite:16]{index=16}
+        </p>
+        <p class="small">
+          NASA GSFC “Imagine the Universe!” Sun page (composition stated in number-fraction style: ~92% H, ~8% He). :contentReference[oaicite:17]{index=17}
+        </p>
+        <p class="small">
+          Nominal solar radius reference (IAU-derived nominal constants summary PDF). :contentReference[oaicite:18]{index=18}
+        </p>
+        <p class="small">
+          NASA heliophysics instructional PDF (radiative transport continuing until about 0.7 solar radius). :contentReference[oaicite:19]{index=19}
+        </p>
+      </div>
+    </section>
+  </main>
+<atw-footer></atw-footer>
+</div>
+</body>
+</html>

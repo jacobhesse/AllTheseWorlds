@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Home | All These Worlds Are Yours</title>
+  <meta name="description" content="Explore topics, tools, and articles across the site." />
+
+  <!-- Optional: social sharing (edit as needed) -->
+  <meta property="og:title" content="All These Worlds Are Yours" />
+  <meta property="og:description" content="Explore topics, tools, and articles across the site." />
+  <meta property="og:type" content="website" />
+
+  <style>
+    :root{
+      --bg: #0b1220;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.09);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --border: rgba(255,255,255,.14);
+      --shadow: 0 12px 40px rgba(0,0,0,.35);
+      --radius: 18px;
+      --max: 1120px;
+      --focus: 0 0 0 4px rgba(125, 211, 252, .28);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body{
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color: var(--text);
+
+      line-height: 1.45;
+    }
+
+    a{ color: inherit; text-decoration: none; }
+    a:focus-visible{ outline: none; box-shadow: var(--focus); border-radius: 14px; }
+
+    .wrap{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 28px 18px 60px;
+    }
+
+    header{
+      display: grid;
+      gap: 12px;
+      padding: 22px 18px;
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .brand{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .brand h1{
+      margin: 0;
+      font-size: clamp(1.4rem, 2.6vw, 2rem);
+      letter-spacing: .2px;
+    }
+
+    .brand p{
+      margin: 0;
+      color: var(--muted);
+      max-width: 70ch;
+    }
+
+    .top-actions{
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn{
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.06);
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      font-weight: 600;
+      font-size: .95rem;
+      color: var(--text);
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.09);
+      border-color: rgba(255,255,255,.22);
+    }
+
+    .hero{
+      display: grid;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .search{
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      padding: 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.05);
+      backdrop-filter: blur(10px);
+    }
+
+    .search input{
+      width: 100%;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.18);
+      color: var(--text);
+      font-size: 1rem;
+    }
+    .search input::placeholder{ color: rgba(255,255,255,.55); }
+
+    main{
+      margin-top: 18px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .section-title{
+      margin: 12px 2px 4px;
+      font-size: 1.05rem;
+      color: var(--muted);
+      letter-spacing: .2px;
+    }
+
+    .grid{
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+    }
+
+    .card{
+      grid-column: span 12;
+      border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+      transition: transform .14s ease, border-color .14s ease, background .14s ease;
+      position: relative;
+      overflow: hidden;
+      min-height: 120px;
+    }
+
+    .card:hover{
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,.26);
+      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.05));
+    }
+
+    .card .kicker{
+      font-size: .82rem;
+      color: rgba(255,255,255,.72);
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      margin-bottom: 8px;
+    }
+
+    .card h3{
+      margin: 0 0 6px;
+      font-size: 1.18rem;
+      letter-spacing: .2px;
+    }
+
+    .card p{
+      margin: 0;
+      color: var(--muted);
+      max-width: 70ch;
+    }
+
+    .card .meta{
+      margin-top: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,.80);
+      font-weight: 600;
+      font-size: .95rem;
+    }
+
+    .card .arrow{
+      display: inline-block;
+      transform: translateX(0);
+      transition: transform .14s ease;
+    }
+    .card:hover .arrow{ transform: translateX(3px); }
+
+    /* Featured card spans wider on larger screens */
+    .card.featured{
+      min-height: 150px;
+      background: radial-gradient(1000px 400px at 15% 15%, rgba(59,130,246,.22), transparent 55%),
+                  linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.05));
+    }
+
+    @media (min-width: 700px){
+      .card{ grid-column: span 6; }
+      .card.featured{ grid-column: span 12; }
+    }
+
+    @media (min-width: 1020px){
+      .card{ grid-column: span 4; }
+      .card.featured{ grid-column: span 12; }
+    }
+
+    footer{
+      margin-top: 22px;
+      color: rgba(255,255,255,.62);
+      font-size: .95rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding: 8px 4px;
+    }
+
+    /* Simple client-side filtering */
+    .hidden{ display: none !important; }
+  </style>
+
+  <script>
+    // Simple client-side search: filters cards by title + description keywords
+    function filterCards(q){
+      q = (q || "").trim().toLowerCase();
+      const cards = document.querySelectorAll("[data-card]");
+      cards.forEach(card => {
+        const hay = (card.getAttribute("data-keywords") || "").toLowerCase();
+        card.classList.toggle("hidden", q && !hay.includes(q));
+      });
+    }
+    window.addEventListener("DOMContentLoaded", () => {
+      const input = document.getElementById("cardSearch");
+      if(!input) return;
+      input.addEventListener("input", (e) => filterCards(e.target.value));
+    });
+  </script>
+<link rel="icon" href="/wp-content/uploads/2025/11/cropped-0_3-25456-no-background.png">
+<script src="/assets/site.js" defer></script>
+</head>
+<body>
+<div class="wp-site-blocks">
+<atw-header></atw-header>
+<div class="wrap">
+
+    <header>
+      <div class="brand">
+        <div>
+          <h1>All These Worlds Are Yours</h1>
+          <p>Pick a section to explore. .</p>
+        </div>
+
+        
+      </div>
+    </header>
+
+    <div class="hero">
+      <div class="search" role="search" aria-label="Search site sections">
+        <input id="cardSearch" type="search" placeholder="Search cards (e.g., security, space, project)..." autocomplete="off" />
+        <a class="btn" href="/site-map/" aria-label="Site map">Site Map</a>
+      </div>
+    </div>
+
+    <main>
+      <div class="section-title">Featured</div>
+      <div class="grid">
+
+        <!-- FEATURED CARD -->
+        <a class="card featured"
+           href="/fractional-ciso/"
+           data-card
+           data-keywords="start here overview newest featured guide"
+           aria-label="Start Here">
+          <div class="kicker">Start Here</div>
+          <h3>What’s New + Where to Begin</h3>
+          <p>A guided entry point to the most important pages, newest work, and recommended reading paths.</p>
+          <div class="meta">Open <span class="arrow">→</span></div>
+        </a>
+
+      </div>
+
+      <div class="section-title">Explore</div>
+      <div class="grid">
+
+        <!-- CARD 1 -->
+        <a class="card"
+           href="/digital-transformation/"
+           data-card
+           data-keywords="digital transformation strategy operations change leadership"
+           aria-label="Digital Transformation">
+          <div class="kicker">Series</div>
+          <h3>Digital Transformation</h3>
+          <p>Change Readiness</p>
+          <div class="meta">Explore <span class="arrow">→</span></div>
+        </a>
+
+        <!-- CARD 2 -->
+        <a class="card"
+           href="/compliance/"
+           data-card
+           data-keywords="security cybersecurity iso 27001 compliance risk vCISO"
+           aria-label="Security and Compliance">
+          <div class="kicker">Toolkit</div>
+          <h3>Security &#038; Compliance</h3>
+          <p>ISO 27001, SOC 2, risk management, and pragmatic security programs for growing organizations.</p>
+          <div class="meta">Explore <span class="arrow">→</span></div>
+        </a>
+
+        <!-- CARD 3 -->
+        <a class="card"
+           href="/project-management-3/"
+           data-card
+           data-keywords="project management pmo delivery execution planning"
+           aria-label="Project Management">
+          <div class="kicker">Practice</div>
+          <h3>Project Management</h3>
+          <p>Modern delivery, operating models, and practical tools for PMs and PMO leaders.</p>
+          <div class="meta">Explore <span class="arrow">→</span></div>
+        </a>
+
+        <!-- CARD 4 -->
+        <a class="card"
+           href="/space/"
+           data-card
+           data-keywords="space astrophysics rockets spaceflight astronomy exploration"
+           aria-label="Space">
+          <div class="kicker">Learn</div>
+          <h3>Space &#038; Astrophysics</h3>
+          <p>Concepts, visuals, and explainers about spacecraft, stars, and the physics of space.</p>
+          <div class="meta">Explore <span class="arrow">→</span></div>
+        </a>
+
+        <!-- CARD 5 -->
+        <a class="card"
+           href="/blog/"
+           data-card
+           data-keywords="writing essays articles longform notes"
+           aria-label="Writing">
+          <div class="kicker">Library</div>
+          <h3>Writing</h3>
+          <p>Long-form pieces, research notes, and essays across business, tech, and society.</p>
+          <div class="meta">Explore <span class="arrow">→</span></div>
+        </a>
+
+        <!-- CARD 6 -->
+        <a class="card"
+           href="/site-map/"
+           data-card
+           data-keywords="tools templates calculators checklists downloads"
+           aria-label="Tools">
+          <div class="kicker">Resources</div>
+          <h3>Tools &#038; Templates</h3>
+          <p>Downloadables, checklists, and practical templates you can use immediately.</p>
+          <div class="meta">Explore <span class="arrow">→</span></div>
+        </a>
+
+      </div>
+    </main>
+
+    <footer>
+      <div>© <span id="y"></span> All These Worlds</div>
+      <div>
+        
+      </div>
+    </footer>
+
+  </div>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+<atw-footer></atw-footer>
+</div>
+</body>
+</html>

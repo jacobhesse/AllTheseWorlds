@@ -1,0 +1,889 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+  <title>Fractional CISO Lead Magnet | Stargazer Consulting</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    :root {
+      --bg-dark: #020617;
+      --bg-darker: #020314;
+      --bg-card: rgba(15, 23, 42, 0.95);
+      --primary: #38bdf8; /* Stargazer cyan */
+      --primary-soft: rgba(56, 189, 248, 0.12);
+      --accent: #a855f7;  /* Stargazer purple */
+      --accent-soft: rgba(168, 85, 247, 0.16);
+      --accent-gold: #eab308;
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --border-subtle: rgba(148, 163, 184, 0.35);
+      --error: #f97373;
+      --radius-lg: 18px;
+      --radius-xl: 26px;
+      --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.9);
+      --shadow-pill: 0 0 40px rgba(56, 189, 248, 0.35);
+      --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-main);
+      background:
+        radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.35), transparent 55%),
+        radial-gradient(circle at 100% 0%, rgba(168, 85, 247, 0.28), transparent 55%),
+        radial-gradient(circle at 10% 90%, rgba(34, 197, 94, 0.18), transparent 60%),
+        linear-gradient(to bottom, #00010e, var(--bg-dark));
+      color: var(--text-main);
+      min-height: 100vh;
+    }
+
+    .page-wrapper {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 32px 20px 60px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      background:
+        conic-gradient(from 180deg, rgba(56, 189, 248, 0.1), rgba(168, 85, 247, 0.4), rgba(56, 189, 248, 0.9));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-pill);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .brand-mark::before {
+      content: "";
+      width: 120%;
+      height: 120%;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, rgba(248, 250, 252, 0.35), transparent 55%);
+      opacity: 0.7;
+      mix-blend-mode: screen;
+    }
+
+    .brand-initials {
+      position: absolute;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      color: #e5f9ff;
+      text-shadow: 0 0 12px rgba(15, 23, 42, 0.7);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-name {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .brand-tagline {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .header-pill {
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-muted);
+      backdrop-filter: blur(16px);
+    }
+
+    .header-pill span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(248, 250, 252, 0.4);
+      font-size: 11px;
+      color: var(--accent-gold);
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: minmax(0, 1.65fr) minmax(0, 1.25fr);
+      gap: 32px;
+      align-items: flex-start;
+    }
+
+    @media (max-width: 880px) {
+      main {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .hero-copy {
+      padding: 16px 4px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: radial-gradient(circle at 0% 50%, rgba(56, 189, 248, 0.24), transparent 60%);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .eyebrow-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--primary);
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.9);
+    }
+
+    h1 {
+      font-size: clamp(32px, 4vw, 40px);
+      line-height: 1.05;
+      margin: 0 0 14px;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-highlight {
+      background: linear-gradient(to right, var(--primary), var(--accent), var(--accent-gold));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 16px;
+      max-width: 520px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 18px;
+    }
+
+    .hero-callout {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      border-radius: 14px;
+      background: linear-gradient(to right, var(--primary-soft), rgba(15, 23, 42, 0.85));
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      font-size: 13px;
+      color: #e0faff;
+      margin-bottom: 18px;
+    }
+
+    .hero-callout-badge {
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(56, 189, 248, 0.5);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--primary);
+      white-space: nowrap;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 26px;
+    }
+
+    .meta-item {
+      font-size: 13px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .meta-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(34, 197, 94, 0.9);
+      box-shadow: 0 0 12px rgba(34, 197, 94, 0.9);
+    }
+
+    .meta-label {
+      font-weight: 600;
+      color: #e5e7eb;
+    }
+
+    .hero-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px 18px;
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+
+    @media (max-width: 620px) {
+      .hero-list {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .hero-list-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      color: var(--text-muted);
+    }
+
+    .hero-list-item span {
+      margin-top: 3px;
+      font-size: 14px;
+      color: var(--primary);
+    }
+
+    .disclaimer {
+      font-size: 12px;
+      color: #6b7280;
+      margin-top: 6px;
+      max-width: 480px;
+    }
+
+    .form-card {
+      background: radial-gradient(circle at 0% 0%, var(--primary-soft), transparent 60%),
+                  radial-gradient(circle at 100% 0%, var(--accent-soft), transparent 60%),
+                  rgba(15, 23, 42, 0.95);
+      border-radius: var(--radius-xl);
+      padding: 22px 20px 22px;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(26px);
+    }
+
+    .form-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle at 20% 0%, rgba(248, 250, 252, 0.18), transparent 55%);
+      opacity: 0.6;
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+
+    .form-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .form-chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .form-chip {
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-muted);
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .form-chip.primary {
+      border-color: rgba(56, 189, 248, 0.8);
+      color: var(--primary);
+      background: rgba(15, 23, 42, 0.96);
+    }
+
+    .form-title {
+      font-size: 19px;
+      font-weight: 600;
+      margin: 0 0 6px;
+    }
+
+    .form-subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .form-bullets {
+      margin-bottom: 18px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px dashed rgba(148, 163, 184, 0.6);
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .form-bullets-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #9ca3af;
+      margin-bottom: 6px;
+    }
+
+    .form-bullets ul {
+      margin: 0;
+      padding-left: 16px;
+    }
+
+    .form-bullets li {
+      margin: 2px 0;
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 12px;
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .field-label-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    label {
+      font-size: 12px;
+      font-weight: 500;
+      color: #e5e7eb;
+    }
+
+    .field-helper {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .required {
+      color: var(--accent-gold);
+      margin-left: 2px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    select {
+      padding: 9px 11px;
+      border-radius: 11px;
+      border: 1px solid var(--border-subtle);
+      background: rgba(15, 23, 42, 0.92);
+      color: var(--text-main);
+      font-size: 13px;
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+    }
+
+    input::placeholder {
+      color: #6b7280;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: rgba(56, 189, 248, 0.9);
+      box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.7);
+      background: rgba(15, 23, 42, 0.98);
+    }
+
+    select {
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-image: linear-gradient(45deg, transparent 50%, #9ca3af 50%),
+                        linear-gradient(135deg, #9ca3af 50%, transparent 50%);
+      background-position: calc(100% - 14px) calc(50% - 3px),
+                           calc(100% - 9px) calc(50% - 3px);
+      background-size: 6px 6px, 6px 6px;
+      background-repeat: no-repeat;
+    }
+
+    .checkbox-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 8px 9px;
+      border-radius: 10px;
+      background: rgba(15, 23, 42, 0.92);
+      border: 1px solid rgba(148, 163, 184, 0.55);
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .checkbox-row input[type="checkbox"] {
+      margin-top: 3px;
+      min-width: 14px;
+      width: 14px;
+      height: 14px;
+      accent-color: var(--primary);
+    }
+
+    .checkbox-row strong {
+      color: #e5e7eb;
+    }
+
+    .form-footer {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      margin-top: 4px;
+    }
+
+    .btn-primary {
+      width: 100%;
+      padding: 11px 14px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: #0b1020;
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 14px 35px rgba(15, 23, 42, 0.95), 0 0 30px rgba(56, 189, 248, 0.7);
+      transition: transform 0.08s ease, box-shadow 0.08s ease, filter 0.08s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.05);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 1), 0 0 38px rgba(56, 189, 248, 0.9);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+      box-shadow: 0 9px 20px rgba(15, 23, 42, 0.9);
+    }
+
+    .form-footnote {
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .form-footnote span {
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    .security-badge-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-top: 10px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .security-lock {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.96);
+    }
+
+    .security-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, #bbf7d0, #22c55e);
+      box-shadow: 0 0 12px rgba(22, 163, 74, 0.9);
+    }
+
+    .trust-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      justify-content: flex-end;
+    }
+
+    .trust-pill {
+      padding: 3px 7px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.96);
+      font-size: 10px;
+      color: #9ca3af;
+    }
+
+    .section-divider {
+      margin-top: 46px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(31, 41, 55, 0.8);
+    }
+
+    .section-heading {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .section-body {
+      font-size: 13px;
+      color: var(--text-muted);
+      max-width: 720px;
+      line-height: 1.7;
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 28px;
+      margin-top: 18px;
+    }
+
+    @media (max-width: 780px) {
+      .section-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .section-card {
+      padding: 14px 14px 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(31, 41, 55, 0.95);
+      background: rgba(15, 23, 42, 0.98);
+      box-shadow: 0 10px 26px rgba(15, 23, 42, 0.8);
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .section-card h3 {
+      font-size: 13px;
+      margin: 0 0 6px;
+      color: #e5e7eb;
+    }
+
+    .section-card ul {
+      margin: 0;
+      padding-left: 16px;
+    }
+
+    .section-card li {
+      margin: 3px 0;
+    }
+
+    footer {
+      margin-top: 32px;
+      font-size: 11px;
+      color: #6b7280;
+    }
+  </style>
+<link rel="icon" href="/wp-content/uploads/2025/11/cropped-0_3-25456-no-background.png">
+<script src="/assets/site.js" defer></script>
+</head>
+<body>
+<div class="wp-site-blocks">
+<atw-header></atw-header>
+<div class="page-wrapper">
+    <header>
+      <div class="brand">
+        <div class="brand-mark">
+          <div class="brand-initials">SC</div>
+        </div>
+        <div class="brand-text">
+          <div class="brand-name">Stargazer Consulting</div>
+          <div class="brand-tagline">Cybersecurity • ISO 27001 • Fractional CISO</div>
+        </div>
+      </div>
+      <div class="header-pill">
+        <span>★</span>
+        <div>Free executive resource: Fractional CISO Readiness Kit</div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero-copy">
+        <div class="eyebrow">
+          <div class="eyebrow-dot"></div>
+          <div>Secure your growth without a full-time CISO</div>
+        </div>
+
+        <h1>
+          Discover if a <span class="hero-highlight">Fractional CISO</span>
+          is the missing piece in your security strategy.
+        </h1>
+
+        <p class="hero-subtitle">
+          Get a concise, board-ready toolkit that shows exactly where your defenses stand,
+          what’s at risk, and how a fractional CISO closes the gap in the next 90 days.
+        </p>
+
+        <div class="hero-callout">
+          <div class="hero-callout-badge">Free Download</div>
+          <div>
+            <strong>Fractional CISO Readiness Kit</strong> &mdash; Includes a 90-day roadmap,
+            executive risk snapshot template, and a conversation guide for your leadership team.
+          </div>
+        </div>
+
+        <div class="hero-meta">
+          <div class="meta-item">
+            <div class="meta-dot"></div>
+            <div>
+              <div class="meta-label">Created for lean teams</div>
+              <div>SMBs, SaaS, and professional services with limited internal security staff.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-list">
+          <div class="hero-list-item">
+            <span>✦</span>
+            <div>
+              Quickly assess if your current security program can withstand client, regulator,
+              and cyber insurer scrutiny.
+            </div>
+          </div>
+          <div class="hero-list-item">
+            <span>✦</span>
+            <div>
+              See how a fractional CISO plugs into your org chart without adding headcount bloat
+              or six-figure salaries.
+            </div>
+          </div>
+          <div class="hero-list-item">
+            <span>✦</span>
+            <div>
+              Turn scattered security activities into a focused 90-day initiative with measurable outcomes.
+            </div>
+          </div>
+          <div class="hero-list-item">
+            <span>✦</span>
+            <div>
+              Walk into your next board, client, or audit meeting with a simple, confident security narrative.
+            </div>
+          </div>
+        </div>
+
+        <p class="disclaimer">
+          No spam, no endless nurturing funnel. Just a practical resource to help you decide if
+          fractional CISO support is right for your company right now.
+        </p>
+      </section>
+
+      <aside class="form-card">
+        <div class="form-inner">
+          <div class="form-chip-row">
+            <div class="form-chip primary">Download instantly</div>
+            <div class="form-chip">PDF + editable templates</div>
+          </div>
+
+          <h2 class="form-title">Get the Fractional CISO Readiness Kit</h2>
+          <p class="form-subtitle">
+            Share a few details and we’ll send the kit straight to your inbox, including the 90-day
+            roadmap and executive scorecard.
+          </p>
+
+          <div class="form-bullets">
+            <div class="form-bullets-title">What&rsquo;s inside</div>
+            <ul>
+              <li>90-Day Fractional CISO Roadmap you can adapt immediately.</li>
+              <li>Executive Cyber Risk Snapshot (1-page board/client view).</li>
+              <li>Question set to evaluate whether fractional CISO is a fit.</li>
+            </ul>
+          </div>
+
+          <!-- TODO: Replace `#` with your form handler (Mailchimp, HubSpot, Fluent Forms, etc.) -->
+          <form action="#" method="post">
+            <div class="field-group">
+              <div class="field-label-row">
+                <label for="name">Full Name<span class="required">*</span></label>
+              </div>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Alex Rivera"
+                required
+              />
+            </div>
+
+            <div class="field-group">
+              <div class="field-label-row">
+                <label for="email">Work Email<span class="required">*</span></label>
+                <div class="field-helper">We never share or sell your data.</div>
+              </div>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="alex@company.com"
+                required
+              />
+            </div>
+
+            <div class="field-group">
+              <div class="field-label-row">
+                <label for="company">Company<span class="required">*</span></label>
+                <div class="field-helper">So we can tailor future resources.</div>
+              </div>
+              <input
+                type="text"
+                id="company"
+                name="company"
+                placeholder="Acme LegalTech"
+                required
+              />
+            </div>
+
+            <div class="field-group">
+              <div class="field-label-row">
+                <label for="role">Role / Title<span class="required">*</span></label>
+                <div class="field-helper">Helps us send the right level of detail.</div>
+              </div>
+              <input
+                type="text"
+                id="role"
+                name="role"
+                placeholder="Founder, COO, CTO, GC, etc."
+                required
+              />
+            </div>
+
+            <div class="field-group">
+              <div class="field-label-row">
+                <label for="priority">Biggest security priority in the next 6–12 months</label>
+              </div>
+              <select id="priority" name="priority">
+                <option value="">Select one (optional)</option>
+                <option value="compliance">Passing audits / certifications (ISO 27001, SOC 2, HIPAA)</option>
+                <option value="clients">Meeting enterprise client security requirements</option>
+                <option value="incidents">Reducing incident / breach risk</option>
+                <option value="insurance">Meeting cyber insurer expectations</option>
+                <option value="strategy">Building an overall security program / roadmap</option>
+              </select>
+            </div>
+
+            <div class="checkbox-row">
+              <input type="checkbox" id="consent" name="consent" required />
+              <label for="consent">
+                <strong>Yes, send me the kit and a few practical emails on building a security program
+                with fractional CISO support.</strong> You can unsubscribe at any time with one click.
+              </label>
+            </div>
+
+            <div class="form-footer">
+              <button type="submit" class="btn-primary">
+                Email me the readiness kit
+              </button>
+
+              <div class="form-footnote">
+                <span>Next:</span> You’ll receive a link to the PDF and templates, plus an invitation
+                to a brief, optional call if you’d like to walk through the 90-day roadmap together.
+              </div>
+
+              <div class="security-badge-row">
+                <div class="security-lock">
+                  <div class="security-dot"></div>
+                  <div>Secure form · No spam</div>
+                </div>
+                <div class="trust-badges">
+                  <div class="trust-pill">Built by a practicing vCISO</div>
+                  <div class="trust-pill">Designed for SMBs &amp; growing teams</div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </aside>
+    </main>
+
+    <section class="section-divider">
+      <div class="section-heading">Why this kit matters before you hire a fractional CISO</div>
+      <div class="section-body">
+        Most organizations know they “should do more” for cybersecurity but don’t have a clear picture
+        of what “good” looks like for their size and risk profile. Before you commit to any provider,
+        this kit helps you map where you are today, what you actually need, and how a fractional CISO
+        fits into your existing leadership and technical stack.
+      </div>
+
+      <div class="section-grid">
+        <div class="section-card">
+          <h3>Use it internally with your leadership team</h3>
+          <ul>
+            <li>Run a 30-minute working session with your C-suite or partners using the scorecard.</li>
+            <li>Align on your top three security outcomes for the next 90 days.</li>
+            <li>Decide whether you need advisory, ongoing leadership, or both.</li>
+          </ul>
+        </div>
+        <div class="section-card">
+          <h3>Clarify if fractional CISO is the right move</h3>
+          <ul>
+            <li>Avoid over-buying tools when your real gap is leadership and accountability.</li>
+            <li>See what a fractional CISO would own versus your internal IT/engineering team.</li>
+            <li>Walk into vendor conversations with a clear, prioritized set of needs.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Stargazer Consulting. All rights reserved. This page&#8217;s content is for
+      informational purposes only and is not legal advice.
+    </footer>
+  </div>
+
+  <script>
+    // Set current year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+<atw-footer></atw-footer>
+</div>
+</body>
+</html>
