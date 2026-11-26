@@ -58,10 +58,14 @@ REDIRECTS = {
     "/favicon.ico": "/wp-content/uploads/2025/11/cropped-0_3-25456-no-background.png",
 }
 
+# theme.css goes FIRST in <head> so each page's own <style> still wins, as on WordPress.
 HEAD_TAGS = (
     '<link rel="icon" href="/wp-content/uploads/2025/11/cropped-0_3-25456-no-background.png">\n'
-    '<script src="/assets/site.js" defer></script>\n'
+    '<link rel="stylesheet" href="/assets/theme.css">\n<link rel="stylesheet" href="/assets/site.css">\n'
 )
+PARTIALS = ROOT / "partials"
+CONTENT_OPEN = ('<div class="entry-content alignfull wp-block-post-content has-global-padding '
+                'is-layout-constrained wp-block-post-content-is-layout-constrained">')
 UPLOAD_RE = re.compile(
     r"(?:https?:)?//(?:www\.)?" + re.escape(DOMAIN) + r"(/wp-content/uploads/[^\s\"'()<>?#]+)"
 )
@@ -108,32 +112,40 @@ def split_document(content):
     return head_inner, body_attrs, body_inner
 
 
+def shell(body_attrs, content):
+    """Wrap content in the same structure WordPress rendered: skip link, .wp-site-blocks,
+    Stargazer nav, post-content container, footer. The header/footer sit between marker
+    comments so tools/apply_partials.py can update them on every page later."""
+    header = rewrite((PARTIALS / "header.html").read_text(), set())
+    footer = rewrite((PARTIALS / "footer.html").read_text(), set())
+    return (f"<body{body_attrs}>\n"
+            '<a class="skip-link screen-reader-text" href="#wp--skip-link--target">Skip to content</a>\n'
+            '<div class="wp-site-blocks">\n'
+            f"<!-- site-header -->\n{header.strip()}\n<!-- /site-header -->\n"
+            f"{CONTENT_OPEN}\n{content.strip()}\n</div>\n"
+            f"<!-- site-footer -->\n{footer.strip()}\n<!-- /site-footer -->\n"
+            "</div>\n</body>\n</html>\n")
+
+
 def page_html(title, content, description=""):
     doc = split_document(content)
     if doc:
         head_inner, body_attrs, body_inner = doc
         if not re.search(r"<title", head_inner, re.I):
             head_inner = f"<title>{html.escape(title)} – {SITE_NAME}</title>\n" + head_inner
-        if not re.search(r'name=["\']viewport', head_inner, re.I):
-            head_inner = '<meta name="viewport" content="width=device-width, initial-scale=1">\n' + head_inner
+        top = ""
         if not re.search(r"<meta[^>]+charset", head_inner, re.I):
-            head_inner = '<meta charset="utf-8">\n' + head_inner
-        return (f"<!doctype html>\n<html lang=\"en\">\n<head>\n{head_inner.strip()}\n{HEAD_TAGS}</head>\n"
-                # Single wrapper div mirrors WordPress's .wp-site-blocks, so page CSS that
-                # styles <body> (flex/grid layouts) behaves exactly as it did on WordPress.
-                f"<body{body_attrs}>\n<div class=\"wp-site-blocks\">\n<atw-header></atw-header>\n{body_inner.strip()}\n"
-                f"<atw-footer></atw-footer>\n</div>\n</body>\n</html>\n")
+            top += '<meta charset="utf-8">\n'
+        if not re.search(r'name=["\']viewport', head_inner, re.I):
+            top += '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
+        return (f"<!doctype html>\n<html lang=\"en\">\n<head>\n{top}{HEAD_TAGS}{head_inner.strip()}\n</head>\n"
+                + shell(body_attrs, body_inner))
 
-    # Fragment: custom-styled fragments get a wide container and no auto title.
-    styled = "<style" in content.lower()
-    h1 = "" if styled or re.search(r"<h1[\s>]", content, re.I) else f"<h1>{html.escape(title)}</h1>\n"
     desc = f'<meta name="description" content="{html.escape(description)}">\n' if description else ""
     return (f"<!doctype html>\n<html lang=\"en\">\n<head>\n<meta charset=\"utf-8\">\n"
             f"<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n"
-            f"<title>{html.escape(title)} – {SITE_NAME}</title>\n{desc}"
-            f"<link rel=\"stylesheet\" href=\"/assets/base.css\">\n{HEAD_TAGS}</head>\n<body>\n"
-            f"<atw-header></atw-header>\n<main class=\"atw-content{' wide' if styled else ''}\">\n{h1}{content.strip()}\n</main>\n"
-            f"<atw-footer></atw-footer>\n</body>\n</html>\n")
+            f"<title>{html.escape(title)} – {SITE_NAME}</title>\n{desc}{HEAD_TAGS}</head>\n"
+            + shell("", content))
 
 
 def write(path, data):

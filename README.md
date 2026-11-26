@@ -6,12 +6,17 @@ A static rebuild of alltheseworlds.us, moved off GoDaddy Managed WordPress. Ever
 public/               ← the website (this is what gets deployed)
   index.html          ← home page
   <slug>/index.html   ← one folder per page, e.g. public/about/index.html
-  assets/site.js      ← shared header menu + footer (edit the menu HERE, once, for all pages)
-  assets/base.css     ← styling for plain pages (blog posts, site map, contact)
+  assets/theme.css    ← the WordPress theme's look (colours, fonts, layout) + your Additional CSS
+  assets/site.css     ← small extras for generated pages (blog list)
+  assets/fonts/       ← Manrope & Fira Code, self-hosted
   wp-content/uploads/ ← images & downloads (same paths as WordPress)
   _redirects          ← old/broken URLs → new ones (Cloudflare Pages format)
   sitemap.xml, robots.txt, 404.html
-tools/import_wordpress.py  ← one-time importer (already run; re-running overwrites pages)
+partials/header.html  ← the Stargazer nav bar (edit the menu HERE)
+partials/footer.html  ← the site footer
+tools/apply_partials.py   ← copies the header/footer into every page after you edit them
+tools/import_theme.py     ← one-time: captured theme CSS/header/footer from WordPress (already run)
+tools/import_wordpress.py ← one-time importer (already run; re-running overwrites pages)
 wp-export/            ← raw JSON pulled from the WordPress API (backup of the content)
 ```
 
@@ -23,8 +28,8 @@ wp-export/            ← raw JSON pulled from the WordPress API (backup of the 
    (Or, without an extension: `python3 -m http.server 8000 -d public` and open http://localhost:8000.)
 
 - **Edit a page:** open `public/<slug>/index.html`. Each page is a self-contained HTML file with its own `<style>`, the same HTML you pasted into WordPress.
-- **Add a page:** copy an existing folder, rename it, edit it. Keep the `<atw-header>`, `<atw-footer>` and `/assets/site.js` lines so it gets the menu.
-- **Change the menu or footer:** edit `MENU` / `FOOTER_LINKS` at the top of `public/assets/site.js`.
+- **Add a page:** copy an existing folder, rename it, and edit what's between the header and footer. Keep the `theme.css` link and the `<!-- site-header -->` / `<!-- site-footer -->` markers.
+- **Change the menu or footer:** edit `partials/header.html` or `partials/footer.html`, then run `python3 tools/apply_partials.py` to update every page.
 - **Add a blog post:** copy `public/stellar-classification/`, edit it, then add an entry to `public/blog/index.html`, `sitemap.xml` and `site-map/index.html`.
 - Claude Code works well here: ask it things like "add a new Space page about pulsars styled like stellar-classes".
 
@@ -80,8 +85,8 @@ Only after the site has run from Cloudflare for a week or so: export a full Word
 ## Things changed vs. the WordPress site
 - WooCommerce shop/cart/checkout removed (it had one free product). `/shop/` and `/product/*` redirect to `/hipaa-kit/`.
 - Empty or test pages dropped: change-readiness, security, cybersecurity, project-management-2, test-page, navigation-test-page.
-- Header brand reads "All These Worlds" (WordPress showed "Stargazer Consulting"). Change `SITE_NAME` in `assets/site.js` if you want the old one.
-- Menu: "Guides & Resources" (was a 404) and "Change Readiness" (empty) removed. "Digital Transformation" now links to its hub page.
+- Same Stargazer nav, theme, fonts and footer as WordPress. Menu changes: "Guides & Resources" (was a 404) and "Change Readiness" (empty page) removed; "Digital Transformation" and "Marketplace" now link to real pages.
+- Footer: dead "FAQs" / "Events" links removed, "Terms" and "Site Map" added, "Designed with WordPress" replaced with a copyright line.
 - Previously broken links (`/site-map.html`, `/contact/`, `/virtual-ciso/`, `/iso-27001-2022/`…) now work: there are new Site Map and Contact pages, plus redirects.
 - **Still needs your attention:** two forms have placeholder targets on the old site too:
   `public/fractional-ciso/index.html` (`action="#"`) and `public/digital-transformation/index.html` (`formspree.io/f/your-id`). Point them at real Formspree form IDs.
