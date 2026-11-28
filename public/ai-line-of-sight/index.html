@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="en">
+<head>
+<link rel="icon" href="/wp-content/uploads/2025/11/cropped-0_3-25456-no-background.png">
+<link rel="stylesheet" href="/assets/theme.css">
+<link rel="stylesheet" href="/assets/site.css">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI Line of Sight: Free AIGP Foundations Course</title>
+<meta name="description" content="A free, downloadable PDF course covering all four domains of the AIGP Body of Knowledge, with 108 practice questions. Independent; not affiliated with the IAPP.">
+<link rel="canonical" href="https://alltheseworlds.us/ai-line-of-sight/" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap">
+<style>
+/* Layout: navy hero with the four-domain sight line, then a light reading column with full-width bands. */
+:root{
+  --alos-navy:#14213D; --alos-navy-2:#1C2C50; --alos-gold:#E8B04B; --alos-teal:#1F6F8B;
+  --alos-bg:#F7F6F2; --alos-surface:#FFFFFF; --alos-alt:#EAE7DF; --alos-ink:#1A2233; --alos-muted:#5A6475;
+  --alos-line:#D6D9E0; --alos-on-dark:#F4F1EA; --alos-on-dark-2:#C9CFDA; --alos-accent:#1F6F8B; --alos-ok:#2E7D5B; --alos-bad:#A23B3B;
+  --alos-display:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --alos-body:"IBM Plex Sans",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --alos-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --alos-bg:#0F1830; --alos-surface:#16213D; --alos-alt:#1A2747; --alos-ink:#E9ECF2; --alos-muted:#A9B2C3;
+  --alos-line:#2C3A5C; --alos-accent:#6FB7D2; --alos-ok:#6CC69A; --alos-bad:#E28A8A; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --alos-bg:#0F1830; --alos-surface:#16213D; --alos-alt:#1A2747; --alos-ink:#E9ECF2; --alos-muted:#A9B2C3;
+  --alos-line:#2C3A5C; --alos-accent:#6FB7D2; --alos-ok:#6CC69A; --alos-bad:#E28A8A; color-scheme:dark}
+.alos{font-family:var(--alos-body);font-size:17px;line-height:1.6;color:var(--alos-ink);background:var(--alos-bg)}
+.alos *{box-sizing:border-box}
+.alos a{color:var(--alos-accent)}
+.alos :focus-visible{outline:3px solid var(--alos-gold);outline-offset:2px}
+.alos-wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.alos h1,.alos h2,.alos h3{font-family:var(--alos-display);font-weight:700;text-wrap:balance;margin:0;line-height:1.15}
+.alos h2{font-size:clamp(1.6rem,3.2vw,2.2rem);color:var(--alos-ink)}
+:where(.alos) p{margin:0}
+.alos-eyebrow{font-family:var(--alos-mono);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--alos-accent)}
+
+/* Hero */
+.alos-hero{background:var(--alos-navy);color:var(--alos-on-dark);margin-top:calc(-1 * env(safe-area-inset-top,0px));padding-top:calc(env(safe-area-inset-top,0px) + 3.5rem);padding-bottom:3rem}
+.alos-hero .alos-eyebrow{color:var(--alos-gold)}
+.alos-hero-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:3rem;align-items:start}
+.alos-hero h1{font-size:clamp(2.1rem,5vw,3.4rem);color:var(--alos-on-dark);margin-top:.9rem}
+.alos-lede{margin-top:1.1rem;font-size:1.1rem;color:var(--alos-on-dark-2);max-width:36rem}
+.alos-free{display:inline-flex;gap:.5rem;align-items:center;margin-top:1.4rem;font-weight:600;color:var(--alos-gold)}
+.alos-free::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--alos-gold)}
+
+/* Signup card */
+.alos-card{background:var(--alos-navy-2);border:1px solid #2E3E66;border-radius:10px;padding:1.5rem;display:grid;gap:1rem}
+.alos-card h2{font-size:1.35rem;color:var(--alos-on-dark)}
+.alos-field{display:grid;gap:.35rem}
+.alos-field label{font-size:.85rem;font-weight:500;color:var(--alos-on-dark-2)}
+.alos-field input{font:inherit;font-size:1rem;padding:.7rem .8rem;border-radius:6px;border:1px solid #3A4B75;background:#0F1830;color:#F4F1EA;width:100%}
+.alos-field input::placeholder{color:#7E89A3}
+.alos-btn{font:inherit;font-weight:600;font-size:1rem;background:var(--alos-gold);color:#14213D;border:0;border-radius:6px;padding:.8rem 1rem;cursor:pointer}
+.alos-btn:hover{background:#F0C26C}
+.alos-fine{font-size:.8rem;color:var(--alos-on-dark-2);line-height:1.5}
+.alos-fine a{color:var(--alos-on-dark)}
+.alos-status{font-size:.9rem;border-radius:6px;padding:.7rem .8rem;background:#0F1830;color:#F4F1EA;border:1px solid var(--alos-gold)}
+
+/* Sight line */
+.alos-sight{margin-top:3rem;padding-top:1.5rem;border-top:1px solid #2E3E66}
+.alos-sight-label{font-family:var(--alos-mono);font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--alos-on-dark-2)}
+.alos-track{position:relative;display:grid;grid-template-columns:5fr 4fr 2.4fr 2.2fr;margin-top:1.2rem}
+.alos-track::before{content:"";position:absolute;left:0;right:0;top:7px;height:2px;background:linear-gradient(90deg,var(--alos-gold),#C99636)}
+.alos-seg{position:relative;padding-top:1.6rem;padding-right:.75rem;min-width:0}
+.alos-seg::before{content:"";position:absolute;top:0;left:0;width:16px;height:16px;border-radius:50%;background:var(--alos-navy);border:3px solid var(--alos-gold)}
+.alos-seg b{display:block;font-family:var(--alos-mono);font-size:.78rem;letter-spacing:.08em;color:var(--alos-gold)}
+.alos-seg span{display:block;font-size:.85rem;color:var(--alos-on-dark-2);line-height:1.35;margin-top:.2rem}
+.alos-ticks{display:flex;gap:.3rem;margin-top:.5rem;flex-wrap:wrap}
+.alos-ticks i{font-style:normal;font-family:var(--alos-mono);font-size:.7rem;color:var(--alos-on-dark);background:#24345C;border-radius:3px;padding:.05rem .35rem}
+
+/* Facts strip */
+.alos-facts{background:var(--alos-surface);border-bottom:1px solid var(--alos-line)}
+.alos-facts ul{list-style:none;margin:0;padding-block:1.4rem;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem}
+.alos-facts strong{display:block;font-family:var(--alos-display);font-size:1.9rem;color:var(--alos-ink);font-variant-numeric:tabular-nums}
+.alos-facts span{font-size:.9rem;color:var(--alos-muted)}
+
+/* Sections */
+.alos-section{padding-block:4rem}
+.alos-section.alt{background:var(--alos-alt)}
+.alos-head{display:grid;gap:.6rem;max-width:44rem;margin-bottom:2rem}
+.alos-head p{color:var(--alos-muted)}
+
+/* Module list */
+.alos-domain{display:grid;grid-template-columns:minmax(0,15rem) minmax(0,1fr);gap:2rem;padding-block:1.6rem;border-top:1px solid var(--alos-line)}
+.alos-domain:last-child{border-bottom:1px solid var(--alos-line)}
+.alos-domain h3{font-size:1.2rem;margin-top:.3rem}
+.alos-mods{list-style:none;margin:0;padding:0;display:grid;gap:.9rem}
+.alos-mods li{display:grid;grid-template-columns:3rem minmax(0,1fr);gap:.75rem}
+.alos-num{font-family:var(--alos-mono);font-size:.85rem;color:var(--alos-accent);padding-top:.15rem;font-variant-numeric:tabular-nums}
+.alos-mods strong{display:block;font-weight:600}
+.alos-mods em{font-style:normal;color:var(--alos-muted);font-size:.95rem}
+
+/* Inside each module */
+.alos-inside{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.5rem}
+.alos-inside div{border-top:3px solid var(--alos-teal);padding-top:.9rem}
+.alos-inside h3{font-family:var(--alos-body);font-size:1rem;font-weight:600}
+.alos-inside p{color:var(--alos-muted);font-size:.95rem;margin-top:.3rem}
+
+/* Sample question */
+.alos-sample{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:2.5rem;align-items:start}
+.alos-q{background:var(--alos-surface);border:1px solid var(--alos-line);border-radius:10px;padding:1.5rem}
+.alos-q-meta{font-family:var(--alos-mono);font-size:.75rem;color:var(--alos-muted);letter-spacing:.05em}
+.alos-q p.stem{font-weight:500;margin-top:.6rem}
+.alos-opts{display:grid;gap:.5rem;margin-top:1rem}
+.alos-opt{font:inherit;text-align:left;display:grid;grid-template-columns:1.8rem minmax(0,1fr);gap:.4rem;padding:.65rem .8rem;border:1px solid var(--alos-line);border-radius:6px;background:var(--alos-bg);color:var(--alos-ink);cursor:pointer}
+.alos-opt b{font-family:var(--alos-mono);color:var(--alos-accent)}
+.alos-opt:hover:not([disabled]){border-color:var(--alos-accent)}
+.alos-opt[disabled]{cursor:default}
+.alos-opt.is-right{border-color:var(--alos-ok);box-shadow:inset 4px 0 0 var(--alos-ok)}
+.alos-opt.is-wrong{border-color:var(--alos-bad);box-shadow:inset 4px 0 0 var(--alos-bad)}
+.alos-explain{margin-top:1rem;padding-top:1rem;border-top:1px solid var(--alos-line);font-size:.95rem}
+.alos-explain strong{color:var(--alos-ok)}
+
+/* Who / FAQ */
+.alos-who{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.5rem}
+.alos-who h3{font-family:var(--alos-body);font-size:1.05rem;font-weight:600}
+.alos-who p{color:var(--alos-muted);margin-top:.35rem;font-size:.95rem}
+.alos-faq{max-width:46rem;display:grid;gap:0}
+.alos-faq details{border-top:1px solid var(--alos-line);padding-block:1rem}
+.alos-faq details:last-child{border-bottom:1px solid var(--alos-line)}
+.alos-faq summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:1rem}
+.alos-faq summary::after{content:"+";font-family:var(--alos-mono);color:var(--alos-accent)}
+.alos-faq details[open] summary::after{content:"–"}
+.alos-faq details p{margin-top:.6rem;color:var(--alos-muted)}
+
+/* Closing CTA and disclaimer */
+.alos-cta{background:var(--alos-navy);color:var(--alos-on-dark);padding-block:3.5rem}
+.alos-cta-row{display:flex;flex-wrap:wrap;gap:1.5rem;align-items:center;justify-content:space-between}
+.alos-cta h2{color:var(--alos-on-dark)}
+.alos-cta p{color:var(--alos-on-dark-2);margin-top:.5rem}
+.alos a.alos-btn{color:#14213D;text-decoration:none;display:inline-block;text-align:center}
+.alos-legal{background:var(--alos-surface);border-top:1px solid var(--alos-line);padding-block:2rem;font-size:.85rem;color:var(--alos-muted)}
+.alos-legal p+p{margin-top:.6rem}
+.alos-legal strong{color:var(--alos-ink)}
+
+@media (max-width:860px){
+  .alos-hero-grid,.alos-sample{grid-template-columns:1fr;gap:2rem}
+  .alos-domain{grid-template-columns:1fr;gap:.8rem}
+  .alos-inside,.alos-who{grid-template-columns:1fr}
+  .alos-facts ul{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:560px){
+  .alos-track{grid-template-columns:1fr;gap:1rem}
+  .alos-track::before{left:7px;right:auto;top:0;bottom:0;width:2px;height:auto;background:var(--alos-gold)}
+  .alos-seg{padding-top:0;padding-left:2rem}
+}
+@media (prefers-reduced-motion:reduce){.alos *{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<a class="skip-link screen-reader-text" href="#wp--skip-link--target">Skip to content</a>
+<div class="wp-site-blocks">
+<!-- site-header -->
+<nav class="stargazer-nav">
+<div class="stargazer-nav-inner">
+<p>            <!-- Optional site title / logo --><br />
+            <!-- <a href="/" class="stargazer-nav-logo">Stargazer Consulting</a> --></p>
+<ul class="stargazer-nav-menu">
+<li class="stargazer-nav-item has-dropdown">
+					<a href="/" class="stargazer-button-nav">Home</a></p>
+<ul class="stargazer-dropdown">
+					</ul>
+</li>
+<li class="stargazer-nav-item has-dropdown">
+                    <a href="/project-management-3/" class="stargazer-button-nav">Project Management</a></p>
+<ul class="stargazer-dropdown">
+<li><a href="/phases-of-project-management/">Phases of Project Management</a></li>
+<li><a href="/ai-in-project-management/">AI in Project Management</a></li>
+<li><a href="/modern-trends-in-project-management/">Modern Trends in PM</a></li>
+<li><a href="/project-management/">Project Management Services</a></li>
+</ul>
+</li>
+<li class="stargazer-nav-item has-dropdown">
+                    <a href="/space/" class="stargazer-button-nav">Space</a></p>
+<ul class="stargazer-dropdown">
+<li><a href="/spaceflight/">Spaceflight</a></li>
+<li><a href="/the-nearest-50-stars/">50 Nearest Stars</a></li>
+<li><a href="/habitable-zone-calculator/">Habitable Zones</a></li>
+<li><a href="/lets-go-to-mars/">Lets Go to Mars</a></li>
+<li><a href="/stellar-classes/">Stellar Classifications</a></li>
+<li><a href="/solar-wind/">Solar Wind</a></li>
+<li><a href="/space-engines/">Space Engines</a></li>
+<li><a href="/layers-of-the-sun/">Layers of the Sun</a></li>
+<li><a href="/terraforming-venus/">Terraforming Venus</a></li>
+</ul>
+</li>
+<li class="stargazer-nav-item has-dropdown">
+					<a href="/compliance/" class="stargazer-button-nav">Compliance &#038; Infosec</a></p>
+<ul class="stargazer-dropdown">
+<li><a href="/ai-governance/">AI Governance</a></li>
+<li><a href="/ai-line-of-sight/">AIGP Course (Free)</a></li>
+<li><a href="/839-2/">Throughline Starter</a></li>
+<li><a href="/842-2/">Throughline Assessment</a></li>
+<li><a href="/how-long-will-they-keep-my-emails/">Email Retention</a></li>
+<li><a href="/cybersecurity-roles-and-ai/">Cyber Roles and AI</a></li>
+</ul>
+<li class="stargazer-nav-item has-dropdown">
+                    <a href="/digital-transformation/" class="stargazer-button-nav">Digital Transformation</a></p>
+<ul class="stargazer-dropdown">
+<li><a href="/when-dt-fails/">When DT Fails</a></li>
+<li><a href="/good-leadership-is-not-universally-interpreted/">Cultural Misalignment</a></li>
+</ul>
+</li>
+<li class="stargazer-nav-item has-dropdown">
+                    <a href="/courses/" class="stargazer-button-nav">Courses</a></p>
+<ul class="stargazer-dropdown">
+<li class="stargazer-nav-item has-dropdown">
+<li><a href="/introduction-to-business-management/">Intro to Business</a>
+</li>
+<li><a href="/intro-to-operations-management/">Intro to Operations</a>
+</li>
+<li><a href="/calculus-i/">Calculus I</a></li>
+<li><a href="/thermodynamics/">Thermodynamics</a></li>
+<li><a href="/flight/">Intro to Flight</a></li>
+</ul>
+</li>
+<li class="stargazer-nav-item has-dropdown">
+					<a href="/846-2/" class="stargazer-button-nav">Marketplace</a>	</p>
+<ul class="stargazer-dropdown">
+<li><a href="/846-2/">Solar Slider App</a>
+							</li>
+</ul>
+</li>
+</ul></div>
+</nav>
+<style>
+        .stargazer-nav {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+        }
+    </style>
+<!-- /site-header -->
+<main id="wp--skip-link--target">
+<div class="alos">
+
+  <header class="alos-hero">
+    <div class="alos-wrap">
+      <div class="alos-hero-grid">
+        <div>
+          <p class="alos-eyebrow">AI Line of Sight · AIGP Foundations</p>
+          <h1>The AIGP Body of Knowledge in twelve plain-language modules.</h1>
+          <p class="alos-lede">A downloadable PDF course that covers all four domains of the AI Governance Professional exam, from what counts as an AI system to the EU AI Act and governing AI in use. 108 practice questions, each with an explanation.</p>
+          <p class="alos-free">Free for a limited time</p>
+        </div>
+
+        <div class="alos-card" id="alos-form">
+          <h2>Get the course PDF</h2>
+          <p class="alos-fine" style="font-size:.95rem">All twelve modules and 108 practice questions in one 132-page PDF (about 1&nbsp;MB). No sign-up needed.</p>
+          <a class="alos-btn" href="/downloads/AI-Line-of-Sight-AIGP-Foundations.pdf" download>Download the course</a>
+          <p class="alos-fine">Free for a limited time. The copy you download is yours to keep.</p>
+        </div>
+      </div>
+
+      <div class="alos-sight" aria-label="Course coverage by exam domain">
+        <p class="alos-sight-label">Your line of sight across the four exam domains</p>
+        <div class="alos-track">
+          <div class="alos-seg"><b>DOMAIN I</b><span>Foundations of AI governance</span><div class="alos-ticks"><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i></div></div>
+          <div class="alos-seg"><b>DOMAIN II</b><span>Laws, standards and frameworks</span><div class="alos-ticks"><i>6</i><i>7</i><i>8</i><i>9</i></div></div>
+          <div class="alos-seg"><b>DOMAIN III</b><span>Governing AI development</span><div class="alos-ticks"><i>10</i><i>11</i></div></div>
+          <div class="alos-seg"><b>DOMAIN IV</b><span>Governing deployment and use</span><div class="alos-ticks"><i>12</i></div></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="alos-facts" aria-label="Course at a glance">
+    <div class="alos-wrap">
+      <ul>
+        <li><strong>12</strong><span>modules, one PDF</span></li>
+        <li><strong>108</strong><span>practice questions with explanations</span></li>
+        <li><strong>132</strong><span>pages, about 9 hours of study</span></li>
+        <li><strong>Nov 2026</strong><span>legal content checked</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="alos-section" id="modules">
+    <div class="alos-wrap">
+      <div class="alos-head">
+        <p class="alos-eyebrow">What's covered</p>
+        <h2>Twelve modules, mapped to the exam's four domains</h2>
+        <p>Each module is tagged to the Body of Knowledge topics it teaches, so you always know which part of the exam you're studying.</p>
+      </div>
+
+      <div class="alos-domain">
+        <div><p class="alos-eyebrow">Domain I</p><h3>Understanding the foundations of AI governance</h3></div>
+        <ol class="alos-mods">
+          <li><span class="alos-num">01</span><div><strong>AI foundations</strong><em>What makes a system AI, how models learn, and the vocabulary every later module relies on.</em></div></li>
+          <li><span class="alos-num">02</span><div><strong>Why AI needs governance</strong><em>Distinctive AI risks, who gets harmed, sources of bias, and the OECD, UNESCO and NIST principles.</em></div></li>
+          <li><span class="alos-num">03</span><div><strong>Roles and the AI life cycle</strong><em>Developers, providers and deployers, how organizations change role, and controls at each stage.</em></div></li>
+          <li><span class="alos-num">04</span><div><strong>Building an AI governance program</strong><em>Committees, accountability, inventories, risk tiers, policies, training and tailoring.</em></div></li>
+          <li><span class="alos-num">05</span><div><strong>Third-party and vendor AI risk</strong><em>Due diligence, contract terms, acceptable use and monitoring the AI you buy.</em></div></li>
+        </ol>
+      </div>
+      <div class="alos-domain">
+        <div><p class="alos-eyebrow">Domain II</p><h3>Understanding how laws, standards and frameworks apply to AI</h3></div>
+        <ol class="alos-mods" start="6">
+          <li><span class="alos-num">06</span><div><strong>Privacy law applied to AI</strong><em>GDPR lawful basis, impact assessments, automated decisions, sensitive data and US state rules.</em></div></li>
+          <li><span class="alos-num">07</span><div><strong>Other existing law</strong><em>Intellectual property, anti-discrimination, consumer protection and product liability.</em></div></li>
+          <li><span class="alos-num">08</span><div><strong>The EU AI Act and other AI-specific laws</strong><em>Risk tiers, high-risk requirements, duties by role, general-purpose models, penalties, and US state laws.</em></div></li>
+          <li><span class="alos-num">09</span><div><strong>Standards and frameworks</strong><em>OECD, the NIST AI Risk Management Framework, and ISO/IEC 22989, 42001 and 42005.</em></div></li>
+        </ol>
+      </div>
+      <div class="alos-domain">
+        <div><p class="alos-eyebrow">Domain III</p><h3>Understanding how to govern AI development</h3></div>
+        <ol class="alos-mods" start="10">
+          <li><span class="alos-num">10</span><div><strong>Governing AI design, data and testing</strong><em>Use cases, impact assessment, data lineage and provenance, and test planning.</em></div></li>
+          <li><span class="alos-num">11</span><div><strong>Release, monitoring and AI incidents</strong><em>Release gates, model cards, red teaming, incident response and reporting deadlines.</em></div></li>
+        </ol>
+      </div>
+      <div class="alos-domain">
+        <div><p class="alos-eyebrow">Domain IV</p><h3>Understanding how to govern AI deployment and use</h3></div>
+        <ol class="alos-mods" start="12">
+          <li><span class="alos-num">12</span><div><strong>Governing AI deployment and use</strong><em>Model and deployment choices, RAG and agents, licensing, secondary uses and deactivation.</em></div></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="alos-section alt">
+    <div class="alos-wrap">
+      <div class="alos-head">
+        <p class="alos-eyebrow">Inside every module</p>
+        <h2>Built for study, not skimming</h2>
+      </div>
+      <div class="alos-inside">
+        <div><h3>Objectives and plain-language sections</h3><p>Clear learning goals, then the concepts explained with tables you can return to.</p></div>
+        <div><h3>Exam tips and currency notes</h3><p>Where questions tend to trip people up, and where the law has changed and the exam may lag behind.</p></div>
+        <div><h3>Knowledge checks with answers</h3><p>Scenario-style questions with an explanation for every answer, tagged to the exam topics.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="alos-section">
+    <div class="alos-wrap alos-sample">
+      <div class="alos-head">
+        <p class="alos-eyebrow">Try a question</p>
+        <h2>A sample from Module 8</h2>
+        <p>Every question in the course comes with an explanation like this one. Pick an answer to see it.</p>
+      </div>
+      <div class="alos-q" id="alos-q">
+        <p class="alos-q-meta">MODULE 8 · EU AI ACT · RISK TIERS</p>
+        <p class="stem">A company plans to use AI to infer employees' emotions from webcam footage during meetings. What is the AI Act status of this use?</p>
+        <div class="alos-opts">
+          <button class="alos-opt" type="button" data-key="A"><b>A</b><span>Prohibited emotion recognition at work</span></button>
+          <button class="alos-opt" type="button" data-key="B"><b>B</b><span>High-risk, subject to a conformity assessment</span></button>
+          <button class="alos-opt" type="button" data-key="C"><b>C</b><span>Allowed with a transparency notice</span></button>
+          <button class="alos-opt" type="button" data-key="D"><b>D</b><span>Allowed if employees give consent</span></button>
+        </div>
+        <p class="alos-explain" id="alos-explain" hidden><strong>Answer: A.</strong> Emotion recognition in the workplace is a prohibited practice under the EU AI Act, except for medical or safety reasons. Employee consent does not lift the ban.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="alos-section alt">
+    <div class="alos-wrap">
+      <div class="alos-head">
+        <p class="alos-eyebrow">Who it's for</p>
+        <h2>For professionals who need to govern AI, or prove they can</h2>
+      </div>
+      <div class="alos-who">
+        <div><h3>AIGP candidates</h3><p>A structured first pass through the whole Body of Knowledge before you move on to practice exams and the official materials.</p></div>
+        <div><h3>Privacy, security and compliance teams</h3><p>Connect what you already know about privacy and risk to the laws, standards and controls that now apply to AI.</p></div>
+        <div><h3>Leaders and consultants</h3><p>A grounded view of what an AI governance program needs, from inventories and risk tiers to incident response.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="alos-section">
+    <div class="alos-wrap">
+      <div class="alos-head">
+        <p class="alos-eyebrow">Questions</p>
+        <h2>Before you download</h2>
+      </div>
+      <div class="alos-faq">
+        <details><summary>Is it really free?</summary><p>Yes, for a limited time. Use the download button on this page, no sign-up needed. The copy you download is yours to keep.</p></details>
+        <details><summary>Is this an official IAPP course?</summary><p>No. AI Line of Sight is an independent study resource. It is not affiliated with, endorsed by or approved by the IAPP, and it does not use IAPP exam questions.</p></details>
+        <details><summary>Is this enough to pass the AIGP exam?</summary><p>It covers every domain of the Body of Knowledge, but we can't promise an exam result. Use it alongside the IAPP's published Body of Knowledge and exam blueprint, and practice under timed conditions before you sit the exam.</p></details>
+        <details><summary>How current is the content?</summary><p>Legal content was checked as of November 2026, including the 2026 amendments to the EU AI Act. Where the law has changed recently, the modules teach both positions, because the exam may still reflect the older one.</p></details>
+        <details><summary>What format is it in?</summary><p>One PDF of 132 pages, with bookmarks for each module. Read it on any device or print it.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="alos-cta">
+    <div class="alos-wrap alos-cta-row">
+      <div>
+        <h2>Get the full course while it's free</h2>
+        <p>Twelve modules, 108 practice questions, one PDF.</p>
+      </div>
+      <a class="alos-btn" href="/downloads/AI-Line-of-Sight-AIGP-Foundations.pdf" download>Download the course</a>
+    </div>
+  </section>
+
+  <footer class="alos-legal">
+    <div class="alos-wrap">
+      <p><strong>AI Line of Sight is an independent study resource. It is not affiliated with, endorsed by, sponsored by or approved by the International Association of Privacy Professionals (IAPP).</strong> IAPP and AIGP are trademarks of the IAPP and are used here only to describe the certification this course helps you prepare for.</p>
+      <p>Course content is for educational purposes and is not legal advice. No course can guarantee an exam result.</p>
+      <p>© 2026 AI Line of Sight · alltheseworlds.us</p>
+    </div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var q=document.getElementById('alos-q');
+  var explain=document.getElementById('alos-explain');
+  q.querySelectorAll('.alos-opt').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      q.querySelectorAll('.alos-opt').forEach(function(b){
+        b.disabled=true;
+        if(b.dataset.key==='A') b.classList.add('is-right');
+      });
+      if(btn.dataset.key!=='A') btn.classList.add('is-wrong');
+      explain.hidden=false;
+    });
+  });
+})();
+</script>
+</main>
+<!-- site-footer -->
+<footer class="wp-block-template-part">
+<div class="wp-block-group has-global-padding is-layout-constrained wp-block-group-is-layout-constrained" style="padding-top:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--50)">
+<div class="wp-block-group alignwide is-layout-flow wp-block-group-is-layout-flow">
+<div class="wp-block-group alignfull is-content-justification-space-between is-layout-flex wp-container-core-group-is-layout-cf54d0a6 wp-block-group-is-layout-flex">
+<div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-794e3cfa wp-block-columns-is-layout-flex">
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:100%"><h2 class="wp-block-site-title"><a href="/" target="_self" rel="home">All These Worlds</a></h2>
+
+</div>
+
+
+
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow">
+<div style="height:var(--wp--preset--spacing--40);width:0px" aria-hidden="true" class="wp-block-spacer"></div>
+</div>
+</div>
+
+
+
+<div class="wp-block-group is-content-justification-space-between is-layout-flex wp-container-core-group-is-layout-bf19e0b3 wp-block-group-is-layout-flex"><nav class="is-vertical wp-block-navigation is-layout-flex wp-container-core-navigation-is-layout-831b2db5 wp-block-navigation-is-layout-flex" aria-label="Footer menu"><ul class="wp-block-navigation__container is-vertical wp-block-navigation"><li class="wp-block-navigation-item wp-block-navigation-link"><a class="wp-block-navigation-item__content"  href="/blog/"><span class="wp-block-navigation-item__label">Blog</span></a></li><li class="wp-block-navigation-item wp-block-navigation-link"><a class="wp-block-navigation-item__content"  href="/about/"><span class="wp-block-navigation-item__label">About</span></a></li></ul></nav>
+
+<nav class="is-vertical wp-block-navigation is-layout-flex wp-container-core-navigation-is-layout-831b2db5 wp-block-navigation-is-layout-flex" aria-label="Footer menu 2"><ul class="wp-block-navigation__container is-vertical wp-block-navigation"><li class="wp-block-navigation-item wp-block-navigation-link"><a class="wp-block-navigation-item__content"  href="/privacy/"><span class="wp-block-navigation-item__label">Privacy Policy</span></a></li><li class="wp-block-navigation-item wp-block-navigation-link"><a class="wp-block-navigation-item__content"  href="/terms/"><span class="wp-block-navigation-item__label">Terms</span></a></li></ul></nav></div>
+</div>
+
+
+
+<div class="wp-block-group alignfull is-content-justification-space-between is-layout-flex wp-container-core-group-is-layout-2ab8c7fb wp-block-group-is-layout-flex">
+<p class="has-small-font-size wp-block-paragraph">© 2026 All These Worlds</p>
+
+
+
+<p class="has-small-font-size wp-block-paragraph"><a href="/site-map/">Site Map</a></p>
+</div>
+</div>
+</div>
+</footer>
+<!-- /site-footer -->
+</div>
+</body>
+</html>
